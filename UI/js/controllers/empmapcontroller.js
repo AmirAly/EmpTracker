@@ -20,10 +20,10 @@
         $state.go('supervisoraccount');
     }
     $scope.notifications = function () {
-        $state.go('app.notifications');
+        $state.go('supervisornotifications');
     }
-    $scope.logout = function () {
-        $state.go('login');
+    $scope.nextEmp = function () {
+        window.location.reload(true);
     }
 
 });

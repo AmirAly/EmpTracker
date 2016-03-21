@@ -12,11 +12,11 @@
     }
 
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('supervisoraccount');
     }
 
     $scope.notifications = function () {
-        $state.go('app.notifications');
+        $state.go('supervisornotifications');
     }
 });
 

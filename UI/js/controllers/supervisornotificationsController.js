@@ -1,12 +1,12 @@
-﻿empTracker.controller("notificationsController", function ($scope, $state,$timeout) {
+﻿empTracker.controller("supervisornotificationsController", function ($scope, $state, $timeout) {
 
-    $scope.text = "notifications";
     $scope.openmyaccount = function () {
-        $state.go('app.myaccount');
+        $state.go('supervisoraccount');
     }
-    $scope.showSubMenu = function () {
-        $state.go('app.submenu');
+    $scope.notifications = function () {
+        $state.go('supervisornotifications');
     }
+
     $scope.markAllAsRead = function () {
         $scope.markAll = 'oldNotification';
         $timeout(function () {

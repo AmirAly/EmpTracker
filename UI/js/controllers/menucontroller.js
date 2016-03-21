@@ -50,7 +50,7 @@
         $state.go('app.challenge');
     }
     $scope.myaccount = function () {
-        $state.go('myaccount');
+        $state.go('app.myaccount');
     }
 
 

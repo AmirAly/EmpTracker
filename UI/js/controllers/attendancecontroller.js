@@ -2,7 +2,7 @@
 
     $scope.text = "attendanceController";
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('app.myaccount');
     }
     $scope.showSubMenu = function () {
         $state.go('app.submenu');

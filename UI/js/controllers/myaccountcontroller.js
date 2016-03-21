@@ -1,7 +1,7 @@
 ﻿empTracker.controller("myaccountController", function ($scope, $state) {
     $scope.text = 'myaccountController';
     $scope.cancel = function () {
-        $state.go('supervisingemployees');
+        window.history.back();
     }
     $scope.updateAccount = function (form) {
         if (form.$valid) {
@@ -9,10 +9,8 @@
         }
     }
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('app.myaccount');
     }
-    $scope.logout = function () {
-        $state.go('login');
-    }
+
 });
 

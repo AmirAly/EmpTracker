@@ -2,13 +2,13 @@
 
     $scope.text = "home";
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('app.myaccount');
     }
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
     $scope.update = function () {
-        $state.go('app.home');
+        window.location.reload(true);
     }
     $scope.shiftView = function () {
         $state.go('app.dailyview');

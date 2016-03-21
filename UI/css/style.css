@@ -188,3 +188,12 @@ ion-scroll[direction=y] {
 .notificationsPage .oldNotification {
     color: #aaa;
 }
+
+/*attendance Page*/
+
+.attendancePage .card .item{
+        background-color: #C8FFD8 !important;
+}
+.attendancePage .card.lateAttendance .item{
+        background-color: #FFC3BD !important;
+}

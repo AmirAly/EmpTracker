@@ -1,20 +1,4 @@
-﻿//var empTracker = angular.module("empTracker", ['ionic']).run(function ($templateCache, $http) {
-
-//    $http.get('templates/calendar.html', { cache: $templateCache });
-//    $http.get('templates/dailyview.html', { cache: $templateCache });
-//    $http.get('templates/empmap.html', { cache: $templateCache });
-//    $http.get('templates/home.html', { cache: $templateCache });
-//    $http.get('templates/myaccount.html', { cache: $templateCache });
-//    $http.get('templates/submenu.html', { cache: $templateCache });
-//    $http.get('templates/login.html', { cache: $templateCache });
-//    $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
-//    $http.get('templates/menu.html', { cache: $templateCache });
-//    $http.get('templates/supervisingemployees.html', { cache: $templateCache });
-
-//});
-
-
-var empTracker = angular.module('starter', ['ionic', 'flexcalendar', 'pascalprecht.translate'])
+﻿var empTracker = angular.module('starter', ['ionic', 'flexcalendar', 'pascalprecht.translate'])
 
 empTracker.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
@@ -30,164 +14,178 @@ empTracker.run(function ($ionicPlatform, $rootScope) {
 
 empTracker.run(function ($templateCache, $http) {
 
-        $http.get('templates/calendar.html', { cache: $templateCache });
-        $http.get('templates/dailyview.html', { cache: $templateCache });
-        $http.get('templates/empmap.html', { cache: $templateCache });
-        $http.get('templates/home.html', { cache: $templateCache });
-        $http.get('templates/myaccount.html', { cache: $templateCache });
-        $http.get('templates/submenu.html', { cache: $templateCache });
-        $http.get('templates/login.html', { cache: $templateCache });
-        $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
-        $http.get('templates/menu.html', { cache: $templateCache });
-        $http.get('templates/supervisingemployees.html', { cache: $templateCache });
-        $http.get('templates/supervisoraccount.html', { cache: $templateCache });
-        $http.get('templates/thisweek.html', { cache: $templateCache });
-        $http.get('templates/tracker.html', { cache: $templateCache });
-        $http.get('templates/attendance.html', { cache: $templateCache });
-
-    });
+    $http.get('templates/calendar.html', { cache: $templateCache });
+    $http.get('templates/dailyview.html', { cache: $templateCache });
+    $http.get('templates/empmap.html', { cache: $templateCache });
+    $http.get('templates/home.html', { cache: $templateCache });
+    $http.get('templates/myaccount.html', { cache: $templateCache });
+    $http.get('templates/submenu.html', { cache: $templateCache });
+    $http.get('templates/login.html', { cache: $templateCache });
+    $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
+    $http.get('templates/menu.html', { cache: $templateCache });
+    $http.get('templates/supervisingemployees.html', { cache: $templateCache });
+    $http.get('templates/supervisoraccount.html', { cache: $templateCache });
+    $http.get('templates/thisweek.html', { cache: $templateCache });
+    $http.get('templates/tracker.html', { cache: $templateCache });
+    $http.get('templates/attendance.html', { cache: $templateCache });
+    $http.get('templates/supervisornotifications.html', { cache: $templateCache });
+});
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
-        $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/login');
 
-        $stateProvider
+    $stateProvider
 
-         .state('login', {
-             cache: false,
-             url: '/login',
-             controller: "LoginController",
-             templateUrl: 'templates/login.html'
-         })
+     .state('login', {
+         cache: false,
+         url: '/login',
+         controller: "LoginController",
+         templateUrl: 'templates/login.html'
+     })
 
-         .state('app', {
-             url: '/app',
-             abstract: true,
-             templateUrl: 'templates/menu.html',
-             controller: 'MenuController'
-         })
+     .state('app', {
+         url: '/app',
+         abstract: true,
+         templateUrl: 'templates/menu.html',
+         controller: 'MenuController'
+     })
 
-        .state('app.tempdevicelogin', {
-            url: '/tempdevicelogin',
+    .state('app.tempdevicelogin', {
+        url: '/tempdevicelogin',
+        views: {
+            'menuContent': {
+                controller: "tempdeviceloginController",
+                templateUrl: 'templates/tempdevicelogin.html'
+            }
+        }
+    })
+
+        .state('app.home', {
+            url: '/home',
             views: {
                 'menuContent': {
-                    controller: "tempdeviceloginController",
-                    templateUrl: 'templates/tempdevicelogin.html'
+                    controller: "homeController",
+                    templateUrl: 'templates/home.html'
+                }
+            }
+        })
+        .state('app.thisweek', {
+            url: '/thisweek',
+            views: {
+                'menuContent': {
+                    controller: "thisweekController",
+                    templateUrl: 'templates/thisweek.html'
+                }
+            }
+        })
+        .state('app.submenu', {
+            url: '/submenu',
+            views: {
+                'menuContent': {
+                    controller: "submenuController",
+                    templateUrl: 'templates/submenu.html'
                 }
             }
         })
 
-            .state('app.home', {
-                url: '/home',
-                views: {
-                    'menuContent': {
-                        controller: "homeController",
-                        templateUrl: 'templates/home.html'
-                    }
+        .state('app.dailyview', {
+            url: '/dailyview',
+            views: {
+                'menuContent': {
+                    controller: "dailyviewController",
+                    templateUrl: 'templates/dailyview.html'
                 }
-            })
-            .state('app.thisweek', {
-                url: '/thisweek',
-                views: {
-                    'menuContent': {
-                        controller: "thisweekController",
-                        templateUrl: 'templates/thisweek.html'
-                    }
-                }
-            })
-            .state('app.submenu', {
-                url: '/submenu',
-                views: {
-                    'menuContent': {
-                        controller: "submenuController",
-                        templateUrl: 'templates/submenu.html'
-                    }
-                }
-            })
+            }
+        })
 
-            .state('app.dailyview', {
-                url: '/dailyview',
-                views: {
-                    'menuContent': {
-                        controller: "dailyviewController",
-                        templateUrl: 'templates/dailyview.html'
-                    }
+        .state('app.tracker', {
+            url: '/tracker',
+            views: {
+                'menuContent': {
+                    controller: "trackerController",
+                    templateUrl: 'templates/tracker.html'
                 }
-            })
+            }
+        })
 
-            .state('app.tracker', {
-                url: '/tracker',
-                views: {
-                    'menuContent': {
-                        controller: "trackerController",
-                        templateUrl: 'templates/tracker.html'
-                    }
+        .state('app.attendance', {
+            url: '/attendance',
+            views: {
+                'menuContent': {
+                    controller: "attendanceController",
+                    templateUrl: 'templates/attendance.html'
                 }
-            })
+            }
+        })
 
-            .state('app.attendance', {
-                url: '/attendance',
-                views: {
-                    'menuContent': {
-                        controller: "attendanceController",
-                        templateUrl: 'templates/attendance.html'
-                    }
+        .state('app.calendar', {
+            url: '/calendar',
+            views: {
+                'menuContent': {
+                    controller: "calendarController",
+                    templateUrl: 'templates/calendar.html'
                 }
-            })
+            }
+        })
 
-            .state('app.calendar', {
-                url: '/calendar',
-                views: {
-                    'menuContent': {
-                        controller: "calendarController",
-                        templateUrl: 'templates/calendar.html'
-                    }
-                }
-            })
-
-             .state('app.notifications', {
-                 url: '/notifications',
-                 views: {
-                     'menuContent': {
-                         controller: "notificationsController",
-                         templateUrl: 'templates/notifications.html'
-                     }
+         .state('app.notifications', {
+             url: '/notifications',
+             views: {
+                 'menuContent': {
+                     controller: "notificationsController",
+                     templateUrl: 'templates/notifications.html'
                  }
-             })
-            .state('app.challenge', {
-                url: '/challenge',
-                views: {
-                    'menuContent': {
-                        controller: "challengeController",
-                        templateUrl: 'templates/challenge.html'
-                    }
-                }
-            })
-
-
-        .state('supervisingemployees', {
-            url: '/supervisingemployees',
-            controller: "supervisingemployeesController",
-            templateUrl: 'templates/supervisingemployees.html'
-        })
-         .state('myaccount', {
-             url: '/myaccount',
-             controller: "myaccountController",
-             templateUrl: 'templates/myaccount.html'
-
+             }
          })
-        .state('empmap', {
-            url: '/empmap',
-            controller: "empmapController",
-            templateUrl: 'templates/empmap.html'
-
+        .state('app.challenge', {
+            url: '/challenge',
+            views: {
+                'menuContent': {
+                    controller: "challengeController",
+                    templateUrl: 'templates/challenge.html'
+                }
+            }
         })
-    .state('supervisoraccount', {
-        url: '/supervisoraccount',
-        controller: "supervisoraccountController",
-        templateUrl: 'templates/supervisoraccount.html'
+
+
+.state('app.myaccount', {
+    url: '/myaccount',
+    views: {
+        'menuContent': {
+            controller: "myaccountController",
+            templateUrl: 'templates/myaccount.html'
+        }
+    }
+})
+
+
+
+
+    .state('supervisingemployees', {
+        url: '/supervisingemployees',
+        controller: "supervisingemployeesController",
+        templateUrl: 'templates/supervisingemployees.html'
+    })
+
+    .state('empmap', {
+        url: '/empmap',
+        controller: "empmapController",
+        templateUrl: 'templates/empmap.html'
 
     })
-        ;
+.state('supervisoraccount', {
+    url: '/supervisoraccount',
+    controller: "supervisoraccountController",
+    templateUrl: 'templates/supervisoraccount.html'
+
+})
+ .state('supervisornotifications', {
+     url: '/supervisornotifications',
+     controller: "supervisornotificationsController",
+     templateUrl: 'templates/supervisornotifications.html'
+
+ })
+    ;
 
 
 

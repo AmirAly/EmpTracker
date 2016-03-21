@@ -2,7 +2,7 @@
 
     $scope.text = "submenu";
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('app.myaccount');
     }
     $scope.showDailyView = function () {
         $state.go('app.home');

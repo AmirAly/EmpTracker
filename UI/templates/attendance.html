@@ -8,28 +8,104 @@
     </div>
 
 </ion-header-bar>
-<ion-content class="dailyViewPage">
-    <!--<ion-scroll direction="y">-->
-        <div class="view-container">
-            <ion-tabs class="tabs-positive tabs-icon-top">
 
-                <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
-                    <!-- Tab 1 content -->
-                </ion-tab>
 
-                <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
-                    <!-- Tab 2 content -->
-                </ion-tab>
 
-                <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
-                    <!-- Tab 3 content -->
-                </ion-tab>
+<ion-view view-title="Tabs" class="attendancePage">
+    <ion-pane>
+        <ion-tabs class="tabs-top tabs-background-dark tabs-color-light tabs-icon-top">
 
-            </ion-tabs>
+            <!-- Tab 1 -->
+            <ion-tab title=" Daily" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+                <ion-nav-view name="tab-tab1">
+                    <ion-content>
+                        <ion-scroll direction="y">
+                            <div class="padding-top">
+                                <h3 class="padding text-center">My attendance today</h3>
+                            </div>
 
-        </div>
-    <!--</ion-scroll>-->
-</ion-content>
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Taren Point Road</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </ion-scroll>
+                    </ion-content>
+
+                </ion-nav-view>
+            </ion-tab>
+
+
+            <!-- Tab 2 -->
+            <ion-tab title=" Weekly" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+                <ion-nav-view name="tab-tab2">
+                    <ion-content>
+                        <ion-scroll direction="y">
+                            <div class="padding-top">
+                                <h3 class="padding text-center">My attendance this week</h3>
+                            </div>
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Taren Point Road</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card lateAttendance">
+                                <div class="item text-center">
+                                    <h2 class="padding">01:30 - 09:00</h2>
+                                    <p>Lime Street, Sydney</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Lennox Bridge, Parramatta</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </ion-scroll>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
+
+    </ion-pane>
+
+</ion-view>
 
 <ion-footer-bar class="bar-dark">
 

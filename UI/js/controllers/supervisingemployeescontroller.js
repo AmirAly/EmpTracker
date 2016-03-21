@@ -61,7 +61,7 @@
         $state.go('empmap');
     }
     $scope.notifications = function () {
-        $state.go('app.notifications');
+        $state.go('supervisornotifications');
     }
     $scope.selectedAll = false;
     $scope.checkAll = function () {
