@@ -1,0 +1,61 @@
+﻿<ion-header-bar class="bar-dark">
+    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+    <i class=" icon ion-wifi"></i>
+    <i class=" icon ion-ios-location inactive"></i>
+    <div class="pull-right floatRight">
+        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()"/><span ng-click="openmyaccount()">Amir Aly</span>
+        <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
+        </div>
+    
+</ion-header-bar>
+<ion-content class="homePage">
+    <ion-scroll direction="y">
+        <div class="view-container">
+            <!--<div class="spacer"></div>-->
+            <div class="row row-center">
+                <div class="col text-center">
+                    <h4>Last updated on 31/05/2017</h4>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item text-center">
+                    <h2 class="padding">00:30 - 09:00</h2>
+                    <p>Sydney</p>
+                    <div class="row row-center">
+                        <div class="col text-left">
+                            <p>Compound Z</p>
+                        </div>
+                        <div class="col text-right">
+                            <p>8 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="item text-center">
+                    <h2 class="padding">00:30 - 09:00</h2>
+                    <p>Marty McFly Street</p>
+                    <div class="row row-center">
+                        <div class="col text-left">
+                            <p>Compound Z</p>
+                        </div>
+                        <div class="col text-right">
+                            <p>8 hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </ion-scroll>
+</ion-content>
+
+<ion-footer-bar class="bar-dark">
+
+    <div class="button-bar">
+        <button class="button button-clear ion-ios-loop-strong" ng-click="update()">&nbsp;Update</button>
+    </div>
+
+</ion-footer-bar>

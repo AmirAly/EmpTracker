@@ -1,0 +1,39 @@
+﻿<ion-header-bar class="bar-dark">
+    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+    <i class=" icon ion-wifi"></i>
+    <i class=" icon ion-ios-location inactive"></i>
+    <div class="pull-right floatRight">
+        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+        <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
+    </div>
+
+</ion-header-bar>
+<ion-content class="dailyViewPage">
+    <!--<ion-scroll direction="y">-->
+        <div class="view-container">
+            <div class="row">
+                <div class="col padding text-center">
+                    <h2>Next Shift</h2>
+                    <h4>Sydney Sydney Sydney</h4>
+                    <h1>08:00 - 09:00</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col padding text-center">
+                    <div id="map"></div>
+                </div>
+            </div>
+
+
+        </div>
+    <!--</ion-scroll>-->
+</ion-content>
+
+<ion-footer-bar class="bar-dark">
+    <div class="button-bar">
+        <button class="button button-clear ion-ios-close-outline">&nbsp;Cancel</button>
+        <button class="button button-clear ion-ios-stopwatch-outline">&nbsp;Clock in/out</button>
+    </div>
+</ion-footer-bar>
+

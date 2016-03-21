@@ -1,0 +1,47 @@
+﻿<ion-header-bar class="bar-dark">
+    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+    <i class=" icon ion-wifi"></i>
+    <i class=" icon ion-ios-location inactive"></i>
+    <button class="hide"></button>
+</ion-header-bar>
+<ion-content>
+    <ion-scroll direction="y">
+        <div class="view-container">
+            <div class="spacer"></div>
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <img class="circle" ng-src="images/unknown.png" />
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <h3>Welcome&nbsp;<b>xxx</b>.</h3>
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <p>This device is not registered with any of your accounts.</p>
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <a href="#/login.html">No thanks, log out now.</a>
+                </div>
+            </div>
+
+        </div>
+    </ion-scroll>
+</ion-content>
+
+<ion-footer-bar class="bar-dark">
+
+    <div class="button-bar">
+        <button class="button button-clear ion-android-checkmark-circle" onclick="location.href = '#/app/home'">&nbsp;Temp Login</button>
+        <button class="button button-clear ion-ios-plus-outline" onclick="location.href = '#/app/home'">&nbsp;New Device</button>
+    </div>
+
+</ion-footer-bar>
+

@@ -1,0 +1,42 @@
+﻿<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content>
+        
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-dark bar">
+            <h1 class="title">Menu</h1>
+        </ion-header-bar>
+        <ion-content class="has-header has-footer sideMenuContent">
+            <!--menu content-->
+                
+            <div class="padding" ng-repeat="item in menuItems" ng-show="layout == 'list'" >
+                <button menu-close ng-click="{{item.linkTo}}" class="button button-icon  light text-left">
+                    <i class="icon {{item.icon}}"></i>
+                    <span ng-show="{{item.badge}}" class="badge badge-dark">3</span>
+                    <span class="h4 padding">&nbsp;{{item.text}}</span>
+                </button>
+            </div>
+
+            <div class="row row-bottom padding adjustMenu " ng-show="layout == 'grid'">
+                <div class="col col-50 text-center padding" ng-repeat="item in menuItems">
+                    <button menu-close ng-click="{{item.linkTo}}" class="button button-full button-icon icon light text-left {{item.icon}}">
+                        <span ng-show="{{item.badge}}" class="badge badge-dark">3</span>
+                    </button>
+                    <span class="h5 padding">&nbsp;{{item.text}}</span>
+                </div>
+            </div>
+
+
+        </ion-content>
+        <ion-footer-bar class="bar bar-dark sideMenufooter">
+
+            <div class="button-bar">
+                <button class="button button-icon icon button-clear ion-grid" ng-class="{active: layout == 'grid'}" ng-click="layout = 'grid'"></button>
+                <button class="button button-icon icon button-clear ion-ios-list-outline" ng-class="{active: layout == 'list'}" ng-click="layout = 'list'"></button>
+            </div>
+        </ion-footer-bar>
+
+    </ion-side-menu>
+</ion-side-menus>

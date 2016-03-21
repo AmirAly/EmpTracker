@@ -1,0 +1,183 @@
+/*
+1- general classes used in all/ most of pages
+2- validation
+3- menu
+4- login
+*/
+
+/*general*/
+ion-scroll[direction=y] {
+    height: Calc(100vh - 44px - 44px);
+}
+
+.spacer {
+    height: 40px;
+}
+
+.circle {
+    border-radius: 50%;
+    height: 60vw;
+    width: 60vw;
+}
+
+.ion-log-out:before {
+    transform: rotate(-180deg);
+}
+
+.badge {
+    position: absolute !important;
+    left: 24px;
+    bottom: 0;
+    top: initial !important;
+}
+
+.bar-header i {
+    line-height: 2.5;
+    padding-left: 10px;
+}
+
+    .bar-header i.inactive {
+        color: #ccc;
+    }
+
+.bar-header .floatRight {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    display: inline-flex;
+}
+
+    .bar-header .floatRight img {
+        height: auto;
+        width: 36px;
+    }
+
+    .bar-header .floatRight span {
+        white-space: nowrap;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1;
+        -moz-box-flex: 1;
+        -moz-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        display: block;
+        padding: 5px;
+        width: 100%;
+        max-width: 140px;
+        overflow: hidden !important;
+        text-overflow: ellipsis;
+    }
+
+.bar-footer {
+    padding: 0px;
+    bottom: -1px;
+    height: 45px;
+}
+
+    .bar-footer .button {
+        /*line-height: 2 !important;*/
+        border-right: 2px solid rgba(85, 85, 85, 0.61) !important;
+    }
+
+        .bar-footer .button:last-child {
+            border-right: none !important;
+        }
+
+    .bar-footer .floatLeft {
+        text-align: left !important;
+    }
+/*validation*/
+.errorFont {
+    color: #e42112;
+    font-size: 12px;
+    padding-right: 44px;
+}
+
+.ng-invalid.ng-dirty, .ng-invalid.ng-touched {
+    border-bottom: 1px solid #B83E2C;
+}
+
+
+/*menu*/
+.sideMenuContent {
+    background-color: #666;
+    color: #fff;
+}
+
+    .sideMenuContent .adjustMenu {
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+    }
+
+    .sideMenuContent .h4, .sideMenuContent .h5 {
+        color: #fff;
+    }
+
+    .sideMenuContent .button:hover {
+        color: #fff;
+    }
+
+    .sideMenuContent .button-icon .icon:before, .sideMenuContent .button-icon.icon:before,
+    .sideMenufooter .button-icon .icon:before, .sideMenufooter .button-icon.icon:before {
+        font-size: 42px !important;
+    }
+
+
+/*login page*/
+.loginpage .appLogo {
+    max-width: 300px;
+    height: auto;
+}
+
+/*map page*/
+.mapPage #map {
+    width: 100%;
+    height: 100vh;
+}
+/*supervisor page*/
+.supervisorPage .item-checkbox .checkbox {
+    z-index: -1;
+}
+
+    .supervisorPage .item-checkbox .checkbox input:before,
+    .supervisorPage .item-checkbox .checkbox .checkbox-icon:before {
+        border-color: #ddd;
+    }
+
+/*home page*/
+.homePage .col p {
+    font-size: 12px;
+}
+
+.dailyViewPage #map {
+    width: 100%;
+    height: 50vh;
+}
+
+/*challengePage*/
+.challengePage .basicColorDv {
+    background-color: rgb(237,95,83);
+    width: 50vw;
+    height: 50vw;
+}
+
+.challengePage .firstColorDv {
+    background-color: rgb(237,95,83);
+    width: 18vw;
+    height: 18vw;
+}
+
+.challengePage .secondColorDv {
+    background-color: rgb(66,165,246);
+    width: 18vw;
+    height: 18vw;
+}
+
+.challengePage .thirdColorDv {
+    background-color: rgb(57,156,30);
+    width: 18vw;
+    height: 18vw;
+}
+
+

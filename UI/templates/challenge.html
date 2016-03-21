@@ -1,0 +1,45 @@
+﻿<ion-header-bar class="bar-dark">
+    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+    <i class=" icon ion-wifi"></i>
+    <i class=" icon ion-ios-location inactive"></i>
+    <div class="pull-right floatRight">
+        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+        <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
+    </div>
+
+</ion-header-bar>
+<ion-content class="challengePage">
+    <ion-scroll direction="y">
+        <div class="view-container">
+
+            <div class="padding row row-center">
+                <div class="col-50 col-offset-25">
+                    <div class="card basicColorDv"></div>
+                </div>
+            </div>
+
+            <div class="padding-horizontal">
+                <div class="padding row row-center">
+                    <div class="col-20">
+                        <div class="card firstColorDv"></div>
+                    </div>
+                    <div class="col-20 col-offset-20">
+                        <div class="card secondColorDv"></div>
+                    </div>
+                    <div class="col-20 col-offset-20">
+                        <div class="card thirdColorDv"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spacer"></div>
+
+            <h1 ng-bind="counter" data-ng-init="countdown()" class="text-center"></h1>
+
+        </div>
+    </ion-scroll>
+</ion-content>
+
+<ion-footer-bar class="bar-dark">
+
+</ion-footer-bar>

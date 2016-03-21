@@ -1,0 +1,47 @@
+﻿<form class="list" novalidate name="frmLogin" ng-submit="submitForm(frmLogin)">
+    <ion-header-bar class="bar-dark">
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        
+    </ion-header-bar>
+
+    <ion-content class="loginpage">
+        <ion-scroll direction="y">
+            <div class="view-container">
+                <div class="spacer"></div>
+                <div class="list">
+                    <div class="item item-image item-borderless">
+                        <img class="appLogo full-image padding" ng-src="images/logo.png">
+                        <div class="spacer"></div>
+                    </div>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label ">User Name</span>
+                        <input ng-model="frmLogin.name" type="email" required placeholder="User Name" name="userName" id="userName">
+                        <span ng-show="frmLogin.userName.$dirty && frmLogin.userName.$invalid">
+                            <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
+                            <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
+                        </span>
+                    </label>
+                    <label class="item item-input item-floating-label">
+                        <span class="input-label ">Password</span>
+                        <input ng-model="frmLogin.password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
+                        <span ng-show="frmLogin.txtPassword.$dirty && frmLogin.txtPassword.$invalid">
+                            <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
+                        </span>
+                    </label>
+                </div>
+
+            </div>
+        </ion-scroll>
+    </ion-content>
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-ios-help-outline" type="button">&nbsp;Forget</button>
+            <button class="button button-clear ion-log-in" ng-disabled="frmLogin.$invalid" type="submit">&nbsp;Login</button>
+        </div>
+</ion-footer-bar>
+
+</form>
+
+
