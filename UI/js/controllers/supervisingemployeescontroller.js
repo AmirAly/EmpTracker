@@ -10,7 +10,7 @@
                 <div class="padding col"><input type="text" class="text-center" ng-model="time.hour"></div>\
                 <div class="padding col"><input type="text" class="text-center" ng-model="time.minute"></div>\
             </div>',
-            title: 'there is (5) employee(s) selected',
+            title: 'there is (3) employee(s) selected',
             //subTitle: 'Please use normal things',
             scope: $scope,
             buttons: [
@@ -38,6 +38,13 @@
                       }
                   }
               },
+              {
+                  text: '<b>Cancel</b>',
+                  type: 'button-dark flex',
+                  onTap: function (e) {
+                      myPopup.close();
+                  }
+              }
             ]
         });
         myPopup.then(function (res) {
@@ -48,14 +55,24 @@
         //}, 3000);
     };
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('supervisoraccount');
     }
     $scope.openmap = function () {
         $state.go('empmap');
     }
-    $scope.logout = function () {
-        $state.go('login');
+    $scope.notifications = function () {
+        $state.go('app.notifications');
     }
+    $scope.selectedAll = false;
+    $scope.checkAll = function () {
+
+        if ($scope.selectedAll == false) {
+            $scope.selectedAll = true;
+        } else {
+            $scope.selectedAll = false;
+        }
+
+    };
 });
 
 // local storage update 

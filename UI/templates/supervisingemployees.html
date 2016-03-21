@@ -1,5 +1,5 @@
 ﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-log-out" ng-click="logout()"></button>
+    <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
     <i class=" icon ion-wifi"></i>
     <i class=" icon ion-ios-location inactive"></i>
     <div class="pull-right floatRight" ng-click="openmyaccount()">
@@ -26,7 +26,7 @@
 
                 <li class="item item-checkbox">
                     <div class="checkbox checkbox-dark">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-checked="selectedAll">
                     </div>
                     <a class="item item-avatar item-borderless" ng-click="openmap()">
                         <img src="images/unknown.png">
@@ -37,7 +37,7 @@
 
                 <li class="item item-checkbox">
                     <div class="checkbox checkbox-dark">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-checked="selectedAll">
                     </div>
                     <a class="item item-avatar item-borderless" ng-click="openmap()">
                         <img src="images/unknown.png">
@@ -48,7 +48,7 @@
 
                 <li class="item item-checkbox">
                     <div class="checkbox checkbox-dark">
-                        <input type="checkbox">
+                        <input type="checkbox" ng-checked="selectedAll">
                     </div>
                     <a class="item item-avatar item-borderless" ng-click="openmap()">
                         <img src="images/unknown.png">
@@ -68,7 +68,10 @@
 <ion-footer-bar class="bar-dark">
 
     <div class="button-bar">
-        <button class="button button-clear ion-android-done-all">&nbsp;Select All</button>
+        <button class="button button-clear ion-android-done-all" ng-click="checkAll()">
+            <span ng-hide="selectedAll">&nbsp;Select All</span>
+            <span ng-show="selectedAll">&nbsp;Deselect All</span>
+        </button>
         <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showPopup()">&nbsp;Clock in/out</button>
     </div>
 

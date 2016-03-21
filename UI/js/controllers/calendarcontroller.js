@@ -26,8 +26,10 @@
 
         eventClick: function (date) { // called before dateClick and only if clicked day has events
             console.log(date);
-            //console.log(date.date);
-            //console.log(moment(date.date, "YYYY-MM-DD"));
+            console.log(date.date);
+            var isoDate = new Date(date.date).toISOString();
+            console.log(isoDate);
+            //console.log(moment(isoDate, "YYYY-MM-DD"));
             //var input = date.date;
             //var year = input.slice(-4),
             //    month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'].indexOf(input.substr(4, 3)) + 1,

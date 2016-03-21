@@ -17,10 +17,14 @@
         $state.go('supervisingemployees');
     }
     $scope.openmyaccount = function () {
-        $state.go('myaccount');
+        $state.go('supervisoraccount');
+    }
+    $scope.notifications = function () {
+        $state.go('app.notifications');
     }
     $scope.logout = function () {
         $state.go('login');
     }
+
 });
 

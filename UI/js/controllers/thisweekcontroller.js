@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state) {
+﻿empTracker.controller("thisweekController", function ($scope, $state) {
 
     $scope.text = "home";
     $scope.openmyaccount = function () {

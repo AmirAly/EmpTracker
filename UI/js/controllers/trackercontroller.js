@@ -1,4 +1,4 @@
-﻿empTracker.controller("dailyviewController", function ($scope, $state, $ionicPopup) {
+﻿empTracker.controller("trackerController", function ($scope, $state, $ionicPopup) {
 
     $scope.text = "dailyview";
     $scope.openmyaccount = function () {

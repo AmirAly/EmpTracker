@@ -11,29 +11,27 @@
 <ion-content class="dailyViewPage">
     <!--<ion-scroll direction="y">-->
         <div class="view-container">
-            <div class="row">
-                <div class="col padding text-center">
-                    <h2>Compound X</h2>
-                    <h4>Oxford Street, Sydney</h4>
-                    <h1>08:00 - 09:00</h1>
-                </div>
-            </div>
+            <ion-tabs class="tabs-positive tabs-icon-top">
 
-            <div class="row">
-                <div class="col padding text-center">
-                    <div id="map"></div>
-                </div>
-            </div>
+                <ion-tab title="Home" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+                    <!-- Tab 1 content -->
+                </ion-tab>
 
+                <ion-tab title="About" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+                    <!-- Tab 2 content -->
+                </ion-tab>
+
+                <ion-tab title="Settings" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+                    <!-- Tab 3 content -->
+                </ion-tab>
+
+            </ion-tabs>
 
         </div>
     <!--</ion-scroll>-->
 </ion-content>
 
 <ion-footer-bar class="bar-dark">
-    <div class="button-bar">
-        <button class="button button-clear ion-ios-close-outline" ng-click="goBack()">&nbsp;Cancel</button>
-        <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showConfirm()">&nbsp;Clock in/out</button>
-    </div>
+
 </ion-footer-bar>
 

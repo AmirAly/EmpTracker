@@ -18,4 +18,7 @@
             else return false;
         }, 1000);
     };
+    $scope.rightAnswer = function () {
+        $state.go('app.home');
+    }
 });

@@ -40,23 +40,14 @@ empTracker.run(function ($templateCache, $http) {
         $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
         $http.get('templates/menu.html', { cache: $templateCache });
         $http.get('templates/supervisingemployees.html', { cache: $templateCache });
+        $http.get('templates/supervisoraccount.html', { cache: $templateCache });
+        $http.get('templates/thisweek.html', { cache: $templateCache });
+        $http.get('templates/tracker.html', { cache: $templateCache });
+        $http.get('templates/attendance.html', { cache: $templateCache });
 
     });
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
-
-    //$stateProvider
-
-	//.state('login', {
-	//    url: '/login',
-	//    templateUrl: 'templates/login.html',
-	//    controller: 'LoginController'
-	//})
-
-
-    //$urlRouterProvider.otherwise('/login');
-
-
         $urlRouterProvider.otherwise('/login');
 
         $stateProvider
@@ -94,6 +85,15 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
                     }
                 }
             })
+            .state('app.thisweek', {
+                url: '/thisweek',
+                views: {
+                    'menuContent': {
+                        controller: "thisweekController",
+                        templateUrl: 'templates/thisweek.html'
+                    }
+                }
+            })
             .state('app.submenu', {
                 url: '/submenu',
                 views: {
@@ -110,6 +110,26 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
                     'menuContent': {
                         controller: "dailyviewController",
                         templateUrl: 'templates/dailyview.html'
+                    }
+                }
+            })
+
+            .state('app.tracker', {
+                url: '/tracker',
+                views: {
+                    'menuContent': {
+                        controller: "trackerController",
+                        templateUrl: 'templates/tracker.html'
+                    }
+                }
+            })
+
+            .state('app.attendance', {
+                url: '/attendance',
+                views: {
+                    'menuContent': {
+                        controller: "attendanceController",
+                        templateUrl: 'templates/attendance.html'
                     }
                 }
             })
@@ -161,6 +181,12 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             templateUrl: 'templates/empmap.html'
 
         })
+    .state('supervisoraccount', {
+        url: '/supervisoraccount',
+        controller: "supervisoraccountController",
+        templateUrl: 'templates/supervisoraccount.html'
+
+    })
         ;
 
 

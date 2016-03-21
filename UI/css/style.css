@@ -24,6 +24,10 @@ ion-scroll[direction=y] {
     transform: rotate(-180deg);
 }
 
+.flex {
+    display: flex !important;
+}
+
 .badge {
     position: absolute !important;
     left: 24px;
@@ -180,4 +184,7 @@ ion-scroll[direction=y] {
     height: 18vw;
 }
 
-
+/*notifications Page*/
+.notificationsPage .oldNotification {
+    color: #aaa;
+}
