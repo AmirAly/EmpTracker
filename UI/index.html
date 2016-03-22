@@ -47,6 +47,11 @@
 </head>
 <body>
     <ion-nav-view></ion-nav-view>
-
+    <script>
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        function onBackKeyDown(e) {
+            e.preventDefault();
+        }
+    </script>
 </body>
 </html>
