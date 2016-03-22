@@ -11,23 +11,23 @@ empTracker.run(function ($ionicPlatform, $rootScope) {
     });
 })
 
-//empTracker.run(function ($templateCache, $http) {
-//    $http.get('templates/calendar.html', { cache: $templateCache });
-//    $http.get('templates/dailyview.html', { cache: $templateCache });
-//    $http.get('templates/empmap.html', { cache: $templateCache });
-//    $http.get('templates/home.html', { cache: $templateCache });
-//    $http.get('templates/myaccount.html', { cache: $templateCache });
-//    $http.get('templates/submenu.html', { cache: $templateCache });
-//    $http.get('templates/login.html', { cache: $templateCache });
-//    $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
-//    $http.get('templates/menu.html', { cache: $templateCache });
-//    $http.get('templates/supervisingemployees.html', { cache: $templateCache });
-//    $http.get('templates/supervisoraccount.html', { cache: $templateCache });
-//    $http.get('templates/thisweek.html', { cache: $templateCache });
-//    $http.get('templates/tracker.html', { cache: $templateCache });
-//    $http.get('templates/attendance.html', { cache: $templateCache });
-//    $http.get('templates/supervisornotifications.html', { cache: $templateCache });
-//});
+empTracker.run(function ($templateCache, $http) {
+    $http.get('templates/calendar.html', { cache: $templateCache });
+    $http.get('templates/dailyview.html', { cache: $templateCache });
+    $http.get('templates/empmap.html', { cache: $templateCache });
+    $http.get('templates/home.html', { cache: $templateCache });
+    $http.get('templates/myaccount.html', { cache: $templateCache });
+    $http.get('templates/submenu.html', { cache: $templateCache });
+    $http.get('templates/login.html', { cache: $templateCache });
+    $http.get('templates/tempdevicelogin.html', { cache: $templateCache });
+    $http.get('templates/menu.html', { cache: $templateCache });
+    $http.get('templates/supervisingemployees.html', { cache: $templateCache });
+    $http.get('templates/supervisoraccount.html', { cache: $templateCache });
+    $http.get('templates/thisweek.html', { cache: $templateCache });
+    $http.get('templates/tracker.html', { cache: $templateCache });
+    $http.get('templates/attendance.html', { cache: $templateCache });
+    $http.get('templates/supervisornotifications.html', { cache: $templateCache });
+});
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
