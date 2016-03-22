@@ -1,11 +1,10 @@
-﻿
-<ion-header-bar class="bar-dark">
+﻿<ion-header-bar class="bar-dark">
     <i class=" icon ion-wifi"></i>
     <i class=" icon ion-ios-location inactive"></i>
 </ion-header-bar>
-<form class="list" novalidate name="frmLogin" ng-submit="submitForm(frmLogin)">
-    <ion-view class="loginpage">
-        <ion-scroll direction="y">
+<ion-content class="loginpage">
+    <ion-scroll direction="y">
+        <form class="list" novalidate name="frmLogin" id="frmLogin" ng-submit="submitForm(frmLogin)">
             <div class="view-container">
                 <div class="spacer"></div>
                 <div class="list">
@@ -30,15 +29,16 @@
                     </label>
                 </div>
             </div>
-        </ion-scroll>
-    </ion-view>
-    <ion-footer-bar class="bar-dark">
-        <div class="button-bar">
-            <button class="button button-clear ion-ios-help-outline" type="button">&nbsp;Forget</button>
-            <button class="button button-clear ion-log-in"  type="submit">&nbsp;Login</button>
-        </div>
-    </ion-footer-bar>
+        </form>
 
-</form>
+    </ion-scroll>
+</ion-content>
+<ion-footer-bar class="bar-dark">
+    <div class="button-bar">
+        <button class="button button-clear ion-ios-help-outline" type="button">&nbsp;Forget</button>
+        <button class="button button-clear ion-log-in" ng-disabled="frmLogin.$invalid" type="button" onclick="javascript: document.getElementById('frmLogin').submit();">&nbsp;Login</button>
+    </div>
+</ion-footer-bar>
+
 
 
