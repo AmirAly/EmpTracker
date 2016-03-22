@@ -77,6 +77,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         }
     })
     .state('app.dailyview', {
+        cache: false,
         url: '/dailyview',
         views: {
             'menuContent': {
@@ -146,6 +147,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
     .state('empmap', {
         url: '/empmap',
+        cache: false,
         controller: "empmapController",
         templateUrl: 'templates/empmap.html'
 
