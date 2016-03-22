@@ -1,23 +1,26 @@
 ﻿empTracker.controller("empmapController", function ($scope, $state,$timeout) {
     $scope.load = function () {
-        console.log('emp map');
+        var map;
+        var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
         google.maps.event.addDomListener(window, 'load', initialize());
-        var map2;
         function initialize() {
-            console.log('init');
-            $timeout(function () {
-                var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
-                var mapOptions = {
-                    zoom: 4,
-                    center: myLatLng,
-                };
-                map2 = new google.maps.Map(document.getElementById('map2'),
-                    mapOptions);
-            }, 1000);
+            var mapOptions = {
+                zoom: 7,
+                center: myLatLng,
+                disableDefaultUI: true
+            };
+            map = new google.maps.Map(document.getElementById('map'),
+                mapOptions);
+            google.maps.event.addListenerOnce(map, 'idle', function () {
+                var marker = new google.maps.Marker({
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    position: myLatLng
+                });
+            });
         }
     }
     $scope.load();
-
     
    
 

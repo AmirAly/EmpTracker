@@ -1,4 +1,4 @@
-﻿<form class="list" novalidate name="frmLogin" ng-submit="submitForm(frmLogin)">
+﻿<form class="list"  name="frmLogin" ng-submit="submitForm(frmLogin)">
     <ion-header-bar class="bar-dark">
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
@@ -11,8 +11,12 @@
                     <div class="list">
                         <div class="item item-image item-borderless">
                             <img class="appLogo full-image padding" ng-src="images/logo.png">
-                            <div class="spacer"></div>
                         </div>
+                        <h2 class="text-center">
+                            Bluwaves Tracker
+                        </h2>
+                        <div class="spacer"></div>
+
                         <label class="item item-input item-floating-label">
                             <span class="input-label ">User Name</span>
                             <input ng-model="frmLogin.name" type="email" required placeholder="User Name" name="userName" id="userName">
@@ -36,7 +40,7 @@
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">
             <button class="button button-clear ion-ios-help-outline" type="button">&nbsp;Forget</button>
-            <button class="button button-clear ion-log-in" type="submit">&nbsp;Login</button>
+            <button class="button button-clear ion-log-in" ng-disabled="frmLogin.$dirty && frmLogin.$invalid" type="submit">&nbsp;Login</button>
         </div>
     </ion-footer-bar>
 

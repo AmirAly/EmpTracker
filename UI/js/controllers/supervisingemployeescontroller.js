@@ -7,8 +7,8 @@
         // An elaborate, custom popup
         var myPopup = $ionicPopup.show({
             template: '<div class="row">\
-                <div class="padding col"><input type="text" class="text-center" ng-model="time.hour"></div>\
-                <div class="padding col"><input type="text" class="text-center" ng-model="time.minute"></div>\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
             </div>',
             title: 'there is (3) employee(s) selected',
             scope: $scope,
@@ -38,8 +38,8 @@
                   }
               },
               {
-                  text: '<b>Cancel</b>',
-                  type: 'button-dark flex',
+                  text: '<b>X</b>',
+                  type: 'button-red',
                   onTap: function (e) {
                       myPopup.close();
                   }

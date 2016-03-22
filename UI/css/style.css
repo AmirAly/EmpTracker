@@ -136,7 +136,7 @@ ion-scroll[direction=y] {
 
 /*login page*/
 .loginpage .appLogo {
-    max-width: 300px;
+    max-width: 150px;
     height: auto;
 }
 
