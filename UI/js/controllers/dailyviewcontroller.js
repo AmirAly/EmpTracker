@@ -6,25 +6,25 @@
         $state.go('app.submenu');
     }
 
-    //$scope.load = function () {
-    //    console.log('daily');
-    //    google.maps.event.addDomListener(window, 'load', initialize());
-    //    var map;
+    $scope.load = function () {
+        console.log('daily');
+        google.maps.event.addDomListener(window, 'load', initialize());
+        var map;
 
-    //    function initialize() {
-    //        console.log('init');
-    //        $timeout(function () {
-    //            var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
-    //            var mapOptions = {
-    //                zoom: 4,
-    //                center: myLatLng,
-    //            };
-    //            map = new google.maps.Map(document.getElementById('map'),
-    //                mapOptions);
-    //        }, 1000);
-    //    }
-    //}
-    //$scope.load();
+        function initialize() {
+            console.log('init');
+            $timeout(function () {
+                var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
+                var mapOptions = {
+                    zoom: 4,
+                    center: myLatLng,
+                };
+                map = new google.maps.Map(document.getElementById('map'),
+                    mapOptions);
+            }, 1000);
+        }
+    }
+    $scope.load();
 
     
 
