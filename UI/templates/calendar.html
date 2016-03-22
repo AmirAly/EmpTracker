@@ -10,7 +10,6 @@
 
 <ion-view name="calendar-view">
     <ion-content class="padding calendarPage">
-        <ion-scroll direction="y">
             <flex-calendar options="options" events="events"></flex-calendar>
             <div class="card" ng-show="showDetails">
                 <div class="item item-text-wrap text-center">
@@ -38,9 +37,6 @@
 
                 </div>
             </div>
-        </ion-scroll>
     </ion-content>
 </ion-view>
 
-<ion-footer-bar class="bar-dark">
-</ion-footer-bar>
