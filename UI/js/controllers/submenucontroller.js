@@ -1,6 +1,4 @@
 ﻿empTracker.controller("submenuController", function ($scope, $state) {
-
-    $scope.text = "submenu";
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -14,8 +12,3 @@
         $state.go('app.thisweek');
     }
 });
-
-// local storage update 
-//var updatedUser = localstorage.getObject('currentUser');
-//updatedUser.FirstName = "eeeeee";
-//localstorage.resetObject('currentUser', updatedUser);

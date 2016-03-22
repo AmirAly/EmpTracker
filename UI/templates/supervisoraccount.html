@@ -7,7 +7,7 @@
     </div>
 </ion-header-bar>
 <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
-    <ion-content class="addAccountPage">
+    <ion-content class="supervisorAccountPage">
         <ion-scroll direction="y">
             <div class="padding row row-center">
                 <div class="col text-center">
@@ -16,7 +16,6 @@
             </div>
 
             <div class="list">
-
                 <label class="item item-input item-floating-label padding">
                     <span class="input-label">Name</span>
                     <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
@@ -40,7 +39,6 @@
                         <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
                     </span>
                 </label>
-
             </div>
             <div class="padding row row-center">
                 <div class="col text-center">
@@ -50,13 +48,11 @@
             <div class="spacer"></div>
         </ion-scroll>
     </ion-content>
-    
-    <ion-footer-bar class="bar-dark">
 
+    <ion-footer-bar class="bar-dark">
         <div class="button-bar">
             <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">&nbsp;Cancel</button>
             <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">&nbsp;Update</button>
         </div>
-
     </ion-footer-bar>
 </form>

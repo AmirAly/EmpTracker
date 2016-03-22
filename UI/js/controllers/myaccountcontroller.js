@@ -1,5 +1,4 @@
 ﻿empTracker.controller("myaccountController", function ($scope, $state) {
-    $scope.text = 'myaccountController';
     $scope.cancel = function () {
         window.history.back();
     }
@@ -11,6 +10,5 @@
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
-
 });
 

@@ -4,21 +4,7 @@
         $ionicSideMenuDelegate.toggleLeft();
     };
 
-    ////to hide inside bar (small part of the menu) or change icon
-    //$scope.$watch(function () {
-    //    return $ionicSideMenuDelegate.getOpenRatio();
-    //},
-    //           function (ratio) {
-    //               if (ratio == 1) {
-    //                   $scope.showMenu = true;
-    //               }
-    //               else {
-    //                   $scope.showMenu = false;
-    //               }
-    //           });
-
     $scope.menuItems = [
-    //{ icon: 'ion-ios-home', text: 'Home', linkTo: 'home()', badge: false },
     { icon: 'ion-android-list', text: 'Schedule', linkTo: 'home()', badge: false },
     { icon: 'ion-clock', text: 'Attendance', linkTo: 'attendance()', badge: false },
     { icon: 'ion-pinpoint', text: 'Tracker', linkTo: 'tracker()', badge: false },
@@ -52,6 +38,5 @@
     $scope.myaccount = function () {
         $state.go('app.myaccount');
     }
-
 
 });

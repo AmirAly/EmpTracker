@@ -4,31 +4,30 @@
     <i class=" icon ion-ios-location inactive"></i>
     <div class="pull-right floatRight">
         <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
-        <button class="button button-icon icon ion-ios-keypad" ></button>
-        </div>
-
+        <button class="button button-icon icon ion-ios-keypad"></button>
+    </div>
 </ion-header-bar>
-<ion-content class="homePage">
+<ion-content class="submenuPage">
     <ion-scroll direction="y">
         <div class="view-container">
-           <div class="row">
-               <div class="col col-50 text-center" ng-click="showWeeklyView()">
-                   <div class="card">
-                       <div class="item item-body">
-                           <img class="full-image" src="images/week.png">
-                       </div>
-                   </div>
-                   <h5>Weekly</h5>
-               </div>
-               <div class="col col-50 text-center" ng-click="showDailyView()">
-                   <div class="card">
-                       <div class="item item-body">
-                           <img class="full-image" src="images/daily.png">
-                       </div>
-                   </div>
-                   <h5>Daily</h5>
-               </div>
-           </div>
+            <div class="row">
+                <div class="col col-50 text-center" ng-click="showWeeklyView()">
+                    <div class="card">
+                        <div class="item item-body">
+                            <img class="full-image" src="images/week.png">
+                        </div>
+                    </div>
+                    <h5>Weekly</h5>
+                </div>
+                <div class="col col-50 text-center" ng-click="showDailyView()">
+                    <div class="card">
+                        <div class="item item-body">
+                            <img class="full-image" src="images/daily.png">
+                        </div>
+                    </div>
+                    <h5>Daily</h5>
+                </div>
+            </div>
             <div class="row">
                 <div class="col col-50 text-center" ng-click="showCalendar()">
                     <div class="card">
@@ -38,7 +37,7 @@
                     </div>
                     <h5>Calendar</h5>
                 </div>
-                
+
             </div>
         </div>
     </ion-scroll>

@@ -1,4 +1,4 @@
-﻿<!--<ion-header-bar class="bar-dark">
+﻿<ion-header-bar class="bar-dark">
     <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
     <i class=" icon ion-wifi"></i>
     <i class=" icon ion-ios-location inactive"></i>
@@ -6,27 +6,7 @@
         <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
         <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
     </div>
-
 </ion-header-bar>
-<ion-content class="calendarPage">
-    <ion-scroll direction="y">
-        <div class="view-container">
-            {{text}}
-        </div>
-    </ion-scroll>
-</ion-content>
--->
-<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight">
-        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
-        <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
-    </div>
-
-</ion-header-bar>
-
 
 <ion-view name="calendar-view">
     <ion-content class="padding calendarPage">
@@ -62,13 +42,5 @@
     </ion-content>
 </ion-view>
 
-
-<!--<ion-view name="schedule-view">
-    <ion-content class="padding">
-        <flex-calendar options="options" events="events"></flex-calendar>
-    </ion-content>
-</ion-view>-->
-
 <ion-footer-bar class="bar-dark">
-
 </ion-footer-bar>

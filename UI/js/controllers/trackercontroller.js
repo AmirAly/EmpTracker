@@ -1,6 +1,4 @@
 ﻿empTracker.controller("trackerController", function ($scope, $state, $ionicPopup) {
-
-    $scope.text = "dailyview";
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

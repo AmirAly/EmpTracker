@@ -11,7 +11,6 @@
                 <div class="padding col"><input type="text" class="text-center" ng-model="time.minute"></div>\
             </div>',
             title: 'there is (3) employee(s) selected',
-            //subTitle: 'Please use normal things',
             scope: $scope,
             buttons: [
               {
@@ -19,7 +18,7 @@
                   type: 'button-dark',
                   onTap: function (e) {
                       if (!$scope.time.hour) {
-                          //don't allow the user to close unless he enters wifi password
+                          //don't allow the user to close unless he enters 
                           e.preventDefault();
                       } else {
                           return $scope.time.hour;
@@ -31,7 +30,7 @@
                   type: 'button-dark',
                   onTap: function (e) {
                       if (!$scope.time.hour) {
-                          //don't allow the user to close unless he enters wifi password
+                          //don't allow the user to close unless he enters 
                           e.preventDefault();
                       } else {
                           return $scope.time.hour;
@@ -50,9 +49,6 @@
         myPopup.then(function (res) {
             console.log('Tapped!', res);
         });
-        //$timeout(function () {
-        //    myPopup.close(); //close the popup after 3 seconds for some reason
-        //}, 3000);
     };
     $scope.openmyaccount = function () {
         $state.go('supervisoraccount');
@@ -74,8 +70,3 @@
 
     };
 });
-
-// local storage update 
-//var updatedUser = localstorage.getObject('currentUser');
-//updatedUser.FirstName = "eeeeee";
-//localstorage.resetObject('currentUser', updatedUser);

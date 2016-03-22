@@ -1,6 +1,4 @@
 ﻿empTracker.controller("supervisoraccountController", function ($scope, $state) {
-    $scope.text = 'supervisoraccountController';
-
     $scope.cancel = function () {
         $state.go('supervisingemployees');
     }
@@ -10,7 +8,6 @@
             $state.go('supervisingemployees');
         }
     }
-
     $scope.openmyaccount = function () {
         $state.go('supervisoraccount');
     }

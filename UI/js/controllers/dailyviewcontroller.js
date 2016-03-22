@@ -1,6 +1,4 @@
 ﻿empTracker.controller("dailyviewController", function ($scope, $state, $ionicPopup) {
-
-    $scope.text = "dailyview";
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -23,7 +21,6 @@
     $scope.goBack = function () {
         window.history.back();
     };
-
 
     // A confirm dialog
     $scope.showConfirm = function () {

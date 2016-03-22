@@ -1,6 +1,4 @@
 ﻿empTracker.controller("challengeController", function ($scope, $state, $timeout) {
-
-    $scope.text = "challenge";
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

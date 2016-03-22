@@ -1,6 +1,4 @@
-﻿empTracker.controller("notificationsController", function ($scope, $state,$timeout) {
-
-    $scope.text = "notifications";
+﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -11,6 +9,6 @@
         $scope.markAll = 'oldNotification';
         $timeout(function () {
             window.history.back();
-        },500)
+        }, 500)
     }
 });

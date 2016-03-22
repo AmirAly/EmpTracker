@@ -1,13 +1,10 @@
-﻿empTracker.controller("calendarController" ,function ($scope, $state) {
-
-    $scope.text = "calendar";
+﻿empTracker.controller("calendarController", function ($scope, $state) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
-
     $scope.showDetails = false;
     $scope.showlistCards = false;
     "use strict";
