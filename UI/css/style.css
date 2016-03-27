@@ -36,11 +36,32 @@ ion-scroll[direction=y] {
 
 .badge {
     position: absolute !important;
-    left: 24px;
+    left: 16px;
     bottom: 0;
     top: initial !important;
+    padding: 2px 4px;
+    font-size: 12px;
 }
 
+.bar-header , .bar-footer{
+    background-color:#2c3e50 !important;
+    border-color:#1D2935 !important;
+    background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%);
+}
+.pane, .view{
+    background-color: #ecf0f1 !important;
+}
+.actionBlue{
+        background-color: #3498db !important;
+    border-color: #287BB3 !important;
+    color:#fff !important;
+}
+.fontActionBlue{
+    color:#3498db !important;
+}
+.menu .bar-header{
+    background-color: #111 !important;
+}
 .bar-header i {
     line-height: 2.5;
     padding-left: 10px;
@@ -86,7 +107,7 @@ ion-scroll[direction=y] {
 }
 
     .bar-footer .button {
-        border-right: 2px solid rgba(85, 85, 85, 0.61) !important;
+        border-right: 2px solid #000 !important;
     }
 
         .bar-footer .button:last-child {
@@ -111,17 +132,30 @@ ion-scroll[direction=y] {
 
 /*menu*/
 .sideMenuContent {
+    background-color: #0a9ec7;
     background-color: #666;
     color: #fff;
 }
 
-    .sideMenuContent .adjustMenu {
+    .sideMenuContent .adjustMenu,
+    .submenuPage .adjustMenu {
         flex-wrap: wrap;
         -webkit-flex-wrap: wrap;
     }
-
-    .sideMenuContent .h4, .sideMenuContent .h5 {
-        color: #fff;
+   .submenuPage .badge {
+    position: absolute !important;
+    left: auto !important;
+    bottom: 0;
+    top: initial !important;
+    padding: 2px 4px;
+    font-size: 12px;
+    color:#fff !important;
+}
+   .submenuPage .card{
+       margin:0 !important;
+   }
+    .sideMenuContent .h4, .sideMenuContent .h5, .sideMenuContent i {
+        color: #ddd;
     }
 
     .sideMenuContent .button:hover {
@@ -130,14 +164,13 @@ ion-scroll[direction=y] {
 
     .sideMenuContent .button-icon .icon:before, .sideMenuContent .button-icon.icon:before,
     .sideMenufooter .button-icon .icon:before, .sideMenufooter .button-icon.icon:before {
-        font-size: 42px !important;
+        font-size: 24px !important;
     }
 
 
 /*login page*/
-.loginpage .appLogo {
-    max-width: 150px;
-    height: auto;
+.loginpage .list .list {
+     background-color:#f8f8f8; 
 }
 
 /*map page*/

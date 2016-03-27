@@ -1,14 +1,26 @@
-﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight">
-        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
-        <button class="button button-icon icon ion-ios-keypad"></button>
-    </div>
-</ion-header-bar>
-<ion-content class="submenuPage">
-        <div class="view-container">
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight">
+            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+            <button class="button button-icon icon ion-ios-keypad"></button>
+        </div>
+    </ion-header-bar>
+    <ion-content class="submenuPage" overflow-scroll="true" >
+
+        <div class="row row-bottom adjustMenu ">
+            <div class="col col-33 text-center card padding" ng-repeat="item in menuItems">
+                <div class="padding-bottom">
+                    <button menu-close ng-click="{{item.linkTo}}" class="button button-full fontActionBlue button-icon icon light text-left {{item.icon}}">
+                        <span ng-show="{{item.badge}}" class="badge badge-calm fontActionBlue">3</span>
+                    </button>
+                    <span class="h5 fontActionBlue">&nbsp;{{item.text}}</span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="view-container">
             <div class="row">
                 <div class="col col-50 text-center" ng-click="showWeeklyView()">
                     <div class="card">
@@ -38,6 +50,7 @@
                 </div>
 
             </div>
-        </div>
-</ion-content>
+        </div>-->
+    </ion-content>
 
+</ion-view>

@@ -1,11 +1,11 @@
-﻿<ion-header-bar class="bar-dark">
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <button class="hide"></button>
-</ion-header-bar>
-<ion-view>
-    <ion-pane>
-        <div class="view-container">
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <button class="hide"></button>
+    </ion-header-bar>
+
+    <ion-content class="has-header has-footer" overflow-scroll="true" padding="true">
             <div class="spacer"></div>
             <div class="padding row row-center">
                 <div class="col text-center">
@@ -31,13 +31,13 @@
                 </div>
             </div>
 
-        </div>
-    </ion-pane>
+    </ion-content>
 
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-android-checkmark-circle" onclick="location.href = '#/app/dailyview'">&nbsp;Temp Guest login</button>
+            <button class="button button-clear ion-ios-plus-outline" onclick="location.href = '#/app/home'">&nbsp;New Device</button>
+        </div>
+    </ion-footer-bar>
 </ion-view>
-<ion-footer-bar class="bar-dark">
-    <div class="button-bar">
-        <button class="button button-clear ion-android-checkmark-circle" onclick="location.href = '#/app/daily'">&nbsp;Temp Login</button>
-        <button class="button button-clear ion-ios-plus-outline" onclick="location.href = '#/app/home'">&nbsp;New Device</button>
-    </div>
-</ion-footer-bar>

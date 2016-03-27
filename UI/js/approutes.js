@@ -71,7 +71,8 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         url: '/submenu',
         views: {
             'menuContent': {
-                controller: "submenuController",
+                //controller: "submenuController",
+                controller: "MenuController",
                 templateUrl: 'templates/submenu.html'
             }
         }
