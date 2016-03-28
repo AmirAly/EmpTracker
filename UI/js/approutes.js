@@ -11,6 +11,12 @@ empTracker.run(function ($ionicPlatform, $rootScope) {
     });
 })
 
+empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
+
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
+}]);
+
 empTracker.run(function ($templateCache, $http) {
     //$http.get('templates/calendar.html', { cache: $templateCache });
     ////$http.get('templates/dailyview.html', { cache: $templateCache });
