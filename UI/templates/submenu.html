@@ -11,9 +11,9 @@
     <ion-content class="submenuPage" overflow-scroll="true" >
 
         <div class="row row-bottom adjustMenu ">
-            <div class="col col-33 text-center card padding" ng-repeat="item in menuItems">
-                <div class="padding-bottom">
-                    <button menu-close ng-click="{{item.linkTo}}" class="button button-full fontActionBlue button-icon icon light text-left {{item.icon}}">
+            <div class="col col-33 text-center  padding" ng-repeat="item in menuItems">
+                <div class="padding-bottom card" ng-click="{{item.linkTo}}">
+                    <button class="button button-full fontActionBlue button-icon icon light text-left {{item.icon}}">
                         <span ng-show="{{item.badge}}" class="badge badge-calm fontActionBlue">3</span>
                     </button>
                     <span class="h5 fontActionBlue">&nbsp;{{item.text}}</span>

@@ -1,32 +1,74 @@
-﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight">
-        <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
-        <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
-    </div>
-</ion-header-bar>
-<ion-content class="trackerPage">
-    <div class="view-container">
-        <div class="row">
-            <div class="col padding text-center">
-                <h2>Compound X</h2>
-                <h4>Oxford Street, Sydney</h4>
-                <h1>08:00 - 09:00</h1>
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight">
+            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+            <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content class="trackerPage">
+        <!--<div class="row">
+            <div class="col card padding text-center">
+                <h3>Compound X</h3>
+                <h5>Oxford Street, Sydney</h5>
+                <h2>08:00 - 09:00</h2>
+            </div>
+        </div>-->
+        <div class="card">
+            <div class="list">
+                <div class="item row row-center">
+                    <span class="col">Date</span>
+                    <span class="item-note col-66">Jan 15, 2016</span>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col padding text-center">
-                <div id="map"></div>
+        <div class="card">
+            <div class="list">
+                <div class="item row row-center">
+                    <span class="col">Start time</span>
+                    <span class="item-note col-66">8:20 pm</span>
+                </div>
+                <div class="item row row-center">
+                    <span class="col">End time</span>
+                    <span class="item-note col-66">9:33 pm</span>
+                </div>
+                <div class="item row row-center">
+                    <span class="col">Break (Duration)</span>
+                    <span class="item-note col-66">0 hours,0 mins</span>
+                </div>
             </div>
         </div>
-    </div>
-</ion-content>
-<ion-footer-bar class="bar-dark">
-    <div class="button-bar">
-        <button class="button button-clear ion-ios-close-outline" ng-click="goBack()">&nbsp;Cancel</button>
-        <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showConfirm()">&nbsp;Clock in/out</button>
-    </div>
-</ion-footer-bar>
-
+        <div class="card">
+            <div class="list">
+                <div class="item row row-center">
+                    <span class="col">Site</span>
+                    <span class="item-note col-66">[Sec] Security Guard</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="list">
+                <div class="item row row-center">
+                    <span class="col">Address</span>
+                    <span class="item-note col-66">35 Hunter St. Condell Park , NSW 2200</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="list">
+                <div class="item row row-center">
+                    <span class="col">Notes</span>
+                    <span class="item-note col-66"></span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-ios-close-outline" ng-click="goBack()">&nbsp;Cancel</button>
+            <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showConfirm()">&nbsp;Clock in/out</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

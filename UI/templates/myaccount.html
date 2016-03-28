@@ -8,12 +8,15 @@
 </ion-header-bar>
 <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
     <ion-content class="myAccountPage">
-            <div class="padding row row-center">
-                <div class="col text-center">
+        <div class="padding-horizontal row row-center">
+            <div class="col card">
+                <div class="text-center">
                     <img class="circle" ng-src="images/unknown.png" />
                 </div>
             </div>
-            <div class="list">
+        </div>
+        <div class="padding-horizontal">
+            <div class="card">
                 <label class="item item-input item-floating-label padding">
                     <span class="input-label">Name</span>
                     <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
@@ -38,7 +41,8 @@
                     </span>
                 </label>
             </div>
-            <div class="spacer"></div>
+        </div>
+        <div class="spacer"></div>
     </ion-content>
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">

@@ -1,4 +1,5 @@
-﻿<ion-view>
+﻿<ion-view view-title="Tabs" class="homePage">
+
     <ion-header-bar class="bar-dark">
         <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
         <i class=" icon ion-wifi"></i>
@@ -8,9 +9,9 @@
             <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
         </div>
     </ion-header-bar>
-
-    <ion-content class="homePage has-header has-footer">
-            <div class="row row-center">
+    <ion-pane>
+        <div class=" has-header has-footer ">
+            <!--<div class="row row-center">
                 <div class="col text-center">
                     <h4>Last updated on 31/05/2017</h4>
                 </div>
@@ -29,13 +30,139 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
 
-    </ion-content>
+            <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
+                <!-- Tab 1 -->
+                <ion-tab title=" Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline">
+                    <ion-nav-view name="tab-tab1">
+                        <ion-content overflow-scroll="true" padding="true">
+                            <div class="padding-top">
+                                <h3 class="padding text-center">Today</h3>
+                            </div>
 
-    <ion-footer-bar class="bar-dark">
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Taren Point Road</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </ion-content>
+
+                    </ion-nav-view>
+                </ion-tab>
+
+                <!-- Tab 2 -->
+                <ion-tab title=" Weekly" icon-on="ion-android-calendar" icon-off="ion-android-calendar">
+                    <ion-nav-view name="tab-tab2">
+                        <ion-content overflow-scroll="true" padding="true">
+                            <div class="padding-top">
+                                <h3 class="padding text-center">This Week</h3>
+                            </div>
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Taren Point Road</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card lateAttendance">
+                                <div class="item text-center">
+                                    <h2 class="padding">01:30 - 09:00</h2>
+                                    <p>Lime Street, Sydney</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="item text-center">
+                                    <h2 class="padding">00:30 - 09:00</h2>
+                                    <p>Lennox Bridge, Parramatta</p>
+                                    <div class="row row-center">
+                                        <div class="col text-left">
+                                            <p>Compound Z</p>
+                                        </div>
+                                        <div class="col text-right">
+                                            <p>8 hours</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="spacer"></div>
+                        </ion-content>
+                    </ion-nav-view>
+                </ion-tab>
+
+                <!-- Tab 3 -->
+                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+                    <ion-nav-view name="tab-tab2">
+                        <ion-content overflow-scroll="true" padding="true">
+                            <!--<div class="padding-top">
+                                <h3 class="padding text-center">Calendar</h3>
+                            </div>-->
+                            <flex-calendar options="options" events="events"></flex-calendar>
+                            <div class="card" ng-show="showDetails">
+                                <div class="item item-text-wrap text-center">
+                                    <h1>08:00 - 09:00</h1>
+                                    <h2>Next Shift : King Street, Sydney</h2>
+                                </div>
+                            </div>
+                            <div ng-show="showlistCards">
+                                <div class="list card">
+
+                                    <div class="item item-text-wrap text-center">
+                                        <h1>08:00 - 09:00</h1>
+                                        <h2>Next Shift : Grosvenor Street, Sydney</h2>
+                                    </div>
+
+                                    <div class="item item-text-wrap text-center">
+                                        <h1>10:00 - 12:00</h1>
+                                        <h2>Next Shift : Stanley Street, East Sydney</h2>
+                                    </div>
+
+                                    <div class="item item-text-wrap text-center">
+                                        <h1>14:00 - 16:00</h1>
+                                        <h2>Next Shift : Crown Street, Sydney</h2>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="spacer"></div>
+                        </ion-content>
+                    </ion-nav-view>
+                </ion-tab>
+
+            </ion-tabs>
+
+        </div>
+    </ion-pane>
+    <!--<ion-footer-bar class="bar-dark">
         <div class="button-bar">
             <button class="button button-clear ion-ios-loop-strong" ng-click="update()">&nbsp;Update</button>
         </div>
-    </ion-footer-bar>
+    </ion-footer-bar>-->
+
 </ion-view>
