@@ -1,0 +1,10 @@
+{
+  "name": "trunk",
+    "app_id": "",
+    "documentRoot": "UI",
+    "createDocumentRoot": "UI",
+    "watchPatterns": [
+    "UI/**/*",
+    "!UI/lib/**/*"
+  ]
+}
