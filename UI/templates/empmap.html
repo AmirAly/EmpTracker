@@ -1,19 +1,21 @@
-﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight" ng-click="openmyaccount()">
-        <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
-    </div>
-</ion-header-bar>
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
+        </div>
+    </ion-header-bar>
 
-<ion-content class="has-header has-footer mapPage" ng-controller="empmapController">
-    <div class="view-container text-center" id="map"></div>
-</ion-content>
+    <ion-content class="has-header has-footer mapPage" ng-controller="empmapController" overflow-scroll="true">
+        <div class=" text-center" id="map"></div>
+    </ion-content>
 
-<ion-footer-bar class="bar-dark">
-    <div class="button-bar">
-        <button class="button  button-clear ion-arrow-left-c " ng-click="backToAllEmps()"> Back</button>
-        <button class="button  button-clear ion-arrow-right-c " ng-click="nextEmp()"> Next emp</button>
-    </div>
-</ion-footer-bar>
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button  button-clear ion-arrow-left-c " ng-click="backToAllEmps()"> Back</button>
+            <button class="button  button-clear ion-arrow-right-c " ng-click="nextEmp()"> Next emp</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

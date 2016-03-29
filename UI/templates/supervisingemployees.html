@@ -1,71 +1,71 @@
-﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight" ng-click="openmyaccount()">
-        <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
-    </div>
-</ion-header-bar>
-<ion-content class="has-header has-footer supervisorPage">
-    <div class="view-container">
-        <ul class="list list-inset">
-            <li class="item item-divider">
-                <label class="item item-input item-select">
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
+        </div>
+    </ion-header-bar>
+    <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
+            <ul class="list list-inset">
+                <li class="item item-divider">
+                    <label class="item item-input item-select">
 
-                    <span class="input-label">
-                        <b> Location </b>
-                    </span>
+                        <span class="input-label">
+                            <b> Location </b>
+                        </span>
 
-                    <select>
-                        <option>Syndy Location 1</option>
-                        <option selected>Melburn</option>
-                        <option>Location 3</option>
-                    </select>
-                </label>
-            </li>
+                        <select>
+                            <option>Syndy Location 1</option>
+                            <option selected>Melburn</option>
+                            <option>Location 3</option>
+                        </select>
+                    </label>
+                </li>
 
-            <li class="item item-checkbox">
-                <div class="checkbox checkbox-dark">
-                    <input type="checkbox" ng-checked="selectedAll">
-                </div>
-                <a class="item item-avatar item-borderless" ng-click="openmap()">
-                    <img src="images/unknown.png">
-                    <h2>Samar Ahmed Ali</h2>
-                    <p>09.00 - 08:30</p>
-                </a>
-            </li>
+                <li class="item item-checkbox">
+                    <div class="checkbox checkbox-dark">
+                        <input type="checkbox" ng-checked="selectedAll">
+                    </div>
+                    <a class="item item-avatar item-borderless" ng-click="openmap()">
+                        <img src="images/unknown.png">
+                        <h2>Samar Ahmed Ali</h2>
+                        <p>09.00 - 08:30</p>
+                    </a>
+                </li>
 
-            <li class="item item-checkbox">
-                <div class="checkbox checkbox-dark">
-                    <input type="checkbox" ng-checked="selectedAll">
-                </div>
-                <a class="item item-avatar item-borderless" ng-click="openmap()">
-                    <img src="images/unknown.png">
-                    <h2>Lara Mansour</h2>
-                    <p>00.00 - 08:30</p>
-                </a>
-            </li>
+                <li class="item item-checkbox">
+                    <div class="checkbox checkbox-dark">
+                        <input type="checkbox" ng-checked="selectedAll">
+                    </div>
+                    <a class="item item-avatar item-borderless" ng-click="openmap()">
+                        <img src="images/unknown.png">
+                        <h2>Lara Mansour</h2>
+                        <p>00.00 - 08:30</p>
+                    </a>
+                </li>
 
-            <li class="item item-checkbox">
-                <div class="checkbox checkbox-dark">
-                    <input type="checkbox" ng-checked="selectedAll">
-                </div>
-                <a class="item item-avatar item-borderless" ng-click="openmap()">
-                    <img src="images/unknown.png">
-                    <h2>Adam Werni</h2>
-                    <p>00.00 - 08:30</p>
-                </a>
-            </li>
-        </ul>
-    </div>
-</ion-content>
+                <li class="item item-checkbox">
+                    <div class="checkbox checkbox-dark">
+                        <input type="checkbox" ng-checked="selectedAll">
+                    </div>
+                    <a class="item item-avatar item-borderless" ng-click="openmap()">
+                        <img src="images/unknown.png">
+                        <h2>Adam Werni</h2>
+                        <p>00.00 - 08:30</p>
+                    </a>
+                </li>
+            </ul>
+    </ion-content>
 
-<ion-footer-bar class="bar-dark">
-    <div class="button-bar">
-        <button class="button button-clear ion-android-done-all" ng-click="checkAll()">
-            <span ng-hide="selectedAll">&nbsp;Select All</span>
-            <span ng-show="selectedAll">&nbsp;Deselect All</span>
-        </button>
-        <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showPopup()">&nbsp;Clock in/out</button>
-    </div>
-</ion-footer-bar>
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-android-done-all" ng-click="checkAll()">
+                <span ng-hide="selectedAll">&nbsp;Select All</span>
+                <span ng-show="selectedAll">&nbsp;Deselect All</span>
+            </button>
+            <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showPopup()">&nbsp;Clock in/out</button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -17,9 +17,9 @@
     { icon: 'ion-log-out', text: 'Logout', linkTo: 'logout()', badge: false }];
 
     //$scope.layout = 'list';
-    $scope.dailyview = function () {
-        $state.go('app.dailyview');
-    }
+    //$scope.dailyview = function () {
+    //    $state.go('app.dailyview');
+    //}
     $scope.home = function () {
         $state.go('app.home');
     }

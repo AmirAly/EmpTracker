@@ -4,7 +4,7 @@
     }
     $scope.updateAccount = function (form) {
         if (form.$valid) {
-            $state.go('supervisingemployees');
+            $state.go('app.home');
         }
     }
     $scope.openmyaccount = function () {

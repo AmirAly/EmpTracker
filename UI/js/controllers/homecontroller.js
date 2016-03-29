@@ -9,7 +9,7 @@
         window.location.reload(true);
     }
     $scope.shiftView = function () {
-        $state.go('app.dailyview');
+        $state.go('app.tracker');
     }
 
     // Calendar

@@ -2,15 +2,15 @@
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}
-        $scope.time.hour = '08';
-        $scope.time.minute = '30';
+        $scope.time.hour = 08;
+        $scope.time.minute = 30;
         // An elaborate, custom popup
         var myPopup = $ionicPopup.show({
             template: '<div class="row">\
                 <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
                 <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
             </div>',
-            title: 'there is (3) employee(s) selected',
+            title: '<i class="ion-information-circled"></i> there is (3) employee(s) selected',
             scope: $scope,
             buttons: [
               {
@@ -39,7 +39,7 @@
               },
               {
                   text: '<b>X</b>',
-                  type: 'button-red',
+                  type: 'button-assertive',
                   onTap: function (e) {
                       myPopup.close();
                   }

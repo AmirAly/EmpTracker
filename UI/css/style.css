@@ -67,6 +67,7 @@ ion-scroll[direction=y] {
     color: #aaa;
     border-right: 2px solid #e5e5e5;
     white-space: nowrap;
+    padding-left: 0px;
 }
 
 .shiftCard .secondCoulmn {
@@ -91,6 +92,7 @@ ion-scroll[direction=y] {
 
 .shiftCard .thirdCoulmn {
     font-stretch: expanded;
+    padding-right: 20px;
 }
 
     .shiftCard .thirdCoulmn div {
@@ -303,8 +305,8 @@ ion-scroll[direction=y] {
     margin-left: 0;
 }
 
-.homePage .calendarView .item{
-    padding:0px;
+.homePage .calendarView .item {
+    padding: 0px;
 }
 
 .trackerPage .item-note {
@@ -351,10 +353,10 @@ ion-scroll[direction=y] {
 
 /*attendance Page*/
 
-.attendancePage .card .item {
+.attendancePage .card {
     background-color: #C8FFD8 !important;
 }
 
-.attendancePage .card.lateAttendance .item {
-    background-color: #FFC3BD !important;
-}
+    .attendancePage .card.lateAttendance {
+        background-color: #FFC3BD !important;
+    }

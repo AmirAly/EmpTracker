@@ -1,53 +1,55 @@
-﻿<ion-header-bar class="bar-dark">
-    <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-    <i class=" icon ion-wifi"></i>
-    <i class=" icon ion-ios-location inactive"></i>
-    <div class="pull-right floatRight" ng-click="openmyaccount()">
-        <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
-    </div>
-</ion-header-bar>
-<form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
-    <ion-content class="myAccountPage">
-        <div class="padding-horizontal row row-center">
-            <div class="col card">
-                <div class="text-center">
-                    <img class="circle" ng-src="images/unknown.png" />
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
+        </div>
+    </ion-header-bar>
+    <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
+        <ion-content class="myAccountPage" overflow-scroll="true" padding="true">
+            <div class="padding-horizontal row row-center">
+                <div class="col card">
+                    <div class="text-center">
+                        <img class="circle" ng-src="images/unknown.png" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="padding-horizontal">
-            <div class="card">
-                <label class="item item-input item-floating-label padding">
-                    <span class="input-label">Name</span>
-                    <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
-                    <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
-                        <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
-                    </span>
-                </label>
+            <div class="padding-horizontal">
+                <div class="card">
+                    <label class="item item-input item-floating-label padding">
+                        <span class="input-label">Name</span>
+                        <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
+                        <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
+                        </span>
+                    </label>
 
-                <label class="item item-input item-floating-label padding">
-                    <span class="input-label">Password</span>
-                    <input ng-model="password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
-                    <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
-                        <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
-                    </span>
-                </label>
+                    <label class="item item-input item-floating-label padding">
+                        <span class="input-label">Password</span>
+                        <input ng-model="password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
+                        <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
+                        </span>
+                    </label>
 
-                <label class="item item-input item-floating-label padding">
-                    <span class="input-label">Confirm</span>
-                    <input ng-model="confirm" type="password" required placeholder="Confirm" name="txtConfirm" id="txtConfirm">
-                    <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
-                        <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
-                    </span>
-                </label>
+                    <label class="item item-input item-floating-label padding">
+                        <span class="input-label">Confirm</span>
+                        <input ng-model="confirm" type="password" required placeholder="Confirm" name="txtConfirm" id="txtConfirm">
+                        <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
+                        </span>
+                    </label>
+                </div>
             </div>
-        </div>
-        <div class="spacer"></div>
-    </ion-content>
-    <ion-footer-bar class="bar-dark">
-        <div class="button-bar">
-            <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">&nbsp;Cancel</button>
-            <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">&nbsp;Update</button>
-        </div>
-    </ion-footer-bar>
-</form>
+            <div class="spacer"></div>
+        </ion-content>
+        <ion-footer-bar class="bar-dark">
+            <div class="button-bar">
+                <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">&nbsp;Cancel</button>
+                <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">&nbsp;Update</button>
+            </div>
+        </ion-footer-bar>
+    </form>
+</ion-view>
