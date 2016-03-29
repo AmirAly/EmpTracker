@@ -60,5 +60,6 @@
     $scope.events = [
       { foo: 'bar', eventClass: 'expired', date: "2016-08-18" }, //value of eventClass will be added to CSS class of the day element
       { foo: 'bar', date: "2016-08-20" }
+      , { foo: 'bar', eventClass: '333', date: "2016-08-18" }
     ];
 });
