@@ -34,7 +34,7 @@ ion-scroll[direction=y] {
     display: flex !important;
 }
 
-.badge {
+.submenuPage .badge, .sideMenuContent .badge {
     position: absolute !important;
     left: 16px;
     bottom: 0;
@@ -309,6 +309,44 @@ ion-scroll[direction=y] {
     padding: 0px;
 }
 
+.homePage .calendarView .badge {
+    display: block;
+    position: absolute;
+    padding: 2px 4px;
+    font-size: 12px;
+}
+
+.homePage .calendarView .badge-calm {
+    right: 0px;
+    top: 0;
+}
+
+.homePage .calendarView .badge-dark {
+    left: 0px;
+    top: 0;
+}
+
+.homePage .calendarView .badge-assertive {
+    right: 0px;
+    bottom: 0;
+}
+
+.homePage .calendarView .badge-royal {
+    left: 0px;
+    bottom: 0;
+}
+
+
+
+
+
+.homePage .event {
+    /*background-color:red !important;
+    border:2px solid red !important;*/
+}
+
+
+/*trackerPage*/
 .trackerPage .item-note {
     font-size: 100%;
     color: #3498db;
@@ -316,10 +354,6 @@ ion-scroll[direction=y] {
     white-space: normal;
 }
 
-/*.trackerPage #map {
-    width: 100%;
-    height: 50vh;
-}*/
 
 /*challenge Page*/
 .challengePage .basicColorDv {

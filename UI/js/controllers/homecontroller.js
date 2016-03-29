@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state) {
+﻿empTracker.controller("homeController", function ($scope, $state, $timeout) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -20,7 +20,7 @@
     $scope.options = {
         defaultDate: "2016-08-06",
         minDate: "2016-01-01",
-        maxDate: "2016-12-31",
+        maxDate: "2100-12-31",
         disabledDates: [
             "2016-06-22",
             "2016-07-27",
@@ -34,26 +34,29 @@
             console.log(date);
             var formattedDate = date.year + "-" + date._month + "-" + date.day;
             if (formattedDate.toString() == '2016-8-20') {
+                console.log($scope.name);
                 $scope.showlistCards = true;
                 $scope.showDetails = false;
             }
-
             else {
                 $scope.showlistCards = false;
                 $scope.showDetails = true;
             }
+            $scope.loadCalendarEvents();
         },
         dateClick: function (date) { // called every time a day is clicked
             console.log(date);
             $scope.showDetails = false;
             $scope.showlistCards = false;
+            $scope.loadCalendarEvents();
         },
         changeMonth: function (month, year) {
             console.log(month, year);
-
+            $scope.loadCalendarEvents();
         },
         filteredEventsChange: function (filteredEvents) {
             console.log(filteredEvents);
+            $scope.loadCalendarEvents();
         },
     };
 
@@ -62,4 +65,24 @@
       { foo: 'bar', date: "2016-08-20" }
       , { foo: 'bar', eventClass: '333', date: "2016-08-18" }
     ];
+
+    $scope.loadCalendarEvents = function () {
+        $timeout(function () {
+            $('#badge2016-8-20').append('<div class="badge badge-dark">2</div>\
+            <div class="badge badge-calm">1</div>\
+            <div class="badge badge-royal">0</div>\
+            <div class="badge badge-assertive">3</div>');
+        });
+        $timeout(function () {
+            $('#badge2016-8-18').append('<div class="badge badge-dark">1</div>\
+            <div class="badge badge-calm">2</div>\
+            <div class="badge badge-royal">3</div>\
+            <div class="badge badge-assertive">4</div>');
+        });
+        $timeout(function () {
+            $('#badge2016-8-6').parent().addClass('selected');
+        });
+        
+    }
+    $scope.loadCalendarEvents();
 });
