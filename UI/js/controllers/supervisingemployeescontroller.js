@@ -2,7 +2,7 @@
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}
-        $scope.time.hour = 08;
+        $scope.time.hour = 8;
         $scope.time.minute = 30;
         // An elaborate, custom popup
         var myPopup = $ionicPopup.show({
