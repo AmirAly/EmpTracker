@@ -29,11 +29,11 @@
     };
 
    
-    if ($stateParams.title=="") {
-        $scope.pageTitle = "Available shift";
-    }
-    else {
-       $scope.pageTitle = $stateParams.title;
-    }
-    console.log($stateParams.title);
+    //if ($stateParams.title=="") {
+    //    $scope.pageTitle = "Available shift";
+    //}
+    //else {
+    //   $scope.pageTitle = $stateParams.title;
+    //}
+    //console.log($stateParams.title);
 });
