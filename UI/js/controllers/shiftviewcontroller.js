@@ -1,4 +1,4 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $stateParams) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
