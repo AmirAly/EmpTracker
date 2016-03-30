@@ -15,7 +15,7 @@
     * and ionic-angular.js
     */-->
     <script type="text/javascript" src="js/ionic.bundle.js"></script>
-    <script src="cordova.js"></script>
+
     <!-- google maps javascript -->
     <!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBbkSt_pCrWS4OxeVx73tABk9Pl28P1_QA">
     </script>-->
@@ -27,6 +27,7 @@
 
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <!-- App Scripts -->
+    <script src="cordova.js"></script>
     <script type="text/javascript" src="js/approutes.js"></script>
     <script type="text/javascript" src="js/controllers/logincontroller.js"></script>
     <script type="text/javascript" src="js/controllers/menucontroller.js"></script>
@@ -49,10 +50,7 @@
 <body>
     <ion-nav-view></ion-nav-view>
     <script>
-        document.addEventListener("backbutton", onBackKeyDown, false);
-        function onBackKeyDown(e) {
-            e.preventDefault();
-        }
+        alert('update 1');
     </script>
 </body>
 </html>
