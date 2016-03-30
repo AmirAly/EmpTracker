@@ -19,4 +19,5 @@
     $scope.rightAnswer = function () {
         $state.go('app.home');
     }
+
 });

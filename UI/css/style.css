@@ -11,6 +11,7 @@
 10-attendance Page
 */
 
+
 /*general*/
 ion-scroll[direction=y] {
     height: Calc(100vh - 44px - 44px);
@@ -213,7 +214,7 @@ ion-scroll[direction=y] {
     padding-right: 44px;
 }
 
-.ng-invalid.ng-dirty, .ng-invalid.ng-touched {
+.ng-invalid.ng-dirty.ng-touched:not(form) {
     border-bottom: 1px solid #B83E2C;
 }
 
@@ -280,6 +281,10 @@ ion-scroll[direction=y] {
         border-color: #ddd;
     }
 
+.supervisorAccountPage .card, .myAccountPage .card {
+    margin-top: 0px !important;
+}
+
 /*home page*/
 .homePage .col p {
     font-size: 12px;
@@ -312,33 +317,56 @@ ion-scroll[direction=y] {
 .homePage .calendarView .badge {
     display: block;
     position: absolute;
-    padding: 2px 4px;
+    padding: 1px 5px;
     font-size: 12px;
+    color: #fff;
 }
 
-.homePage .calendarView .badge-calm {
-    right: 0px;
-    top: 0;
-}
-
-.homePage .calendarView .badge-dark {
+.homePage .calendarView .tentative {
     left: 0px;
     top: 0;
+    background-color: #e74c3c;
 }
 
-.homePage .calendarView .badge-assertive {
+.homePage .calendarView .confirmed {
     right: 0px;
-    bottom: 0;
+    top: 0;
+    background-color: #f1c40f;
 }
 
-.homePage .calendarView .badge-royal {
+.homePage .calendarView .void {
     left: 0px;
     bottom: 0;
+    background-color: #9b59b6;
 }
 
+.homePage .calendarView .training {
+    right: 0px;
+    bottom: 0;
+    background-color: #2ecc71;
+}
 
+.homePage .dvTotalHrs .col-25 {
+    background: #fff;
+    border: 1px solid #aaa;
+}
 
+.homePage .dvTotalHrs .col-25 b{
+    line-height:2;
+}
 
+.tentativeFont{
+    color:#e74c3c;
+}
+.confirmedFont{
+    color:#f1c40f;
+}
+.voidFont{
+    color:#9b59b6;
+}
+.trainingFont{
+    color:#2ecc71;
+}
 
 .homePage .event {
     /*background-color:red !important;
@@ -346,8 +374,8 @@ ion-scroll[direction=y] {
 }
 
 
-/*trackerPage*/
-.trackerPage .item-note {
+/*shiftViewPage*/
+.shiftViewPage .item-note {
     font-size: 100%;
     color: #3498db;
     text-align: right;
@@ -387,10 +415,10 @@ ion-scroll[direction=y] {
 
 /*attendance Page*/
 
-.attendancePage .card {
-    background-color: #C8FFD8 !important;
+.attendancePage .ion-checkmark-round, .attendancePage .ion-close-round {
+    font-size:34px;
 }
 
-    .attendancePage .card.lateAttendance {
+    /*.attendancePage .card.lateAttendance {
         background-color: #FFC3BD !important;
-    }
+    }*/

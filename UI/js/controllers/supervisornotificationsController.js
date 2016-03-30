@@ -3,7 +3,7 @@
         $state.go('supervisoraccount');
     }
     $scope.notifications = function () {
-        $state.go('supervisornotifications');
+        window.history.back();
     }
     $scope.markAllAsRead = function () {
         $scope.markAll = 'oldNotification';

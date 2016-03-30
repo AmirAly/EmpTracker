@@ -30,7 +30,7 @@ empTracker.run(function ($templateCache, $http) {
     //$http.get('templates/supervisingemployees.html', { cache: $templateCache });
     //$http.get('templates/supervisoraccount.html', { cache: $templateCache });
     //$http.get('templates/thisweek.html', { cache: $templateCache });
-    //$http.get('templates/tracker.html', { cache: $templateCache });
+    //$http.get('templates/shiftView.html', { cache: $templateCache });
     //$http.get('templates/attendance.html', { cache: $templateCache });
     //$http.get('templates/supervisornotifications.html', { cache: $templateCache });
 });
@@ -93,12 +93,12 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-    .state('app.tracker', {
-        url: '/tracker',
+    .state('app.shiftView', {
+        url: '/shiftView/:title?',
         views: {
             'menuContent': {
-                controller: "trackerController",
-                templateUrl: 'templates/tracker.html'
+                controller: "shiftviewController",
+                templateUrl: 'templates/shiftview.html'
             }
         }
     })

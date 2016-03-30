@@ -8,13 +8,15 @@
     $scope.update = function () {
         window.location.reload(true);
     }
-    $scope.shiftView = function () {
-        $state.go('app.tracker');
+    $scope.shiftView = function (shiftTitle) {
+        $state.go('app.shiftView', { title: shiftTitle });
     }
 
     // Calendar
     $scope.showDetails = false;
     $scope.showlistCards = false;
+    $scope.day3 = false;
+    $scope.day30 = false;
     // With "use strict", Dates can be passed ONLY as strings (ISO format: YYYY-MM-DD)
     "use strict";
     $scope.options = {
@@ -37,10 +39,26 @@
                 console.log($scope.name);
                 $scope.showlistCards = true;
                 $scope.showDetails = false;
+                $scope.day3 = false;
+                $scope.day30 = false;
+            }
+            else if (formattedDate.toString() == '2016-8-3') {
+                $scope.showlistCards = false;
+                $scope.showDetails = false;
+                $scope.day3 = true;
+                $scope.day30 = false;
+            }
+            else if (formattedDate.toString() == '2016-8-30') {
+                $scope.showlistCards = false;
+                $scope.showDetails = false;
+                $scope.day30 = true;
+                $scope.day3 = false;
             }
             else {
                 $scope.showlistCards = false;
                 $scope.showDetails = true;
+                $scope.day3 = false;
+                $scope.day30 = false;
             }
             $scope.loadCalendarEvents();
         },
@@ -48,6 +66,8 @@
             console.log(date);
             $scope.showDetails = false;
             $scope.showlistCards = false;
+            $scope.day3 = false;
+            $scope.day30 = false;
             $scope.loadCalendarEvents();
         },
         changeMonth: function (month, year) {
@@ -62,22 +82,27 @@
 
     $scope.events = [
       { foo: 'bar', eventClass: 'expired', date: "2016-08-18" }, //value of eventClass will be added to CSS class of the day element
-      { foo: 'bar', date: "2016-08-20" }
-      , { foo: 'bar', eventClass: '333', date: "2016-08-18" }
+      { foo: 'bar', date: "2016-08-20" },
+      { foo: 'bar', date: "2016-08-3" },
+      { foo: 'bar', date: "2016-08-30" }
     ];
 
     $scope.loadCalendarEvents = function () {
         $timeout(function () {
-            $('#badge2016-8-20').append('<div class="badge badge-dark">2</div>\
-            <div class="badge badge-calm">1</div>\
-            <div class="badge badge-royal">0</div>\
-            <div class="badge badge-assertive">3</div>');
+            $('#badge2016-8-20').append('<div class="badge tentative">2</div>\
+            <div class="badge training">3</div>');
         });
         $timeout(function () {
-            $('#badge2016-8-18').append('<div class="badge badge-dark">1</div>\
-            <div class="badge badge-calm">2</div>\
-            <div class="badge badge-royal">3</div>\
-            <div class="badge badge-assertive">4</div>');
+            $('#badge2016-8-18').append('<div class="badge confirmed">2</div>\
+            <div class="badge void">3</div>');
+        });
+        $timeout(function () {
+            $('#badge2016-8-30').append('<div class="badge void">0</div>\
+            <div class="badge training">3</div>');
+        });
+        $timeout(function () {
+            $('#badge2016-8-3').append('<div class="badge tentative">1</div>\
+            <div class="badge confirmed">2</div>');
         });
         $timeout(function () {
             $('#badge2016-8-6').parent().addClass('selected');
