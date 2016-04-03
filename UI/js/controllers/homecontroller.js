@@ -89,26 +89,25 @@
     ];
 
     $scope.loadCalendarEvents = function () {
+
         $timeout(function () {
-            $('#badge2016-8-20').append('<div class="badge tentative">2</div>\
-            <div class="badge training">3</div>');
+            $('#badge2016-8-20').append('<div class="badge postion3 tentative">2</div>\
+            <div class="badge postion4 training">3</div>');
+            $('#badge2016-8-18').append('<div class="badge postion3 confirmed">2</div>\
+            <div class="badge postion4 void">3</div>');
+            $('#badge2016-8-30').append('<div class="badge postion3 void">0</div>\
+            <div class="badge postion4 training">3</div>');
+            $('#badge2016-8-3').append('<div class="badge postion3 tentative">1</div>\
+            <div class="badge postion4 confirmed">2</div>');
+
+            //$scope.load();
         });
-        $timeout(function () {
-            $('#badge2016-8-18').append('<div class="badge confirmed">2</div>\
-            <div class="badge void">3</div>');
-        });
-        $timeout(function () {
-            $('#badge2016-8-30').append('<div class="badge void">0</div>\
-            <div class="badge training">3</div>');
-        });
-        $timeout(function () {
-            $('#badge2016-8-3').append('<div class="badge tentative">1</div>\
-            <div class="badge confirmed">2</div>');
-        });
+
+        // define today
         $timeout(function () {
             $('#badge2016-8-6').parent().addClass('selected');
         });
         
     }
-    $scope.loadCalendarEvents();
+    //$scope.loadCalendarEvents();
 });
