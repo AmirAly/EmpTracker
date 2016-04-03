@@ -16,4 +16,3 @@
         $state.go('supervisornotifications');
     }
 });
-

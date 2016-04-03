@@ -6,6 +6,5 @@
             { $state.go('supervisingemployees'); }
             else { ($state.go('tempdevicelogin')) };
         }
-
     }
 });

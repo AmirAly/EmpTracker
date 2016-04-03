@@ -4,7 +4,7 @@
         $scope.time = {}
         $scope.time.hour = 8;
         $scope.time.minute = 30;
-        // An elaborate, custom popup
+        // custom popup
         var myPopup = $ionicPopup.show({
             template: '<div class="row">\
                 <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
@@ -61,12 +61,10 @@
     }
     $scope.selectedAll = false;
     $scope.checkAll = function () {
-
         if ($scope.selectedAll == false) {
             $scope.selectedAll = true;
         } else {
             $scope.selectedAll = false;
         }
-
     };
 });

@@ -11,7 +11,6 @@
     </ion-header-bar>
     <ion-pane>
         <div class=" has-header has-footer ">
-
             <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top ">
                 <!-- Tab 1 -->
                 <ion-tab title=" Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline">
@@ -20,7 +19,6 @@
                             <div class="padding-top">
                                 <h3 class="padding text-center">Today</h3>
                             </div>
-
                             <div class="card shiftCard todayShiftCard" ng-click="shiftView()">
                                 <p><span>Today</span></p>
                                 <div class="text-center">
@@ -43,8 +41,6 @@
                                         <div class="col col-25 text-right padding-right thirdCoulmn">
                                             <div class="totalHours">8:00</div>
                                             <div class="hoursTxt">hours</div>
-                                            <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -84,8 +80,6 @@
                                         <div class="col col-25 text-right padding-right thirdCoulmn">
                                             <div class="totalHours">8:00</div>
                                             <div class="hoursTxt">hours</div>
-                                            <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -112,8 +106,6 @@
                                         <div class="col col-25 text-right padding-right thirdCoulmn">
                                             <div class="totalHours">8:00</div>
                                             <div class="hoursTxt">hours</div>
-                                            <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -141,13 +133,10 @@
                                         <div class="col col-25 text-right padding-right thirdCoulmn">
                                             <div class="totalHours">8:00</div>
                                             <div class="hoursTxt">hours</div>
-                                            <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="spacer"></div>
                         </ion-content>
                     </ion-nav-view>
@@ -157,9 +146,6 @@
                 <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" ng-init="load()" on-select="loadCalendarEvents()">
                     <ion-nav-view name="tab-tab2">
                         <ion-content overflow-scroll="true" padding="true" class="calendarView">
-                            <!--<div class="padding-top">
-                    <h3 class="padding text-center">Calendar</h3>
-                </div>-->
                             <flex-calendar options="options" events="events"></flex-calendar>
                             <div class="row row-center text-center padding-vertical dvTotalHrs">
                                 <div class="col col-25"><div><b class="tentativeFont">Tentative</b></div><div>8.00 HRS</div></div>
@@ -226,8 +212,6 @@
                                                     <div class="col col-25 text-right padding-right thirdCoulmn">
                                                         <div class="totalHours">8:00</div>
                                                         <div class="hoursTxt">hours</div>
-                                                        <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -257,8 +241,6 @@
                                                     <div class="col col-25 text-right padding-right thirdCoulmn">
                                                         <div class="totalHours">8:00</div>
                                                         <div class="hoursTxt">hours</div>
-                                                        <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -288,8 +270,6 @@
                                                     <div class="col col-25 text-right padding-right thirdCoulmn">
                                                         <div class="totalHours">8:00</div>
                                                         <div class="hoursTxt">hours</div>
-                                                        <!--<div class="totalEarned">82.00</div>
-                    <div class="earnedTxt">earned</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -354,8 +334,6 @@
                                                     <div class="col col-25 text-right padding-right thirdCoulmn">
                                                         <div class="totalHours">8:00</div>
                                                         <div class="hoursTxt">hours</div>
-                                                        <!--<div class="totalEarned">82.00</div>
-                                            <div class="earnedTxt">earned</div>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -367,10 +345,7 @@
                         </ion-content>
                     </ion-nav-view>
                 </ion-tab>
-
             </ion-tabs>
-
         </div>
     </ion-pane>
-
 </ion-view>

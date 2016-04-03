@@ -9,8 +9,7 @@
         window.location.reload(true);
     }
     $scope.shiftView = function () {
-        //$state.go('app.shiftView', { title: shiftTitle });
-        $state.go('app.shiftView');
+        $state.go('app.shiftview');
     }
 
     // Calendar
@@ -99,8 +98,6 @@
             <div class="badge postion4 training">3</div>');
             $('#badge2016-8-3').append('<div class="badge postion3 tentative">1</div>\
             <div class="badge postion4 confirmed">2</div>');
-
-            //$scope.load();
         });
 
         // define today
@@ -109,5 +106,4 @@
         });
         
     }
-    //$scope.loadCalendarEvents();
 });

@@ -96,8 +96,6 @@ ion-scroll[direction=y] {
             top: -17px;
             left: 69px;
             z-index: -1;
-            /*border: 17px solid;
-		border-color: transparent transparent #f39c12 transparent;*/
         }
 
         .shiftCard.todayShiftCard p:after {
@@ -108,8 +106,6 @@ ion-scroll[direction=y] {
             top: 74px;
             z-index: -1;
             left: -10px;
-            /*border: 17px solid;
-		border-color: #f39c12 transparent transparent transparent;*/
         }
 
 .shiftCard .firstCoulmn {
@@ -277,14 +273,6 @@ ion-scroll[direction=y] {
     color: #fff;
 }
 
-/*.submenuPage .adjustMenu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-}*/
-
 .sideMenuContent .adjustMenu,
 .submenuPage .adjustMenu {
     flex-wrap: wrap;
@@ -443,11 +431,6 @@ ion-scroll[direction=y] {
     color: #2ecc71;
 }
 
-.homePage .event {
-    /*background-color:red !important;
-    border:2px solid red !important;*/
-}
-
 
 /*shiftViewPage*/
 .shiftViewPage .item-note {
@@ -498,7 +481,3 @@ ion-scroll[direction=y] {
 .attendancePage .ion-checkmark-round, .attendancePage .ion-close-round {
     font-size: 34px;
 }
-
-/*.attendancePage .card.lateAttendance {
-        background-color: #FFC3BD !important;
-    }*/

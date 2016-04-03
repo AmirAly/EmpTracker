@@ -63,7 +63,6 @@
                 </div>
             </div>
         </div>
-
         <div ng-show="clockOut" ng-hide="!clockOut">
             <button class="button button-balanced button-block" ng-hide="breakOut" ng-click="takeBreak()">
                 <span>&nbsp;Break in</span>
@@ -78,11 +77,9 @@
         <div class="button-bar">
             <button class="button button-clear ion-ios-close-outline" ng-click="goBack()">&nbsp;Cancel</button>
             <button class="button button-clear ion-ios-stopwatch-outline" ng-hide="clockOut" ng-click="showConfirmIn()">
-                <!--&nbsp;Clock in/out-->
                 <span>&nbsp;Clock in</span>
             </button>
             <button class="button button-clear ion-ios-stopwatch-outline" ng-show="clockOut" ng-click="showConfirmOut()" ng-disabled="breakOut">
-                <!--&nbsp;Clock in/out-->
                 <span>&nbsp;Clock out</span>
             </button>
         </div>
