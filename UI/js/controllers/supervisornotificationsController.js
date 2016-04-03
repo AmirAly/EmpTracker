@@ -7,8 +7,8 @@
     }
     $scope.markAllAsRead = function () {
         $scope.markAll = 'oldNotification';
-        $timeout(function () {
-            window.history.back();
-        }, 500)
+        //$timeout(function () {
+        //    window.history.back();
+        //}, 500)
     }
 });

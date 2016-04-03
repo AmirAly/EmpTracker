@@ -24,7 +24,7 @@
         $state.go('app.home');
     }
     $scope.shiftView = function () {
-        $state.go('app.shiftView', { title: "" });
+        $state.go('app.shiftView');
     }
     $scope.attendance = function () {
         $state.go('app.attendance');

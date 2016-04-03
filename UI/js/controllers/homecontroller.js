@@ -8,8 +8,9 @@
     $scope.update = function () {
         window.location.reload(true);
     }
-    $scope.shiftView = function (shiftTitle) {
-        $state.go('app.shiftView', { title: shiftTitle });
+    $scope.shiftView = function () {
+        //$state.go('app.shiftView', { title: shiftTitle });
+        $state.go('app.shiftView');
     }
 
     // Calendar

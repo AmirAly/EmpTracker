@@ -64,15 +64,15 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-    .state('app.thisweek', {
-        url: '/thisweek',
-        views: {
-            'menuContent': {
-                controller: "thisweekController",
-                templateUrl: 'templates/thisweek.html'
-            }
-        }
-    })
+    //.state('app.thisweek', {
+    //    url: '/thisweek',
+    //    views: {
+    //        'menuContent': {
+    //            controller: "thisweekController",
+    //            templateUrl: 'templates/thisweek.html'
+    //        }
+    //    }
+    //})
     .state('app.submenu', {
         url: '/submenu',
         views: {
@@ -83,18 +83,19 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-    .state('app.dailyview', {
-        cache: false,
-        url: '/dailyview',
-        views: {
-            'menuContent': {
-                controller: "dailyviewController",
-                templateUrl: 'templates/dailyview.html'
-            }
-        }
-    })
+    //.state('app.dailyview', {
+    //    cache: false,
+    //    url: '/dailyview',
+    //    views: {
+    //        'menuContent': {
+    //            controller: "dailyviewController",
+    //            templateUrl: 'templates/dailyview.html'
+    //        }
+    //    }
+    //})
     .state('app.shiftView', {
-        url: '/shiftView/:title?',
+        //url: '/shiftView/:title?',
+        url: '/shiftView',
         views: {
             'menuContent': {
                 controller: "shiftviewController",
