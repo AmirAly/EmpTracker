@@ -12,6 +12,19 @@
         $state.go('app.shiftview');
     }
 
+    $scope.data = [
+        { date: '2016-8-3', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8' },
+
+        { date: '2016-8-18', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8' },
+
+        { date: '2016-8-20', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8' },
+        { date: '2016-8-20', fromTo: '00:30 AM - 09:00 PM', address: 'Lime Street, Sydney', area: 'Compound Z', duration: '8' },
+        { date: '2016-8-20', fromTo: '00:30 AM - 09:00 PM', address: 'Lennox Bridge, Parramatta', area: 'Compound Z', duration: '8' },
+
+        { date: '2016-8-30', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8' }
+
+    ];
+
     // Calendar
     $scope.showDetails = false;
     $scope.showlistCards = false;
@@ -34,36 +47,73 @@
 
         eventClick: function (date) { // called before dateClick and only if clicked day has events
             console.log(date);
+            var str = date.date.toString();
+            var res = str.substring(0, 3);
+
             var formattedDate = date.year + "-" + date._month + "-" + date.day;
-            if (formattedDate.toString() == '2016-8-20') {
-                console.log($scope.name);
-                $scope.showlistCards = true;
-                $scope.showDetails = false;
-                $scope.day3 = false;
-                $scope.day30 = false;
-            }
-            else if (formattedDate.toString() == '2016-8-3') {
-                $scope.showlistCards = false;
-                $scope.showDetails = false;
-                $scope.day3 = true;
-                $scope.day30 = false;
-            }
-            else if (formattedDate.toString() == '2016-8-30') {
-                $scope.showlistCards = false;
-                $scope.showDetails = false;
-                $scope.day30 = true;
-                $scope.day3 = false;
-            }
-            else {
-                $scope.showlistCards = false;
-                $scope.showDetails = true;
-                $scope.day3 = false;
-                $scope.day30 = false;
-            }
+            //if (formattedDate.toString() == '2016-8-20') {
+
+                $('#dvEvents').empty();
+                $('#dvEvents').append('<div ng-show="showDetails" ng-click="shiftView()">\
+                                <div class="list padding">\
+                                    <div class="item item-text-wrap text-center">\
+                                        <div class=" shiftCard todayShiftCard">\
+                                            <div class="text-center">\
+                                                <p><span>Today</span></p>\
+                                                <div class="row row-top">\
+                                                    <div class="col col-20 col-center firstCoulmn">\
+                                                        <div class="row"><span class="col">'+date.day+'</span></div>\
+                                                        <div class="row"><span class="col">'+res+'</span></div>\
+                                                    </div>\
+                                                    <div class="col text-left secondCoulmn">\
+                                                        <div class="row">\
+                                                            <span class="col date">00:30 AM - 09:00 PM</span>\
+                                                        </div>\
+                                                        <div class="row">\
+                                                            <span class="col address">Taren Point Road</span>\
+                                                        </div>\
+                                                        <div class="row">\
+                                                            <span class="col area">Compound Z</span>\
+                                                        </div>\
+                                                    </div>\
+                                                    <div class="col col-25 text-right padding-right thirdCoulmn">\
+                                                        <div class="totalHours">8:00</div>\
+                                                        <div class="hoursTxt">hours</div>\
+                                                    </div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </div>\
+                                </div>\
+                            </div>');
+                ////$scope.showlistCards = true;
+                ////$scope.showDetails = false;
+                ////$scope.day3 = false;
+                ////$scope.day30 = false;
+            //}
+            //else if (formattedDate.toString() == '2016-8-3') {
+            //    $scope.showlistCards = false;
+            //    $scope.showDetails = false;
+            //    $scope.day3 = true;
+            //    $scope.day30 = false;
+            //}
+            //else if (formattedDate.toString() == '2016-8-30') {
+            //    $scope.showlistCards = false;
+            //    $scope.showDetails = false;
+            //    $scope.day30 = true;
+            //    $scope.day3 = false;
+            //}
+            //else {
+            //    $scope.showlistCards = false;
+            //    $scope.showDetails = true;
+            //    $scope.day3 = false;
+            //    $scope.day30 = false;
+            //}
             $scope.loadCalendarEvents();
         },
         dateClick: function (date) { // called every time a day is clicked
             console.log(date);
+            $('#dvEvents').empty();
             $scope.showDetails = false;
             $scope.showlistCards = false;
             $scope.day3 = false;
