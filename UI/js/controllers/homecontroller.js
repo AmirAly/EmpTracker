@@ -1,33 +1,32 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $timeout) {
+﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http) {
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
-    $scope.update = function () {
-        window.location.reload(true);
-    }
     $scope.shiftView = function () {
         $state.go('app.shiftview');
     }
 
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-    var yyyy = today.getFullYear();
+    today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    $scope.today = today;
 
-    //if (dd < 10) {
-    //    dd = '0' + dd
-    //}
+    $scope.adjustData = function (event) {
+        //console.log(event);
+        var thedate = new Date(event.tdate);
+        //$timeout(function () {
+        //console.log(event.date);
+        event.dayNumber = thedate.getDate();
+        event.dayName = (thedate.toString()).substring(0, 3);
+        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+        console.log(event.formattedDate);
+        //},2000);
 
-    //if (mm < 10) {
-    //    mm = '0' + mm
-    //}
+    }
 
-    today = yyyy + '-' + mm + '-' + dd;
-    console.log(today);
-    
     // Calendar
     // With "use strict", Dates can be passed ONLY as strings (ISO format: YYYY-MM-DD)
     "use strict";
@@ -77,7 +76,6 @@
                                                  </div>\
                                               </div>\
                                           </div>');
-
                 });
             }
             else {
@@ -109,10 +107,9 @@
                                                  </div>\
                                               </div>\
                                           </div>');
-
                 });
             }
-            
+
             $scope.loadCalendarEvents();
         },
         dateClick: function (date) { // called every time a day is clicked
@@ -124,9 +121,7 @@
             console.log(month, year);
             $('#dvEvents').empty();
             $scope.loadCalendarEvents();
-            $timeout(function () {
-                angular.element(document.querySelector('#badge' + today)).parent().triggerHandler('click');
-            }, 200);
+            $scope.load();
         },
         filteredEventsChange: function (filteredEvents) {
             $('#dvEvents').empty();
@@ -134,38 +129,38 @@
             $scope.loadCalendarEvents();
         },
     };
-    //$scope.onClick(new Date(),1,1);
-    $scope.events = [
-        { date: '2016-4-5', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8:00', color1: 'tentative', val1: '2', color2: 'training', val2: '3' },
-        { date: '2016-4-3', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8:00', color1: 'tentative', val1: '2', color2: 'training', val2: '3' },
-        { date: '2016-4-18', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8:00', color1: 'confirmed', val1: '2', color2: 'void', val2: '3' },
-        { date: '2016-5-20', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8:00', color1: 'void', val1: '0', color2: 'training', val2: '3' },
-        { date: '2016-4-20', fromTo: '00:30 AM - 09:00 PM', address: 'Lime Street, Sydney', area: 'Compound Z', duration: '8:00', color1: 'void', val1: '0', color2: 'training', val2: '3' },
-        { date: '2016-4-20', fromTo: '00:30 AM - 09:00 PM', address: 'Lennox Bridge, Parramatta', area: 'Compound Z', duration: '8:00', color1: 'void', val1: '0', color2: 'training', val2: '3' },
-        { date: '2016-4-30', fromTo: '00:30 AM - 09:00 PM', address: 'Taren Point Road', area: 'Compound Z', duration: '8:00', color1: 'tentative', val1: '1', color2: 'confirmed', val2: '2' }
-    ];
-    $timeout(function () {
-        angular.element(document.querySelector('#badge' + today)).parent().triggerHandler('click');
-    }, 2000);
+   
+    $scope.load = function () {
+        $timeout(function () {
+            angular.element(document.querySelector('#badge' + today)).parent().triggerHandler('click');
+        }, 2000);
+    }
+    $scope.load();
     $scope.loadCalendarEvents = function () {
         // to keep today colored
         $timeout(function () {
             $('#badge' + today).parent().addClass('selected');
         });
-        
+
         // to add colored circles to dayes with events
         $.each($scope.events, function (Index, res) {
-            var eventDate = new Date(res.date);
-            var dd = eventDate.getDate();
-            var mm = eventDate.getMonth() + 1; //January is 0!
-            var yyyy = eventDate.getFullYear();
-            eventDate = yyyy + '-' + mm + '-' + dd;
-            console.log(eventDate);
+            var eventDate = new Date(res.tdate);
+            console.log(eventDate.tdate);
+            eventDate = eventDate.getFullYear() + '-' + (eventDate.getMonth() + 1) + '-' + eventDate.getDate();
+            //console.log(eventDate);
             $timeout(function () {
                 $('#badge' + eventDate).append('<div class="badge postion3 ' + res.color1 + '">' + res.val1 + '</div>\
                       <div class="badge postion4 ' + res.color2 + '">' + res.val2 + '</div>');
             });
         });
-
     }
+
+
+    // get json from external file
+    $http.get('/json/events.json').then(function (data) {
+        $scope.allEvents = data.data.events;
+        //temp for now
+        $scope.events = data.data.events;
+        console.log($scope.events);
+    });
 });

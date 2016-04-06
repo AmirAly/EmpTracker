@@ -1,0 +1,28 @@
+﻿<div class="item item-text-wrap text-center" ng-click="shiftView()" ng-init="adjustData(event)">
+    <div class=" shiftCard todayShiftCard">
+        <div class="text-center">
+            <p><span>Today</span></p>
+            <div class="row row-top">
+                <div class="col col-20 col-center firstCoulmn">
+                    <div class="row"><span class="col">{{event.dayNumber}}</span></div>
+                    <div class="row"><span class="col">{{event.dayName}}</span></div>
+                </div>
+                <div class="col text-left secondCoulmn">
+                    <div class="row">
+                        <span class="col date">{{event.fromTo}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="col address">{{event.address}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="col area">{{event.area}}</span>
+                    </div>
+                </div>
+                <div class="col col-25 text-right padding-right thirdCoulmn">
+                    <div class="totalHours">{{event.duration}}</div>
+                    <div class="hoursTxt">hours</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

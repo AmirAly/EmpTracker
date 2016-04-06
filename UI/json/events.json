@@ -1,0 +1,11 @@
+﻿{
+    "events": [
+        { "tdate": "2016-4-6", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "color1": "tentative", "val1": "2", "color2": "training", "val2": "3" },
+        { "tdate": "2016-4-3", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "color1": "tentative", "val1": "2", "color2": "training", "val2": "3" },
+        { "tdate": "2016-4-18", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "color1": "confirmed", "val1": "2", "color2": "void", "val2": "3" },
+        { "tdate": "2016-5-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "color1": "void", "val1": "0", "color2": "training", "val2": "3" },
+        { "tdate": "2016-4-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Lime Street, Sydney", "area": "Compound Z", "duration": "8:00", "color1": "void", "val1": "0", "color2": "training", "val2": "3" },
+        { "tdate": "2016-4-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Lennox Bridge, Parramatta", "area": "Compound Z", "duration": "8:00", "color1": "void", "val1": "0", "color2": "training", "val2": "3" },
+        { "tdate": "2016-4-30", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "color1": "tentative", "val1": "1", "color2": "confirmed", "val2": "2" }
+    ]
+}
