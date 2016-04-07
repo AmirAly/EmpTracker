@@ -21,19 +21,15 @@
                                 <h3 class="padding text-center">Today</h3>
                             </div>
                             <div class="list padding">
-                                <div ng-repeat="event in events" ng-init="adjustData(event)">
-                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate == today"></div>
+                                <div ng-repeat="event in todayShiftsArray">
+                                    <div ng-include="'templates/todayshift.temp.html'"></div>
                                 </div>
                             </div>
-                            
-                            <div class="card text-center padding-top" ng-show="!events.length">
+                            <div class="card text-center padding-top" ng-show="!todayShiftsArray.length">
                                 <h2>There is no shifts</h2>
                             </div>
-                            
-
                             <div class="spacer"></div>
                         </ion-content>
-
                     </ion-nav-view>
                 </ion-tab>
 
@@ -141,7 +137,7 @@
                             </div>
 
                             <div class="list padding">
-                                <div ng-repeat="event in events">
+                                <div ng-repeat="event in calendarEvents">
                                     <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= today"></div>
                                     <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== today"></div>
                                 </div>
