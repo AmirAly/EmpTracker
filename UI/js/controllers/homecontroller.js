@@ -29,7 +29,7 @@
         }
     }
 
-
+    $scope.calendarEvents = [];
     // Calendar
     // With "use strict", Dates can be passed ONLY as strings (ISO format: YYYY-MM-DD)
     "use strict";
@@ -107,6 +107,5 @@
         //temp for now
         $scope.events = data.data.events;
         $scope.todayShiftsArray = data.data.events;
-        $scope.calendarEvents = data.data.events;
     });
 });

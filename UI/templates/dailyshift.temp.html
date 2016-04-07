@@ -1,4 +1,4 @@
-﻿<div class="item item-text-wrap text-center" ng-click="shiftView()" ng-init="adjustData(event)">
+﻿<div  ng-click="shiftView()" ng-init="adjustData(event)">
     <div class=" shiftCard">
         <div class="text-center">
             <div class="row row-top">
@@ -20,6 +20,10 @@
                 <div class="col col-25 text-right padding-right thirdCoulmn">
                     <div class="totalHours">{{event.duration}}</div>
                     <div class="hoursTxt">hours</div>
+                    <div ng-show="attendane==true">
+                        <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
+                        <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                    </div>
                 </div>
             </div>
         </div>

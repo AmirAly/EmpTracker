@@ -1,4 +1,4 @@
-﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup) {
+﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup, $http) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -19,4 +19,36 @@
             }
         });
     };
+
+    $scope.attendane = true;
+
+    var today = new Date();
+    today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    $scope.today = today;
+
+    $scope.adjustData = function (event) {
+        $scope.todayAttendanceArray = [];
+        var thedate = new Date(event.tdate);
+
+        event.dayNumber = thedate.getDate();
+        event.dayName = (thedate.toString()).substring(0, 3);
+        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+
+        for (var i = 0; i < $scope.allAttendanceArray.length; i++) {
+            if ($scope.allAttendanceArray[i].tdate == today) {
+                $scope.todayAttendanceArray.push($scope.allAttendanceArray[i]);
+            }
+        }
+    }
+
+
+
+    // get json from external file
+    $http.get('/json/attenance.json').then(function (data) {
+        $scope.allAttendanceArray = data.data.attenance;
+        //temp for now
+        $scope.weelyAttendanceArray = data.data.attenance;
+        $scope.todayAttendanceArray = data.data.attenance;
+    });
+
 });

@@ -12,64 +12,13 @@
     <ion-content overflow-scroll="true" class="has-header has-footer">
         <div class="view-container">
             <div class="list">
-                <a class="item item-icon-left" href="#/app/notifications" ng-class="markAll">
+                <a ng-repeat="notification in allNotificationsArray" class="item item-icon-left {{notification.class}}" href="{{notification.href}}" ng-class="{{notification.ngclass}}">
                     <i class="icon ion-android-notifications"></i>
-                    Check mail
+                    <span>{{notification.text}}</span>
                 </a>
-
-                <a class="item item-icon-left " href="#/app/notifications" ng-class="markAll">
-                    <i class="icon ion-android-notifications"></i>
-                    Call Magy
-                </a>
-
-                <a class="item item-icon-left" href="#/app/notifications" ng-class="markAll">
-                    <i class="icon ion-android-notifications"></i>
-                    Record album
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Friends
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Check mail
-                </a>
-
-                <a class="item item-icon-left oldNotification " href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Call Magy
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Record album
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Friends
-                </a>
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Check mail
-                </a>
-
-                <a class="item item-icon-left oldNotification " href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Call Magy
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Record album
-                </a>
-
-                <a class="item item-icon-left oldNotification" href="#/app/notifications">
-                    <i class="icon ion-android-notifications"></i>
-                    Friends
-                </a>
+            </div>
+            <div class="card text-center padding-top" ng-show="!allNotificationsArray.length">
+                <h2>There is no notifications</h2>
             </div>
         </div>
     </ion-content>

@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout) {
+﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $http) {
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}
@@ -67,4 +67,9 @@
             $scope.selectedAll = false;
         }
     };
+
+    // get json from external file
+    $http.get('/json/employees.json').then(function (data) {
+        $scope.allemployeesArray = data.data.employees;
+    });
 });

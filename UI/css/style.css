@@ -481,3 +481,7 @@ ion-scroll[direction=y] {
 .attendancePage .ion-checkmark-round, .attendancePage .ion-close-round {
     font-size: 34px;
 }
+
+.attendancePage .item {
+    padding: 0px;
+}

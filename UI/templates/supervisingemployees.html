@@ -22,37 +22,19 @@
                         </select>
                     </label>
                 </li>
-                <li class="item item-checkbox">
-                    <div class="checkbox checkbox-dark">
-                        <input type="checkbox" ng-checked="selectedAll">
-                    </div>
-                    <a class="item item-avatar item-borderless" ng-click="openmap()">
-                        <img src="images/1.jpg">
-                        <h2>Samar Ahmed Ali</h2>
-                        <p>09.00 - 08:30</p>
-                    </a>
-                </li>
-                <li class="item item-checkbox">
-                    <div class="checkbox checkbox-dark">
-                        <input type="checkbox" ng-checked="selectedAll">
-                    </div>
-                    <a class="item item-avatar item-borderless" ng-click="openmap()">
-                        <img src="images/2.jpg">
-                        <h2>Lara Mansour</h2>
-                        <p>00.00 - 08:30</p>
-                    </a>
-                </li>
 
-                <li class="item item-checkbox">
+                <li ng-repeat="emp in allemployeesArray" class="item item-checkbox">
                     <div class="checkbox checkbox-dark">
                         <input type="checkbox" ng-checked="selectedAll">
                     </div>
                     <a class="item item-avatar item-borderless" ng-click="openmap()">
-                        <img src="images/3.jpg">
-                        <h2>Adam Werni</h2>
-                        <p>00.00 - 08:30</p>
+                        <img ng-src="{{emp.photo}}">
+                        <h2>{{emp.name}}</h2>
+                        <p>{{emp.checkInDate}}</p>
                     </a>
                 </li>
+                <li ng-show="!allemployeesArray.length"><h3 class="text-center padding-top">No employees yet</h3></li>
+ 
             </ul>
     </ion-content>
 
