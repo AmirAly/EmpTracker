@@ -16,35 +16,99 @@
                     </div>
                 </div>
             </div>
-            <div class="padding-horizontal">
-                <div class="card">
-                    <label class="item item-input item-floating-label padding">
-                        <span class="input-label">Name</span>
-                        <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
-                        <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
-                        </span>
-                    </label>
 
-                    <label class="item item-input item-floating-label padding">
-                        <span class="input-label">Password</span>
-                        <input ng-model="password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
-                        <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
-                        </span>
-                    </label>
+            <ion-list>
+                <div class="padding-horizontal">
+                    <ion-item class="item-stable" ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}">
+                        <span>&nbsp;Contact Informations</span>
+                        <i class="icon icon-right" ng-class="isGroupShown(1) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                    </ion-item>
+                    <ion-item class="item-accordion padding-top" ng-show="isGroupShown(1)">
 
-                    <label class="item item-input item-floating-label padding">
-                        <span class="input-label">Confirm</span>
-                        <input ng-model="confirm" type="password" required placeholder="Confirm" name="txtConfirm" id="txtConfirm">
-                        <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
-                        </span>
-                    </label>
+                                <label class="item ">
+                                    <!--<span class="input-label">Name</span>-->
+                                    <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
+                                    <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                                <label class="item ">
+                                    <!--<span class="input-label">Employee-NO</span>-->
+                                    <input ng-model="employeeNO" type="text" required placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
+                                    <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                                <label class="item ">
+                                    <!--<span class="input-label">Mobile</span>-->
+                                    <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
+                                    <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                                <label class="item">
+                                    <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName">
+                                    <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
+                                        <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
+                                    </span>
+                                </label>
+
+                    </ion-item>
                 </div>
-            </div>
+
+                <div class="padding-horizontal">
+                    <ion-item class="item-stable" ng-click="toggleGroup(2)" ng-class="{active: isGroupShown(2)}">
+                        <span>&nbsp;Change Password</span>
+                        <i class="icon icon-right" ng-class="isGroupShown(2) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                    </ion-item>
+                    <ion-item class="item-accordion  padding-top" ng-show="isGroupShown(2)">
+
+                                <label class="item ">
+                                    <!--<span class="input-label">Password</span>-->
+                                    <input ng-model="oldPassword" type="password" required placeholder="Old Password" name="txtOldPassword" id="txtOldPassword">
+                                    <span ng-show="frmUpdateAccount.txtOldPassword.$dirty && frmUpdateAccount.txtOldPassword.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtOldPassword.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                                <label class="item ">
+                                    <!--<span class="input-label">Password</span>-->
+                                    <input ng-model="password" type="password" required placeholder="New Password" name="txtPassword" id="txtPassword">
+                                    <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                                <label class="item ">
+                                    <!--<span class="input-label">Confirm</span>-->
+                                    <input ng-model="confirm" type="password" required placeholder="Confirm New Password" name="txtConfirm" id="txtConfirm">
+                                    <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
+                                        <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
+                                    </span>
+                                </label>
+
+                        <div class="padding">
+                            <button class="button button-block button-positive">
+                                Change Password
+                            </button>
+                        </div>
+
+                    </ion-item>
+                </div>
+
+                
+
+            </ion-list>
+            
             <div class="spacer"></div>
         </ion-content>
+
+
+
         <ion-footer-bar class="bar-dark">
             <div class="button-bar">
                 <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">&nbsp;Cancel</button>

@@ -13,19 +13,23 @@
     <form name="frmLogin" ng-submit="submitForm(frmLogin)" >
         <div overflow-scroll="true" padding="true" class="content has-header padding">
             <ion-list class="list padding">
-                <label class="item item-input item-floating-label">
-                    <span class="input-label ">User Name</span>
+                <label class="item">
                     <input ng-model="name" type="email" required placeholder="User Name" name="userName" id="userName">
                     <span ng-show="frmLogin.userName.$touched  && frmLogin.userName.$invalid">
                         <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
                         <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
                     </span>
                 </label>
-                <label class="item item-input item-floating-label">
-                    <span class="input-label ">Password</span>
+                <label class="item">
                     <input ng-model="password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
                     <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
                         <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
+                    </span>
+                </label>
+                <label class="item">
+                    <input ng-model="companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
+                    <span ng-show="frmLogin.txtCompanyCode.$touched && frmLogin.txtCompanyCode.$invalid">
+                        <span class="errorFont" ng-show="frmLogin.txtCompanyCode.$error.required">required</span>
                     </span>
                 </label>
             </ion-list>
@@ -35,4 +39,5 @@
             </a>
         </div>
     </form>
+    
 </ion-view>
