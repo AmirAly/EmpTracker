@@ -7,8 +7,29 @@
             <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
         </div>
     </ion-header-bar>
+    <div class="bar bar-subheader">
+        <div class="text-left">
+            <span class="h3">My Account</span>
+        </div>
+        <div class="text-right">
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-android-notifications"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-ios-alarm"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-wand"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+        </div>
+    </div>
     <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
-        <ion-content class="myAccountPage" overflow-scroll="true" padding="true">
+        <ion-content class="myAccountPage has-subheader" overflow-scroll="true" padding="true">
             <div class="padding-horizontal row row-center">
                 <div class="col card">
                     <div class="text-center">
@@ -25,37 +46,37 @@
                     </ion-item>
                     <ion-item class="item-accordion padding-top" ng-show="isGroupShown(1)">
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Name</span>-->
-                                    <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
-                                    <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Name</span>-->
+                            <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
+                            <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
+                            </span>
+                        </label>
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Employee-NO</span>-->
-                                    <input ng-model="employeeNO" type="text" required placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
-                                    <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Employee-NO</span>-->
+                            <input ng-model="employeeNO" type="text" required placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
+                            <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
+                            </span>
+                        </label>
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Mobile</span>-->
-                                    <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
-                                    <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Mobile</span>-->
+                            <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
+                            <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
+                            </span>
+                        </label>
 
-                                <label class="item">
-                                    <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName">
-                                    <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
-                                        <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
-                                    </span>
-                                </label>
+                        <label class="item">
+                            <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName">
+                            <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
+                                <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
+                            </span>
+                        </label>
 
                     </ion-item>
                 </div>
@@ -67,29 +88,29 @@
                     </ion-item>
                     <ion-item class="item-accordion  padding-top" ng-show="isGroupShown(2)">
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Password</span>-->
-                                    <input ng-model="oldPassword" type="password" required placeholder="Old Password" name="txtOldPassword" id="txtOldPassword">
-                                    <span ng-show="frmUpdateAccount.txtOldPassword.$dirty && frmUpdateAccount.txtOldPassword.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtOldPassword.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Password</span>-->
+                            <input ng-model="oldPassword" type="password" required placeholder="Old Password" name="txtOldPassword" id="txtOldPassword">
+                            <span ng-show="frmUpdateAccount.txtOldPassword.$dirty && frmUpdateAccount.txtOldPassword.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtOldPassword.$error.required">required</span>
+                            </span>
+                        </label>
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Password</span>-->
-                                    <input ng-model="password" type="password" required placeholder="New Password" name="txtPassword" id="txtPassword">
-                                    <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Password</span>-->
+                            <input ng-model="password" type="password" required placeholder="New Password" name="txtPassword" id="txtPassword">
+                            <span ng-show="frmUpdateAccount.txtPassword.$dirty && frmUpdateAccount.txtPassword.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtPassword.$error.required">required</span>
+                            </span>
+                        </label>
 
-                                <label class="item ">
-                                    <!--<span class="input-label">Confirm</span>-->
-                                    <input ng-model="confirm" type="password" required placeholder="Confirm New Password" name="txtConfirm" id="txtConfirm">
-                                    <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
-                                        <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
-                                    </span>
-                                </label>
+                        <label class="item ">
+                            <!--<span class="input-label">Confirm</span>-->
+                            <input ng-model="confirm" type="password" required placeholder="Confirm New Password" name="txtConfirm" id="txtConfirm">
+                            <span ng-show="frmUpdateAccount.txtConfirm.$dirty && frmUpdateAccount.txtConfirm.$invalid">
+                                <span class="errorFont" ng-show="frmUpdateAccount.txtConfirm.$error.required">required</span>
+                            </span>
+                        </label>
 
                         <div class="padding">
                             <button class="button button-block button-positive">
@@ -100,10 +121,10 @@
                     </ion-item>
                 </div>
 
-                
+
 
             </ion-list>
-            
+
             <div class="spacer"></div>
         </ion-content>
 

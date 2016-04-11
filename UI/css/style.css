@@ -44,6 +44,10 @@ ion-scroll[direction=y] {
     font-size: 12px;
 }
 
+    .sideMenuContent .badge.badge-dark {
+        background-color: #222;
+    }
+
 .popup-head {
     border-bottom: 1px solid #2c3e50;
 }
@@ -58,6 +62,19 @@ ion-scroll[direction=y] {
     border-color: #1D2935 !important;
     background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%) !important;
 }
+
+    .tabs a.tab-item {
+        border-left: 1px solid #213446 !important;
+        border-right: 1px solid #213446 !important;
+        max-width: none !important;
+    }
+
+        .tabs a.tab-item.tab-item-active {
+            border-top: 1px solid #1D2935 !important;
+            margin-top: 0px !important;
+            /* box-shadow: 0px 0px 10px rgba(0,0,0,0.1), inset 0px 5px 30px rgba(255,255,255,0.1); */
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3), inset 0px 5px 30px rgba(0, 0, 0, 0.5);
+        }
 
 /*shiftCard*/
 .shiftCard.todayShiftCard {
@@ -179,6 +196,39 @@ ion-scroll[direction=y] {
     background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%);
 }
 
+.bar-subheader {
+    background-color: #2C3E50;
+    color: #fff;
+    border-top: 1px solid #fff;
+}
+
+    .bar-subheader .text-left .h3 {
+        color: #fff;
+        font-size: 20px;
+        line-height: 1.5;
+    }
+
+    .bar-subheader .text-right {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        display: inline-flex;
+    }
+
+    .bar-subheader .button:hover {
+        color: #fff;
+    }
+
+    .bar-subheader span.badge {
+        position: absolute !important;
+        right: 0px;
+        padding: 1px 5px;
+        font-size: 12px;
+        bottom: 0;
+        top: inherit;
+    }
+
 .pane, .view {
     background-color: #ecf0f1 !important;
 }
@@ -246,7 +296,8 @@ ion-scroll[direction=y] {
         border-right: 2px solid #000 !important;
     }
 
-        .bar-footer .button:last-child {
+        .bar-footer .button:last-child,
+        .bar-footer .lastButton {
             border-right: none !important;
         }
 
@@ -269,7 +320,7 @@ ion-scroll[direction=y] {
 /*menu*/
 .sideMenuContent {
     background-color: #0a9ec7;
-    background-color: #666;
+    background-color: #444;
     color: #fff;
 }
 
@@ -337,7 +388,7 @@ ion-scroll[direction=y] {
 /*accordion part*/
 .list .item.item-accordion {
     line-height: 38px;
-    padding:0;
+    padding: 0;
     transition: 0.09s all linear;
 }
 
@@ -359,8 +410,9 @@ i.icon.icon-right {
 .homePage .col p {
     font-size: 12px;
 }
-.homePage .card{
-        margin-bottom: 0px;
+
+.homePage .card {
+    margin-bottom: 0px;
     margin-top: 8px;
 }
 /*home page calenar*/
@@ -483,10 +535,11 @@ i.icon.icon-right {
     border-radius: 10px;
 }
 
-.shiftViewPage .card .item{
+    .shiftViewPage .card .item {
         background-color: #fbfafb;
-            color: #6d6b6d;
-}
+        color: #6d6b6d;
+        padding-top: 10px;
+    }
 
 /*challenge Page*/
 .challengePage .basicColorDv {
@@ -527,7 +580,8 @@ i.icon.icon-right {
 .attendancePage .item {
     padding: 0px;
 }
-.attendancePage .card{
-        margin-bottom: 0px;
+
+.attendancePage .card {
+    margin-bottom: 0px;
     margin-top: 8px;
 }

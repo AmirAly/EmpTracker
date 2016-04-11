@@ -8,26 +8,47 @@
             <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
         </div>
     </ion-header-bar>
-    <ion-content class="challengePage" overflow-scroll="true" padding="true">
+    <div class="bar bar-subheader">
+        <div class="text-left">
+            <span class="h3">Awake Challenge</span>
+        </div>
+        <div class="text-right">
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-android-notifications"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-ios-alarm"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-wand"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+        </div>
+    </div>
+    <ion-content class="challengePage has-subheader" overflow-scroll="true" padding="true">
+        <div class="padding row row-center">
+            <div class="col-50 col-offset-25">
+                <div class="card basicColorDv"></div>
+            </div>
+        </div>
+        <h3 class="text-center">Click on same color</h3>
+        <div class="padding-horizontal">
             <div class="padding row row-center">
-                <div class="col-50 col-offset-25">
-                    <div class="card basicColorDv"></div>
+                <div class="col-20" ng-click="rightAnswer()">
+                    <div class="card firstColorDv"></div>
+                </div>
+                <div class="col-20 col-offset-20">
+                    <div class="card secondColorDv"></div>
+                </div>
+                <div class="col-20 col-offset-20">
+                    <div class="card thirdColorDv"></div>
                 </div>
             </div>
-            <h3 class="text-center">Click on same color</h3>
-            <div class="padding-horizontal">
-                <div class="padding row row-center">
-                    <div class="col-20" ng-click="rightAnswer()">
-                        <div class="card firstColorDv"></div>
-                    </div>
-                    <div class="col-20 col-offset-20">
-                        <div class="card secondColorDv"></div>
-                    </div>
-                    <div class="col-20 col-offset-20">
-                        <div class="card thirdColorDv"></div>
-                    </div>
-                </div>
-            </div>
-            <h1 ng-bind="counter" data-ng-init="countdown()" class="text-center"></h1>
+        </div>
+        <h1 ng-bind="counter" data-ng-init="countdown()" class="text-center"></h1>
     </ion-content>
 </ion-view>
