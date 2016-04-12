@@ -72,9 +72,38 @@ ion-scroll[direction=y] {
         .tabs a.tab-item.tab-item-active {
             border-top: 1px solid #1D2935 !important;
             margin-top: 0px !important;
-            /* box-shadow: 0px 0px 10px rgba(0,0,0,0.1), inset 0px 5px 30px rgba(255,255,255,0.1); */
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.3), inset 0px 5px 30px rgba(0, 0, 0, 0.5);
+            background-color: #1D2935;
         }
+
+
+.checkGPSModal {
+    width: 80%;
+    height: 60%;
+    min-height: 0;
+    max-height: 250px;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+    bottom: 20%;
+}
+
+    .checkGPSModal .title {
+        right: initial;
+    }
+
+    .checkGPSModal .ion-close-round {
+        right: 10px;
+        position: fixed;
+    }
+
+    .checkGPSModal .bar-footer {
+                border-color: #b2b2b2 !important;
+    background-color: #f8f8f8 !important;
+    }
+
+     .checkGPSModal .bar-footer .button {
+            border-right: 1px !important;
+    }
 
 /*shiftCard*/
 .shiftCard.todayShiftCard {
@@ -206,12 +235,14 @@ ion-scroll[direction=y] {
         color: #fff;
         font-size: 20px;
         line-height: 1.5;
+        left: 16px;
+        position: absolute;
     }
 
     .bar-subheader .text-right {
         position: absolute;
         top: 5px;
-        right: 5px;
+        right: 14px;
         bottom: 5px;
         display: inline-flex;
     }
@@ -407,6 +438,11 @@ i.icon.icon-right {
 
 
 /*home page*/
+.homePage #map {
+    width: 100%;
+    height: 100vw;
+}
+
 .homePage .col p {
     font-size: 12px;
 }
@@ -570,6 +606,27 @@ i.icon.icon-right {
 .notificationsPage .oldNotification {
     color: #aaa;
 }
+
+.notificationsPage .bar.bar-positive {
+    border-color: #0c63ee !important;
+    background-color: #387ef5 !important;
+    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%) !important;
+    color: #fff !important;
+}
+
+.notificationsPage .list {
+    margin-bottom: 0px;
+}
+
+.notificationsPage .listAlerts .txtalert {
+    display: block;
+}
+
+.notificationsPage .listAlerts .item-note {
+    display: block;
+    float: left;
+}
+
 
 /*attendance Page*/
 

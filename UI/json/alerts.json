@@ -1,0 +1,7 @@
+﻿{
+    "alerts": [
+        { "text": "You left the geofencing area" , "dateTime": "Mon 15, at 10:20" , "icon": "ion-alert-circled"},
+        { "text": "Please clock-in now", "dateTime": "Mon 15, at 10:12", "icon": "ion-ios-stopwatch"},
+        { "text": "Switch on the location service", "dateTime": "Mon 15, at 10:09" , "icon": "ion-wifi"}
+    ]
+}

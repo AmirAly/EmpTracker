@@ -13,4 +13,8 @@
     $http.get('/json/notifications.json').then(function (data) {
         $scope.allNotificationsArray = data.data.notifications;
     });
+
+    $http.get('/json/alerts.json').then(function (data) {
+        $scope.allAlertsArray = data.data.alerts;
+    });
 });

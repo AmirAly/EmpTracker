@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http) {
+﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http, $ionicModal) {
 
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
@@ -9,6 +9,40 @@
     $scope.shiftView = function () {
         $state.go('app.shiftview');
     }
+    $scope.mapView = false;
+    $scope.showMap = function () {
+        $ionicModal.fromTemplateUrl('addNote.html', {
+            scope: $scope,
+            animation: 'slide-in-up'
+        }).then(function (modal) {
+            $scope.modal = modal;
+        });
+        $timeout(function () {
+            $scope.modal.show();
+        }, 200);
+
+        //var map;
+        //var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
+        //google.maps.event.addDomListener(window, 'load', initialize());
+        //function initialize() {
+        //    var mapOptions = {
+        //        zoom: 7,
+        //        center: myLatLng,
+        //        disableDefaultUI: true
+        //    };
+        //    map = new google.maps.Map(document.getElementById('map'),
+        //        mapOptions);
+        //    google.maps.event.addListenerOnce(map, 'idle', function () {
+        //        var marker = new google.maps.Marker({
+        //            map: map,
+        //            animation: google.maps.Animation.DROP,
+        //            position: myLatLng
+        //        });
+        //    });
+        //}
+        //$scope.mapView = true;
+    }
+
 
     var today = new Date();
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();

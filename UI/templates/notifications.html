@@ -29,24 +29,57 @@
             </button>
         </div>
     </div>
-    <ion-content overflow-scroll="true" class="has-header has-footer has-subheader">
-        <div class="view-container">
-            <div class="list">
-                <a ng-repeat="notification in allNotificationsArray" class="item item-icon-left {{notification.class}}" href="{{notification.href}}" ng-class="{{notification.ngclass}}">
-                    <i class="icon ion-android-notifications"></i>
-                    <span>{{notification.text}}</span>
-                </a>
-            </div>
-            <div class="card text-center padding-top" ng-show="!allNotificationsArray.length">
-                <h2>There is no notifications</h2>
-            </div>
-        </div>
-    </ion-content>
 
 
-    <ion-footer-bar class="bar-dark">
-        <div class="button-bar">
-            <button class="button button-clear ion-android-done-all" ng-click="markAllAsRead()">&nbsp;Mark All as read</button>
-        </div>
-    </ion-footer-bar>
+
+
+    <ion-pane>
+        <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
+            <!-- Tab 1 -->
+            <ion-tab title="Notifications" icon-on="ion-android-notifications" icon-off="ion-android-notifications-none">
+                <ion-nav-view name="tab-tab1">
+                    <ion-content overflow-scroll="true" class="has-header has-subheader">
+                        <div class="list">
+                            <div class="item item-divider">
+                                Notifications
+                            </div>
+                            <a ng-repeat="notification in allNotificationsArray" class="item item-icon-left {{notification.class}}" href="{{notification.href}}" ng-class="{{notification.ngclass}}">
+                                <i class="icon ion-android-notifications"></i>
+                                <span>{{notification.text}}</span>
+                            </a>
+                        </div>
+                        <div class="card text-center padding-top" ng-show="!allNotificationsArray.length">
+                            <h2>There is no notifications</h2>
+                        </div>
+                    </ion-content>
+                    <ion-footer-bar class="bar-positive">
+                        <div class="button-bar">
+                            <button class="button  button-clear ion-android-done-all" ng-click="markAllAsRead()">&nbsp;Mark All as read</button>
+                        </div>
+                    </ion-footer-bar>
+                </ion-nav-view>
+            </ion-tab>
+
+            <!-- Tab 2 -->
+            <ion-tab title="Warning & Alerts" icon-on="ion-ios-speedometer" icon-off="ion-ios-speedometer-outline">
+                <ion-nav-view name="tab-tab2">
+                    <ion-content overflow-scroll="true" padding="true" class="has-subheader">
+                        <div class="list listAlerts">
+                            <div class="item item-divider">
+                                Warning & Alerts
+                            </div>
+                            <a ng-repeat="alert in allAlertsArray" class="item item-icon-left" >
+                                <i class="icon {{alert.icon}}"></i>
+                                <span class="text-left txtalert">{{alert.text}}</span>
+                                <span class="text-left item-note">{{alert.dateTime}}</span>
+                            </a>
+                        </div>
+                        <div class="spacer"></div>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
+    </ion-pane>
+
+   
 </ion-view>
