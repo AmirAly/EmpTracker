@@ -8,7 +8,7 @@ Copyright (c) 2015 Russian Rebouças
     "use strict";
 
     function e() {
-        var e = '<div class="flex-calendar" on-swipe-left="prevMonth()" on-swipe-right="nextMonth()"><div class="month"><div  ng-click="prevMonth()"><i class="ion-android-arrow-dropleft-circle"></i></div><div class="label">{{ selectedMonth | translate }} {{selectedYear}}</div><div  ng-click="nextMonth()"><i class="ion-android-arrow-dropright-circle"></i></div></div>\
+        var e = '<div class="flex-calendar" on-swipe-right="prevMonth()" on-swipe-left="nextMonth()"><div class="month"><div  ng-click="prevMonth()"><i class="ion-android-arrow-dropleft-circle"></i></div><div class="label">{{ selectedMonth | translate }} {{selectedYear}}</div><div  ng-click="nextMonth()"><i class="ion-android-arrow-dropright-circle"></i></div></div>\
                        <div class="week"><div class="day" ng-repeat="day in weekDays(options.dayNamesLength) track by $index">{{ day }}</div></div><div class="days" ng-repeat="week in weeks">\
                         <div class="day" ng-repeat="day in week track by $index"\
                             ng-class="{selected: isDefaultDate(day), event: day.event[0], disabled: day.disabled, out: !day}"\

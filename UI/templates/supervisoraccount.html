@@ -7,8 +7,29 @@
             <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
         </div>
     </ion-header-bar>
+    <div class="bar bar-subheader">
+        <div class="text-left">
+            <span class="h3">My Account</span>
+        </div>
+        <div class="text-right">
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-android-notifications"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-ios-alarm"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-wand"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+        </div>
+    </div>
     <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
-        <ion-content class="supervisorAccountPage" overflow-scroll="true" padding="true">
+        <ion-content class="supervisorAccountPage has-subheader" overflow-scroll="true" padding="true">
             <div class="padding-horizontal row row-center">
                 <div class="col card">
                     <div class="text-center">

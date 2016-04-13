@@ -24,8 +24,6 @@
             $scope.cancelCheckGPS = false;
             $scope.modal.show();
         }, 200);
-
-        
     }
     $scope.approveCheckGPS = function (reply) {
         console.log(reply);
@@ -63,6 +61,10 @@
             $scope.modal.hide();
             $scope.mapView = false;
         }
+    }
+
+    $scope.hideModal = function () {
+        $scope.modal.hide();
     }
 
     var today = new Date();
@@ -149,9 +151,6 @@
                 });
         }, log);
     }
-    $scope.warn = function (message) {
-        alert(today.getMonth() + 1);
-    };
 
     // get json from external file
     $http.get('/json/events.json').then(function (data) {

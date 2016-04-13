@@ -7,35 +7,56 @@
             <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
         </div>
     </ion-header-bar>
-    <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
-            <ul class="list list-inset">
-                <li class="item item-divider">
-                    <label class="item item-input item-select">
-                        <span class="input-label">
-                            <b> Location </b>
-                        </span>
+    <div class="bar bar-subheader">
+        <div class="text-left">
+            <span class="h3">Employees</span>
+        </div>
+        <div class="text-right">
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-android-notifications"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
 
-                        <select>
-                            <option>Syndy Location 1</option>
-                            <option selected>Melburn</option>
-                            <option>Location 3</option>
-                        </select>
-                    </label>
-                </li>
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-ios-alarm"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
 
-                <li ng-repeat="emp in allemployeesArray" class="item item-checkbox">
-                    <div class="checkbox checkbox-dark">
-                        <input type="checkbox" ng-checked="selectedAll">
-                    </div>
-                    <a class="item item-avatar item-borderless" ng-click="openmap()">
-                        <img ng-src="{{emp.photo}}">
-                        <h2>{{emp.name}}</h2>
-                        <p>{{emp.checkInDate}}</p>
-                    </a>
-                </li>
-                <li ng-show="!allemployeesArray.length"><h3 class="text-center padding-top">No employees yet</h3></li>
- 
-            </ul>
+            <button class="button button-icon stable text-left">
+                <i class="icon ion-wand"></i>
+                <span class="badge badge-assertive">3</span>
+            </button>
+        </div>
+    </div>
+    <ion-content class="has-header has-footer supervisorPage has-subheader" overflow-scroll="true" padding="true">
+        <ul class="list list-inset">
+            <li class="item item-divider">
+                <label class="item item-input item-select">
+                    <span class="input-label">
+                        <b> Location </b>
+                    </span>
+
+                    <select>
+                        <option>Syndy Location 1</option>
+                        <option selected>Melburn</option>
+                        <option>Location 3</option>
+                    </select>
+                </label>
+            </li>
+
+            <li ng-repeat="emp in allemployeesArray" class="item item-checkbox">
+                <div class="checkbox checkbox-dark">
+                    <input type="checkbox" ng-checked="selectedAll">
+                </div>
+                <a class="item item-avatar item-borderless" ng-click="openmap()">
+                    <img ng-src="{{emp.photo}}">
+                    <h2>{{emp.name}}</h2>
+                    <p>{{emp.checkInDate}}</p>
+                </a>
+            </li>
+            <li ng-show="!allemployeesArray.length"><h3 class="text-center padding-top">No employees yet</h3></li>
+
+        </ul>
     </ion-content>
 
     <ion-footer-bar class="bar-dark">

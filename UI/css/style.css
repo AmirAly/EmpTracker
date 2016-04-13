@@ -13,10 +13,6 @@
 
 
 /*general*/
-ion-scroll[direction=y] {
-    height: Calc(100vh - 44px - 44px);
-}
-
 .spacer {
     height: 40px;
 }
@@ -276,15 +272,14 @@ ion-scroll[direction=y] {
 }
 
 .bar-subheader {
-    background-color: #2C3E50;
+    background-color: #48647F;
     color: #fff;
-    border-top: 1px solid #fff;
 }
 
     .bar-subheader .text-left .h3 {
         color: #fff;
-        font-size: 20px;
-        line-height: 1.5;
+        font-size: 18px;
+        line-height: 1.8;
         left: 16px;
         position: absolute;
     }
@@ -296,6 +291,10 @@ ion-scroll[direction=y] {
         bottom: 5px;
         display: inline-flex;
     }
+
+        .bar-subheader .text-right .button i:before {
+            font-size: 26px !important;
+        }
 
     .bar-subheader .button:hover {
         color: #fff;
@@ -399,6 +398,24 @@ ion-scroll[direction=y] {
 
 
 /*menu*/
+.submenuPage {
+    background-color: #1f497d;
+}
+
+    .submenuPage .badge {
+        position: absolute !important;
+        left: auto !important;
+        bottom: 0;
+        top: initial !important;
+        padding: 1px 5px;
+        font-size: 12px;
+        color: #fff !important;
+    }
+
+    .submenuPage .card {
+        margin: 0 !important;
+    }
+
 .sideMenuContent {
     background-color: #0a9ec7;
     background-color: #444;
@@ -411,39 +428,45 @@ ion-scroll[direction=y] {
         -webkit-flex-wrap: wrap;
     }
 
-.submenuPage .badge {
-    position: absolute !important;
-    left: auto !important;
-    bottom: 0;
-    top: initial !important;
-    padding: 1px 5px;
-    font-size: 12px;
-    color: #fff !important;
-}
 
-.submenuPage .card {
-    margin: 0 !important;
-}
+    .sideMenuContent .h4, .sideMenuContent .h5, .sideMenuContent i {
+        color: #ddd;
+        font-size: 16px;
+    }
 
-.sideMenuContent .h4, .sideMenuContent .h5, .sideMenuContent i {
-    color: #ddd;
-    font-size: 16px;
-}
+    .sideMenuContent .button:hover {
+        color: #fff;
+    }
 
-.sideMenuContent .button:hover {
-    color: #fff;
-}
-
-.sideMenuContent .button-icon .icon:before, .sideMenuContent .button-icon.icon:before,
-.sideMenufooter .button-icon .icon:before, .sideMenufooter .button-icon.icon:before {
-    font-size: 26px !important;
-}
+    .sideMenuContent .button-icon .icon:before, .sideMenuContent .button-icon.icon:before,
+    .sideMenufooter .button-icon .icon:before, .sideMenufooter .button-icon.icon:before {
+        font-size: 26px !important;
+    }
 
 
 /*login page*/
-.loginpage .list .list {
-    background-color: #f8f8f8;
+.loginpage .button.disabled, .loginpage .button[disabled] {
+    opacity: 1 !important;
 }
+
+.loginpage .listInputs.list .list .item.item-input {
+    margin-bottom: 10px;
+}
+
+    .loginpage .listInputs.list .list .item.item-input input {
+        padding-left: 10px;
+    }
+
+    .loginpage .listInputs.list .list .item.item-input i {
+        margin-right: 10px;
+    }
+
+        .loginpage .listInputs.list .list .item.item-input i:before {
+            font-size: 22px;
+            vertical-align: middle;
+        }
+
+
 
 /*map page*/
 .mapPage #map {
@@ -504,12 +527,12 @@ i.icon.icon-right {
 /*home page calenar*/
 .homePage .flex-calendar .days .day {
     /*border: 1px solid #ccc;*/
-    border: 1px solid #E8E8E8;
+    border: 1px solid #EFEFEF;
 }
 
 
-.homePage .flex-calendar .month i{
-        line-height: 60px;
+.homePage .flex-calendar .month i {
+    line-height: 60px;
     font-size: 22px;
     padding: 5px;
 }
@@ -522,16 +545,21 @@ i.icon.icon-right {
     color: #FFFFFF;
 }
 
+.homePage .flex-calendar .days .number {
+    text-align: right !important;
+}
+
 .homePage .flex-calendar .days .day.selected.today .number span {
     border-radius: 100%;
-    border: 2px solid #0161FB;
+    border: 2px solid #033FA0;
     padding: 3px 5px;
+    right: 1px !important;
 }
 
 .homePage .flex-calendar .days .number span {
     position: relative;
     bottom: 15px;
-    right: -8px;
+    right: 5px;
 }
 
 .homePage .flex-calendar .days .day.event:before {
@@ -587,18 +615,18 @@ i.icon.icon-right {
 }
 
 .homePage .dvTotalHrs {
-    padding-left:0px;
-    padding-right:0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
-.homePage .dvTotalHrs .col-25 {
-    /*background: #fff;*/
-    border: 1px solid #aaa;
-}
-
-    .homePage .dvTotalHrs .col-25 b {
-        line-height: 2;
+    .homePage .dvTotalHrs .col-25 {
+        /*background: #fff;*/
+        border: 1px solid #aaa;
     }
+
+        .homePage .dvTotalHrs .col-25 b {
+            line-height: 2;
+        }
 
 .tentativeFont {
     color: #e74c3c;
