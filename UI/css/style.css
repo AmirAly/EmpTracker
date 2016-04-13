@@ -123,6 +123,7 @@ ion-scroll[direction=y] {
             border-right: 1px solid #b2b2b2 !important;
             padding-left: 0px;
             padding-right: 0px;
+            margin-left: 5px;
         }
 
             .checkGPSModal .bar-footer .button .container {
@@ -523,7 +524,7 @@ i.icon.icon-right {
 
 .homePage .flex-calendar .days .day.selected.today .number span {
     border-radius: 100%;
-    border: 2px solid #2c3e50;
+    border: 2px solid #0161FB;
     padding: 3px 5px;
 }
 
