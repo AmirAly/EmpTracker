@@ -75,7 +75,7 @@ ion-scroll[direction=y] {
             background-color: #1D2935;
         }
 
-
+/*modal part*/
 .checkGPSModal {
     width: 80%;
     height: 60%;
@@ -91,19 +91,68 @@ ion-scroll[direction=y] {
         right: initial;
     }
 
-    .checkGPSModal .ion-close-round {
+    .checkGPSModal .closeIcon {
         right: 10px;
         position: fixed;
     }
 
-    .checkGPSModal .bar-footer {
-                border-color: #b2b2b2 !important;
-    background-color: #f8f8f8 !important;
+        .checkGPSModal .closeIcon:before {
+            font-size: 12px;
+        }
+
+    .checkGPSModal .bar-header {
+        border-color: #0c63ee !important;
+        /*background-color: #387ef5 !important;*/
+        background-color: #3276b1 !important;
+        background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%) !important;
+        color: #fff !important;
     }
 
-     .checkGPSModal .bar-footer .button {
-            border-right: 1px !important;
+        .checkGPSModal .bar-header i {
+            padding-left: 0px;
+        }
+
+    .checkGPSModal .bar-footer {
+        border-color: #b2b2b2 !important;
+        background-color: #f8f8f8 !important;
+        background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%) !important;
     }
+
+        /*normal button*/
+        .checkGPSModal .bar-footer .button {
+            border-right: 1px solid #b2b2b2 !important;
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+            .checkGPSModal .bar-footer .button .container {
+                display: inline-flex;
+            }
+
+                .checkGPSModal .bar-footer .button .container .btnICon {
+                    background-color: #d9d9d9;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+
+                .checkGPSModal .bar-footer .button .container .btnTxt {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+
+            /*active button*/
+            .checkGPSModal .bar-footer .button.button-positive {
+                background-color: #275b89;
+            }
+
+                .checkGPSModal .bar-footer .button.button-positive .container .btnICon {
+                    background-color: #214d75;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    color: #fff;
+                }
+
+
 
 /*shiftCard*/
 .shiftCard.todayShiftCard {
@@ -327,7 +376,7 @@ ion-scroll[direction=y] {
         border-right: 2px solid #000 !important;
     }
 
-        .bar-footer .button:last-child,
+        .bar-footer .button:last-child:not(.modalBtn),
         .bar-footer .lastButton {
             border-right: none !important;
         }
@@ -453,11 +502,15 @@ i.icon.icon-right {
 }
 /*home page calenar*/
 .homePage .flex-calendar .days .day {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
+    border: 1px solid #E8E8E8;
 }
 
-.homePage .flex-calendar .month .arrow {
-    padding: 20px 5px;
+
+.homePage .flex-calendar .month i{
+        line-height: 60px;
+    font-size: 22px;
+    padding: 5px;
 }
 
 .homePage .flex-calendar .days .day.selected .number {
@@ -468,10 +521,16 @@ i.icon.icon-right {
     color: #FFFFFF;
 }
 
+.homePage .flex-calendar .days .day.selected.today .number span {
+    border-radius: 100%;
+    border: 2px solid #2c3e50;
+    padding: 3px 5px;
+}
+
 .homePage .flex-calendar .days .number span {
-    /*position: relative;
+    position: relative;
     bottom: 15px;
-    right: -8px;*/
+    right: -8px;
 }
 
 .homePage .flex-calendar .days .day.event:before {
@@ -526,8 +585,13 @@ i.icon.icon-right {
     background-color: #2ecc71;
 }
 
+.homePage .dvTotalHrs {
+    padding-left:0px;
+    padding-right:0px;
+}
+
 .homePage .dvTotalHrs .col-25 {
-    background: #fff;
+    /*background: #fff;*/
     border: 1px solid #aaa;
 }
 

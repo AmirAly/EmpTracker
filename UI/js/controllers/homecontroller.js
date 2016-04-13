@@ -9,40 +9,61 @@
     $scope.shiftView = function () {
         $state.go('app.shiftview');
     }
+    $scope.started = false;
     $scope.mapView = false;
     $scope.showMap = function () {
-        $ionicModal.fromTemplateUrl('addNote.html', {
+        $ionicModal.fromTemplateUrl('checkGPSModal.html', {
             scope: $scope,
             animation: 'slide-in-up'
         }).then(function (modal) {
             $scope.modal = modal;
         });
         $timeout(function () {
+            $scope.yesCheckGPS = false;
+            $scope.noCheckGPS = false;
+            $scope.cancelCheckGPS = false;
             $scope.modal.show();
         }, 200);
 
-        //var map;
-        //var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
-        //google.maps.event.addDomListener(window, 'load', initialize());
-        //function initialize() {
-        //    var mapOptions = {
-        //        zoom: 7,
-        //        center: myLatLng,
-        //        disableDefaultUI: true
-        //    };
-        //    map = new google.maps.Map(document.getElementById('map'),
-        //        mapOptions);
-        //    google.maps.event.addListenerOnce(map, 'idle', function () {
-        //        var marker = new google.maps.Marker({
-        //            map: map,
-        //            animation: google.maps.Animation.DROP,
-        //            position: myLatLng
-        //        });
-        //    });
-        //}
-        //$scope.mapView = true;
+        
     }
-
+    $scope.approveCheckGPS = function (reply) {
+        console.log(reply);
+        if (reply == 'yes') {
+            $scope.yesCheckGPS = true;
+            $scope.modal.hide();
+            var map;
+            var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
+            google.maps.event.addDomListener(window, 'load', initialize());
+            function initialize() {
+                var mapOptions = {
+                    zoom: 7,
+                    center: myLatLng,
+                    disableDefaultUI: true
+                };
+                map = new google.maps.Map(document.getElementById('map'),
+                    mapOptions);
+                google.maps.event.addListenerOnce(map, 'idle', function () {
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        animation: google.maps.Animation.DROP,
+                        position: myLatLng
+                    });
+                });
+            }
+            $scope.mapView = true;
+        }
+        else if (reply == 'no') {
+            $scope.noCheckGPS = true;
+            $scope.modal.hide();
+            $scope.mapView = false;
+        }
+        else {
+            $scope.cancelCheckGPS = true;
+            $scope.modal.hide();
+            $scope.mapView = false;
+        }
+    }
 
     var today = new Date();
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
@@ -71,14 +92,9 @@
         defaultDate: today,
         minDate: "2000-01-01",
         maxDate: "2100-12-31",
-        disabledDates: [
-            "2016-04-1",
-            "2016-04-8",
-            "2016-04-15",
-            "2016-04-22"
-        ],
+        disabledDates: ["2016-04-1"],
         dayNamesLength: 1, // 1 for "M", 2 for "Mo", 3 for "Mon"; 9 will show full day names. Default is 1.
-        mondayIsFirstDay: true,//set monday as first day of week. Default is false
+        mondayIsFirstDay: true, //set monday as first day of week. Default is false
         eventClick: function (date) { // called before dateClick and only if clicked day has events
             $scope.calendarEvents = [];
         },
@@ -118,7 +134,7 @@
     $scope.loadCalendarEvents = function () {
         // to keep today colored
         $timeout(function () {
-            angular.element(document.querySelector('#badge' + today)).parent().addClass('selected');
+            angular.element(document.querySelector('#badge' + today)).parent().addClass('selected today');
         });
 
         // to add colored circles to dayes with events
@@ -133,7 +149,9 @@
                 });
         }, log);
     }
-
+    $scope.warn = function (message) {
+        alert(today.getMonth() + 1);
+    };
 
     // get json from external file
     $http.get('/json/events.json').then(function (data) {
