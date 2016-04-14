@@ -1,5 +1,7 @@
 ﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http, $ionicModal) {
-
+    $scope.notifications = function () {
+        $state.go('app.notifications');
+    }
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

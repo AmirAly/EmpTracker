@@ -1,6 +1,9 @@
 ﻿<ion-view class="notificationsPage">
     <ion-header-bar class="bar-dark">
-        <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
+        <button class="button button-icon stable">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">3</span>
+        </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight" ng-click="openmyaccount()">
@@ -9,13 +12,16 @@
     </ion-header-bar>
 
     <ion-content overflow-scroll="true" class="has-header has-footer">
-        <div class="list">
-            <a ng-repeat="notification in allNotificationsArray" class="item item-icon-left {{notification.class}}" href="{{notification.href}}" ng-class="{{notification.ngclass}}">
-                <i class="icon ion-android-notifications"></i>
-                <span>{{notification.text}}</span>
-            </a>
-        </div>
-        <div class="card text-center padding-top" ng-show="!allNotificationsArray.length">
+
+            <div class="list listAlerts">
+                <a ng-repeat="alert in allAlertsArray" class="item item-icon-left {{alert.class}}" ng-class="{{alert.ngclass}}">
+                    <i class="icon {{alert.icon}}"></i>
+                    <span class="text-left txtalert">{{alert.text}}</span>
+                    <span class="text-left item-note">{{alert.dateTime}}</span>
+                </a>
+            </div>
+
+        <div class="card text-center padding-top" ng-show="!allAlertsArray.length">
             <h2>There is no notifications</h2>
         </div>
     </ion-content>

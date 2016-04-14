@@ -1,34 +1,17 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">3</span>
+        </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="images/unknown.png" class="circle" /><span>Amir Aly</span>
         </div>
     </ion-header-bar>
-    <div class="bar bar-subheader">
-        <div class="text-left">
-            <span class="h3">Employees</span>
-        </div>
-        <div class="text-right">
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-android-notifications"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-ios-alarm"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-wand"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-        </div>
-    </div>
-    <ion-content class="has-header has-footer supervisorPage has-subheader" overflow-scroll="true" padding="true">
+    
+    <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
         <ul class="list list-inset">
             <li class="item item-divider">
                 <label class="item item-input item-select">

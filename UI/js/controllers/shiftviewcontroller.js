@@ -5,10 +5,12 @@
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
-
+    $scope.notifications = function () {
+        $state.go('app.notifications');
+    }
     $scope.goBack = function () {
         window.history.back();
-    };
+    }
     $scope.updateNoes = function (text) {
         console.log(text);
     }

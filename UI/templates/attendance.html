@@ -1,6 +1,10 @@
 ﻿<ion-view view-title="Tabs" class="attendancePage">
     <ion-header-bar class="bar-dark">
         <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">3</span>
+        </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
@@ -8,34 +12,14 @@
             <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
         </div>
     </ion-header-bar>
-    <div class="bar bar-subheader">
-        <div class="text-left">
-            <span class="h3">Attendance</span>
-        </div>
-        <div class="text-right">
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-android-notifications"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-ios-alarm"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-
-            <button class="button button-icon stable text-left">
-                <i class="icon ion-wand"></i>
-                <span class="badge badge-assertive">3</span>
-            </button>
-        </div>
-    </div>
+    
 
     <ion-pane>
         <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
             <!-- Tab 1 -->
             <ion-tab title=" Daily" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
                 <ion-nav-view name="tab-tab1">
-                    <ion-content overflow-scroll="true" padding="true" class="has-subheader">
+                    <ion-content overflow-scroll="true" padding="true">
                         <div class="padding-top">
                             <h3 class="padding text-center">Today</h3>
                         </div>
@@ -55,7 +39,7 @@
             <!-- Tab 2 -->
             <ion-tab title=" Weekly" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
                 <ion-nav-view name="tab-tab2">
-                    <ion-content overflow-scroll="true" padding="true" class="has-subheader">
+                    <ion-content overflow-scroll="true" padding="true">
                         <div class="padding-top">
                             <h3 class="padding text-center">This Week</h3>
                         </div>

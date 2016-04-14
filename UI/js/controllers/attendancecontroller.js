@@ -5,6 +5,9 @@
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
+    $scope.notifications = function () {
+        $state.go('app.notifications');
+    }
     // A confirm dialog
     $scope.showConfirm = function () {
         var confirmPopup = $ionicPopup.confirm({

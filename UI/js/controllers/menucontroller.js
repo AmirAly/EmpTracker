@@ -1,5 +1,7 @@
 ﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate) {
-
+    $scope.openmyaccount = function () {
+        $state.go('app.myaccount');
+    }
     $scope.toggleLeftSideMenu = function () {
         $ionicSideMenuDelegate.toggleLeft();
     };
@@ -11,6 +13,7 @@
     { icon: 'ion-android-notifications-none', text: 'Notifications', linkTo: 'notifications()', badge: true },
     { icon: 'ion-eye', text: 'Challenge', linkTo: 'challenge()', badge: false },
     { icon: 'ion-person', text: 'My Account', linkTo: 'myaccount()', badge: false },
+    { icon: 'ion-android-lock', text: 'Edit Password', linkTo: 'changepassword()', badge: false },
     { icon: 'ion-log-out', text: 'Logout', linkTo: 'logout()', badge: false }];
 
     $scope.home = function () {
@@ -33,5 +36,8 @@
     }
     $scope.myaccount = function () {
         $state.go('app.myaccount');
+    }
+    $scope.changepassword = function () {
+        $state.go('app.changepassword');
     }
 });

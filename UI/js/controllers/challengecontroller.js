@@ -5,6 +5,9 @@
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
+    $scope.notifications = function () {
+        $state.go('app.notifications');
+    }
     $scope.counter = 60;
     var stopped;
 
