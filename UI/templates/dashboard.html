@@ -1,0 +1,105 @@
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">3</span>
+        </button>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight">
+            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+            <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="dashboardPage " overflow-scroll="true" padding="true">
+        <h3>My Totals</h3>
+        <div class="padding-horizontal divCircled">
+            <div class="divContent">
+                <div class="row firstLine">
+                    <div class="col text-center">
+                        <b>DAY TOTAL</b>
+                    </div>
+                </div>
+                <div class="row secondLine">
+                    <div class="col">
+                        <h1>00</h1>
+                        <span>hrs</span>
+                    </div>
+                    <div class="col">
+                        <h1>00</h1>
+                        <span>mins</span>
+                    </div>
+                </div>
+                <div class="row thirdLine">
+                    <div class="col text-center">
+                        <span>of 8.0 hrs</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h3>Current Week</h3>
+        <div class="text-center padding">
+            <span>Mon 15 Apr - Sun 21 Apr 2016</span>
+        </div>
+
+        <div class="list listSchedule">
+            <div class="item item-divider">
+                Schedule
+            </div>
+            <div class="item">
+                Total Shift Scheduled
+                <span class="item-note">
+                    5
+                </span>
+            </div>
+            <div class="item">
+                Total Hours Scheduled
+                <span class="item-note">
+                    45.45
+                </span>
+            </div>
+        </div>
+
+        <div class="list listSchedule">
+            <div class="item item-divider">
+                Shift Clocked/Worked
+            </div>
+            <div class="item">
+                Total Shifts Worked/Clocked
+                <span class="item-note">
+                    3
+                </span>
+            </div>
+            <div class="item">
+                Missing clock out
+                <span class="item-note fontRed">
+                    1
+                </span>
+            </div>
+            <div class="item">
+                Late Clock in shifts
+                <span class="item-note fontRed">
+                    1
+                </span>
+            </div>
+            <div class="item">
+                Late Clock out shifts
+                <span class="item-note">
+                    0
+                </span>
+            </div>
+        </div>
+
+        <h3>
+            <i class="icon ion-email"></i>
+            <span>&nbsp;Messages</span>
+        </h3>
+        <div class="padding">
+            <span>You have 3 new un-read Notifications</span>
+        </div>
+
+        <div class="spacer"></div>
+    </ion-content>
+</ion-view>

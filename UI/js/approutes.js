@@ -95,15 +95,15 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-        .state('app.changepassword', {
-            url: '/changepassword',
-            views: {
-                'menuContent': {
-                    controller: "changepasswordController",
-                    templateUrl: 'templates/changepassword.html'
-                }
+    .state('app.changepassword', {
+        url: '/changepassword',
+        views: {
+            'menuContent': {
+                controller: "changepasswordController",
+                templateUrl: 'templates/changepassword.html'
             }
-        })
+        }
+    })
     .state('app.myaccount', {
         url: '/myaccount',
         views: {
@@ -113,6 +113,17 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+    .state('app.dashboard', {
+        url: '/dashboard',
+        views: {
+            'menuContent': {
+                controller: "dashboardController",
+                templateUrl: 'templates/dashboard.html'
+            }
+        }
+    })
+
+
     .state('supervisorchangepassword', {
         url: '/supervisorchangepassword',
         controller: "supervisorchangepasswordController",

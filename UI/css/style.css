@@ -299,43 +299,43 @@
         top: inherit;
     }
 
-.bar-header i:not(.ion-android-notifications) {
-    line-height: 2.5;
-    padding-left: 10px;
-}
+    .bar-header i:not(.ion-android-notifications) {
+        line-height: 2.5;
+        padding-left: 10px;
+    }
 
     .bar-header i.inactive {
         color: #ccc;
     }
 
-.bar-header .floatRight {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    bottom: 5px;
-    display: inline-flex;
-}
-
-    .bar-header .floatRight img {
-        height: auto;
-        width: 36px;
+    .bar-header .floatRight {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        bottom: 5px;
+        display: inline-flex;
     }
 
-    .bar-header .floatRight span {
-        white-space: nowrap;
-        -webkit-box-flex: 1;
-        -webkit-flex: 1;
-        -moz-box-flex: 1;
-        -moz-flex: 1;
-        -ms-flex: 1;
-        flex: 1;
-        display: block;
-        padding: 5px;
-        width: 100%;
-        max-width: 140px;
-        overflow: hidden !important;
-        text-overflow: ellipsis;
-    }
+        .bar-header .floatRight img {
+            height: auto;
+            width: 36px;
+        }
+
+        .bar-header .floatRight span {
+            white-space: nowrap;
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -moz-box-flex: 1;
+            -moz-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            display: block;
+            padding: 5px;
+            width: 100%;
+            max-width: 140px;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+        }
 
 .menu .bar-header {
     background-color: #111 !important;
@@ -709,4 +709,89 @@ i.icon.icon-right {
 .attendancePage .card {
     margin-bottom: 0px;
     margin-top: 8px;
+}
+
+/*dashboard page*/
+.dashboardPage h3 {
+    border-bottom: 2px solid #717171;
+    padding-bottom: 5px;
+}
+
+.dashboardPage .divCircled {
+    border: 20px solid #C1C1C1;
+    border-radius: 100%;
+    /*height: 50vw;*/
+    /*width: 50vw;*/
+    height: 200px;
+    width: 200px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+    /*@media screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+    .dashboardPage .divCircled {
+        height: 200px;
+        width: 200px;
+    }
+}*/
+
+
+    .dashboardPage .divCircled .divContent {
+        width: 85%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .dashboardPage .divCircled .firstLine {
+        padding-bottom: 0;
+    }
+
+        .dashboardPage .divCircled .firstLine .col {
+            padding-bottom: 0;
+        }
+
+    .dashboardPage .divCircled .secondLine {
+        padding-top: 0;
+    }
+
+    .dashboardPage .divCircled .thirdLine .col {
+        padding-top: 0;
+    }
+
+    .dashboardPage .divCircled h5 {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .dashboardPage .divCircled h1 {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: #2278d7;
+        font-stretch: condensed;
+    }
+
+.dashboardPage .listSchedule .item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.dashboardPage .listSchedule .item-divider {
+    background-color: #7e7e7e;
+    color: #fff;
+}
+
+.dashboardPage .listSchedule .item-note {
+    color: #000;
+    width: 25%;
+}
+
+    .dashboardPage .listSchedule .item-note.fontRed {
+        color: #c72626;
+    }
+
+.dashboardPage .ion-email {
+    color: #757575;
+    font-size: 36px;
+    position: relative;
+    top: 5px;
 }
