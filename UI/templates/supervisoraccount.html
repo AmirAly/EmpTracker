@@ -22,7 +22,7 @@
             </div>
             <div class="padding-horizontal">
                 <ion-list class="list listInputs padding">
-                    <label class="item item-input padding">
+                    <label class="item  padding">
                         <i class="icon ion-person placeholder-icon"></i>
                         <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
                         <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
@@ -30,7 +30,7 @@
                         </span>
                     </label>
 
-                    <label class="item item-input padding">
+                    <label class="item  padding">
                         <i class="icon ion-compose placeholder-icon"></i>
                         <input ng-model="employeeNO" type="text" required placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
                         <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
@@ -38,7 +38,7 @@
                         </span>
                     </label>
 
-                    <label class="item item-input padding">
+                    <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>
                         <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
                         <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
@@ -46,9 +46,9 @@
                         </span>
                     </label>
 
-                    <label class="item item-input padding">
+                    <label class="item  padding">
                         <i class="icon ion-ios-email placeholder-icon"></i>
-                        <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName">
+                        <input ng-model="email" type="email" required placeholder="Email" name="userName" id="userName">
                         <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>

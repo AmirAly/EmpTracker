@@ -28,10 +28,13 @@
         }, 200);
     }
     $scope.approveCheckGPS = function (reply) {
+        
         console.log(reply);
         if (reply == 'yes') {
             $scope.yesCheckGPS = true;
-            $scope.modal.hide();
+            $timeout(function () {
+                $scope.modal.hide();
+            }, 500);
             var map;
             var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
             google.maps.event.addDomListener(window, 'load', initialize());
@@ -55,12 +58,16 @@
         }
         else if (reply == 'no') {
             $scope.noCheckGPS = true;
-            $scope.modal.hide();
+            $timeout(function () {
+                $scope.modal.hide();
+            }, 500);
             $scope.mapView = false;
         }
         else {
             $scope.cancelCheckGPS = true;
-            $scope.modal.hide();
+            $timeout(function () {
+                $scope.modal.hide();
+            }, 500);
             $scope.mapView = false;
         }
     }
