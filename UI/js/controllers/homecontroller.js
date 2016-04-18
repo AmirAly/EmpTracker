@@ -161,11 +161,21 @@
         }, log);
     }
 
-    // get json from external file
-    $http.get('/json/events.json').then(function (data) {
-        $scope.allEvents = data.data.events;
-        //temp for now
-        $scope.events = data.data.events;
-        $scope.todayShiftsArray = data.data.events;
-    });
+
+    if (ionic.Platform.isAndroid()) {
+        // get json from external file
+        $http.get('/android_asset/www/json/events.json').then(function (data) {
+            $scope.allEvents = data.data.events;
+            $scope.events = data.data.events;
+            $scope.todayShiftsArray = data.data.events;
+        });
+    }
+    else {
+        // get json from external file
+        $http.get('/json/events.json').then(function (data) {
+            $scope.allEvents = data.data.events;
+            $scope.events = data.data.events;
+            $scope.todayShiftsArray = data.data.events;
+        });
+    }
 });

@@ -68,8 +68,16 @@
         }
     };
 
-    // get json from external file
-    $http.get('/json/employees.json').then(function (data) {
-        $scope.allemployeesArray = data.data.employees;
-    });
+    if (ionic.Platform.isAndroid()) {
+        // get json from external file
+        $http.get('/android_asset/www/json/employees.json').then(function (data) {
+            $scope.allemployeesArray = data.data.employees;
+        });
+    }
+    else {
+        // get json from external file
+        $http.get('/json/employees.json').then(function (data) {
+            $scope.allemployeesArray = data.data.employees;
+        });
+    }
 });

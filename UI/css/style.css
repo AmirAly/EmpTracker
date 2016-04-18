@@ -19,9 +19,16 @@
 
 .circle {
     border-radius: 50%;
-    height: 40vw;
-    width: 40vw;
+    height: 100px;
+    width: 100px;
     vertical-align: middle;
+}
+
+@media screen and (min-device-width : 361px) {
+    .circle {
+        height: 40vw;
+        width: 40vw;
+    }
 }
 
 .ion-log-out:before {
@@ -172,6 +179,7 @@
         .shiftCard.todayShiftCard p span {
             position: absolute;
             display: inline-block;
+            z-index:9999;
             left: -25px;
             color: #fff;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
@@ -230,21 +238,25 @@
     line-height: 1;
     width: 55%;
     margin-right: 10px;
+    padding-left: 0px;
 }
 
     .shiftCard .secondCoulmn .date {
         font-size: 17px;
         font-weight: bold;
         white-space: nowrap;
+        padding-left: 0px;
     }
 
     .shiftCard .secondCoulmn .address {
         font-size: 16px;
+        padding-left: 0px;
     }
 
     .shiftCard .secondCoulmn .area {
         font-size: 14px;
         color: #aaa;
+        padding-left: 0px;
     }
 
 .shiftCard .thirdCoulmn {
@@ -413,13 +425,6 @@
     color: #fff;
 }
 
-    .sideMenuContent .adjustMenu,
-    .submenuPage .adjustMenu {
-        flex-wrap: wrap;
-        -webkit-flex-wrap: wrap;
-    }
-
-
     .sideMenuContent .h4, .sideMenuContent .h5, .sideMenuContent i {
         color: #ddd;
         font-size: 16px;
@@ -488,7 +493,7 @@
     top: 16px;
 }
 
-.supervisorAccountPage .list input ,
+.supervisorAccountPage .list input,
 .loginpage .list input {
     padding-left: 22px;
 }
@@ -825,9 +830,9 @@ i.icon.icon-right {
         color: #c72626;
     }
 
-.dashboardPage .ion-email {
+/*.dashboardPage .ion-email {
     color: #757575;
     font-size: 36px;
     position: relative;
     top: 5px;
-}
+}*/

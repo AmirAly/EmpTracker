@@ -16,7 +16,17 @@
     //    $scope.allNotificationsArray = data.data.notifications;
     //});
 
-    $http.get('/json/alerts.json').then(function (data) {
-        $scope.allAlertsArray = data.data.alerts;
-    });
+
+    if (ionic.Platform.isAndroid()) {
+        // get json from external file
+        $http.get('/android_asset/www/json/alerts.json').then(function (data) {
+            $scope.allAlertsArray = data.data.alerts;
+        });
+    }
+    else {
+        // get json from external file
+        $http.get('/json/alerts.json').then(function (data) {
+            $scope.allAlertsArray = data.data.alerts;
+        });
+    }
 });

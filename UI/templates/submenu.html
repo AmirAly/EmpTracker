@@ -11,16 +11,37 @@
     <ion-content class="submenuPage" >
         <div class="spacer"></div>
         <div class="spacer"></div>
-        <div class="row row-bottom adjustMenu ">
-            <div class="col col-33 text-center  padding" ng-repeat="item in menuItems">
-                <div class="padding-bottom card" ng-click="{{item.linkTo}}">
-                    <button class="button button-full fontActionBlue button-icon icon light text-left {{item.icon}}">
-                        <span ng-show="{{item.badge}}" class="badge badge-calm fontActionBlue">3</span>
+
+        <div class="row row-bottom adjustMenu" ng-repeat="item in menuItems" ng-if="$index%3==0">
+            <div class="col col-33 text-center padding" ng-if="$index<menuItems.length">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index].linkTo}}">
+                    <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index].icon}}">
+                        <span ng-show="{{menuItems[$index].badge}}" class="badge badge-calm fontActionBlue">3</span>
                     </button>
-                    <span class="h5 fontActionBlue">{{item.text}}</span>
+                    <span class="h5 fontActionBlue">{{menuItems[$index].text}}</span>
                 </div>
             </div>
+
+            <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index+1].linkTo}}">
+                    <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+1].icon}}">
+                        <span ng-show="{{menuItems[$index+1].badge}}" class="badge badge-calm fontActionBlue">3</span>
+                    </button>
+                    <span class="h5 fontActionBlue">{{menuItems[$index+1].text}}</span>
+                </div>
+            </div>
+
+            <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index+2].linkTo}}">
+                    <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+2].icon}}">
+                        <span ng-show="{{menuItems[$index+2].badge}}" class="badge badge-calm fontActionBlue">3</span>
+                    </button>
+                    <span class="h5 fontActionBlue">{{menuItems[$index+2].text}}</span>
+                </div>
+            </div>
+
         </div>
+
     </ion-content>
 
 </ion-view>
