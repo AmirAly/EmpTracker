@@ -661,18 +661,22 @@ i.icon.icon-right {
 
 
 /*shiftViewPage*/
-.shiftViewPage .item-note {
+.shiftViewPage .bluefont {
     font-size: 100%;
     color: #4b8dc0;
-    /*color:#517dcf;*/
     text-align: right;
-    /*white-space: normal;*/
 }
 
 .shiftViewPage textarea {
     resize: none;
     text-align: left !important;
     background-color: #fbfafb;
+    color: #4b8dc0;
+}
+
+.shiftViewPage .noborder {
+    border: none !important;
+    padding: 0 !important;
 }
 
 .shiftViewPage .card {
@@ -688,26 +692,34 @@ i.icon.icon-right {
 /*challenge Page*/
 .challengePage .basicColorDv {
     background-color: rgb(237,95,83);
-    width: 50vw;
-    height: 50vw;
+    /*width: 50vw;
+    height: 50vw;*/
+     height: 0;
+    padding-bottom: 100%;
 }
 
 .challengePage .firstColorDv {
     background-color: rgb(237,95,83);
-    width: 18vw;
-    height: 18vw;
+    /*width: 18vw;
+    height: 18vw;*/
+     height: 0;
+    padding-bottom: 100%;
 }
 
 .challengePage .secondColorDv {
     background-color: rgb(66,165,246);
-    width: 18vw;
-    height: 18vw;
+    /*width: 18vw;
+    height: 18vw;*/
+     height: 0;
+    padding-bottom: 100%;
 }
 
 .challengePage .thirdColorDv {
     background-color: rgb(57,156,30);
-    width: 18vw;
-    height: 18vw;
+    /*width: 18vw;
+    height: 18vw;*/
+     height: 0;
+    padding-bottom: 100%;
 }
 
 /*notifications Page*/
