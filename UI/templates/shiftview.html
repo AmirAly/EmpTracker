@@ -77,6 +77,43 @@
             </button>
         </div>
 
+
+
+
+        <textarea placeholder="gggg">g</textarea>
+        <textarea placeholder="gggg"></textarea>
+        <input value="" />
+        <input value="hhh" />
+        <div class="list">
+            <div class="item row row-center padding">
+                <span class="col">Address</span>
+                <span class="item-note col col-66">35 Hunter St. Condell Park , NSW 2200</span>
+            </div>
+        </div>
+        <div class="list">
+            <div class="item row row-top padding">
+                <span class="col">Notes</span>
+                <textarea placeholder="Add Notes" rows="5" class="item-note col col-66"
+                          ng-model="shiftNotes"
+                          ng-model-options="{ updateOn: 'blur' }"
+                          ng-change="updateNoes(shiftNotes)"></textarea>
+            </div>
+        </div>
+        <div class="list">
+            <label class="item item-input">
+                <input type="text" placeholder="First Name">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Last Name">
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Comments"></textarea>
+            </label>
+        </div>
+
+
+
+
     </ion-content>
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">

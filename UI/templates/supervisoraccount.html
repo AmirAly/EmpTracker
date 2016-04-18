@@ -71,8 +71,12 @@
 
         <ion-footer-bar class="bar-dark">
             <div class="button-bar">
-                <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">&nbsp;Cancel</button>
-                <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">&nbsp;Update</button>
+                <button class="button button-clear ion-ios-close-outline" type="reset" ng-click="cancel()">
+                    <span>&nbsp;Cancel</span>
+                </button>
+                <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">
+                    <span>&nbsp;Update</span>
+                </button>
             </div>
         </ion-footer-bar>
     </form>
