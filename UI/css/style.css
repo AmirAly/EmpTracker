@@ -19,17 +19,16 @@
 
 .circle {
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
+    height: 40vw;
     vertical-align: middle;
 }
 
-@media screen and (min-device-width : 361px) {
+/*@media screen and (min-device-width : 361px) {
     .circle {
         height: 40vw;
         width: 40vw;
     }
-}
+}*/
 
 .ion-log-out:before {
     transform: rotate(-180deg);
@@ -124,7 +123,7 @@
 
         /*normal button*/
         .checkGPSModal .bar-footer .col {
-            display: inherit;
+            display: block;
         }
 
         .checkGPSModal .bar-footer .button {
@@ -692,34 +691,26 @@ i.icon.icon-right {
 /*challenge Page*/
 .challengePage .basicColorDv {
     background-color: rgb(237,95,83);
-    /*width: 50vw;
-    height: 50vw;*/
-     height: 0;
-    padding-bottom: 100%;
+    min-width: 50vw;
+    min-height: 50vw;
 }
 
 .challengePage .firstColorDv {
     background-color: rgb(237,95,83);
-    /*width: 18vw;
-    height: 18vw;*/
-     height: 0;
-    padding-bottom: 100%;
+    min-width: 18vw;
+    min-height: 18vw;
 }
 
 .challengePage .secondColorDv {
     background-color: rgb(66,165,246);
-    /*width: 18vw;
-    height: 18vw;*/
-     height: 0;
-    padding-bottom: 100%;
+    min-width: 18vw;
+    min-height: 18vw;
 }
 
 .challengePage .thirdColorDv {
     background-color: rgb(57,156,30);
-    /*width: 18vw;
-    height: 18vw;*/
-     height: 0;
-    padding-bottom: 100%;
+    min-width: 18vw;
+    min-height: 18vw;
 }
 
 /*notifications Page*/
