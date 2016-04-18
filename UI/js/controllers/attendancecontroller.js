@@ -45,13 +45,24 @@
     }
 
 
+    if (ionic.Platform.isAndroid()) {
+        // get json from external file
+        $http.get('/android_asset/UI/json/attenance.json').then(function (data) {
+            $scope.allAttendanceArray = data.data.attenance;
+            $scope.weelyAttendanceArray = data.data.attenance;
+            $scope.todayAttendanceArray = data.data.attenance;
+        });
+    }
+    else {
+        // get json from external file
+        $http.get('/json/attenance.json').then(function (data) {
+            $scope.allAttendanceArray = data.data.attenance;
+            $scope.weelyAttendanceArray = data.data.attenance;
+            $scope.todayAttendanceArray = data.data.attenance;
+        });
+    }
 
-    // get json from external file
-    $http.get('/json/attenance.json').then(function (data) {
-        $scope.allAttendanceArray = data.data.attenance;
-        //temp for now
-        $scope.weelyAttendanceArray = data.data.attenance;
-        $scope.todayAttendanceArray = data.data.attenance;
-    });
+
+    
 
 });
