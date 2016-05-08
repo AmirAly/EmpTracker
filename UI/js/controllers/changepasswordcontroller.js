@@ -1,4 +1,9 @@
-﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout) {
+﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout, $rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
+
     $scope.notifications = function () {
         $state.go('app.notifications');
     }

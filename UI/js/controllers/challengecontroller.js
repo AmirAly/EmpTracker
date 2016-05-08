@@ -1,4 +1,10 @@
-﻿empTracker.controller("challengeController", function ($scope, $state, $timeout) {
+﻿empTracker.controller("challengeController", function ($scope, $state, $timeout, $rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
+
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

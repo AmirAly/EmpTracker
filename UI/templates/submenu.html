@@ -14,7 +14,7 @@
 
         <div class="row row-bottom adjustMenu" ng-repeat="item in menuItems" ng-if="$index%3==0">
             <div class="col col-33 text-center padding" ng-if="$index<menuItems.length">
-                <div class="padding-bottom card" ng-click="{{menuItems[$index].linkTo}}">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index].linkTo}}" ng-if="menuItems[$index]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index].icon}}">
                         <span ng-show="{{menuItems[$index].badge}}" class="badge badge-calm fontActionBlue">3</span>
                     </button>
@@ -23,7 +23,7 @@
             </div>
 
             <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
-                <div class="padding-bottom card" ng-click="{{menuItems[$index+1].linkTo}}">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index+1].linkTo}}" ng-if="menuItems[$index+1]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+1].icon}}">
                         <span ng-show="{{menuItems[$index+1].badge}}" class="badge badge-calm fontActionBlue">3</span>
                     </button>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
-                <div class="padding-bottom card" ng-click="{{menuItems[$index+2].linkTo}}">
+                <div class="padding-bottom card" ng-click="{{menuItems[$index+2].linkTo}}" ng-if="menuItems[$index+2]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+2].icon}}">
                         <span ng-show="{{menuItems[$index+2].badge}}" class="badge badge-calm fontActionBlue">3</span>
                     </button>

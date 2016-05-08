@@ -1,4 +1,8 @@
-﻿empTracker.controller("dashboardController", function ($scope, $state) {
+﻿empTracker.controller("dashboardController", function ($scope, $state, $rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

@@ -1,4 +1,9 @@
-﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http) {
+﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http,$rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

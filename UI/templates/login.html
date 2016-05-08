@@ -16,7 +16,7 @@
 
                 <label class="item padding">
                     <i class="icon ion-person placeholder-icon"></i>
-                    <input ng-model="name" type="email" required placeholder="User Name" name="userName" id="userName" autocorrect="off" autocapitalize="off">
+                    <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName" autocorrect="off" autocapitalize="off">
                     <span ng-show="frmLogin.userName.$touched  && frmLogin.userName.$invalid">
                         <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
                         <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
@@ -44,4 +44,12 @@
         </div>
     </form>
     
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <a href="http://www.worktimemanager.com.au" class="button button-positive button-clear button-block ">
+                <span>&nbsp;www.worktimemanager.com.au</span>
+            </a>
+        </div>
+    </ion-footer-bar>
+
 </ion-view>

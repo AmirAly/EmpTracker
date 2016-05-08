@@ -1,4 +1,9 @@
-﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup, $http) {
+﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup, $http, $rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }

@@ -1,4 +1,9 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout,$rootScope) {
+
+    $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
+    });
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
