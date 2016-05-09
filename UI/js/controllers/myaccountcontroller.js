@@ -19,5 +19,7 @@
         $state.go('app.notifications');
     }
     
+    $scope.employeeNO = '150SB7';
+    $scope.name = 'Amir Aly';
 });
 

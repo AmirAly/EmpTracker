@@ -294,7 +294,8 @@
     }
 
 .pane, .view {
-    background-color: #ecf0f1 !important;
+    /*background-color: #ecf0f1 !important;*/
+        background-color: #e5e5e5 !important;
 }
 
 .actionBlue {
@@ -444,6 +445,7 @@
 }
 .loginpage .bar-footer{
     background-color:transparent !important;
+        background-image: none;
 }
 .listInputs.list .list .item.item-input {
     margin-bottom: 10px;
@@ -483,7 +485,7 @@
 
 
 .supervisorAccountPage .card, .myAccountPage .card {
-    /* margin-top: 0px !important; */
+     margin-top: 0px !important; 
     margin-bottom: 5px;
 }
 

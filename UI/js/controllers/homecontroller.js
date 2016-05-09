@@ -83,6 +83,7 @@
         }
 
         var today = new Date();
+        console.debug(today);
         today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         $scope.today = today;
 

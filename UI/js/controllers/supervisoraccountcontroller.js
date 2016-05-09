@@ -15,4 +15,7 @@
     $scope.notifications = function () {
         $state.go('supervisornotifications');
     }
+
+    $scope.employeeNO = '150SB7';
+    $scope.name = 'Amir Aly';
 });

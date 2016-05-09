@@ -21,23 +21,24 @@
                 </div>
             </div>
             <div class="padding-horizontal">
-                <ion-list class="list listInputs padding">
-                    <label class="item  padding">
-                        <i class="icon ion-person placeholder-icon"></i>
-                        <input ng-model="name" type="text" required placeholder="Name" name="txtName" id="txtName">
-                        <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
-                        </span>
-                    </label>
-
+                <ion-list class="list listInputs">
                     <label class="item  padding">
                         <i class="icon ion-compose placeholder-icon"></i>
-                        <input ng-model="employeeNO" type="text" required placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
+                        <input ng-model="employeeNO" type="text" required readonly value="150SB7" placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
                         <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
                         </span>
                     </label>
 
+                    <label class="item  padding">
+                        <i class="icon ion-person placeholder-icon"></i>
+                        <input ng-model="name" type="text" required readonly value="Amir Aly" placeholder="Name" name="txtName" id="txtName">
+                        <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
+                        </span>
+                    </label>
+
+                    
                     <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>
                         <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
