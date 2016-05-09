@@ -3,7 +3,7 @@
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
     });
-
+    $scope.shiftNotes = 'This IS Shift Notes About Condell Park';
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -16,10 +16,12 @@
     $scope.goBack = function () {
         window.history.back();
     }
-    $scope.updateNoes = function (text) {
+    $scope.updateNotes = function (text) {
         console.log(text);
     }
-
+    $scope.viewMap = function () {
+        $state.go('app.viewmap');
+    }
     $scope.load = function () {
         $scope.clockOut = false;
         $scope.minutes = 0;

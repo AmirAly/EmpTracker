@@ -1,4 +1,4 @@
-﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout, $rootScope) {
+﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout, $rootScope, $ionicLoading) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
@@ -15,11 +15,28 @@
     }
     $scope.updateAccount = function (form) {
         if (form.$valid) {
-            $state.go('app.myaccount');
+            showConfirmation();
+
+            window.setTimeout(function () {
+                $state.go('app.myaccount');
+            }, 5500);
+            
         }
     }
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
+
+     function showConfirmation() {
+        $ionicLoading.show({
+            scope: $scope,
+            templateUrl: 'templates/passwordConfirmation.html',
+            animation: 'slide-in-up'
+        });
+
+        $timeout(function () {
+            $ionicLoading.hide();
+        }, 5000);
+    };
 
 });

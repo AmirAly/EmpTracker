@@ -49,17 +49,17 @@
         <div class="card">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Address</span>
-                <span class="text-right col col-66 bluefont">35 Hunter St. Condell Park , NSW 2200</span>
+                <span class="text-right col col-66 bluefont" ng-click="viewMap()">35 Hunter St. Condell Park , NSW 2200</span>
             </div>
         </div>
         <div class="card">
             <div class="item item-text-wrap row row-top padding">
-                <span class="col">Notes</span>
+                <span class="col">Shift Notes</span>
                 <label class="item item-input noborder col-66">
-                    <textarea placeholder="Add Notes" rows="5" class="col col-66"
+                    <textarea placeholder="Shift Notes" rows="5" class="col" readonly
                               ng-model="shiftNotes"
                               ng-model-options="{ updateOn: 'blur' }"
-                              ng-change="updateNoes(shiftNotes)"></textarea>
+                              ng-change="updateNotes(shiftNotes)"></textarea>
                 </label>
             </div>
         </div>
@@ -72,30 +72,6 @@
                 <span>&nbsp;End Break (<span>{{minutes}} : {{seconds}}</span>)</span>
             </button>
         </div>
-
-
-
-
-        <!--<div class="card">
-            <div class="item item-text-wrap row row-center padding">
-                <span class="col">Address</span>
-                <span class="text-right col col-66">35 Hunter St. Condell Park , NSW 2200</span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="item item-text-wrap row row-top padding">
-                <span class="col">Notes</span>
-                <label class="item item-input">
-                    <textarea placeholder="Add Notes" rows="5" class="item-note col col-66"
-                              ng-model="shiftNotes"
-                              ng-model-options="{ updateOn: 'blur' }"
-                              ng-change="updateNoes(shiftNotes)"></textarea>
-                </label>
-            </div>
-        </div>-->
-        
-
-
 
     </ion-content>
     <ion-footer-bar class="bar-dark">

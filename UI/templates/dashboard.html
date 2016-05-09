@@ -14,8 +14,10 @@
     </ion-header-bar>
 
     <ion-content class="dashboardPage " overflow-scroll="true" padding="true">
+
+        <!--My Totals-->
         <h3>My Totals</h3>
-        <div class="padding-horizontal divCircled">
+        <!--<div class="padding-horizontal divCircled">
             <div class="divContent">
                 <div class="row firstLine">
                     <div class="col text-center">
@@ -38,15 +40,56 @@
                     </div>
                 </div>
             </div>
+        </div>-->
+        <div class="list listSchedule">
+            <div class="item item-divider">
+                Schedule
+                <p class="pull-right">
+                    Friday, April 8, 2016
+                </p>
+            </div>
+
+            <div class="item row">
+                <div class="col col-25">
+                    <h6>12:00 PM</h6>
+                    <h6>03:00 PM</h6>
+                </div>
+                <div class="col col-75">
+                    <div class="dvWorkingHours">
+                        <h4>3:78</h4>
+                        <h5>hours</h5>
+                    </div>
+                    <h6>Bondi Station</h6>
+                    <p>35 Hunter St. Condell Park , NSW 2200</p>
+                </div>
+            </div>
+
+            <div class="item row">
+                <div class="col col-25">
+                    <h6>08:00 PM</h6>
+                    <h6>10:30 PM</h6>
+                </div>
+                <div class="col col-75">
+                    <div class="dvWorkingHours">
+                        <h4>3:78</h4>
+                        <h5>hours</h5>
+                    </div>
+                    <h6>Sydney Port</h6>
+                    <p>100 Port St. Mascot , NSW 2200</p>
+                </div>
+            </div>
         </div>
+
+        <!--Current Week-->
         <h3>Current Week</h3>
         <div class="text-center padding">
             <span>Mon 15 Apr - Sun 21 Apr 2016</span>
         </div>
 
+        <!--first table-->
         <div class="list listSchedule">
             <div class="item item-divider">
-                Schedule
+                Scheduled HRS
             </div>
             <div class="item">
                 Total Shift Scheduled
@@ -62,6 +105,7 @@
             </div>
         </div>
 
+        <!--Second table-->
         <div class="list listSchedule">
             <div class="item item-divider">
                 Shift Clocked/Worked
@@ -73,21 +117,27 @@
                 </span>
             </div>
             <div class="item">
-                Missing clock out
-                <span class="item-note fontRed">
-                    1
-                </span>
-            </div>
-            <div class="item">
-                Late Clock in shifts
-                <span class="item-note fontRed">
-                    1
-                </span>
-            </div>
-            <div class="item">
-                Late Clock out shifts
+                No Show
                 <span class="item-note">
                     0
+                </span>
+            </div>
+            <div class="item">
+                Late Arrival
+                <span class="item-note fontRed">
+                    1
+                </span>
+            </div>
+            <div class="item">
+                Early Leave
+                <span class="item-note">
+                    0
+                </span>
+            </div>
+            <div class="item">
+                Missing Clock out
+                <span class="item-note fontRed">
+                    1
                 </span>
             </div>
         </div>

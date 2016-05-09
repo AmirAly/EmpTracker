@@ -1,0 +1,39 @@
+﻿<!-- when using form , structure should be
+    <ion-view>
+      <form>
+        <div class="content"></div>
+      </form>
+    </ion-view>-->
+<ion-view class="forgetPage">
+    <ion-header-bar class="bar-dark">
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
+    </ion-header-bar>
+
+    <form name="frmForget" ng-submit="submitForm(frmForget)">
+        <div overflow-scroll="true" padding="true" class="content has-header padding">
+            <div class="text-center">
+                <img src="images/logo.png" />
+            </div>
+            <div class="roundedDv">
+                <h3>Forgot your password</h3>
+                <div class="padding-left">
+                    <p class="padding-bottom">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+                    <span class="padding-top spnEmail">Email address</span>
+                    <label class="item padding-horizontal">
+                        <input ng-model="name" type="email" required placeholder="you@example.com" name="email" id="email" autocorrect="off" autocapitalize="off">
+                        <span ng-show="frmForget.email.$touched  && frmForget.email.$invalid">
+                            <span class="errorFont" ng-show="frmForget.email.$error.required">required</span>
+                            <span class="errorFont" ng-show="frmForget.email.$error.email">invalid email</span>
+                        </span>
+                    </label>
+                    <button class="button button-calm actionBlue button-block" ng-disabled="frmForget.$invalid" type="submit">
+                        <span>&nbsp;Send me a password-reset link</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+
+</ion-view>

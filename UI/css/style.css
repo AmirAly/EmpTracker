@@ -23,6 +23,9 @@
     vertical-align: middle;
 }
 
+.pull-right {
+    float: right !important;
+}
 /*@media screen and (min-device-width : 361px) {
     .circle {
         height: 40vw;
@@ -178,7 +181,7 @@
         .shiftCard.todayShiftCard p span {
             position: absolute;
             display: inline-block;
-            z-index:9999;
+            z-index: 9999;
             left: -25px;
             color: #fff;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
@@ -295,7 +298,7 @@
 
 .pane, .view {
     /*background-color: #ecf0f1 !important;*/
-        background-color: #e5e5e5 !important;
+    background-color: #e5e5e5 !important;
 }
 
 .actionBlue {
@@ -443,10 +446,12 @@
 .loginpage .button.disabled, .loginpage .button[disabled] {
     opacity: 1 !important;
 }
-.loginpage .bar-footer{
-    background-color:transparent !important;
-        background-image: none;
+
+.loginpage .bar-footer {
+    background-color: transparent !important;
+    background-image: none !important;
 }
+
 .listInputs.list .list .item.item-input {
     margin-bottom: 10px;
 }
@@ -485,7 +490,7 @@
 
 
 .supervisorAccountPage .card, .myAccountPage .card {
-     margin-top: 0px !important; 
+    margin-top: 0px !important;
     margin-bottom: 5px;
 }
 
@@ -820,12 +825,80 @@ i.icon.icon-right {
 .dashboardPage .listSchedule .item {
     padding-top: 8px;
     padding-bottom: 8px;
+    background-color: #FBFBFB;
 }
+
+    .dashboardPage .listSchedule .item h6 {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    .dashboardPage .listSchedule .item .col-25 {
+        border-right: 1px dashed green;
+        margin-right: 10px;
+        position: relative;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+        .dashboardPage .listSchedule .item .col-25 :before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+        .dashboardPage .listSchedule .item .col-25 :after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+    .dashboardPage .listSchedule .item .col-75 {
+        position: relative;
+    }
+
+        .dashboardPage .listSchedule .item .col-75 p {
+            line-height: 2;
+        }
+
+        .dashboardPage .listSchedule .item .col-75 .dvWorkingHours {
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            border: 1px solid #C5C5C5;
+            text-align: center;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+            .dashboardPage .listSchedule .item .col-75 .dvWorkingHours h4 {
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+
+            .dashboardPage .listSchedule .item .col-75 .dvWorkingHours h5 {
+                font-size: 12px;
+            }
 
 .dashboardPage .listSchedule .item-divider {
     background-color: #7e7e7e;
     color: #fff;
 }
+
+    .dashboardPage .listSchedule .item-divider p {
+        color: #dededf;
+    }
 
 .dashboardPage .listSchedule .item-note {
     color: #000;
@@ -836,9 +909,35 @@ i.icon.icon-right {
         color: #c72626;
     }
 
-/*.dashboardPage .ion-email {
-    color: #757575;
-    font-size: 36px;
-    position: relative;
-    top: 5px;
-}*/
+/*password Confirmation*/
+.loading {
+    width: 80%;
+}
+
+/*forget page*/
+.forgetPage {
+    /*background-color:#fff !important;*/
+}
+
+    .forgetPage .roundedDv {
+        padding: 18px;
+        padding-left: 10px;
+        border: 1px solid #bbb;
+        border-radius: 7px;
+        background-color: #F7F7F7;
+    }
+
+        .forgetPage .roundedDv h3 {
+            color: #7f7f7f;
+            font-weight: bold;
+        }
+
+        .forgetPage .roundedDv p,
+        .forgetPage .roundedDv .spnEmail {
+            color: #646464;
+        }
+
+        .forgetPage .roundedDv label {
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }

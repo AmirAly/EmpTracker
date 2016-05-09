@@ -27,6 +27,13 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: "LoginController",
         templateUrl: 'templates/login.html'
     })
+        .state('forget', {
+            cache: false,
+            url: '/forget',
+            controller: "forgetController",
+            templateUrl: 'templates/forget.html'
+        })
+
     .state('tempdevicelogin', {
         url: '/tempdevicelogin',
         controller: "tempdeviceloginController",
@@ -122,7 +129,15 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-
+            .state('app.viewmap', {
+                url: '/viewmap',
+                views: {
+                    'menuContent': {
+                        controller: "viewmapController",
+                        templateUrl: 'templates/viewmap.html'
+                    }
+                }
+            })
 
     .state('supervisorchangepassword', {
         url: '/supervisorchangepassword',
