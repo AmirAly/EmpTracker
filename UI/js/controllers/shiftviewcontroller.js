@@ -33,7 +33,8 @@
     // A confirm dialog
     $scope.showConfirmIn = function () {
         var confirmPopup = $ionicPopup.confirm({
-            title: '<i class="ion-information-circled"></i> Confirmation',
+            cssClass: 'bluePopup',
+            title: '<i class="ion-information-circled "></i> Confirm Clock-In',
             template: 'Are you sure you want to check in?'
         });
 
@@ -43,14 +44,15 @@
                 $scope.clockOut = true;
                 $scope.breakOut = false;
             } else {
-                console.log('You are not sure n');
+                console.log('You are not sure In');
             }
         });
     };
 
     $scope.showConfirmOut = function () {
         var confirmPopup = $ionicPopup.confirm({
-            title: '<i class="ion-information-circled"></i> Confirmation',
+            cssClass: 'redPopup',
+            title: '<i class="ion-information-circled "></i> Confirm Clock-Out',
             template: 'Are you sure you want to check out?'
         });
 

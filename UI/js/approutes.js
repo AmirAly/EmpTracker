@@ -176,7 +176,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         FEBRUARY: 'February',
         MARCH: 'March',
         APRIL: 'April',
-        MAI: 'Mai',
+        MAI: 'May',
         JUNE: 'June',
         JULY: 'July',
         AUGUST: 'August',

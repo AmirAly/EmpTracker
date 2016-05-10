@@ -30,7 +30,7 @@
      function showConfirmation() {
         $ionicLoading.show({
             scope: $scope,
-            templateUrl: 'templates/passwordConfirmation.html',
+            templateUrl: 'templates/passwordconfirmation.html',
             animation: 'slide-in-up'
         });
 

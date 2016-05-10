@@ -1,18 +1,29 @@
 /*
-1- general classes used in all/ most of pages
-2- validation
-3- menu
-4- login
-5-map page
-6-supervisor page
-7-home page
-8-challenge Page
-9-notifications Page
-10-attendance Page
+- general classes used in all/ most of pages
+- popup part
+- Tabs part
+- shiftCard
+- validation
+- menu
+- login
+- map page
+- supervisor page
+- home page
+- challenge Page
+- notifications Page
+- attendance Page
 */
 
-
 /*general*/
+
+
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/oswald.woff) format('woff');
+}
+
 .spacer {
     height: 40px;
 }
@@ -26,12 +37,7 @@
 .pull-right {
     float: right !important;
 }
-/*@media screen and (min-device-width : 361px) {
-    .circle {
-        height: 40vw;
-        width: 40vw;
-    }
-}*/
+
 
 .ion-log-out:before {
     transform: rotate(-180deg);
@@ -52,248 +58,6 @@
 
     .sideMenuContent .badge.badge-dark {
         background-color: #222;
-    }
-
-.popup-head {
-    border-bottom: 1px solid #2c3e50;
-}
-
-    .popup-head i {
-        font-size: 18px;
-        vertical-align: middle;
-    }
-
-.tabs {
-    background-color: #2c3e50 !important;
-    border-color: #1D2935 !important;
-    background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%) !important;
-}
-
-    .tabs a.tab-item {
-        border-left: 1px solid #213446 !important;
-        border-right: 1px solid #213446 !important;
-        max-width: none !important;
-    }
-
-        .tabs a.tab-item.tab-item-active {
-            border-top: 1px solid #1D2935 !important;
-            margin-top: 0px !important;
-            background-color: #1D2935;
-        }
-
-/*modal part*/
-.checkGPSModal {
-    width: 80%;
-    height: 60%;
-    min-height: 0;
-    max-height: 250px;
-    top: 20%;
-    left: 10%;
-    right: 10%;
-    bottom: 20%;
-}
-
-    .checkGPSModal .title {
-        right: initial;
-    }
-
-    .checkGPSModal .closeIcon {
-        right: 10px;
-        position: fixed;
-    }
-
-        .checkGPSModal .closeIcon:before {
-            font-size: 12px;
-        }
-
-    .checkGPSModal .bar-header {
-        border-color: #0c63ee !important;
-        /*background-color: #387ef5 !important;*/
-        background-color: #3276b1 !important;
-        background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%) !important;
-        color: #fff !important;
-    }
-
-        .checkGPSModal .bar-header i {
-            padding-left: 0px;
-        }
-
-    .checkGPSModal .bar-footer {
-        border-color: #b2b2b2 !important;
-        background-color: #f8f8f8 !important;
-        background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%) !important;
-    }
-
-        /*normal button*/
-        .checkGPSModal .bar-footer .col {
-            display: block;
-        }
-
-        .checkGPSModal .bar-footer .button {
-            border-right: 1px solid #b2b2b2 !important;
-            padding-left: 0px;
-            padding-right: 0px;
-            margin-left: 5px;
-        }
-
-            .checkGPSModal .bar-footer .button .container {
-                display: inline-flex;
-            }
-
-                .checkGPSModal .bar-footer .button .container .btnICon {
-                    background-color: #d9d9d9;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    height: 33px;
-                }
-
-                .checkGPSModal .bar-footer .button .container .btnTxt {
-                    padding-left: 10px;
-                    padding-right: 10px;
-                }
-
-            /*active button*/
-            .checkGPSModal .bar-footer .button.button-positive {
-                background-color: #275b89;
-            }
-
-                .checkGPSModal .bar-footer .button.button-positive .container .btnICon {
-                    background-color: #214d75;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    color: #fff;
-                }
-
-
-
-/*shiftCard*/
-.shiftCard.todayShiftCard {
-    position: relative;
-    color: #fff;
-    padding: 5px;
-    overflow: hidden;
-}
-
-    .shiftCard.todayShiftCard p {
-        display: inline;
-    }
-
-        .shiftCard.todayShiftCard p span {
-            position: absolute;
-            display: inline-block;
-            z-index: 9999;
-            left: -25px;
-            color: #fff;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
-            text-align: center;
-            top: 14px;
-            background: #f1c40f;
-            width: 100px;
-            padding: 2px 10px;
-            -webkit-transform: rotate(-45deg);
-            -moz-transform: rotate(-45deg);
-            -o-transform: rotate(-45deg);
-            -ms-transform: rotate(-45deg);
-        }
-
-        .shiftCard.todayShiftCard p:before {
-            content: "";
-            width: 0;
-            height: 0;
-            position: absolute;
-            top: -17px;
-            left: 69px;
-            z-index: -1;
-        }
-
-        .shiftCard.todayShiftCard p:after {
-            content: "";
-            width: 0;
-            height: 0;
-            position: absolute;
-            top: 74px;
-            z-index: -1;
-            left: -10px;
-        }
-
-.shiftCard .firstCoulmn {
-    font-stretch: extra-condensed;
-    font-size: 23px;
-    font-weight: bold;
-    color: #aaa;
-    border-right: 2px solid #e5e5e5;
-    white-space: nowrap;
-    padding-left: 0px;
-}
-
-    .shiftCard .firstCoulmn span {
-        display: inline-block;
-        -webkit-transform: scale(0.9,1.3); /* Safari and Chrome */
-        -moz-transform: scale(0.9,1.3); /* Firefox */
-        -ms-transform: scale(0.9,1.3); /* IE 9 */
-        -o-transform: scale(0.9,1.3); /* Opera */
-        transform: scale(0.9,1.3); /* W3C */
-    }
-
-.shiftCard .secondCoulmn {
-    color: #444;
-    line-height: 1;
-    width: 55%;
-    margin-right: 10px;
-    padding-left: 0px;
-}
-
-    .shiftCard .secondCoulmn .date {
-        font-size: 17px;
-        font-weight: bold;
-        white-space: nowrap;
-        padding-left: 0px;
-    }
-
-    .shiftCard .secondCoulmn .address {
-        font-size: 16px;
-        padding-left: 0px;
-    }
-
-    .shiftCard .secondCoulmn .area {
-        font-size: 14px;
-        color: #aaa;
-        padding-left: 0px;
-    }
-
-.shiftCard .thirdCoulmn {
-    font-stretch: expanded;
-    padding-right: 20px;
-}
-
-    .shiftCard .thirdCoulmn div {
-        display: block;
-    }
-
-    .shiftCard .thirdCoulmn .totalHours {
-        color: #444;
-        font-size: 17px;
-        font-weight: bold;
-        position: relative;
-        top: 7px;
-    }
-
-    .shiftCard .thirdCoulmn .hoursTxt {
-        font-size: 12px;
-        color: #aaa;
-    }
-
-    .shiftCard .thirdCoulmn .totalEarned {
-        color: #3498db;
-        font-size: 17px;
-        font-weight: bold;
-        position: relative;
-        top: 7px;
-    }
-
-    .shiftCard .thirdCoulmn .earnedTxt {
-        font-size: 12px;
-        color: #aaa;
     }
 
 .pane, .view {
@@ -378,6 +142,10 @@
     height: 45px;
 }
 
+    .bar-footer .floatLeft {
+        text-align: left !important;
+    }
+
     .bar-footer .button {
         border-right: 2px solid #000 !important;
     }
@@ -387,9 +155,229 @@
             border-right: none !important;
         }
 
-    .bar-footer .floatLeft {
-        text-align: left !important;
+
+
+/*popup part*/
+.popup-body span, .popup-body p {
+    color: #7e7879;
+}
+
+.popup-head {
+    border-bottom: 1px solid #2c3e50;
+    padding: 10px !important;
+}
+
+    .popup-head i {
+        font-size: 18px;
+        vertical-align: middle;
+        float: left;
     }
+
+
+.bluePopup .button-positive,
+.bluePopup .button-positive:active,
+.bluePopup .button.button-positive.active,
+.bluePopup .button.button-positive.activated {
+    background-color: #3276b1;
+    border-color: #2B6AA0;
+}
+
+.bluePopup .popup-body {
+    background-color: #f4f4f4;
+}
+
+.bluePopup .popup-head {
+    background-color: #3276b1;
+}
+
+    .bluePopup .popup-head h3 {
+        color: #fff;
+        line-height: inherit;
+    }
+
+
+.redPopup .button-positive,
+.redPopup .button-positive:active,
+.redPopup .button.button-positive.active,
+.redPopup .button.button-positive.activated {
+    background-color: #6d0f14;
+    border-color: #5D0C11;
+}
+
+.redPopup .popup-body {
+    background-color: #f4f4f4;
+}
+
+.redPopup .popup-head {
+    background-color: #6d0f14;
+}
+
+    .redPopup .popup-head h3 {
+        color: #fff;
+        line-height: inherit;
+    }
+
+
+
+
+/*Tabs part*/
+.tabs {
+    background-color: #2c3e50 !important;
+    border-color: #1D2935 !important;
+    background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%) !important;
+}
+
+    .tabs a.tab-item {
+        border-left: 1px solid #213446 !important;
+        border-right: 1px solid #213446 !important;
+        max-width: none !important;
+    }
+
+        .tabs a.tab-item.tab-item-active {
+            border-top: 1px solid #1D2935 !important;
+            margin-top: 0px !important;
+            background-color: #1D2935;
+        }
+
+
+/*shiftCard*/
+.shiftCard.todayShiftCard {
+    position: relative;
+    color: #fff;
+    padding: 5px;
+    overflow: hidden;
+}
+
+    .shiftCard.todayShiftCard p {
+        display: inline;
+    }
+
+        .shiftCard.todayShiftCard p span {
+            position: absolute;
+            display: inline-block;
+            z-index: 9999;
+            left: -30px;
+            color: #fff;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+            text-align: center;
+            top: 9px;
+            background: #f1c40f;
+            width: 100px;
+            padding: 2px 10px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+        }
+
+        .shiftCard.todayShiftCard p:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -17px;
+            left: 69px;
+            z-index: -1;
+        }
+
+        .shiftCard.todayShiftCard p:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 74px;
+            z-index: -1;
+            left: -10px;
+        }
+
+.shiftCard .firstCoulmn {
+    font-stretch: extra-condensed;
+    font-size: 23px;
+    font-weight: bold;
+    color: #9c9ea1;
+    border-right: 2px solid #e5e5e5;
+    white-space: nowrap;
+    padding-left: 0px;
+}
+
+    .shiftCard .firstCoulmn span {
+        font-family: 'Oswald' !important;
+        font-weight: 400;
+    }
+
+    .shiftCard .firstCoulmn .dayNumber {
+        font-size: 34px;
+        margin-bottom: 5px;
+    }
+
+    .shiftCard .firstCoulmn .dayName {
+        font-size: 21px;
+    }
+
+.shiftCard .secondCoulmn {
+    color: #444;
+    line-height: 1;
+    width: 55%;
+    margin-right: 10px;
+    padding-left: 0px;
+}
+
+    .shiftCard .secondCoulmn .date {
+        font-size: 17px;
+        font-weight: bold;
+        white-space: nowrap;
+        padding-left: 0px;
+        color: #606165;
+    }
+
+    .shiftCard .secondCoulmn .address {
+        font-size: 16px;
+        padding-left: 0px;
+        color: #606063;
+    }
+
+    .shiftCard .secondCoulmn .area {
+        font-size: 14px;
+        color: #aaa;
+        padding-left: 0px;
+    }
+
+.shiftCard .thirdCoulmn {
+    font-stretch: expanded;
+    padding-right: 20px;
+}
+
+    .shiftCard .thirdCoulmn div {
+        display: block;
+    }
+
+    .shiftCard .thirdCoulmn .totalHours {
+        color: #444;
+        font-size: 17px;
+        font-weight: bold;
+        position: relative;
+        top: 7px;
+    }
+
+    .shiftCard .thirdCoulmn .hoursTxt {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .shiftCard .thirdCoulmn .totalEarned {
+        color: #3498db;
+        font-size: 17px;
+        font-weight: bold;
+        position: relative;
+        top: 7px;
+    }
+
+    .shiftCard .thirdCoulmn .earnedTxt {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+
 
 /*validation*/
 .errorFont {
@@ -450,6 +438,7 @@
 .loginpage .bar-footer {
     background-color: transparent !important;
     background-image: none !important;
+    border-color: transparent !important;
 }
 
 .listInputs.list .list .item.item-input {
@@ -543,7 +532,6 @@ i.icon.icon-right {
 }
 /*home page calenar*/
 .homePage .flex-calendar .days .day {
-    /*border: 1px solid #ccc;*/
     border: 1px solid #EFEFEF;
 }
 

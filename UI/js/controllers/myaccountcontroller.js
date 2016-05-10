@@ -1,4 +1,4 @@
-﻿empTracker.controller("myaccountController", function ($scope, $state, $rootScope) {
+﻿empTracker.controller("myaccountController", function ($scope, $state, $rootScope,$ionicLoading) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
@@ -21,5 +21,19 @@
     
     $scope.employeeNO = '150SB7';
     $scope.name = 'Amir Aly';
+
+    $scope.openImgDialog = function () {
+        $ionicLoading.show({
+            scope: $scope,
+            templateUrl: 'templates/changeimgdialog.html',
+            animation: 'slide-in-up'
+        });
+    }
+    $scope.takePhoto = function () {
+        $ionicLoading.hide();
+    }
+    $scope.selectPhoto = function () {
+        $ionicLoading.hide();
+    }
 });
 
