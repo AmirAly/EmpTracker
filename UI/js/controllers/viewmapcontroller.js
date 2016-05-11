@@ -1,36 +1,40 @@
-﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope) {
- // me
-    var lat1; var lng1;
-    // shift
-    var lat2 = '-25.038580';
-    var lng2 = '133.433440';
-    var map;
+﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope,$timeout) {
+
     $scope.$on('$ionicView.enter', function () {
+        // me
+        var lat1; var lng1;
+        // shift
+        var lat2 = '-25.038580';
+        var lng2 = '133.433440';
+        var map;
         $rootScope.toggledrag = true;
         $scope.load = function () {
-            var myLatLng = new google.maps.LatLng(lat2, lng2);
-            google.maps.event.addDomListener(window, 'load', initialize());
-            function initialize() {
-                var mapOptions = {
-                    zoom: 7,
-                    center: myLatLng,
-                    disableDefaultUI: true
-                };
-                map = new google.maps.Map(document.getElementById('map'),
-                    mapOptions);
-                google.maps.event.addListenerOnce(map, 'idle', function () {
-                    var marker = new google.maps.Marker({
-                        map: map,
-                        animation: google.maps.Animation.DROP,
-                        position: myLatLng
+            console.log('enter');
+            $timeout(function () {
+                var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
+                google.maps.event.addDomListener(window, 'load', initialize());
+                function initialize() {
+                    var mapOptions = {
+                        zoom: 7,
+                        center: myLatLng,
+                        disableDefaultUI: true
+                    };
+                    map = new google.maps.Map(document.getElementById('map'),
+                        mapOptions);
+                    google.maps.event.addListenerOnce(map, 'idle', function () {
+                        var marker = new google.maps.Marker({
+                            map: map,
+                            animation: google.maps.Animation.DROP,
+                            position: myLatLng
+                        });
                     });
-                });
-            }
+                }
+            },1000)
         }
         $scope.load();
 
     });
-   
+
     // failed :(
     $scope.Navigate = function () {
         //directionsService = new google.maps.DirectionsService();

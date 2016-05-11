@@ -40,7 +40,7 @@
                             </div>
 
                             <!-- today shifts part-->
-                            <div class="list padding">
+                            <div class="list padding" ng-show="todayShiftsArray.length">
                                 <div ng-repeat="event in todayShiftsArray">
                                     <div class="item item-text-wrap text-center">
                                         <div ng-include="'templates/todayshift.temp.html'"></div>
