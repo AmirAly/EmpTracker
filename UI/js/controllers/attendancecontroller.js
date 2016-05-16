@@ -55,6 +55,15 @@
 	}
 	$scope.showME = 1;
 
+	$scope.weekDate = 'May 9 - May 16, 2016';
+	$scope.preWeek = function () {
+	    $scope.weekDate = 'May 2 - May 9, 2016';
+	}
+
+	$scope.nextWeek = function () {
+	    $scope.weekDate = 'May 16 - May 22, 2016';
+	}
+
     var today = new Date();
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     $scope.today = today;

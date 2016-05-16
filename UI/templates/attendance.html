@@ -66,11 +66,11 @@
 
                         <div class="dvWeekRange">
                             <div class="row">
-                                <div class="col col-10 text-left"><i class="ion-android-arrow-dropleft-circle"></i></div>
+                                <div class="col col-10 text-left"><i class="ion-android-arrow-dropleft-circle" ng-click="preWeek()"></i></div>
                                 <div class="col col-80 text-center">
-                                    <h4 class="padding text-center">May 9 - May 16, 2016</h4>
+                                    <h4 class="padding text-center">{{weekDate}}</h4>
                                 </div>
-                                <div class="col col-10 text-right"><i class="ion-android-arrow-dropright-circle"></i></div>
+                                <div class="col col-10 text-right"><i class="ion-android-arrow-dropright-circle" ng-click="nextWeek()"></i></div>
                             </div>
                         </div>
 
