@@ -30,7 +30,7 @@
 
 
     // id is important !!
-    $scope.thisWeek = [{ "id": 1, "month": 'May', "dayNumber": 20, "dayName": "Sun", "selected": false },
+    $scope.thisWeek = [{ "id": 1, "month": 'May', "dayNumber": 20, "dayName": "Sun", "selected": true },
                        { "id": 2, "month": 'May', "dayNumber": 21, "dayName": "Mon", "selected": false },
                        { "id": 3, "month": 'May', "dayNumber": 22, "dayName": "Tue", "selected": false },
                        { "id": 4, "month": 'May', "dayNumber": 23, "dayName": "Wed", "selected": false },
