@@ -56,6 +56,7 @@
 	$scope.showME = 1;
 
 	$scope.weekDate = 'May 9 - May 16, 2016';
+
 	$scope.preWeek = function () {
 	    $scope.weekDate = 'May 2 - May 9, 2016';
 	}
