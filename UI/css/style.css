@@ -38,6 +38,9 @@
     float: right !important;
 }
 
+.noPadding {
+    padding: 0 !important;
+}
 
 .ion-log-out:before {
     transform: rotate(-180deg);
@@ -741,13 +744,210 @@ i.icon.icon-right {
     font-size: 34px;
 }
 
-.attendancePage .item {
+.attendancePage .dvNoAttendance {
+    line-height: 1.5;
+}
+
+.attendancePage .dvTabHeader {
+    background-color: #1f497d;
+}
+
+    .attendancePage .dvTabHeader h3 {
+        color: #fff;
+        margin-bottom: 0;
+    }
+
+.attendancePage .activeDay .weekDaysHeader {
+    background-color: #2c3e50 !important;
+}
+
+.dvWeekDays {
     padding: 0px;
 }
 
+.attendancePage .dvWeekDays .col-7 {
+    width: calc(100% / 7);
+    text-align: center;
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysHeader {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        background-color: #1f497d;
+        color: #fff;
+    }
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysBody {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: #fff;
+        color: #606165;
+    }
+
+        .attendancePage .dvWeekDays .col-7 .weekDaysBody h5 {
+            font-size: 22px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #9c9ea1;
+        }
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysFooter {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: #eaedf3;
+        height: 15px;
+    }
+
+.attendancePage .listSchedule .item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #FBFBFB;
+}
+
+    .attendancePage .listSchedule .item h6 {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    .attendancePage .listSchedule .item .col-25 {
+        border-right: 1px dashed green;
+        margin-right: 10px;
+        position: relative;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+        .attendancePage .listSchedule .item .col-25 :before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+        .attendancePage .listSchedule .item .col-25 :after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+    .attendancePage .listSchedule .item .col-75 {
+        position: relative;
+    }
+
+        .attendancePage .listSchedule .item .col-75 p {
+            line-height: 2;
+        }
+
+        .attendancePage .listSchedule .item .col-75 .dvWorkingHours {
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            border: 1px solid #C5C5C5;
+            text-align: center;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+            .attendancePage .listSchedule .item .col-75 .dvWorkingHours h4 {
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+
+            .attendancePage .listSchedule .item .col-75 .dvWorkingHours h5 {
+                font-size: 12px;
+            }
+
+.attendancePage .listSchedule .item-divider {
+    background-color: #7e7e7e;
+    color: #fff;
+}
+
+    .attendancePage .listSchedule .item-divider p {
+        color: #dededf;
+    }
+
+.attendancePage .listSchedule .item-note {
+    color: #000;
+    width: 18%;
+}
+
+    .attendancePage .listSchedule .item-note.fontRed {
+        color: #c72626;
+    }
+
+.attendancePage .attendanceCard {
+    margin: 20px 10px !important;
+}
+
+    .attendancePage .attendanceCard h5 {
+        color: #808080;
+    }
+
+.attendancePage .dvWeekRange {
+    color: #fff;
+    background-color: #3498db;
+    margin-bottom: 10px;
+}
+
+    .attendancePage .dvWeekRange h4 {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .attendancePage .dvWeekRange i {
+        font-size: 22px;
+        padding: 5px;
+    }
+
+.attendancePage .dvSquare {
+    border: 1px solid #bbb;
+    margin: 5px;
+    color: #808080;
+}
+
 .attendancePage .card {
-    margin-bottom: 0px;
-    margin-top: 8px;
+    margin: 0;
+}
+
+.attendancePage table {
+    width: 100%;
+    background-color: #f7f7f7;
+}
+
+.attendancePage table, .attendancePage th, .attendancePage td {
+    border: 1px solid #aaa;
+    border-collapse: collapse;
+    padding: 5px;
+    color: #555;
+}
+
+    .attendancePage td h4 {
+        color: #6F6F6F;
+        font-weight: 700;
+    }
+
+.attendancePage th {
+    white-space: nowrap;
+}
+
+.attendancePage table tr td:nth-child(3),
+.attendancePage table tr td:nth-child(4),
+.attendancePage table tr td:nth-child(5) {
+    background-color: #fff;
 }
 
 /*dashboard page*/
@@ -757,58 +957,6 @@ i.icon.icon-right {
     color: #9e0a11;
 }
 
-.dashboardPage .divCircled {
-    border: 20px solid #C1C1C1;
-    border-radius: 100%;
-    /*height: 50vw;*/
-    /*width: 50vw;*/
-    height: 200px;
-    width: 200px;
-    display: table-cell;
-    vertical-align: middle;
-}
-
-    /*@media screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-    .dashboardPage .divCircled {
-        height: 200px;
-        width: 200px;
-    }
-}*/
-
-
-    .dashboardPage .divCircled .divContent {
-        width: 85%;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .dashboardPage .divCircled .firstLine {
-        padding-bottom: 0;
-    }
-
-        .dashboardPage .divCircled .firstLine .col {
-            padding-bottom: 0;
-        }
-
-    .dashboardPage .divCircled .secondLine {
-        padding-top: 0;
-    }
-
-    .dashboardPage .divCircled .thirdLine .col {
-        padding-top: 0;
-    }
-
-    .dashboardPage .divCircled h5 {
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .dashboardPage .divCircled h1 {
-        margin-top: 0px;
-        margin-bottom: 0px;
-        color: #2278d7;
-        font-stretch: condensed;
-    }
 
 .dashboardPage .listSchedule .item {
     padding-top: 8px;

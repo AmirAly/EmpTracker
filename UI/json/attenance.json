@@ -1,11 +1,13 @@
 ﻿{
     "attenance": [
-        { "tdate": "2016-4-7", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": false },
-        { "tdate": "2016-4-3", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": false },
-        { "tdate": "2016-4-18", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": true },
-        { "tdate": "2016-5-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": false},
-        { "tdate": "2016-4-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Lime Street, Sydney", "area": "Compound Z", "duration": "8:00", "late": false },
-        { "tdate": "2016-4-20", "fromTo": "00:30 AM - 09:00 PM", "address": "Lennox Bridge, Parramatta", "area": "Compound Z", "duration": "8:00", "late": false },
-        { "tdate": "2016-4-30", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": false }
+        { "dayid": 1, "tdate": "2016-4-7", "from": "00:30 AM", "to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound A", "duration": "8:00", "late": false },
+        { "dayid": 1, "tdate": "2016-4-7","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound M", "duration": "8:00", "late": false },
+        { "dayid": 2, "tdate": "2016-4-3", "from": "00:30 AM", "to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound B", "duration": "8:00", "late": false },
+        { "dayid": 3, "tdate": "2016-4-18","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound C", "duration": "8:00", "late": true },
+        { "dayid": 4, "tdate": "2016-5-20", "from": "00:30 AM", "to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound D", "duration": "8:00", "late": false },
+        { "dayid": 3, "tdate": "2016-4-18","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound L", "duration": "8:00", "late": true },
+        { "dayid": 5, "tdate": "2016-4-20","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Lime Street, Sydney", "area": "Compound E", "duration": "8:00", "late": false },
+        { "dayid": 6, "tdate": "2016-4-20","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Lennox Bridge, Parramatta", "area": "Compound F", "duration": "8:00", "late": false },
+        { "dayid": 7, "tdate": "2016-4-30","from": "00:30 AM","to": "09:00 PM", "fromTo": "00:30 AM - 09:00 PM", "address": "Taren Point Road", "area": "Compound Z", "duration": "8:00", "late": false }
     ]
 }

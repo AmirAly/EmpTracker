@@ -12,51 +12,131 @@
             <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
         </div>
     </ion-header-bar>
-    
+
 
     <ion-pane>
         <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
-            <!-- Tab 1 -->
-            <ion-tab title=" Daily" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+            <!-- Tab 1 My Attendance -->
+            <ion-tab title="My Attendance" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
                 <ion-nav-view name="tab-tab1">
+
                     <ion-content overflow-scroll="true" padding="true">
-                        <div class="padding-top">
-                            <h3 class="padding text-center">Today</h3>
+
+                        <div class="dvTabHeader">
+                            <h3 class="padding text-center">My Attendance</h3>
                         </div>
-                        <div ng-repeat="event in todayAttendanceArray">
-                            <div class="card">
-                                <div ng-include="'templates/todayshift.temp.html'"></div>
+
+
+                        <div class="row dvWeekDays">
+                            <div class="col col-7" ng-repeat="item in thisWeek" ng-class="{activeDay : item.selected}" ng-click="selectItem(item)">
+                                <div class="row weekDaysHeader" tabindex="1"><span class="col noPadding">{{item.dayName}}</span></div>
+                                <div class="row weekDaysBody"><span class="col noPadding"><h5>{{item.dayNumber}}</h5><span>{{item.month}}</span></span></div>
+                                <div class="row weekDaysFooter"><span class="col noPadding"></span></div>
                             </div>
                         </div>
-                        <div class="card text-center padding-top" ng-show="!todayAttendanceArray.length">
-                            <h2>There is no shifts</h2>
+
+                        <div ng-repeat="event in weeklyAttendanceArray" ng-show="weeklyAttendanceArray.length">
+                            <div class="card" ng-if="showME==event.dayid">
+                                <div ng-include="'templates/dailyattendance.temp.html'"></div>
+                            </div>
                         </div>
+
+                        <!--if no data-->
+                        <div class="card text-center padding-top dvNoAttendance" ng-show="!weeklyAttendanceArray.length">
+                            <div class="row">
+                                <div class="col col-80 col-offset-10">
+                                    <h4>You have not worked and clocked-in today.</h4>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="spacer"></div>
                     </ion-content>
                 </ion-nav-view>
             </ion-tab>
 
-            <!-- Tab 2 -->
-            <ion-tab title=" Weekly" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+            <!-- Tab 2 Attendance Report -->
+            <ion-tab title="Attendance Report" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
                 <ion-nav-view name="tab-tab2">
                     <ion-content overflow-scroll="true" padding="true">
-                        <div class="padding-top">
-                            <h3 class="padding text-center">This Week</h3>
+
+                        <div class="dvTabHeader">
+                            <h3 class="padding text-center">Attendance Report</h3>
                         </div>
-                        <div ng-repeat="event in allAttendanceArray">
-                            <div class="card">
-                                <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= today"></div>
-                                <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== today"></div>
+
+                        <div class="dvWeekRange">
+                            <div class="row">
+                                <div class="col col-10 text-left"><i class="ion-android-arrow-dropleft-circle"></i></div>
+                                <div class="col col-80 text-center">
+                                    <h4 class="padding text-center">May 9 - May 16, 2016</h4>
+                                </div>
+                                <div class="col col-10 text-right"><i class="ion-android-arrow-dropright-circle"></i></div>
                             </div>
                         </div>
-                        <div class="card text-center padding-top" ng-show="!allAttendanceArray.length">
-                            <h2>There is no shifts</h2>
+
+                        <div class="card attendanceCard">
+                            <div class="row">
+                                <div class="col col-50 text-center">
+                                    <h5>Hours worked</h5>
+                                </div>
+                                <div class="col col-50 text-center">
+                                    <h5>Break Hours</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-center dvSquare">
+                                    <span>04:57</span>
+                                </div>
+                                <div class="col text-center dvSquare">
+                                    <span>--:00</span>
+                                </div>
+                            </div>
                         </div>
+
+                        <table>
+                            <tr>
+                                <th>Date</th>
+                                <th>Site</th>
+                                <th>Clock IN</th>
+                                <th>Clock Out</th>
+                                <th>HRS</th>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><h4>MON</h4><span>24/7</span></td>
+                                <td>35 Hunter Office</td>
+                                <td>1:15 PM</td>
+                                <td>1:16 PM</td>
+                                <td>0:01</td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><h4>TUS</h4><span>24/7</span></td>
+                                <td>City Center Lirary</td>
+                                <td>1:16 PM</td>
+                                <td>5:16 PM</td>
+                                <td>4:00</td>
+                            </tr>
+                        </table>
+
+                        <!--<div ng-show ="!todayAttendanceArray.length">
+                            <div class="spacer"></div>
+                            <div class="card text-center padding-top dvNoAttendance">
+                                <div class="row">
+                                    <div class="col col-80 col-offset-10">
+                                        <h4>You have not worked and clocked-in today.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+
+
                         <div class="spacer"></div>
                     </ion-content>
                 </ion-nav-view>
             </ion-tab>
+
+
         </ion-tabs>
     </ion-pane>
 </ion-view>
-
