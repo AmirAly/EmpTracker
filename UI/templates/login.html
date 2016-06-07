@@ -24,9 +24,10 @@
                 </label>
                 <label class="item  padding">
                     <i class="icon ion-ios-locked placeholder-icon"></i>
-                    <input ng-model="password" type="password" required placeholder="Password" name="txtPassword" id="txtPassword">
+                    <input ng-model="password" type="password" minlength="6" maxlength="100" required placeholder="Password" name="txtPassword" id="txtPassword">
                     <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
                         <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
+                        <span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 6 characters long.</span>
                     </span>
                 </label>
                 <label class="item padding">
