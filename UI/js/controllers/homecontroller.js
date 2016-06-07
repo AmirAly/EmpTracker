@@ -87,8 +87,28 @@
             });
         }
 
-        var today = new Date();
-        console.debug(today);
+      
+
+        var today = new Date(); // get current date
+
+
+        ////////////////  get first & last day of week  ///////////////////////
+        var first = today.getDate() - today.getDay(); // First day is the day of the month - the day of the week
+        var last = first + 6; // last day is the first day + 6
+
+        var firstdayUTC = new Date(today.setDate(first)).toUTCString();
+        var lastdayUTC = new Date(today.setDate(last)).toUTCString();
+
+        var firstday = new Date(Date.parse(firstdayUTC));
+        var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+
+        var lastday = new Date(Date.parse(lastdayUTC));
+        var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
+
+        console.log("firstday  " + formatedFirstDay);
+        console.log("lastday  " + formatedLastday);
+        ///////////////////////////////////////
+
         today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         $scope.today = today;
 
