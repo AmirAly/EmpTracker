@@ -55,15 +55,90 @@
 	}
 	$scope.showME = 1;
 
-	$scope.weekDate = 'May 9 - May 16, 2016';
+    //////////////////////////////////////////////////////
+	//$scope.weekDate = 'May 9 - May 16, 2016';
 
-	$scope.preWeek = function () {
-	    $scope.weekDate = 'May 2 - May 9, 2016';
-	}
+	//$scope.preWeek = function () {
+	//    $scope.weekDate = 'May 2 - May 9, 2016';
+	//}
 
+	//$scope.nextWeek = function () {
+	//    $scope.weekDate = 'May 16 - May 22, 2016';
+	//}
+
+	var intialDate = new Date(); // get current date
+	var todayDate = new Date();  // get current date
+	var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Novr", "Dec"];
+
+    ////////////////  get first & last day of this week  ///////////////////////
+	
+	    var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
+	    var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+
+	    var lastday = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 6)).toUTCString()));
+	    var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
+
+	    // send to function
+	    console.log("firstday  " + formatedFirstDay);
+	    console.log("lastday  " + formatedLastday);
+
+	    // show in page
+        var firstDayOfWeek = shortMonths[firstday.getMonth()] + " " + firstday.getDate();
+	    var lastDayOfWeek = shortMonths[lastday.getMonth()] + " " + lastday.getDate() + ", " + lastday.getFullYear();
+	    $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
+	    console.log($scope.weekDate);
+
+    ///////////////////////////////////////
+
+    ////////////////  get first & last day of next week  ///////////////////////
 	$scope.nextWeek = function () {
-	    $scope.weekDate = 'May 16 - May 22, 2016';
+	    console.log('next');
+	    var nextWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 7);
+	    var nextWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 13);
+
+	    // show in page
+	    var firstDayOfWeek = shortMonths[nextWeekFirstDay.getMonth()] + " " + nextWeekFirstDay.getDate();
+	    var lastDayOfWeek = shortMonths[nextWeekLastDay.getMonth()] + " " + nextWeekLastDay.getDate() + ", " + nextWeekLastDay.getFullYear();
+
+	    $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
+
+	    // send to function
+	    var formatedWeekFirstDay = nextWeekFirstDay.getFullYear() + '-' + (nextWeekFirstDay.getMonth() + 1) + '-' + nextWeekFirstDay.getDate();
+	    var formatedWeekLastDay = nextWeekLastDay.getFullYear() + '-' + (nextWeekLastDay.getMonth() + 1) + '-' + nextWeekLastDay.getDate();
+
+	    console.log("WeekFirstDay  " + formatedWeekFirstDay);
+	    console.log("WeekLastDay  " + formatedWeekLastDay);
+
+	    // update initial date for next time
+	    intialDate = new Date(Date.parse(new Date(todayDate.setDate((intialDate.getDate() - intialDate.getDay()) + 7)).toUTCString()));
 	}
+    ///////////////////////////////////////
+
+    ////////////////  get first & last day of pre week  ///////////////////////
+	$scope.preWeek = function () {
+	    console.log('pre');
+	    var preWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 7);
+	    var preWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 1);
+
+	    // show in page
+	    var firstDayOfWeek = shortMonths[preWeekFirstDay.getMonth()] + " " + preWeekFirstDay.getDate();
+	    var lastDayOfWeek = shortMonths[preWeekLastDay.getMonth()] + " " + preWeekLastDay.getDate() + ", " + preWeekLastDay.getFullYear();
+
+	    $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
+
+	    // send to function
+	    var formatedWeekFirstDay = preWeekFirstDay.getFullYear() + '-' + (preWeekFirstDay.getMonth() + 1) + '-' + preWeekFirstDay.getDate();
+	    var formatedWeekLastDay = preWeekLastDay.getFullYear() + '-' + (preWeekLastDay.getMonth() + 1) + '-' + preWeekLastDay.getDate();
+
+	    console.log("WeekFirstDay  " + formatedWeekFirstDay);
+	    console.log("WeekLastDay  " + formatedWeekLastDay);
+
+	    // update initial date for next time
+	    intialDate = new Date(Date.parse(new Date(todayDate.setDate((intialDate.getDate() - intialDate.getDay()) - 7)).toUTCString()));
+	}
+    ///////////////////////////////////////
+
+
 
     var today = new Date();
     today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();

@@ -1,7 +1,7 @@
 ﻿empTracker.factory('API', ['$http', '$window', function ($http, $window) {
     //var _url = "http://localhost:8080";
     var _url = "http://rostersmanager.com:90";
-    var headers = { 'authentication': $window.localStorage['authenticationToken'] };
+    var headers = { 'Authorization': $window.localStorage['authenticationToken'] };
     return {
         name: 'API',
         execute: function (_req, _isAuth) {

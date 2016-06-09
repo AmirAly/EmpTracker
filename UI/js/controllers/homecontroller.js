@@ -26,14 +26,14 @@
                 cssClass: 'bluePopup',
                 title: '<i class="ion-information-circled "></i> Location services disabled',
                 template: '<p>Location services must be enabled to start/end shifts.</p><p>Please tab below to enable location service in setting.</p>',
-                cancelText: 'Cancel', 
+                cancelText: 'Cancel',
                 cancelType: 'button-default',
                 okText: 'Enable',
                 okType: 'button-positive'
             });
 
             confirmPopup.then(function (res) {
-                
+
                 if (res) {
                     console.log('You are sure In');
                     $timeout(function () {
@@ -80,58 +80,98 @@
             confirmPopup.then(function (res) {
                 if (res) {
                     console.log('You are sure In');
-                    
+
                 } else {
                     console.log('You are not sure In');
                 }
             });
         }
 
-      
 
-        var today = new Date(); // get current date
+        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
+        var intialDate = new Date(); // get current date
 
-        ////////////////  get first & last day of week  ///////////////////////
-        var first = today.getDate() - today.getDay(); // First day is the day of the month - the day of the week
-        var last = first + 6; // last day is the first day + 6
+        ////////////////  get first & last day of this week  ///////////////////////
+        $scope.thisWeek = function () {
+            var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
+            var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
 
-        var firstdayUTC = new Date(today.setDate(first)).toUTCString();
-        var lastdayUTC = new Date(today.setDate(last)).toUTCString();
+            var lastday = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 6)).toUTCString()));
+            var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
 
-        var firstday = new Date(Date.parse(firstdayUTC));
-        var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+            // send to function
+            console.log("firstday  " + formatedFirstDay);
+            console.log("lastday  " + formatedLastday);
 
-        var lastday = new Date(Date.parse(lastdayUTC));
-        var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
-
-        console.log("firstday  " + formatedFirstDay);
-        console.log("lastday  " + formatedLastday);
+            // show in page
+            $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + "," + firstday.getDate();
+            $scope.lastDayOfWeek = shortMonths[lastday.getMonth()] + "," + lastday.getDate();
+        }
+        $scope.thisWeek();
         ///////////////////////////////////////
 
-        today = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        $scope.today = today;
+        ////////////////  get first & last day of next week  ///////////////////////
+        $scope.nextWeek = function () {
+            console.log('next');
+            var nextWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 7);
+            var nextWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 13);
 
+            // show in page
+            $scope.firstDayOfWeek = shortMonths[nextWeekFirstDay.getMonth()] + "," + nextWeekFirstDay.getDate();
+            $scope.lastDayOfWeek = shortMonths[nextWeekLastDay.getMonth()] + "," + nextWeekLastDay.getDate();
+
+            // send to function
+            var formatedWeekFirstDay = nextWeekFirstDay.getFullYear() + '-' + (nextWeekFirstDay.getMonth() + 1) + '-' + nextWeekFirstDay.getDate();
+            var formatedWeekLastDay = nextWeekLastDay.getFullYear() + '-' + (nextWeekLastDay.getMonth() + 1) + '-' + nextWeekLastDay.getDate();
+
+            console.log("WeekFirstDay  " + formatedWeekFirstDay);
+            console.log("WeekLastDay  " + formatedWeekLastDay);
+
+            // update initial date for next time
+            intialDate = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 7)).toUTCString()));
+        }
+        ///////////////////////////////////////
+
+        ////////////////  get first & last day of pre week  ///////////////////////
+        $scope.preWeek = function () {
+            console.log('pre');
+            var preWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 7);
+            var preWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 1);
+
+            // show in page
+            $scope.firstDayOfWeek = shortMonths[preWeekFirstDay.getMonth()] + "," + preWeekFirstDay.getDate();
+            $scope.lastDayOfWeek = shortMonths[preWeekLastDay.getMonth()] + "," + preWeekLastDay.getDate();
+
+            // send to function
+            var formatedWeekFirstDay = preWeekFirstDay.getFullYear() + '-' + (preWeekFirstDay.getMonth() + 1) + '-' + preWeekFirstDay.getDate();
+            var formatedWeekLastDay = preWeekLastDay.getFullYear() + '-' + (preWeekLastDay.getMonth() + 1) + '-' + preWeekLastDay.getDate();
+
+            console.log("WeekFirstDay  " + formatedWeekFirstDay);
+            console.log("WeekLastDay  " + formatedWeekLastDay);
+
+            // update initial date for next time
+            intialDate = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) - 7)).toUTCString()));
+        }
+        ///////////////////////////////////////
+        var today = new Date();
+        var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        $scope.todayDate = todayDate;
         var d = new Date();
-        var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var todayname = days[d.getDay()];
-
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var todaymonthname = months[d.getMonth()];
-
-        $scope.todayDate = todayname + ', ' + todaymonthname + d.getDate() + ', ' + d.getFullYear();
-
-
+        $scope.todayDateString = todayname + ', ' + todaymonthname + d.getDate() + ', ' + d.getFullYear();
         $scope.adjustData = function (event) {
             $scope.todayShiftsArray = [];
             var thedate = new Date(event.tdate);
-
             event.dayNumber = thedate.getDate();
             event.dayName = (thedate.toString()).substring(0, 3);
             event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
 
             for (var i = 0; i < $scope.events.length; i++) {
-                if ($scope.events[i].tdate == today) {
+                if ($scope.events[i].tdate == todayDate) {
                     $scope.todayShiftsArray.push($scope.events[i]);
                 }
             }
@@ -142,12 +182,12 @@
         // With "use strict", Dates can be passed ONLY as strings (ISO format: YYYY-MM-DD)
         "use strict";
         $scope.options = {
-            defaultDate: today,
+            defaultDate: todayDate,
             minDate: "2000-01-01",
             maxDate: "2100-12-31",
             disabledDates: ["2016-04-1"],
             dayNamesLength: 1, // 1 for "M", 2 for "Mo", 3 for "Mon"; 9 will show full day names. Default is 1.
-            mondayIsFirstDay: true, //set monday as first day of week. Default is false
+            mondayIsFirstDay: false, //set monday as first day of week if :true , Default is false
             eventClick: function (date) { // called before dateClick and only if clicked day has events
                 $scope.calendarEvents = [];
             },
@@ -180,18 +220,28 @@
             $scope.calendarEvents = [];
             console.log($scope.calendarEvents);
             $timeout(function () {
-                angular.element(document.querySelector('#badge' + today)).parent().triggerHandler('click');
+                angular.element(document.querySelector('#badge' + todayDate)).parent().triggerHandler('click');
+                //console.log(angular.element(document.querySelector('#badge' + todayDate)).parent());
             }, 2000);
         }
         $scope.load();
+
+
+        var testID = 1;
         $scope.loadCalendarEvents = function () {
-            // to keep today colored
+            
+            if (testID == 1) {
+                $timeout(function () {
+                    // to show today events by defalt
+                    angular.element(document.querySelector('#badge' + todayDate)).parent().triggerHandler('click');
+                });
+                testID++;
+            }
             $timeout(function () {
-                angular.element(document.querySelector('#badge' + today)).parent().addClass('selected today');
+                // to keep todayDate colored
+                angular.element(document.querySelector('#badge' + todayDate)).parent().addClass('selected today');
             });
-
             // to add colored circles to dayes with events
-
             var log = [];
             angular.forEach($scope.events, function (res, Index) {
                 var eventDate = new Date(res.tdate);
@@ -201,7 +251,8 @@
                           <div class="badge postion4 ' + res.color2 + '">' + res.val2 + '</div>');
                 });
             }, log);
-        }
+            
+        } 
 
 
         if (ionic.Platform.isAndroid()) {
@@ -222,3 +273,16 @@
         }
     });
 });
+
+////get first / last day of week steps
+//var first = today.getDate() - today.getDay(); // First day is the day of the month - the day of the week
+//var last = first + 6; // last day is the first day + 6
+
+//var firstdayUTC = new Date(today.setDate(first)).toUTCString();
+//var lastdayUTC = new Date(today.setDate(last)).toUTCString();
+
+//var firstday = new Date(Date.parse(firstdayUTC));
+//var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+
+//var lastday = new Date(Date.parse(lastdayUTC));
+//var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();

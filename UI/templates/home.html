@@ -24,7 +24,7 @@
                         <ion-content overflow-scroll="true" padding="true" class="calendarView ">
                             <div class="padding-top">
                                 <h3 class="text-center">Today</h3>
-                                <h4 class="text-center">{{todayDate}}</h4>
+                                <h4 class="text-center">{{todayDateString}}</h4>
                             </div>
                             <!--no schedual today part-->
                             <div class=" text-center" ng-show="!todayShiftsArray.length">
@@ -63,30 +63,30 @@
                         <ion-content overflow-scroll="true" padding="true" >
                             <div class="row row-center">
                                 <div class="col col-10">
-                                    <a class="button button-icon icon ion-arrow-left-b"></a>
+                                    <button ng-click="preWeek()" class="button button-icon icon ion-arrow-left-b"></button>
                                 </div>
                                 <div class="col col-80" >
                                     <div class="padding-top">
                                         <h3 class="padding text-center">Current Week</h3>
                                         <h4 class="text-center">
-                                        <span>Nov 08</span>
+                                        <span>{{firstDayOfWeek}}</span>
                                             <span>
                                                 <a class="button-icon ion-arrow-right-b"></a>
                                             </span>
-                                            <span>Nov 15</span>
+                                            <span>{{lastDayOfWeek}}</span>
                                         </h4>
                                     </div>
                                 </div>
                                 <div class="col col-10">
-                                    <a class="button button-icon icon ion-arrow-right-b"></a>
+                                    <button ng-click="nextWeek()" class="button button-icon icon ion-arrow-right-b"></button>
                                 </div>
                             </div>
                             
 
                             <div ng-repeat="event in allEvents">
                                 <div class="card">
-                                    <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= today"></div>
-                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== today"></div>
+                                    <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
+                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
                                 </div>
                             </div>
                             <div class="card text-center padding-top" ng-show="!allEvents.length">
@@ -112,8 +112,8 @@
                             <div class="list padding">
                                 <div ng-repeat="event in calendarEvents">
                                     <div class="item item-text-wrap text-center">
-                                        <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= today"></div>
-                                        <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== today"></div>
+                                        <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
+                                        <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
                                     </div>
                                 </div>
                             </div>
