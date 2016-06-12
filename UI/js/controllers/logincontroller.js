@@ -11,11 +11,11 @@
             }
             API.execute(req, false).then(function (_res) {
                 console.log(_res);
-                if (error_description) {
+                if (_res.error_description) {
                     console.log(error_description);
                 }
-                if (userType == 'Employee') {
-                    $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.token;
+                if (_res.data.userType == 'Employee') {
+                    $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
                     console.log($window.localStorage['authorizationToken']);
                     $state.go('tempdevicelogin');
                 }
