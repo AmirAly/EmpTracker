@@ -1,5 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'flexcalendar', 'pascalprecht.translate'])
 
+
 empTracker.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -16,7 +17,6 @@ empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 
 }]);
-
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');

@@ -1,9 +1,9 @@
-﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout, $rootScope, $ionicLoading) {
+﻿empTracker.controller("changepasswordController", function ($scope, $state, $timeout, $rootScope, $ionicLoading, API, $window) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
     });
-
+    $scope.userData = {};
     $scope.notifications = function () {
         $state.go('app.notifications');
     }
@@ -15,19 +15,32 @@
     }
     $scope.updateAccount = function (form) {
         if (form.$valid) {
-            showConfirmation();
 
-            window.setTimeout(function () {
-                $state.go('app.myaccount');
-            }, 5500);
-            
+            console.log($scope.userData.CurrentPassword);
+            console.log($scope.userData.password);
+            console.log($scope.userData.confirm);
+            var req = {
+                method: 'POST',
+                url: '/api/Account/ChangePassword',
+                data: { OldPassword: $scope.userData.CurrentPassword, NewPassword: $scope.userData.password, ConfirmPassword: $scope.userData.confirm }
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res);
+                showConfirmation();
+                window.setTimeout(function () {
+                    $state.go('app.myaccount');
+                }, 5500);
+            });
+
+
         }
     }
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
 
-     function showConfirmation() {
+    function showConfirmation() {
         $ionicLoading.show({
             scope: $scope,
             templateUrl: 'templates/passwordconfirmation.html',

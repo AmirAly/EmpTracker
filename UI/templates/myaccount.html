@@ -25,7 +25,7 @@
                 <ion-list class="list listInputs">
                     <label class="item  padding">
                         <i class="icon ion-compose placeholder-icon"></i>
-                        <input ng-model="employeeNO" type="text" required readonly  placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
+                        <input ng-model="userData.employeeNO" type="text" required readonly placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
                         <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
                         </span>
@@ -33,16 +33,23 @@
 
                     <label class="item padding">
                         <i class="icon ion-person placeholder-icon"></i>
-                        <input ng-model="name" type="text" required readonly value="Amir Aly" placeholder="Name" name="txtName" id="txtName">
-                        <span ng-show="frmUpdateAccount.txtName.$dirty && frmUpdateAccount.txtName.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtName.$error.required">required</span>
+                        <input ng-model="userData.firstname" type="text" required readonly placeholder="First Name" name="txtFirstName" id="txtFirstName">
+                        <span ng-show="frmUpdateAccount.txtFirstName.$dirty && frmUpdateAccount.txtFirstName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtFirstName.$error.required">required</span>
                         </span>
                     </label>
 
+                    <label class="item padding">
+                        <i class="icon ion-person placeholder-icon"></i>
+                        <input ng-model="userData.lastname" type="text" required readonly placeholder="Last Name" name="txtLastName" id="txtLastName">
+                        <span ng-show="frmUpdateAccount.txtLastName.$dirty && frmUpdateAccount.txtLastName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtLastName.$error.required">required</span>
+                        </span>
+                    </label>
 
                     <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>
-                        <input ng-model="mobile" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
+                        <input ng-model="userData.mobile" maxlength="13" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
                         <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
                         </span>
@@ -50,7 +57,7 @@
 
                     <label class="item  padding">
                         <i class="icon ion-ios-email placeholder-icon"></i>
-                        <input ng-model="email" type="email" required placeholder="Email" name="userName" id="userName">
+                        <input ng-model="userData.email" type="email" required placeholder="Email" name="userName" id="userName">
                         <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
