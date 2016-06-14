@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http, $ionicPopup, $rootScope) {
+﻿empTracker.controller("homeController", function ($scope, $state, $timeout, $http, $ionicPopup, $rootScope, API) {
 
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function () {
@@ -94,6 +94,21 @@
 
         var intialDate = new Date(); // get current date
 
+        $scope.getTodayEvents = function () {
+            var thisday = new Date();
+            var formatedFirstDay = thisday.getFullYear() + '-' + (thisday.getMonth() + 1) + '-' + thisday.getDate();
+            console.log(formatedFirstDay);
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + formatedFirstDay + '&endDate=' + formatedFirstDay + '',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+            });
+        }
+        $scope.getTodayEvents();
         ////////////////  get first & last day of this week  ///////////////////////
         $scope.thisWeek = function () {
             var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
@@ -105,6 +120,17 @@
             // send to function
             console.log("firstday  " + formatedFirstDay);
             console.log("lastday  " + formatedLastday);
+
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + formatedFirstDay + '&endDate=' + formatedLastday + '',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+            });
+
 
             // show in page
             $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + "," + firstday.getDate();

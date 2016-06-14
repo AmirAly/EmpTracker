@@ -1,5 +1,5 @@
 ﻿empTracker.controller("myaccountController", function ($scope, $state, $rootScope, $ionicLoading, API, $window) {
-
+$scope.userData = {};
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
         // get profile Data
@@ -10,17 +10,22 @@
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
-            console.log(_res);
+            console.log(_res.data.code);
+            if (_res.data.code = 200) {
+                $scope.userData.employeeNO = _res.data.data.EmpNo;
+                $scope.userData.firstname = _res.data.data.FirstName;
+                $scope.userData.lastname = _res.data.data.LastName;
+                $scope.userData.mobile = _res.data.data.Mobile;
+                $scope.userData.email = _res.data.data.Email;
+            }
        });
     });
 
     $scope.cancel = function () {
         window.history.back();
     }
-    $scope.userData = {};
-    $scope.userData.employeeNO = '150SB7';
-    $scope.userData.firstname = 'Amir';
-    $scope.userData.lastname = 'Aly';
+    
+    
 
     $scope.updateAccount = function (form) {
         if (form.$valid) {
@@ -41,7 +46,10 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res);
+                console.log(_res.data.code);
+                if (_res.data.code = 200) {
+                    $state.go('app.dashboard');
+                }
             });
         }
     }

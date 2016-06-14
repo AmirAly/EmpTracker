@@ -3,12 +3,12 @@
         <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
         <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
-            <span class="badge badge-assertive">3</span>
+            <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
-            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">Amir Aly</span>
+            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
             <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
         </div>
     </ion-header-bar>
@@ -16,10 +16,10 @@
     <ion-content overflow-scroll="true" class="has-header has-footer">
 
         <div class="list listAlerts">
-            <a ng-repeat="alert in allAlertsArray" class="item item-icon-left {{alert.class}}" ng-class="{{alert.ngclass}}">
-                <i class="icon {{alert.icon}}"></i>
-                <span class="text-left txtalert">{{alert.text}}</span>
-                <span class="text-left item-note">{{alert.dateTime}}</span>
+            <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index)" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
+                <i class="icon ion-alert-circled"></i>
+                <span class="text-left txtalert">{{alert.NotificationBody}}</span>
+                <span class="text-left item-note">{{alert.DateCreated  | date:'MMM dd, At  hh:mm'}}</span>
             </a>
         </div>
 

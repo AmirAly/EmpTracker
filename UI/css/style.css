@@ -112,6 +112,7 @@
         right: 5px;
         bottom: 5px;
         display: inline-flex;
+        width:50%;
     }
 
         .bar-header .floatRight img {
@@ -128,7 +129,7 @@
             -ms-flex: 1;
             flex: 1;
             display: block;
-            padding: 5px;
+            padding: 7px 3px;
             width: 100%;
             max-width: 140px;
             overflow: hidden !important;

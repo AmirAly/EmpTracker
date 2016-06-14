@@ -17,11 +17,29 @@
                 if (_res.data.userType == 'Employee') {
                     $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
                     console.log($window.localStorage['authorizationToken']);
-                    $state.go('tempdevicelogin');
+
+                    // get user data after login if redirect to dashboard
+                    var req = {
+                        method: 'GET',
+                        url: '/api/Account/Profile',
+                        data: {}
+                    }
+                    // add true to use authentication token
+                    API.execute(req, true).then(function (_res) {
+                        console.log(_res.data.code);
+                        if (_res.data.code = 200) {
+                            $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
+                            console.log($scope.userName);
+                            $window.localStorage['UserName'] = $scope.userName;
+                            $state.go('tempdevicelogin');
+                        }
+                    });
                 }
-                else {
-                    $state.go('supervisingemployees');
-                }
+                //else {
+                //    $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
+                //    console.log($window.localStorage['authorizationToken']);
+                //    $state.go('supervisingemployees');
+                //}
             });
         }
     }
