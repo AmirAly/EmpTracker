@@ -27,7 +27,7 @@
                                 <h4 class="text-center">{{todayDateString}}</h4>
                             </div>
                             <!--no schedual today part-->
-                            <div class=" text-center" ng-show="!todayShiftsArray.length">
+                            <div class=" text-center" ng-show="!todayEventsArray.length">
                                 <img src="images/noshift.png" />
                                 <div class="padding">
                                     <button class="button button-block button-positive" ng-click="showMap()">Start Unscheduled Shift</button>
@@ -40,8 +40,8 @@
                             </div>
 
                             <!-- today shifts part-->
-                            <div class="list padding" ng-show="todayShiftsArray.length">
-                                <div ng-repeat="event in todayShiftsArray">
+                            <div class="list padding" ng-show="todayEventsArray.length">
+                                <div ng-repeat="event in todayEventsArray">
                                     <div class="item item-text-wrap text-center">
                                         <div ng-include="'templates/todayshift.temp.html'"></div>
                                     </div>
@@ -83,13 +83,13 @@
                             </div>
                             
 
-                            <div ng-repeat="event in allEvents">
+                            <div ng-repeat="event in weeklyEventsArray">
                                 <div class="card">
                                     <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
                                     <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
                                 </div>
                             </div>
-                            <div class="card text-center padding-top" ng-show="!allEvents.length">
+                            <div class="card text-center padding-top" ng-show="!weeklyEventsArray.length">
                                 <h2>There is no shifts</h2>
                             </div>
                             <div class="spacer"></div>

@@ -4,22 +4,22 @@
             <p><span>Today</span></p>
             <div class="row row-top">
                 <div class="col col-20 col-center text-center firstCoulmn">
-                    <div class="row"><span class="col dayNumber">{{event.dayNumber}}</span></div>
-                    <span class="col dayName">{{event.dayName}}</span>
+                    <div class="row"><span class="col dayNumber">{{event.StartDate  | date:'dd'}}</span></div>
+                    <span class="col dayName">{{event.StartDate | date:'EEE'}}</span>
                 </div>
                 <div class="col text-left secondCoulmn">
                     <div class="row">
-                        <span class="col date">{{event.fromTo}}</span>
+                        <span class="col date">{{event.StartDate  | date:'hh:mm a'}}-{{event.EndDate  | date:'hh:mm a'}}</span>
                     </div>
                     <div class="row">
-                        <span class="col address">{{event.address}}</span>
+                        <span class="col address">{{event.ShortLocationName}}</span>
                     </div>
                     <div class="row">
-                        <span class="col area">{{event.area}}</span>
+                        <span class="col area">{{event.LocationID}}</span>
                     </div>
                 </div>
                 <div class="col col-25 text-right padding-right thirdCoulmn">
-                    <div class="totalHours">{{event.duration}}</div>
+                    <div class="totalHours">{{event.TotalHours}}</div>
                     <div class="hoursTxt">hours</div>
                     <div ng-show="attendane==true">
                         <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>

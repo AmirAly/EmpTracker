@@ -16,7 +16,7 @@
     <ion-content overflow-scroll="true" class="has-header has-footer">
 
         <div class="list listAlerts">
-            <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index)" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
+            <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index,'{{alert.ID}}')" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
                 <i class="icon ion-alert-circled"></i>
                 <span class="text-left txtalert">{{alert.NotificationBody}}</span>
                 <span class="text-left item-note">{{alert.DateCreated  | date:'MMM dd, At  hh:mm'}}</span>

@@ -106,6 +106,7 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
+                $scope.todayEventsArray = _res.data.data;
             });
         }
         $scope.getTodayEvents();
@@ -128,7 +129,8 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res.data);
+                console.log(_res.data.data);
+                $scope.weeklyEventsArray = _res.data.data;
             });
 
 
@@ -156,6 +158,17 @@
             console.log("WeekFirstDay  " + formatedWeekFirstDay);
             console.log("WeekLastDay  " + formatedWeekLastDay);
 
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + formatedWeekFirstDay + '&endDate=' + formatedWeekLastDay + '',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data.data);
+                $scope.weeklyEventsArray = _res.data.data;
+            });
+
             // update initial date for next time
             intialDate = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 7)).toUTCString()));
         }
@@ -178,10 +191,38 @@
             console.log("WeekFirstDay  " + formatedWeekFirstDay);
             console.log("WeekLastDay  " + formatedWeekLastDay);
 
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + formatedWeekFirstDay + '&endDate=' + formatedWeekLastDay + '',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data.data);
+                $scope.weeklyEventsArray = _res.data.data;
+            });
+
             // update initial date for next time
             intialDate = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) - 7)).toUTCString()));
         }
         ///////////////////////////////////////
+
+        //get calendar dates
+        $scope.getCalendarEvents = function () {
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=2016-6-1&endDate=2016-6-30',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+                $scope.events = _res.data.data;
+                //$scope.todayShiftsArray = _res.data.data;
+            });
+        }
+        $scope.getCalendarEvents();
+        //////////////////////////////////////////////////////////////////////////////
         var today = new Date();
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         $scope.todayDate = todayDate;
@@ -281,22 +322,22 @@
         } 
 
 
-        if (ionic.Platform.isAndroid()) {
-            // get json from external file
-            $http.get('/android_asset/www/json/events.json').then(function (data) {
-                $scope.allEvents = data.data.events;
-                $scope.events = data.data.events;
-                $scope.todayShiftsArray = data.data.events;
-            });
-        }
-        else {
-            // get json from external file
-            $http.get('/json/events.json').then(function (data) {
-                $scope.allEvents = data.data.events;
-                $scope.events = data.data.events;
-                $scope.todayShiftsArray = data.data.events;
-            });
-        }
+        //if (ionic.Platform.isAndroid()) {
+        //    // get json from external file
+        //    $http.get('/android_asset/www/json/events.json').then(function (data) {
+        //        $scope.allEvents = data.data.events;
+        //        $scope.events = data.data.events;
+        //        $scope.todayShiftsArray = data.data.events;
+        //    });
+        //}
+        //else {
+        //    // get json from external file
+        //    $http.get('/json/events.json').then(function (data) {
+        //        $scope.allEvents = data.data.events;
+        //        $scope.events = data.data.events;
+        //        $scope.todayShiftsArray = data.data.events;
+        //    });
+        //}
     });
 });
 

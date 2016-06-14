@@ -1,5 +1,5 @@
 ﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http, $rootScope, API, $filter) {
-    
+
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
         var req = {
@@ -36,12 +36,28 @@
     }
 
     // API here
-    $scope.markOneAsRead = function (index) {
-        var element = document.getElementById('notification' + index);
-        element.classList.add("oldNotification");
-        if ($rootScope.notifictionsCounter != 0) {
-            $rootScope.notifictionsCounter--;
+    $scope.markOneAsRead = function (index, ID) {
+        notificationIds = [];
+        notificationIds[0] = ID;
+
+        var req = {
+            method: 'PUT',
+            url: '/api/Notification',
+            data: { notificationIds: notificationIds }
         }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            $rootScope.notifictionsCounter = 0;
+            console.log(_res.data);
+            if (_res.data.code === 200) {
+                var element = document.getElementById('notification' + index);
+                element.classList.add("oldNotification");
+                if ($rootScope.notifictionsCounter != 0) {
+                    $rootScope.notifictionsCounter--;
+                }
+            }
+        });
+
     }
 
     $scope.notifications = function () {
