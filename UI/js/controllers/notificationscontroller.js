@@ -40,16 +40,17 @@
         notificationIds = [];
         notificationIds[0] = ID;
 
+        console.log(notificationIds);
         var req = {
             method: 'PUT',
             url: '/api/Notification',
-            data: { notificationIds: notificationIds }
+            data: { notificationIds:JSON.stringify(notificationIds) }
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             $rootScope.notifictionsCounter = 0;
             console.log(_res.data);
-            if (_res.data.code === 200) {
+            if (_res.data.code == 200) {
                 var element = document.getElementById('notification' + index);
                 element.classList.add("oldNotification");
                 if ($rootScope.notifictionsCounter != 0) {

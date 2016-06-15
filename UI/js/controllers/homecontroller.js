@@ -97,7 +97,7 @@
         $scope.getTodayEvents = function () {
             var thisday = new Date();
             var formatedFirstDay = thisday.getFullYear() + '-' + (thisday.getMonth() + 1) + '-' + thisday.getDate();
-            console.log(formatedFirstDay);
+            //console.log(formatedFirstDay);
             var req = {
                 method: 'GET',
                 url: '/api/Roster?startDate=' + formatedFirstDay + '&endDate=' + formatedFirstDay + '',
@@ -105,7 +105,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res.data);
+                //console.log(_res.data);
                 $scope.todayEventsArray = _res.data.data;
             });
         }
@@ -119,8 +119,8 @@
             var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
 
             // send to function
-            console.log("firstday  " + formatedFirstDay);
-            console.log("lastday  " + formatedLastday);
+           // console.log("firstday  " + formatedFirstDay);
+           // console.log("lastday  " + formatedLastday);
 
             var req = {
                 method: 'GET',
@@ -129,7 +129,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res.data.data);
+                //console.log(_res.data.data);
                 $scope.weeklyEventsArray = _res.data.data;
             });
 
@@ -143,7 +143,7 @@
 
         ////////////////  get first & last day of next week  ///////////////////////
         $scope.nextWeek = function () {
-            console.log('next');
+           // console.log('next');
             var nextWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 7);
             var nextWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 13);
 
@@ -155,8 +155,8 @@
             var formatedWeekFirstDay = nextWeekFirstDay.getFullYear() + '-' + (nextWeekFirstDay.getMonth() + 1) + '-' + nextWeekFirstDay.getDate();
             var formatedWeekLastDay = nextWeekLastDay.getFullYear() + '-' + (nextWeekLastDay.getMonth() + 1) + '-' + nextWeekLastDay.getDate();
 
-            console.log("WeekFirstDay  " + formatedWeekFirstDay);
-            console.log("WeekLastDay  " + formatedWeekLastDay);
+           // console.log("WeekFirstDay  " + formatedWeekFirstDay);
+           // console.log("WeekLastDay  " + formatedWeekLastDay);
 
             var req = {
                 method: 'GET',
@@ -165,7 +165,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res.data.data);
+               // console.log(_res.data.data);
                 $scope.weeklyEventsArray = _res.data.data;
             });
 
@@ -176,7 +176,7 @@
 
         ////////////////  get first & last day of pre week  ///////////////////////
         $scope.preWeek = function () {
-            console.log('pre');
+           // console.log('pre');
             var preWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 7);
             var preWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 1);
 
@@ -188,8 +188,8 @@
             var formatedWeekFirstDay = preWeekFirstDay.getFullYear() + '-' + (preWeekFirstDay.getMonth() + 1) + '-' + preWeekFirstDay.getDate();
             var formatedWeekLastDay = preWeekLastDay.getFullYear() + '-' + (preWeekLastDay.getMonth() + 1) + '-' + preWeekLastDay.getDate();
 
-            console.log("WeekFirstDay  " + formatedWeekFirstDay);
-            console.log("WeekLastDay  " + formatedWeekLastDay);
+            //console.log("WeekFirstDay  " + formatedWeekFirstDay);
+           // console.log("WeekLastDay  " + formatedWeekLastDay);
 
             var req = {
                 method: 'GET',
@@ -198,7 +198,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res.data.data);
+              //  console.log(_res.data.data);
                 $scope.weeklyEventsArray = _res.data.data;
             });
 
@@ -207,22 +207,7 @@
         }
         ///////////////////////////////////////
 
-        //get calendar dates
-        $scope.getCalendarEvents = function () {
-            var req = {
-                method: 'GET',
-                url: '/api/Roster?startDate=2016-6-1&endDate=2016-6-30',
-                data: {}
-            }
-            // add true to use authentication token
-            API.execute(req, true).then(function (_res) {
-                console.log(_res.data);
-                $scope.events = _res.data.data;
-                //$scope.todayShiftsArray = _res.data.data;
-            });
-        }
-        $scope.getCalendarEvents();
-        //////////////////////////////////////////////////////////////////////////////
+        
         var today = new Date();
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         $scope.todayDate = todayDate;
@@ -230,19 +215,49 @@
         var todayname = days[d.getDay()];
         var todaymonthname = months[d.getMonth()];
         $scope.todayDateString = todayname + ', ' + todaymonthname + d.getDate() + ', ' + d.getFullYear();
-        $scope.adjustData = function (event) {
-            $scope.todayShiftsArray = [];
-            var thedate = new Date(event.tdate);
-            event.dayNumber = thedate.getDate();
-            event.dayName = (thedate.toString()).substring(0, 3);
-            event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
 
-            for (var i = 0; i < $scope.events.length; i++) {
-                if ($scope.events[i].tdate == todayDate) {
-                    $scope.todayShiftsArray.push($scope.events[i]);
-                }
+        //get calendar dates
+        $scope.getCalendarEvents = function () {
+            var thisdate = new Date(), y = thisdate.getFullYear(), m = thisdate.getMonth();
+            var firstDayMonth = new Date(y, m, 1);
+            var lastDayMonth = new Date(y, m + 1, 0);
+
+            var firstDayMonthFormated = firstDayMonth.getFullYear() + '-' + (firstDayMonth.getMonth() + 1) + '-' + firstDayMonth.getDate();
+            var lastDayMonthFormated = lastDayMonth.getFullYear() + '-' + (lastDayMonth.getMonth() + 1) + '-' + lastDayMonth.getDate();
+
+            console.log(firstDayMonthFormated);
+            console.log(lastDayMonthFormated);
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + firstDayMonthFormated + '&endDate=' + lastDayMonthFormated + '',
+                data: {}
             }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                //console.log(_res.data);
+                $scope.events = _res.data.data;
+                console.log($scope.events);
+                // prepare data for shift template
+                $scope.adjustData = function (event) {
+                    $scope.todayShiftsArray = [];
+                    var thedate = new Date(event.StartDate);
+                    event.dayNumber = thedate.getDate();
+                    event.dayName = (thedate.toString()).substring(0, 3);
+                    event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+
+                    for (var i = 0; i < $scope.events.length; i++) {
+                        if ($scope.events[i].StartDate == todayDate) {
+                            $scope.todayShiftsArray.push($scope.events[i]);
+                            console.log($scope.todayShiftsArray);
+                        }
+                    }
+                }
+            });
         }
+        $scope.getCalendarEvents();
+        //////////////////////////////////////////////////////////////////////////////
+
+        
 
         $scope.calendarEvents = [];
         // Calendar
@@ -258,14 +273,20 @@
             eventClick: function (date) { // called before dateClick and only if clicked day has events
                 $scope.calendarEvents = [];
             },
+            //i'm here
             dateClick: function (date) { // called every time a day is clicked
-                console.log(date);
-                var formattedDate = date.year + "-" + date._month + "-" + date.day;
+                //console.log(date);
+                var formattedDate = date.date.getFullYear() + "-" + (date.date.getMonth() + 1) + "-" + date.date.getDay();
                 $scope.calendarEvents = [];
+                //console.log($scope.events.length);
                 for (var i = 0; i < $scope.events.length; i++) {
-                    if ($scope.events[i].tdate == formattedDate) {
+                    var formatedDate = new Date($scope.events[i].StartDate);
+                    var x = formatedDate.getFullYear() + "-" + (formatedDate.getMonth() + 1) + "-" + formatedDate.getDay();
+                    console.log(x);
+                    console.log(formattedDate);
+                    if (formattedDate == x) {
                         $scope.calendarEvents.push($scope.events[i]);
-                        console.log($scope.calendarEvents);
+                        //console.log($scope.calendarEvents);
                     }
                 }
                 $scope.loadCalendarEvents();
@@ -311,7 +332,7 @@
             // to add colored circles to dayes with events
             var log = [];
             angular.forEach($scope.events, function (res, Index) {
-                var eventDate = new Date(res.tdate);
+                var eventDate = new Date(res.StartDate);
                 eventDate = eventDate.getFullYear() + '-' + (eventDate.getMonth() + 1) + '-' + eventDate.getDate();
                 $timeout(function () {
                     angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion3 ' + res.color1 + '">' + res.val1 + '</div>\

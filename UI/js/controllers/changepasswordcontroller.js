@@ -27,13 +27,15 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res);
-                if (_res.data.code=200) {
+                if (_res.data.code == 200) {
                     showConfirmation();
                     window.setTimeout(function () {
                         $state.go('app.myaccount');
                     }, 5500);
                 }
-                
+                else {
+                    console.log('wrong old password')
+                }
             });
 
 
