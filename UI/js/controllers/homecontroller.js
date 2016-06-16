@@ -273,20 +273,18 @@
             eventClick: function (date) { // called before dateClick and only if clicked day has events
                 $scope.calendarEvents = [];
             },
-            //i'm here
             dateClick: function (date) { // called every time a day is clicked
-                //console.log(date);
-                var formattedDate = date.date.getFullYear() + "-" + (date.date.getMonth() + 1) + "-" + date.date.getDay();
+                console.log(date);
+                var formattedToday = date.year + "-" + date._month + "-" + date.day;
                 $scope.calendarEvents = [];
-                //console.log($scope.events.length);
+                console.log(formattedToday);
                 for (var i = 0; i < $scope.events.length; i++) {
-                    var formatedDate = new Date($scope.events[i].StartDate);
-                    var x = formatedDate.getFullYear() + "-" + (formatedDate.getMonth() + 1) + "-" + formatedDate.getDay();
-                    console.log(x);
-                    console.log(formattedDate);
-                    if (formattedDate == x) {
+                    var eventDate = new Date($scope.events[i].StartDate);
+                    var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
+                    var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
+                    if (formattedToday == formatedEventDay) {
                         $scope.calendarEvents.push($scope.events[i]);
-                        //console.log($scope.calendarEvents);
+                        console.log($scope.calendarEvents);
                     }
                 }
                 $scope.loadCalendarEvents();
@@ -309,35 +307,36 @@
             console.log($scope.calendarEvents);
             $timeout(function () {
                 angular.element(document.querySelector('#badge' + todayDate)).parent().triggerHandler('click');
-                //console.log(angular.element(document.querySelector('#badge' + todayDate)).parent());
             }, 2000);
         }
         $scope.load();
 
 
-        var testID = 1;
+        var checkId = 1;
         $scope.loadCalendarEvents = function () {
             
-            if (testID == 1) {
+            if (checkId == 1) {
                 $timeout(function () {
                     // to show today events by defalt
                     angular.element(document.querySelector('#badge' + todayDate)).parent().triggerHandler('click');
                 });
-                testID++;
+                checkId++;
             }
             $timeout(function () {
                 // to keep todayDate colored
                 angular.element(document.querySelector('#badge' + todayDate)).parent().addClass('selected today');
             });
             // to add colored circles to dayes with events
+            // i'm here
             var log = [];
             angular.forEach($scope.events, function (res, Index) {
                 var eventDate = new Date(res.StartDate);
+                console.log(eventDate);
                 eventDate = eventDate.getFullYear() + '-' + (eventDate.getMonth() + 1) + '-' + eventDate.getDate();
-                $timeout(function () {
-                    angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion3 ' + res.color1 + '">' + res.val1 + '</div>\
-                          <div class="badge postion4 ' + res.color2 + '">' + res.val2 + '</div>');
-                });
+                //$timeout(function () {
+                //    angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion3 ' + res.color1 + '">' + res.val1 + '</div>\
+                //          <div class="badge postion4 ' + res.color2 + '">' + res.val2 + '</div>');
+                //});
             }, log);
             
         } 
