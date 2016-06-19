@@ -44,11 +44,11 @@
         var req = {
             method: 'PUT',
             url: '/api/Notification',
-            data: { notificationIds:JSON.stringify(notificationIds) }
+            data:  notificationIds
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
-            $rootScope.notifictionsCounter = 0;
+            //$rootScope.notifictionsCounter = 0;
             console.log(_res.data);
             if (_res.data.code == 200) {
                 var element = document.getElementById('notification' + index);
