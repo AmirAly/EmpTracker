@@ -38,6 +38,7 @@
                     </span>
                 </label>
             </ion-list>
+            <div class="errorFont padding-horizontal" ng-show="afterLoginError">{{afterLoginErrorTxt}}</div>
             <button class="button button-calm actionBlue button-block" ng-disabled="frmLogin.$invalid" type="submit">&nbsp;Login</button>
             <a ui-sref="forget" class="button button-positive button-clear button-block ">
                 Forget Password?

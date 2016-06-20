@@ -14,8 +14,8 @@
         $scope.showSubMenu = function () {
             $state.go('app.submenu');
         }
-        $scope.shiftView = function () {
-            $state.go('app.shiftview');
+        $scope.shiftView = function (_shiftId) {
+            $state.go('app.shiftview', { shiftid: _shiftId });
         }
         $scope.started = false;
         $scope.mapView = false;

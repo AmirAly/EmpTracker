@@ -111,30 +111,46 @@
         top: 5px;
         right: 5px;
         bottom: 5px;
-        display: inline-flex;
-        width:50%;
+        display: inline-block;
+        width: 50%;
     }
 
         .bar-header .floatRight img {
             height: auto;
             width: 36px;
+            position: fixed;
+            right: 148px;
         }
 
         .bar-header .floatRight span {
             white-space: nowrap;
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            -moz-box-flex: 1;
-            -moz-flex: 1;
-            -ms-flex: 1;
-            flex: 1;
-            display: block;
             padding: 7px 3px;
             width: 100%;
-            max-width: 140px;
+            max-width: 100px;
             overflow: hidden !important;
             text-overflow: ellipsis;
+            position: fixed;
+            right: 46px;
         }
+
+        .bar-header .floatRight .button.button-icon.icon.ion-ios-keypad {
+            position: fixed;
+            right: 0;
+            top: 4px;
+        }
+
+@media only screen and (min-width: 375px) {
+     .bar-header .floatRight span{
+         max-width: 140px;
+     }
+     .bar-header .floatRight img {
+            right: 188px;
+        }
+}
+
+.ion-loading-a:before, .ion-loading-b:before ,.ion-loading-c:before, .ion-loading-d:before{
+        font-size: 28px;
+}
 
 .menu .bar-header {
     background-color: #111 !important;
@@ -443,6 +459,10 @@
     background-color: transparent !important;
     background-image: none !important;
     border-color: transparent !important;
+}
+
+.loginpage div.errorFont {
+    padding-right: 10px;
 }
 
 .listInputs.list .list .item.item-input {
@@ -1048,7 +1068,7 @@ i.icon.icon-right {
 
 /*password Confirmation*/
 .loading {
-    width: 80%;
+    max-width: 80%;
 }
 
 /*forget page*/

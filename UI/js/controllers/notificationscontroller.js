@@ -1,6 +1,14 @@
-﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http, $rootScope, API, $filter) {
+﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http, $rootScope, API, $ionicLoading) {
 
     $scope.$on('$ionicView.enter', function () {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         $rootScope.toggledrag = true;
         var req = {
             method: 'GET',
@@ -18,6 +26,7 @@
                         $rootScope.notifictionsCounter++;
                     }
                 }
+                $ionicLoading.hide();
             }
         });
     });
@@ -31,12 +40,53 @@
 
     // API here
     $scope.markAllAsRead = function () {
-        $scope.markAll = 'oldNotification';
-        $rootScope.notifictionsCounter = 0;
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        notificationIds = [];
+        var counter = 0;
+        for (var i = 0; i < $scope.allAlertsArray.length; i++) {
+            if ($scope.allAlertsArray[i].IsRead==false) {
+                notificationIds[counter] = $scope.allAlertsArray[i].ID;
+                counter++;
+            }
+        }
+        console.log(notificationIds);
+
+        var req = {
+            method: 'PUT',
+            url: '/api/Notification',
+            data: notificationIds
+        }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 200) {
+                $ionicLoading.hide();
+                $scope.markAll = 'oldNotification';
+                $rootScope.notifictionsCounter = 0;
+            }
+            if (_res.data.code == 400) {
+                $ionicLoading.hide();
+            }
+        });
     }
 
     // API here
     $scope.markOneAsRead = function (index, ID) {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         notificationIds = [];
         notificationIds[0] = ID;
 
@@ -51,11 +101,15 @@
             //$rootScope.notifictionsCounter = 0;
             console.log(_res.data);
             if (_res.data.code == 200) {
+                $ionicLoading.hide();
                 var element = document.getElementById('notification' + index);
                 element.classList.add("oldNotification");
                 if ($rootScope.notifictionsCounter != 0) {
                     $rootScope.notifictionsCounter--;
                 }
+            }
+            if (_res.data.code == 400) {
+                $ionicLoading.hide();
             }
         });
 
@@ -65,18 +119,4 @@
         $state.go('app.notifications');
     }
 
-
-
-    //if (ionic.Platform.isAndroid()) {
-    //    // get json from external file
-    //    $http.get('/android_asset/www/json/alerts.json').then(function (data) {
-    //        $scope.allAlertsArray = data.data.alerts;
-    //    });
-    //}
-    //else {
-    //    // get json from external file
-    //    $http.get('/json/alerts.json').then(function (data) {
-    //        $scope.allAlertsArray = data.data.alerts;
-    //    });
-    //}
 });

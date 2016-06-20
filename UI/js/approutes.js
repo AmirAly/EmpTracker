@@ -66,7 +66,8 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.shiftview', {
-        url: '/shiftview',
+        //url: '/shiftview',
+        url: '/shiftView/:shiftid?',
         views: {
             'menuContent': {
                 controller: "shiftviewController",

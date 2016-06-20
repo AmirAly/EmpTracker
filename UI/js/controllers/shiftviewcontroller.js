@@ -1,7 +1,34 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout,$rootScope) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
+        console.log($stateParams.shiftid);
+        if ($stateParams.shiftid == "") {
+            $scope.pageTitle = "Available shift";
+        }
+        else {
+            //$scope.pageTitle = $stateParams.shiftid;
+            //api here
+
+            //var req = {
+            //    method: 'GET',
+            //    url: '/api/Account/Profile',
+            //    data: {}
+            //}
+            //// add true to use authentication token
+            //API.execute(req, true).then(function (_res) {
+            //    console.log(_res.data.code);
+            //    if (_res.data.code = 200) {
+            //        $ionicLoading.hide();
+            //        $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
+            //        console.log($scope.userName);
+            //        $window.localStorage['UserName'] = $scope.userName;
+            //        $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
+            //        $state.go('tempdevicelogin');
+            //    }
+            //});
+        }
+        
     });
     $scope.shiftNotes = 'This IS Shift Notes About Condell Park';
     $scope.openmyaccount = function () {

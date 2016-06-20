@@ -21,6 +21,8 @@
             _req.headers = headers;
             console.log(_req);
             return $http(_req);
+            
         }
+      
     };
 }]);
