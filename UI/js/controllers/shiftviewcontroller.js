@@ -1,32 +1,35 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading) {
 
     $scope.$on('$ionicView.enter', function () {
+
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+
         $rootScope.toggledrag = true;
         console.log($stateParams.shiftid);
         if ($stateParams.shiftid == "") {
             $scope.pageTitle = "Available shift";
         }
         else {
-            //$scope.pageTitle = $stateParams.shiftid;
             //api here
-
-            //var req = {
-            //    method: 'GET',
-            //    url: '/api/Account/Profile',
-            //    data: {}
-            //}
-            //// add true to use authentication token
-            //API.execute(req, true).then(function (_res) {
-            //    console.log(_res.data.code);
-            //    if (_res.data.code = 200) {
-            //        $ionicLoading.hide();
-            //        $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-            //        console.log($scope.userName);
-            //        $window.localStorage['UserName'] = $scope.userName;
-            //        $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-            //        $state.go('tempdevicelogin');
-            //    }
-            //});
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?shiftId=' + $stateParams.shiftid,
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+                if (_res.data.code = 200) {
+                    $ionicLoading.hide();
+                }
+            });
         }
         
     });
