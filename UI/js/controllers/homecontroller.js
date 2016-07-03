@@ -188,9 +188,6 @@
             var formatedWeekFirstDay = preWeekFirstDay.getFullYear() + '-' + (preWeekFirstDay.getMonth() + 1) + '-' + preWeekFirstDay.getDate();
             var formatedWeekLastDay = preWeekLastDay.getFullYear() + '-' + (preWeekLastDay.getMonth() + 1) + '-' + preWeekLastDay.getDate();
 
-            //console.log("WeekFirstDay  " + formatedWeekFirstDay);
-           // console.log("WeekLastDay  " + formatedWeekLastDay);
-
             var req = {
                 method: 'GET',
                 url: '/api/Roster?startDate=' + formatedWeekFirstDay + '&endDate=' + formatedWeekLastDay + '',
@@ -207,7 +204,7 @@
         }
         ///////////////////////////////////////
 
-        
+
         var today = new Date();
         var todayDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         $scope.todayDate = todayDate;
@@ -216,8 +213,7 @@
         var todaymonthname = months[d.getMonth()];
         $scope.todayDateString = todayname + ', ' + todaymonthname + d.getDate() + ', ' + d.getFullYear();
 
-        //get calendar dates
-        $scope.getCalendarEvents = function () {
+
             var thisdate = new Date(), y = thisdate.getFullYear(), m = thisdate.getMonth();
             var firstDayMonth = new Date(y, m, 1);
             var lastDayMonth = new Date(y, m + 1, 0);
@@ -227,9 +223,12 @@
 
             console.log(firstDayMonthFormated);
             console.log(lastDayMonthFormated);
+        //get calendar dates
+            $scope.getCalendarEvents = function (firstDayMonth, lastDayMonth) {
+           
             var req = {
                 method: 'GET',
-                url: '/api/Roster?startDate=' + firstDayMonthFormated + '&endDate=' + lastDayMonthFormated + '',
+                url: '/api/Roster?startDate=' + firstDayMonth + '&endDate=' + lastDayMonth + '',
                 data: {}
             }
             // add true to use authentication token
@@ -237,27 +236,33 @@
                 //console.log(_res.data);
                 $scope.events = _res.data.data;
                 console.log($scope.events);
-                // prepare data for shift template
-                $scope.adjustData = function (event) {
-                    $scope.todayShiftsArray = [];
-                    var thedate = new Date(event.StartDate);
-                    event.dayNumber = thedate.getDate();
-                    event.dayName = (thedate.toString()).substring(0, 3);
-                    event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+                if ($scope.events != 'You are not authorized to view your schedule in this time range') {
+                    // prepare data for shift template
+                    $scope.adjustData = function (event) {
+                        $scope.todayShiftsArray = [];
+                        var thedate = new Date(event.StartDate);
+                        event.dayNumber = thedate.getDate();
+                        event.dayName = (thedate.toString()).substring(0, 3);
+                        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
 
-                    for (var i = 0; i < $scope.events.length; i++) {
-                        if ($scope.events[i].StartDate == todayDate) {
-                            $scope.todayShiftsArray.push($scope.events[i]);
-                            console.log($scope.todayShiftsArray);
+                        for (var i = 0; i < $scope.events.length; i++) {
+                            if ($scope.events[i].StartDate == todayDate) {
+                                $scope.todayShiftsArray.push($scope.events[i]);
+                                console.log($scope.todayShiftsArray);
+                            }
                         }
                     }
                 }
+                else {
+                    $scope.events = [];
+                    console.log('no data found');
+                }
+                
             });
         }
-        $scope.getCalendarEvents();
+            $scope.getCalendarEvents(firstDayMonthFormated, lastDayMonthFormated);
         //////////////////////////////////////////////////////////////////////////////
 
-        
 
         $scope.calendarEvents = [];
         // Calendar
@@ -286,11 +291,28 @@
                         $scope.calendarEvents.push($scope.events[i]);
                         console.log($scope.calendarEvents);
                     }
+
                 }
                 $scope.loadCalendarEvents();
             },
             changeMonth: function (month, year) {
                 console.log(month, year);
+                console.log(new Date(year, month.index , 1));
+                console.log(new Date(year, month.index + 1, 0));
+                    
+                var preMonthFirstDay = new Date(year, month.index, 1);
+                var preMonthLastDay = new Date(year, month.index + 1, 0);
+
+                
+                // send to function
+                var formatedMonthFirstDay = preMonthFirstDay.getFullYear() + '-' + (preMonthFirstDay.getMonth() + 1) + '-' + preMonthFirstDay.getDate();
+                var formatedMonthLastDay = preMonthLastDay.getFullYear() + '-' + (preMonthLastDay.getMonth() + 1) + '-' + preMonthLastDay.getDate();
+
+                console.log(formatedMonthFirstDay);
+                console.log(formatedMonthLastDay);
+
+                $scope.getCalendarEvents(formatedMonthFirstDay, formatedMonthLastDay);
+
                 $scope.calendarEvents = [];
                 $scope.loadCalendarEvents();
                 $scope.load();
@@ -329,14 +351,35 @@
             // to add colored circles to dayes with events
             // i'm here
             var log = [];
+
+            var counter = 0;
             angular.forEach($scope.events, function (res, Index) {
+
+            //for (var i = 0; i < $scope.events.length; i++) {
+                var status1; var status2;
                 var eventDate = new Date(res.StartDate);
                 console.log(eventDate);
+                if (counter == 0) {
+                    $scope.events.push({ "ShiftId": counter, "EmpNo": "30", "EmployeeName": "", "LocationID": "ADH05", "LocationName": "Bondi ADHOC", "ShortLocationName": "Bondi ADHOC", "ShiftStatusCode": "CONFRM", "ShiftStatus": "Confirmed", "RosterDateName": "Wednesday", "StartDate": "2016-06-29T12:00:00", "EndDate": "2016-06-29T13:00:00", "TotalHours": 1, "TaskCode": "", "TaskName": "", "NotesToEmployee": null, "Color": "#3b558a", "date": null });
+                    counter++;
+                }
+                console.log(counter);
                 eventDate = eventDate.getFullYear() + '-' + (eventDate.getMonth() + 1) + '-' + eventDate.getDate();
-                //$timeout(function () {
-                //    angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion3 ' + res.color1 + '">' + res.val1 + '</div>\
-                //          <div class="badge postion4 ' + res.color2 + '">' + res.val2 + '</div>');
-                //});
+                console.log(res.ShiftStatus);
+                if (res.ShiftStatus == 'Confirmed') {
+                    status1 = 'confirmed';
+                    $timeout(function () {
+                        angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion3 ' + status1 + '">1</div>');
+                    });
+                }
+                if (res.ShiftStatus == 'tentative') {
+                    status2 = 'tentative';
+                    $timeout(function () {
+                        angular.element(document.querySelector('#badge' + eventDate)).append('<div class="badge postion4 ' + status2 + '">1</div>');                    });
+                }
+             //}
+
+                
             }, log);
             
         } 

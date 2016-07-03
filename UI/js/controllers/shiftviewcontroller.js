@@ -27,13 +27,26 @@
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
                 if (_res.data.code = 200) {
+                    $scope.pageTitle = _res.data.data.ShortLocationName;
+                    var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
+                    $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
+                    $scope.startDate = _res.data.data.StartDate;
+                    $scope.endDate = _res.data.data.EndDate;
+                    $scope.shiftBreak = '0 hours,0 mins';
+                    $scope.shiftSite = '[Sec] Security Guard';
+                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $ionicLoading.hide();
                 }
             });
         }
-        
+
     });
-    $scope.shiftNotes = 'This IS Shift Notes About Condell Park';
+
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -99,7 +112,7 @@
     var count = true;
     $scope.takeBreak = function () {
         $scope.breakOut = true;
-        
+
         count = true;
         $scope.timecounter = 0;
         $scope.countdown = function () {

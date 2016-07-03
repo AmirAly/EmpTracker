@@ -141,10 +141,10 @@
 
 @media only screen and (min-width: 375px) {
      .bar-header .floatRight span{
-         max-width: 140px;
+         max-width: 120px;
      }
      .bar-header .floatRight img {
-            right: 188px;
+            right: 168px;
         }
 }
 
@@ -628,11 +628,11 @@ i.icon.icon-right {
 }
 
 .homePage .calendarView .tentative {
-    background-color: #e74c3c;
+    background-color: #970314;
 }
 
 .homePage .calendarView .confirmed {
-    background-color: #f1c40f;
+    background-color: #3b558a;
 }
 
 .homePage .calendarView .void {
@@ -663,11 +663,11 @@ i.icon.icon-right {
         }
 
 .tentativeFont {
-    color: #e74c3c;
+    color: #970314;
 }
 
 .confirmedFont {
-    color: #f1c40f;
+    color: #3b558a;
 }
 
 .voidFont {

@@ -20,43 +20,43 @@
         <div class="card">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Date</span>
-                <span class="text-right col col-66 bluefont">Jan 15, 2016</span>
+                <span class="text-right col col-66 bluefont" >{{shiftDate}}</span>
             </div>
         </div>
         <div class="card">
             <div class="list">
                 <div class="item item-text-wrap row row-center padding">
                     <span class="col">Start time</span>
-                    <span class="text-right col-66 col bluefont">8:20 pm</span>
+                    <span class="text-right col-66 col bluefont">{{startDate   | date:'hh:mm a'}}</span>
                 </div>
                 <div class="item item-text-wrap row row-center padding">
                     <span class="col">End time</span>
-                    <span class="text-right col-66 col bluefont">9:33 pm</span>
+                    <span class="text-right col-66 col bluefont">{{endDate   | date:'hh:mm a'}}</span>
                 </div>
                 <div class="item item-text-wrap row row-center padding">
                     <span class="col">Break (Duration)</span>
-                    <span class="text-right col-50 col bluefont">0 hours,0 mins</span>
+                    <span class="text-right col-50 col bluefont">{{shiftBreak}}</span>
                 </div>
             </div>
         </div>
         <div class="card">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Site</span>
-                <span class="text-right col-66 col bluefont">[Sec] Security Guard</span>
+                <span class="text-right col-66 col bluefont">{{shiftSite}}</span>
             </div>
         </div>
 
         <div class="card">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Address</span>
-                <span class="text-right col col-66 bluefont" ng-click="viewMap()">35 Hunter St. Condell Park , NSW 2200</span>
+                <span class="text-right col col-66 bluefont" ng-click="viewMap()">{{shiftaddress}}</span>
             </div>
         </div>
         <div class="card">
             <div class="item item-text-wrap row row-top padding">
                 <span class="col">Shift Notes</span>
                 <label class="item item-input noborder col-66">
-                    <textarea placeholder="Shift Notes" rows="5" class="col" readonly
+                    <textarea rows="5" class="col" readonly
                               ng-model="shiftNotes"
                               ng-model-options="{ updateOn: 'blur' }"
                               ng-change="updateNotes(shiftNotes)"></textarea>
