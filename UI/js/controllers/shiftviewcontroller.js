@@ -1,22 +1,32 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
 
     $scope.$on('$ionicView.enter', function () {
 
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0,
-            template: '<i class="icon ion-loading-d"></i>'
-        });
-
-        $rootScope.toggledrag = true;
+        console.log($window.localStorage['IsTempLogin']);
         console.log($stateParams.shiftid);
-        if ($stateParams.shiftid == "") {
+
+        if ($window.localStorage['IsTempLogin'] === 'true') {
+            $scope.pageTitle = "Available shift";
+            $scope.tempLogin = true;
+        }
+
+        else if ($stateParams.shiftid == "") {
+            $rootScope.toggledrag = true;
+            $scope.tempLogin = false;
             $scope.pageTitle = "Available shift";
         }
+
         else {
+            $scope.tempLogin = false;
+            $rootScope.toggledrag = true;
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
             //api here
             var req = {
                 method: 'GET',
@@ -137,5 +147,11 @@
         $scope.minutes = 0;
         $scope.seconds = 0;
         $scope.breakOut = false;
+    }
+
+    $scope.logout = function () {
+        $window.localStorage['IsTempLogin'] = false;
+        localStorage.clear();
+        $state.go('login');
     }
 });

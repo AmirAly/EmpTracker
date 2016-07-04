@@ -19,7 +19,7 @@
             <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top ">
 
                 <!-- Tab 1 -->
-                <ion-tab title="Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline" on-select="getshifts()">
+                <ion-tab title="Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline">
                     <ion-nav-view name="tab-tab1">
                         <ion-content overflow-scroll="true" padding="true" class="calendarView ">
                             <div class="padding-top">
@@ -98,8 +98,8 @@
                 </ion-tab>
 
                 <!-- Tab 3 -->
-                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadCalendarEvents()">
-                    <ion-nav-view name="tab-tab2">
+                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+                    <ion-nav-view name="tab-tab3">
                         <ion-content overflow-scroll="true" padding="true" class="calendarView ">
                             <flex-calendar options="options" events="events"></flex-calendar>
                             <div class="row row-center text-center padding-vertical dvTotalHrs">
@@ -115,6 +115,9 @@
                                         <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
                                         <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
                                     </div>
+                                </div>
+                                <div class="card text-center padding-top" ng-show="!calendarEvents.length">
+                                    <h2>There is no shifts</h2>
                                 </div>
                             </div>
 

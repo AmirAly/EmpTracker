@@ -3,6 +3,10 @@
     $scope.password = 'Gotodaw2';
     $scope.companycode = 'DEV';
 
+
+    console.log($window.localStorage['UserName']);
+    console.log($window.localStorage['authorizationToken']);
+
     $scope.afterLoginError = false;
     $scope.submitForm = function (form) {
         $ionicLoading.show({

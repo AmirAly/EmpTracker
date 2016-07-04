@@ -1,4 +1,4 @@
-﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate) {
+﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $window) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -7,7 +7,7 @@
     };
 
     $scope.menuItems = [
-        { icon: 'ion-ios-home', text: 'Dashboard', linkTo: 'dashboard()', badge: false },
+    { icon: 'ion-ios-home', text: 'Dashboard', linkTo: 'dashboard()', badge: false },
     { icon: 'ion-android-list', text: 'Schedule', linkTo: 'home()', badge: false },
     { icon: 'ion-clock', text: 'Attendance', linkTo: 'attendance()', badge: false },
     { icon: 'ion-pinpoint', text: 'Time Clock', linkTo: 'shiftView()', badge: false },
@@ -20,6 +20,7 @@
         $state.go('app.dashboard');
     }
     $scope.home = function () {
+        console.log('home');
         $state.go('app.home');
     }
     $scope.shiftView = function () {
@@ -32,6 +33,8 @@
         $state.go('app.notifications');
     }
     $scope.logout = function () {
+        $window.localStorage['IsTempLogin'] = false;
+        localStorage.clear();
         $state.go('login');
     }
     $scope.challenge = function () {

@@ -46,6 +46,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: 'MenuController'
     })
     .state('app.home', {
+        cache: false,
         url: '/home',
         views: {
             'menuContent': {

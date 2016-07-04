@@ -1,15 +1,15 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
-        <button class="button button-icon stable" ng-click="notifications()">
+        <button ng-hide="tempLogin" type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button ng-hide="tempLogin" class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">3</span>
         </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
-        <div class="pull-right floatRight">
+        <div class="pull-right floatRight" ng-hide="tempLogin">
             <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
-            <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
+            <a class="button button-icon icon ion-ios-keypad" ng-hide="tempLogin" ng-click="showSubMenu()"></a>
         </div>
     </ion-header-bar>
     
@@ -76,8 +76,11 @@
     </ion-content>
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">
-            <button class="button button-clear ion-ios-close-outline" ng-click="goBack()">
+            <button ng-hide="tempLogin" class="button button-clear ion-ios-close-outline" ng-click="goBack()">
                 <span>&nbsp;Cancel</span>
+            </button>
+            <button ng-show="tempLogin" class="button button-clear ion-log-out" ng-click="logout()">
+                <span>&nbsp;logout</span>
             </button>
             <button class="button button-clear ion-ios-stopwatch-outline lastButton" ng-hide="clockOut" ng-click="showConfirmIn()">
                 <span>&nbsp;Clock in</span>
