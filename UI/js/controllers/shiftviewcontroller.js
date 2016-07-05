@@ -37,13 +37,13 @@
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
                 if (_res.data.code = 200) {
-                    $scope.pageTitle = _res.data.data.ShortLocationName;
+                    $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
                     $scope.startDate = _res.data.data.StartDate;
                     $scope.endDate = _res.data.data.EndDate;
-                    $scope.shiftBreak = '0 hours,0 mins';
-                    $scope.shiftSite = '[Sec] Security Guard';
+                    $scope.shiftBreak = _res.data.data.BreakDuration;
+                    $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $ionicLoading.hide();

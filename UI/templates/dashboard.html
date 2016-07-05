@@ -3,12 +3,12 @@
         <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
         <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
-            <span class="badge badge-assertive">3</span>
+            <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
-            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
+            <img ng-src="{{globalUserPhoto}}" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
             <button class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></button>
         </div>
     </ion-header-bar>
@@ -17,30 +17,7 @@
 
         <!--My Totals-->
         <h3>My Totals</h3>
-        <!--<div class="padding-horizontal divCircled">
-            <div class="divContent">
-                <div class="row firstLine">
-                    <div class="col text-center">
-                        <b>DAY TOTAL</b>
-                    </div>
-                </div>
-                <div class="row secondLine">
-                    <div class="col">
-                        <h1>00</h1>
-                        <span>hrs</span>
-                    </div>
-                    <div class="col">
-                        <h1>00</h1>
-                        <span>mins</span>
-                    </div>
-                </div>
-                <div class="row thirdLine">
-                    <div class="col text-center">
-                        <span>of 8.0 hrs</span>
-                    </div>
-                </div>
-            </div>
-        </div>-->
+        
         <div class="list listSchedule">
             <div class="item item-divider">
                 Schedule

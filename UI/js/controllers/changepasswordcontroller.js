@@ -3,6 +3,7 @@
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
     });
+    $scope.afterSubmitError = false;
     $scope.userData = {};
     $scope.notifications = function () {
         $state.go('app.notifications');
@@ -14,8 +15,17 @@
         window.history.back();
     }
     $scope.updateAccount = function (form) {
+        $scope.afterSubmitError = false;
         if (form.$valid) {
-
+            
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
             console.log($scope.userData.CurrentPassword);
             console.log($scope.userData.password);
             console.log($scope.userData.confirm);
@@ -28,12 +38,16 @@
             API.execute(req, true).then(function (_res) {
                 console.log(_res);
                 if (_res.data.code == 200) {
+                    $ionicLoading.hide();
                     showConfirmation();
                     window.setTimeout(function () {
                         $state.go('app.myaccount');
-                    }, 5500);
+                    }, 3500);
                 }
                 else {
+                    $ionicLoading.hide();
+                    $scope.afterSubmitError = true;
+                    $scope.afterSubmitErrorTxt = 'wrong old password';
                     console.log('wrong old password')
                 }
             });
@@ -54,7 +68,7 @@
 
         $timeout(function () {
             $ionicLoading.hide();
-        }, 5000);
+        }, 3000);
     };
 
 });

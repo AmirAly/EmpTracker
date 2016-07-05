@@ -117,20 +117,22 @@
 
         .bar-header .floatRight img {
             height: auto;
-            width: 36px;
+            width: 30px;
             position: fixed;
-            right: 148px;
+            right: 121px;
+            top:7px;
         }
 
         .bar-header .floatRight span {
             white-space: nowrap;
             padding: 7px 3px;
             width: 100%;
-            max-width: 100px;
+            max-width: 75px;
             overflow: hidden !important;
             text-overflow: ellipsis;
             position: fixed;
             right: 46px;
+            font-size: 9px;
         }
 
         .bar-header .floatRight .button.button-icon.icon.ion-ios-keypad {
@@ -141,10 +143,10 @@
 
 @media only screen and (min-width: 375px) {
      .bar-header .floatRight span{
-         max-width: 120px;
+         max-width: 100px;
      }
      .bar-header .floatRight img {
-            right: 168px;
+            right: 148px;
         }
 }
 
@@ -640,7 +642,7 @@ i.icon.icon-right {
 }
 
 .homePage .calendarView .training {
-    background-color: #2ecc71;
+    background-color: #3399ff;
 }
 
 .homePage .dvTotalHrs {
@@ -675,7 +677,7 @@ i.icon.icon-right {
 }
 
 .trainingFont {
-    color: #2ecc71;
+    color: #3399ff;
 }
 
 

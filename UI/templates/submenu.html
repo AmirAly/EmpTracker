@@ -1,10 +1,14 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
         <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter}}</span>
+        </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
-            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
+            <img ng-src="{{globalUserPhoto}}" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
             <button class="button button-icon icon ion-ios-keypad"></button>
         </div>
     </ion-header-bar>
@@ -16,7 +20,7 @@
             <div class="col col-33 text-center padding" ng-if="$index<menuItems.length">
                 <div class="padding-bottom card" ng-click="{{menuItems[$index].linkTo}}" ng-if="menuItems[$index]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index].icon}}">
-                        <span ng-show="{{menuItems[$index].badge}}" class="badge badge-calm fontActionBlue">3</span>
+                        <span ng-show="{{menuItems[$index].badge}}" class="badge badge-calm fontActionBlue">{{notifictionsCounter}}</span>
                     </button>
                     <span class="h5 fontActionBlue">{{menuItems[$index].text}}</span>
                 </div>
@@ -25,7 +29,7 @@
             <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
                 <div class="padding-bottom card" ng-click="{{menuItems[$index+1].linkTo}}" ng-if="menuItems[$index+1]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+1].icon}}">
-                        <span ng-show="{{menuItems[$index+1].badge}}" class="badge badge-calm fontActionBlue">3</span>
+                        <span ng-show="{{menuItems[$index+1].badge}}" class="badge badge-calm fontActionBlue">{{notifictionsCounter}}</span>
                     </button>
                     <span class="h5 fontActionBlue">{{menuItems[$index+1].text}}</span>
                 </div>
@@ -34,7 +38,7 @@
             <div class="col col-33 text-center padding" ng-if="($index+1)<menuItems.length">
                 <div class="padding-bottom card" ng-click="{{menuItems[$index+2].linkTo}}" ng-if="menuItems[$index+2]">
                     <button class="button button-full fontActionBlue button-icon icon light text-left {{menuItems[$index+2].icon}}">
-                        <span ng-show="{{menuItems[$index+2].badge}}" class="badge badge-calm fontActionBlue">3</span>
+                        <span ng-show="{{menuItems[$index+2].badge}}" class="badge badge-calm fontActionBlue">{{notifictionsCounter}}</span>
                     </button>
                     <span class="h5 fontActionBlue">{{menuItems[$index+2].text}}</span>
                 </div>

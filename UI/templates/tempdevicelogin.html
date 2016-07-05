@@ -9,7 +9,7 @@
             <div class="spacer"></div>
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <img class="circle" ng-src="images/unknown.png" />
+                    <img class="circle" ng-src="{{globalUserPhoto}}" />
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
 
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <a href="#/login.html">Log me out</a>
+                    <a ng-click="logout()" href="#/tempdevicelogin.html">Log me out</a>
                 </div>
             </div>
 

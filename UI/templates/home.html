@@ -9,7 +9,7 @@
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
-            <img ng-src="images/unknown.png" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
+            <img ng-src="{{globalUserPhoto}}" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
             <a class="button button-icon icon ion-ios-keypad" ng-click="showSubMenu()"></a>
         </div>
     </ion-header-bar>
@@ -98,7 +98,7 @@
                 </ion-tab>
 
                 <!-- Tab 3 -->
-                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadCalendarEvents()">
                     <ion-nav-view name="tab-tab3">
                         <ion-content overflow-scroll="true" padding="true" class="calendarView ">
                             <flex-calendar options="options" events="events"></flex-calendar>

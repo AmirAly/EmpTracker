@@ -11,7 +11,7 @@
             <div class="padding-left" ng-repeat="item in menuItems">
                 <button menu-close ng-click="{{item.linkTo}}" class="button button-icon stable text-left">
                     <i class="icon {{item.icon}}"></i>
-                    <span ng-show="{{item.badge}}" class="badge badge-dark">3</span>
+                    <span ng-show="{{item.badge}}" class="badge badge-dark">{{notifictionsCounter}}</span>
                     <span class="h5">&nbsp;{{item.text}}</span>
                 </button>
             </div>
