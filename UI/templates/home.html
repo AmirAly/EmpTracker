@@ -103,10 +103,10 @@
                         <ion-content overflow-scroll="true" padding="true" class="calendarView ">
                             <flex-calendar options="options" events="events"></flex-calendar>
                             <div class="row row-center text-center padding-vertical dvTotalHrs">
-                                <div class="col col-25"><div><b class="confirmedFont">Confirmed</b></div><div>10.00 HRS</div></div>
-                                <div class="col col-25"><div><b class="tentativeFont">Tentative</b></div><div>8.00 HRS</div></div>
-                                <div class="col col-25"><div><b class="trainingFont">Training</b></div><div>14.00 HRS</div></div>
-                                <div class="col col-25"><div><b class="voidFont">Void</b></div><div>12.00 HRS</div></div>
+                                <div class="col col-25"><div><b class="confirmedFont">Confirmed</b></div><div>{{ConfirmedShiftsCounter}} HRS</div></div>
+                                <div class="col col-25"><div><b class="tentativeFont">Tentative</b></div><div>{{TentativeShiftsCounter}} HRS</div></div>
+                                <div class="col col-25"><div><b class="trainingFont">Training</b></div><div>{{TrainingShiftsCounter}} HRS</div></div>
+                                <div class="col col-25"><div><b class="voidFont">Void</b></div><div>{{VoidShiftsCounter}} HRS</div></div>
                             </div>
 
                             <div class="list padding">

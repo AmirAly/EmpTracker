@@ -243,6 +243,7 @@
 
         //get calendar dates
         $scope.getCalendarEvents = function (firstDayMonth, lastDayMonth) {
+            
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -259,6 +260,7 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 $scope.events = _res.data.data;
+
                 console.log($scope.events);
                 if ($scope.events != 'You are not authorized to view your schedule in this time range') {
                     // prepare data for shift template
@@ -268,7 +270,7 @@
                         event.dayNumber = thedate.getDate();
                         event.dayName = (thedate.toString()).substring(0, 3);
                         event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
-
+                        
                         for (var i = 0; i < $scope.events.length; i++) {
                             if ($scope.events[i].StartDate == todayDate) {
                                 $scope.todayShiftsArray.push($scope.events[i]);
@@ -340,6 +342,12 @@
                     showDelay: 0,
                     template: '<i class="icon ion-loading-d"></i>'
                 });
+
+                $scope.ConfirmedShiftsCounter = 0;
+                $scope.TentativeShiftsCounter = 0;
+                $scope.TrainingShiftsCounter = 0;
+                $scope.VoidShiftsCounter = 0;
+
                 var preMonthFirstDay = new Date(year, month.index, 1);
                 var preMonthLastDay = new Date(year, month.index + 1, 0);
 
@@ -397,6 +405,7 @@
         
               
         $scope.loadCalendarEvents = function () {
+
             if (checkId == 1) {
                 $timeout(function () {
                     // to show today events by defalt
@@ -414,6 +423,10 @@
 
             angular.forEach($scope.events, function (res, Index) {
 
+                $scope.ConfirmedShiftsCounter = 0;
+                $scope.TentativeShiftsCounter = 0;
+                $scope.TrainingShiftsCounter = 0;
+                $scope.VoidShiftsCounter = 0;
                 var status1; var status2; var status3; var status4;
                 var counter1 = 0; var counter2 = 0; var counter3 = 0; var counter4 = 0;
                 var eventDate = new Date(res.StartDate);
@@ -477,6 +490,21 @@
                     $timeout(function () {
                         angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeTraining' + eventDate + '" class="badge postion2 ' + status4 + '">' + counter4 + '</div>');
                     }, 100);
+                }
+
+                for (var k = 0; k < $scope.events.length; k++) {
+                    if ($scope.events[k].ShiftStatus == 'Confirmed') {
+                        $scope.ConfirmedShiftsCounter = $scope.ConfirmedShiftsCounter + $scope.events[k].TotalHours;
+                    }
+                    if ($scope.events[k].ShiftStatus == 'tentative') {
+                        $scope.TentativeShiftsCounter = $scope.TentativeShiftsCounter + $scope.events[k].TotalHours;
+                    }
+                    if ($scope.events[k].ShiftStatus == 'Training') {
+                        $scope.TrainingShiftsCounter = $scope.TrainingShiftsCounter + $scope.events[k].TotalHours;
+                    }
+                    if ($scope.events[k].ShiftStatus == 'Void') {
+                        $scope.VoidShiftsCounter = $scope.VoidShiftsCounter + $scope.events[k].TotalHours;
+                    }
                 }
 
             }, log);
