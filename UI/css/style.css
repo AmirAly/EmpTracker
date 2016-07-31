@@ -28,6 +28,14 @@
     height: 40px;
 }
 
+.spacer2 {
+    height: 20px;
+}
+
+.spacer3 {
+    height: 10px;
+}
+
 .circle {
     border-radius: 50%;
     height: 40vw;
@@ -120,7 +128,7 @@
             width: 30px;
             position: fixed;
             right: 121px;
-            top:7px;
+            top: 7px;
         }
 
         .bar-header .floatRight span {
@@ -142,16 +150,17 @@
         }
 
 @media only screen and (min-width: 375px) {
-     .bar-header .floatRight span{
-         max-width: 100px;
-     }
-     .bar-header .floatRight img {
-            right: 148px;
-        }
+    .bar-header .floatRight span {
+        max-width: 100px;
+    }
+
+    .bar-header .floatRight img {
+        right: 148px;
+    }
 }
 
-.ion-loading-a:before, .ion-loading-b:before ,.ion-loading-c:before, .ion-loading-d:before{
-        font-size: 28px;
+.ion-loading-a:before, .ion-loading-b:before, .ion-loading-c:before, .ion-loading-d:before {
+    font-size: 28px;
 }
 
 .menu .bar-header {
@@ -1074,29 +1083,29 @@ i.icon.icon-right {
 }
 
 /*forget page*/
-.forgetPage {
-    /*background-color:#fff !important;*/
+.forgetPage .errorFont {
+    padding-right: initial;
 }
 
-    .forgetPage .roundedDv {
-        padding: 18px;
-        padding-left: 10px;
-        border: 1px solid #bbb;
-        border-radius: 7px;
-        background-color: #F7F7F7;
+.forgetPage .roundedDv {
+    padding: 18px;
+    padding-left: 10px;
+    border: 1px solid #bbb;
+    border-radius: 7px;
+    background-color: #F7F7F7;
+}
+
+    .forgetPage .roundedDv h3 {
+        color: #7f7f7f;
+        font-weight: bold;
     }
 
-        .forgetPage .roundedDv h3 {
-            color: #7f7f7f;
-            font-weight: bold;
-        }
+    .forgetPage .roundedDv p,
+    .forgetPage .roundedDv .spnEmail {
+        color: #646464;
+    }
 
-        .forgetPage .roundedDv p,
-        .forgetPage .roundedDv .spnEmail {
-            color: #646464;
-        }
-
-        .forgetPage .roundedDv label {
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
+    .forgetPage .roundedDv label {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }

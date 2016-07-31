@@ -21,12 +21,23 @@
                     <p class="padding-bottom">Enter your email address and we'll send you an email with instructions to reset your password.</p>
                     <span class="padding-top spnEmail">Email address</span>
                     <label class="item padding-horizontal">
-                        <input ng-model="name" type="email" required placeholder="you@example.com" name="email" id="email" autocorrect="off" autocapitalize="off">
+                        <input ng-model="emailAddress" type="email" required placeholder="you@example.com" name="email" id="email" autocorrect="off" autocapitalize="off">
                         <span ng-show="frmForget.email.$touched  && frmForget.email.$invalid">
                             <span class="errorFont" ng-show="frmForget.email.$error.required">required</span>
                             <span class="errorFont" ng-show="frmForget.email.$error.email">invalid email</span>
                         </span>
                     </label>
+                    <div class="spacer3"></div>
+                    <span class="padding-top spnEmail">Company Code</span>
+                    <label class="item padding">
+                        <!--<i class="icon ion-compose placeholder-icon"></i>-->
+                        <input ng-model="companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
+                        <span ng-show="frmForget.txtCompanyCode.$touched && frmForget.txtCompanyCode.$invalid">
+                            <span class="errorFont" ng-show="frmForget.txtCompanyCode.$error.required">required</span>
+                        </span>
+                    </label>
+                    <div class="errorFont padding">{{afterSendResponceTxt}}</div>
+
                     <button class="button button-calm actionBlue button-block" ng-disabled="frmForget.$invalid" type="submit">
                         <span>&nbsp;Send me a password-reset link</span>
                     </button>
