@@ -9,7 +9,7 @@
             <div class="spacer"></div>
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <img class="circle" ng-src="{{globalUserPhoto}}" />
+                    <img class="circle" ng-src="{{globalUserPhoto}}" src="{{globalUserPhoto}}" />
                 </div>
             </div>
 
@@ -36,7 +36,7 @@
 
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">
-            <button class="button button-clear ion-android-checkmark-circle" ng-click="tempLogin()" >
+            <button class="button button-clear ion-android-checkmark-circle" ng-click="tempDeviceLogin()">
                 <span>&nbsp;Temp Guest login</span>
             </button>
             <button class="button button-clear ion-ios-plus-outline" ng-click="newDeviceLogin()">

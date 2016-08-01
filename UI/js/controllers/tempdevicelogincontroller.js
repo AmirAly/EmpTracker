@@ -1,8 +1,8 @@
 ﻿empTracker.controller("tempdeviceloginController", function ($scope, $state, API, $window, $rootScope, $ionicLoading) {
-    $scope.tempLogin = function () {
-        $window.localStorage['IsTempLogin'] = true;
-        $state.go('app.shiftview');
-    }
+    //$scope.tempLogin = function () {
+    //    $window.localStorage['IsTempLogin'] = true;
+    //    $state.go('app.shiftview');
+    //}
 
     $scope.logout = function () {
         $window.localStorage['IsTempLogin'] = false;
@@ -11,25 +11,117 @@
     }
 
     $scope.newDeviceLogin = function () {
-        $scope.IMEI = '';
-        $scope.DeviceType = '';
-        $scope.DeviceName = '';
-        $scope.MessagingRegistrationNo = '';
-        $scope.HasBuiltInCamera = '';
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        $scope.DeviceType = 'w';
+        $scope.DeviceName = 'w';
+        $scope.MessagingRegistrationNo = 'w';
+        $scope.HasBuiltInCamera = true;
+        $scope.IsTemporaryDevice = false;
 
-        $state.go('app.dashboard');
-        //// add new device
-        //var req = {
-        //    method: 'POST',
-        //    url: '/api/Device',
-        //    data: { IMEI: $scope.IMEI, DeviceType: $scope.DeviceType, DeviceName: $scope.DeviceName, MessagingRegistrationNo: $scope.MessagingRegistrationNo, HasBuiltInCamera: $scope.HasBuiltInCamera }
-        //}
-        //// add true to use authentication token
-        //API.execute(req, true).then(function (_res) {
-        //    console.log(_res.data);
-        //    if (_res.data.code === 200) {
-        //        $state.go('app.dashboard');
-        //    }
-        //});
+        // add new device
+        var req = {
+            method: 'POST',
+            url: '/api/Device',
+            data: {
+                IMEI: $rootScope.IMEI,
+                DeviceType: $scope.DeviceType,
+                DeviceName: $scope.DeviceName,
+                MessagingRegistrationNo: $scope.MessagingRegistrationNo,
+                HasBuiltInCamera: $scope.HasBuiltInCamera,
+                IsTemporaryDevice: $scope.IsTemporaryDevice
+            }
+        }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code === 200) {
+                $ionicLoading.hide();
+                $state.go('app.dashboard');
+            }
+        }, function (error) {
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+        });
     }
+
+    $scope.tempDeviceLogin = function () {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        $scope.DeviceType = 'w';
+        $scope.DeviceName = 'w';
+        $scope.MessagingRegistrationNo = 'w';
+        $scope.HasBuiltInCamera = true;
+        $scope.IsTemporaryDevice = true;
+
+        // use temp device
+        var req = {
+            method: 'POST',
+            url: '/api/Device',
+            data: {
+                IMEI: $rootScope.IMEI,
+                DeviceType: $scope.DeviceType,
+                DeviceName: $scope.DeviceName,
+                MessagingRegistrationNo: $scope.MessagingRegistrationNo,
+                HasBuiltInCamera: $scope.HasBuiltInCamera,
+                IsTemporaryDevice: $scope.IsTemporaryDevice
+            }
+        }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code === 200) {
+                //$window.localStorage['IsTempLogin'] = true;
+                //$state.go('app.shiftview');
+                //$ionicLoading.hide();
+
+                var req = {
+                    method: 'POST',
+                    url: '/Token',
+                    data: {
+                        UserName: $rootScope.name,
+                        Password: $rootScope.password,
+                        CompanyCode: $rootScope.companycode,
+                        grant_type: 'password',
+                        IMEI: $rootScope.IMEI
+                    }
+                }
+                console.log(req);
+                // add true to use authentication token
+                API.execute(req, false).then(function (_res) {
+                    // if user is Employee
+                    if (_res.data.userType == 'Employee') {
+                        $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
+                        var loginCode = _res.data.code;
+                        console.log('loginCode ' + loginCode);
+                        $window.localStorage['IsTempLogin'] = true;
+                        $state.go('app.shiftview');
+                        $ionicLoading.hide();
+                    }
+                   
+                }, function (error) {
+                    console.log(error);
+                    console.log(error.data); /* catch 400  Error here */
+                    $ionicLoading.hide();
+                });
+
+            }
+        }, function (error) {
+            console.log(error); /* catch 400  Error here */
+            $ionicLoading.hide();
+        });
+    }
+
 });

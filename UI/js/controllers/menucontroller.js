@@ -1,4 +1,4 @@
-﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $window) {
+﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -24,7 +24,9 @@
         $state.go('app.home');
     }
     $scope.shiftView = function () {
-        $state.go('app.shiftview');
+        //$state.go('app.shiftview');
+        $state.go('app.shiftview', { shiftid: '' });
+
     }
     $scope.attendance = function () {
         $state.go('app.attendance');

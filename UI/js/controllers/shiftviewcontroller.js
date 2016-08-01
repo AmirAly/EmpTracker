@@ -4,16 +4,95 @@
 
         console.log($window.localStorage['IsTempLogin']);
         console.log($stateParams.shiftid);
-
+        //Temp user login
         if ($window.localStorage['IsTempLogin'] === 'true') {
             $scope.pageTitle = "Available shift";
             $scope.tempLogin = true;
-        }
+            $rootScope.toggledrag = false;
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
+            //api here
+            var req = {
+                method: 'GET',
+                url: '/api/Roster/Next?currentTime=' + 'Mon, 15 Aug 2016 06:53:56 GMT',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+                if (_res.data.code = 200) {
+                    $scope.pageTitle = _res.data.data.TaskName;
+                    var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
+                    $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
+                    $scope.startDate = _res.data.data.StartDate;
+                    $scope.endDate = _res.data.data.EndDate;
+                    $scope.shiftBreak = _res.data.data.BreakDuration;
+                    $scope.shiftSite = _res.data.data.ShortLocationName;
+                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $ionicLoading.hide();
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                    console.log(error.data.Message);
+                    // should use refresh token here
+                    //..
 
+                }
+                $ionicLoading.hide();
+            });
+        }
+            //next shift normal user
         else if ($stateParams.shiftid == "") {
             $rootScope.toggledrag = true;
             $scope.tempLogin = false;
             $scope.pageTitle = "Available shift";
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
+            //api here
+            var req = {
+                method: 'GET',
+                url: '/api/Roster/Next?currentTime=' + 'Mon, 15 Aug 2016 06:53:56 GMT',
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                console.log(_res.data);
+                if (_res.data.code = 200) {
+                    $scope.pageTitle = _res.data.data.TaskName;
+                    var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
+                    $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
+                    $scope.startDate = _res.data.data.StartDate;
+                    $scope.endDate = _res.data.data.EndDate;
+                    $scope.shiftBreak = _res.data.data.BreakDuration;
+                    $scope.shiftSite = _res.data.data.ShortLocationName;
+                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $ionicLoading.hide();
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                    console.log(error.data.Message);
+                    // should use refresh token here
+                    //..
+
+                }
+                $ionicLoading.hide();
+            });
         }
 
         else {

@@ -18,12 +18,20 @@
             template: '<i class="icon ion-loading-d"></i>'
         });
         $scope.afterLoginError = false;
+        $rootScope.IMEI = 10;
         if (form.$valid) {
             var req = {
                 method: 'POST',
                 url: '/Token',
-                data: { UserName: $scope.name, Password: $scope.password, CompanyCode: $scope.companycode, grant_type: 'password' }
+                data: {
+                    UserName: $scope.name,
+                    Password: $scope.password,
+                    CompanyCode: $scope.companycode,
+                    grant_type: 'password',
+                    IMEI: $rootScope.IMEI
+                }
             }
+            console.log(req.data);
             API.execute(req, false).then(function (_res) {
                 // if user is Employee
                 if (_res.data.userType == 'Employee') {
@@ -50,7 +58,10 @@
                             }
                             $window.localStorage['UserName'] = $scope.userName;
                             $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-
+                           
+                            $rootScope.name = $scope.name;
+                            $rootScope.password = $scope.password;
+                            $rootScope.companycode = $scope.companycode;
                             //get Notifications Counter
                             var req = {
                                 method: 'GET',
@@ -59,6 +70,8 @@
                             }
                             // add true to use authentication token
                             API.execute(req, true).then(function (_res) {
+                                console.log(_res.data.code);
+                                console.log(loginCode);
                                 $rootScope.notifictionsCounter = 0;
                                 if (_res.data.code = 200) {
                                     $scope.allAlertsArray = _res.data.data;
@@ -75,6 +88,7 @@
                                     else if (loginCode == 101) { // inactive device
                                         $scope.afterLoginError = true;
                                         $scope.afterLoginErrorTxt = 'Inactive Device';
+                                        $state.go('tempdevicelogin');
                                     }
                                     else if (loginCode == 102) { // new device
                                         $state.go('tempdevicelogin');
@@ -92,6 +106,7 @@
                 //}
             }, function (error) {
                 $scope.afterLoginError = true;
+                console.log(error);
                 console.log(error.data); /* catch 400  Error here */
                 $scope.afterLoginErrorTxt = error.data.error_description;
                 $ionicLoading.hide();
