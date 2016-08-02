@@ -116,7 +116,8 @@
     }
 
     $scope.notifications = function () {
-        $state.go('app.notifications');
+        //$state.go('app.notifications');
+        window.history.back();
     }
 
 });

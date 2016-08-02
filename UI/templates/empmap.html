@@ -1,6 +1,9 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <button type="button" class="button button-icon icon ion-android-notifications" ng-click="notifications()"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter}}</span>
+        </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight" ng-click="openmyaccount()">

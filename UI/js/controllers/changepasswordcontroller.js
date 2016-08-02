@@ -2,19 +2,20 @@
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
+        $scope.userData = {};
+        $scope.frmUpdatePassword.$setPristine();
+        $scope.frmUpdatePassword.$setUntouched();
     });
     $scope.afterSubmitError = false;
     $scope.userData = {};
-    $scope.notifications = function () {
-        $state.go('app.notifications');
-    }
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
+
     $scope.cancel = function () {
         window.history.back();
     }
-    $scope.updateAccount = function (form) {
+    $scope.updatePassword = function (form) {
         $scope.afterSubmitError = false;
         if (form.$valid) {
             
@@ -57,6 +58,9 @@
     }
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
+    }
+    $scope.notifications = function () {
+        $state.go('app.notifications');
     }
 
     function showConfirmation() {

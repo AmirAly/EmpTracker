@@ -18,7 +18,7 @@
             template: '<i class="icon ion-loading-d"></i>'
         });
         $scope.afterLoginError = false;
-        $rootScope.IMEI = 10;
+        $rootScope.IMEI = 20;
         if (form.$valid) {
             var req = {
                 method: 'POST',
@@ -33,55 +33,55 @@
             }
             console.log(req.data);
             API.execute(req, false).then(function (_res) {
-                // if user is Employee
-                if (_res.data.userType == 'Employee') {
-                    $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
-                    var loginCode = _res.data.code;
-                    console.log('loginCode ' + loginCode);
-                    // get user data after login if redirect to dashboard
-                    var req = {
-                        method: 'GET',
-                        url: '/api/Account/Profile',
-                        data: {}
-                    }
-                    // add true to use authentication token
-                    API.execute(req, true).then(function (_res) {
-                        console.log(_res.data);
-                        if (_res.data.code = 200) {
-                            $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-                            console.log($scope.userName);
-                            if (_res.data.data.Photo == null) {
-                                $rootScope.globalUserPhoto = 'images/unknown.png';
-                            }
-                            else {
-                                $rootScope.globalUserPhoto = _res.data.data.Photo;
-                            }
-                            $window.localStorage['UserName'] = $scope.userName;
-                            $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-                           
-                            $rootScope.name = $scope.name;
-                            $rootScope.password = $scope.password;
-                            $rootScope.companycode = $scope.companycode;
-                            //get Notifications Counter
-                            var req = {
-                                method: 'GET',
-                                url: '/api/Notification',
-                                data: {}
-                            }
-                            // add true to use authentication token
-                            API.execute(req, true).then(function (_res) {
-                                console.log(_res.data.code);
-                                console.log(loginCode);
-                                $rootScope.notifictionsCounter = 0;
-                                if (_res.data.code = 200) {
-                                    $scope.allAlertsArray = _res.data.data;
-                                    for (var i = 0; i < _res.data.data.length; i++) {
-                                        if (_res.data.data[i].IsRead == false) {
-                                            $rootScope.notifictionsCounter++;
-                                        }
-                                    }
-                                    $ionicLoading.hide();
+                $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
+                var loginCode = _res.data.code;
+                console.log('loginCode ' + loginCode);
+                // get user data after login if redirect to dashboard
+                var req = {
+                    method: 'GET',
+                    url: '/api/Account/Profile',
+                    data: {}
+                }
+                // add true to use authentication token
+                API.execute(req, true).then(function (_res) {
+                    console.log(_res.data);
+                    if (_res.data.code = 200) {
+                        $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
+                        console.log($scope.userName);
+                        if (_res.data.data.Photo == null) {
+                            $rootScope.globalUserPhoto = 'images/unknown.png';
+                        }
+                        else {
+                            $rootScope.globalUserPhoto = _res.data.data.Photo;
+                        }
+                        $window.localStorage['UserName'] = $scope.userName;
+                        $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
 
+                        $rootScope.name = $scope.name;
+                        $rootScope.password = $scope.password;
+                        $rootScope.companycode = $scope.companycode;
+                        //get Notifications Counter
+                        var req = {
+                            method: 'GET',
+                            url: '/api/Notification',
+                            data: {}
+                        }
+                        // add true to use authentication token
+                        API.execute(req, true).then(function (_res) {
+                            console.log(_res.data.code);
+                            console.log(loginCode);
+                            $rootScope.notifictionsCounter = 0;
+                            if (_res.data.code = 200) {
+                                $scope.allAlertsArray = _res.data.data;
+                                for (var i = 0; i < _res.data.data.length; i++) {
+                                    if (_res.data.data[i].IsRead == false) {
+                                        $rootScope.notifictionsCounter++;
+                                    }
+                                }
+                                $ionicLoading.hide();
+                                // if user is Employee
+                                if (_res.data.userType == 'Employee') {
+                                    $rootScope.isSupervisor = false;
                                     if (loginCode == 100) { // his device
                                         $state.go('app.dashboard');
                                     }
@@ -94,16 +94,27 @@
                                         $state.go('tempdevicelogin');
                                     }
                                 }
-                            });
-                        }
-                    });
-                }
-                //// if user is supervisor
-                //else {
-                //    $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
-                //    console.log($window.localStorage['authorizationToken']);
-                //    $state.go('supervisingemployees');
-                //}
+                                    //if user is supervisor
+                                else {
+                                    $rootScope.isSupervisor = true;
+                                    if (loginCode == 100) { // his device
+                                        $state.go('supervisingemployees');
+                                    }
+                                    else if (loginCode == 101) { // inactive device
+                                        $scope.afterLoginError = true;
+                                        $scope.afterLoginErrorTxt = 'Inactive Device';
+                                        $state.go('tempdevicelogin');
+                                    }
+                                    else if (loginCode == 102) { // new device
+                                        $state.go('tempdevicelogin');
+                                    }
+                                }
+
+                            }
+                        });
+                    }
+                });
+
             }, function (error) {
                 $scope.afterLoginError = true;
                 console.log(error);

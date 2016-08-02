@@ -50,18 +50,20 @@
 
                     <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>
-                        <input ng-model="userData.mobile" maxlength="13" type="text" required placeholder="Mobile" name="txtMobile" id="txtMobile">
+                        <input ng-model="userData.mobile" maxlength="12" type="tel" pattern="^\d{4}-\d{3}-\d{3}$" required placeholder="Mobile" name="txtMobile" id="txtMobile">
                         <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.pattern">invalid phone syntax ,it should look like xxxx-xxx-xxx</span>
                         </span>
                     </label>
 
                     <label class="item  padding">
                         <i class="icon ion-ios-email placeholder-icon"></i>
-                        <input ng-model="userData.email" type="email" required placeholder="Email" name="userName" id="userName">
+                        <input ng-model="userData.email" ng-pattern="emailPattern" type="email" required placeholder="Email" name="userName" id="userName">
                         <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
                             <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
+                            <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.pattern">invalid email syntax</span>
                         </span>
                     </label>
                 </ion-list>

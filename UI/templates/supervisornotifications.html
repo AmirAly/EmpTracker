@@ -1,6 +1,6 @@
 ﻿<ion-view class="notificationsPage">
     <ion-header-bar class="bar-dark">
-        <button class="button button-icon stable">
+        <button class="button button-icon stable" ng-click="back()">
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
@@ -13,13 +13,13 @@
 
     <ion-content overflow-scroll="true" class="has-header has-footer">
 
-            <div class="list listAlerts">
-                <a ng-repeat="alert in allAlertsArray" class="item item-icon-left {{alert.class}}" ng-class="{{alert.ngclass}}">
-                    <i class="icon {{alert.icon}}"></i>
-                    <span class="text-left txtalert">{{alert.text}}</span>
-                    <span class="text-left item-note">{{alert.dateTime}}</span>
-                </a>
-            </div>
+        <div class="list listAlerts">
+            <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index,'{{alert.ID}}')" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
+                <i class="icon ion-alert-circled"></i>
+                <span class="text-left txtalert">{{alert.NotificationBody}}</span>
+                <span class="text-left item-note">{{alert.DateCreated  | date:'MMM dd, At  hh:mm'}}</span>
+            </a>
+        </div>
 
         <div class="card text-center padding-top" ng-show="!allAlertsArray.length">
             <h2>There is no notifications</h2>

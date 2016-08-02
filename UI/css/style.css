@@ -512,12 +512,6 @@
     }
 
 
-
-.supervisorAccountPage .card, .myAccountPage .card {
-    margin-top: 0px !important;
-    margin-bottom: 5px;
-}
-
 .supervisorAccountPage .list .placeholder-icon,
 .loginpage .list .placeholder-icon {
     position: absolute;
@@ -531,7 +525,7 @@
 
 
 /*accordion part*/
-.list .item.item-accordion {
+/*.list .item.item-accordion {
     line-height: 38px;
     padding: 0;
     transition: 0.09s all linear;
@@ -548,7 +542,7 @@ i.icon.icon-right {
 .list .item.item-accordion.ng-hide-add,
 .list .item.item-accordion.ng-hide-remove {
     display: block !important;
-}
+}*/
 
 
 /*home page*/

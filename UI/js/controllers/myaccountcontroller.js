@@ -1,6 +1,7 @@
 ﻿empTracker.controller("myaccountController", function ($scope, $state, $rootScope, $ionicLoading, API, $window) {
     $scope.userData = {};
-    
+    $scope.emailPattern = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,24}$/;
+
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
         $ionicLoading.show({
@@ -117,4 +118,3 @@
         $ionicLoading.hide();
     }
 });
-
