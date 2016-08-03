@@ -1,7 +1,7 @@
 ﻿{
     "employees": [
-        { "name": "Samar Ahmed Ali", "photo": "images/1.jpg", "checkInDate": "09.00 - 08:30" },
-        { "name": "Lara Mansour", "photo": "images/2.jpg", "checkInDate": "00.00 - 08:30" },
-        { "name": "Adam Werni", "photo": "images/3.jpg", "checkInDate": "00.00 - 08:30" }
+        { "EmployeeName": "Samar Ahmed Ali","LocationID": "SNP001",  "photo": "images/1.jpg", "StartDate": "09.00" ,"EndDate": "08:30"},
+        { "EmployeeName": "Lara Mansour", "LocationID": "SNP002", "photo": "images/2.jpg", "StartDate": "00.00"  ,"EndDate": "08:30"},
+        { "EmployeeName": "Adam Werni", "LocationID": "SNP003", "photo": "images/3.jpg", "StartDate": "00.00"  ,"EndDate": "08:30"}
     ]
 }

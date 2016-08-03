@@ -19,22 +19,23 @@
                         <b> Location </b>
                     </span>
 
-                    <select>
-                        <option>Syndy Location 1</option>
-                        <option selected>Melburn</option>
-                        <option>Location 3</option>
+                    <select name="categorySelector"
+                            class="selectbox"
+                            ng-model="search"
+                            ng-options="category.name for category in categories"
+                            ng-change="getByListEmpBySite(search.name)">
+                        <option value="">all</option>
                     </select>
                 </label>
             </li>
-
-            <li ng-repeat="emp in allemployeesArray" class="item item-checkbox">
+            <li ng-repeat="emp in allemployeesArray | filter:search.name" class="item item-checkbox">
                 <div class="checkbox checkbox-dark">
                     <input type="checkbox" ng-checked="selectedAll">
                 </div>
                 <a class="item item-avatar item-borderless" ng-click="openmap()">
                     <img ng-src="{{emp.photo}}">
-                    <h2>{{emp.name}}</h2>
-                    <p>{{emp.checkInDate}}</p>
+                    <h2>{{emp.EmployeeName}}</h2>
+                    <p>{{emp.StartDate}} - {{emp.EndDate}}</p>
                 </a>
             </li>
             <li ng-show="!allemployeesArray.length"><h3 class="text-center padding-top">No employees yet</h3></li>

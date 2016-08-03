@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $http) {
+﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout,$ionicLoading,API, $http) {
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}
@@ -67,6 +67,34 @@
             $scope.selectedAll = false;
         }
     };
+    $scope.categories = [{ name: 'SNP001', value: 'SNP001' }, { name: 'SNP002', value: 'SNP002' }, { name: 'SNP003', value: 'SNP003' }];
+    $scope.getByListEmpBySite = function (_site) {
+        console.log(_site);
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        // use today date & use card to let user select location
+        var req = {
+            method: 'GET',
+            url: '/api/Roster/' + _site + '?startDate=2016-7-1&endDate=2016-7-1&getBy=site',
+            data: {}
+        }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 200) {
+                $scope.allemployeesArray = _res.data.data;
+                console.log(_res.data.data);
+                $ionicLoading.hide();
+            }
+        });
+    }
+
 
     if (ionic.Platform.isAndroid()) {
         // get json from external file

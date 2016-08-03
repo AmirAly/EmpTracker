@@ -91,23 +91,23 @@
             console.log(_res.data);
             if (_res.data.code === 200) {
 
-                var req = {
-                    method: 'POST',
-                    url: '/Token',
-                    data: {
-                        UserName: $rootScope.name,
-                        Password: $rootScope.password,
-                        CompanyCode: $rootScope.companycode,
-                        grant_type: 'password',
-                        IMEI: $rootScope.IMEI
-                    }
-                }
-                console.log(req);
-                // add true to use authentication token
-                API.execute(req, false).then(function (_res) {
-                    // if user is Employee
-                    //if (_res.data.userType == 'Employee') {
-                        $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
+                //var req = {
+                //    method: 'POST',
+                //    url: '/Token',
+                //    data: {
+                //        UserName: $rootScope.name,
+                //        Password: $rootScope.password,
+                //        CompanyCode: $rootScope.companycode,
+                //        grant_type: 'password',
+                //        IMEI: $rootScope.IMEI
+                //    }
+                //}
+                //console.log(req);
+                //// add true to use authentication token
+                //API.execute(req, false).then(function (_res) {
+                //    // if user is Employee
+                //    //if (_res.data.userType == 'Employee') {
+                //        $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
                         var loginCode = _res.data.code;
                         console.log('loginCode ' + loginCode);
                         $window.localStorage['IsTempLogin'] = true;
@@ -122,12 +122,11 @@
                             $state.go('supervisingemployees');
                         }
                     //}
-
-                }, function (error) {
-                    console.log(error);
-                    console.log(error.data); /* catch 400  Error here */
-                    $ionicLoading.hide();
-                });
+            //    }, function (error) {
+            //        console.log(error);
+            //        console.log(error.data); /* catch 400  Error here */
+            //        $ionicLoading.hide();
+            //    });
 
             }
         }, function (error) {

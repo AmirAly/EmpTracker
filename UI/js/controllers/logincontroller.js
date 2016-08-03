@@ -18,7 +18,7 @@
             template: '<i class="icon ion-loading-d"></i>'
         });
         $scope.afterLoginError = false;
-        $rootScope.IMEI = 20;
+        $rootScope.IMEI = 5;
         if (form.$valid) {
             var req = {
                 method: 'POST',
@@ -33,6 +33,8 @@
             }
             console.log(req.data);
             API.execute(req, false).then(function (_res) {
+                console.log(_res.data.userType);
+                var userType = _res.data.userType;
                 $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
                 var loginCode = _res.data.code;
                 console.log('loginCode ' + loginCode);
@@ -80,7 +82,7 @@
                                 }
                                 $ionicLoading.hide();
                                 // if user is Employee
-                                if (_res.data.userType == 'Employee') {
+                                if (userType == 'Employee') {
                                     $rootScope.isSupervisor = false;
                                     if (loginCode == 100) { // his device
                                         $state.go('app.dashboard');
