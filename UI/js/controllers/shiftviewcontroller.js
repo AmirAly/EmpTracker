@@ -44,9 +44,24 @@
                     console.log(error.data.Message);
                     // should use refresh token here
                     //..
+                    $ionicLoading.show({
+                        scope: $scope,
+                        templateUrl: 'templates/tokenexpired.html',
+                        animation: 'slide-in-up'
+                    });
 
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                        // logout
+                        $window.localStorage['IsTempLogin'] = false;
+                        localStorage.clear();
+                        $state.go('login');
+                    }, 5000);
                 }
-                $ionicLoading.hide();
+                else {
+                    $ionicLoading.hide();
+                }
+                
             });
         }
             //next shift normal user
@@ -94,7 +109,7 @@
                 $ionicLoading.hide();
             });
         }
-
+            // get certain shift data
         else {
             $scope.tempLogin = false;
             $rootScope.toggledrag = true;

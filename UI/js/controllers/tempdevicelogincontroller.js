@@ -131,6 +131,15 @@
             }
         }, function (error) {
             console.log(error); /* catch 400  Error here */
+            //$ionicLoading.show({
+            //    scope: $scope,
+            //    templateUrl: 'templates/tokenexpired.html',
+            //    animation: 'slide-in-up'
+            //});
+
+            //$timeout(function () {
+            //    $ionicLoading.hide();
+            //}, 3000);
             $ionicLoading.hide();
         });
     }

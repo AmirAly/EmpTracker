@@ -18,6 +18,7 @@ empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
 
 }]);
 
+
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
     $stateProvider
