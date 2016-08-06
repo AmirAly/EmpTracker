@@ -1054,7 +1054,8 @@ i.icon.icon-right {
             }
 
 .dashboardPage .listSchedule .item-divider {
-    background-color: #7e7e7e;
+    /*background-color: #7e7e7e;*/
+    background-color: #63228a;
     color: #fff;
 }
 

@@ -1,0 +1,20 @@
+1- EMP-NO: 20  
+Name :  MUHAMMAD  
+EMAIL:majed.sydney@yahoo.com
+password: Gotodaw1
+
+2- EMP-NO:  30
+Name: IGOR
+email: sales@roster.com.au
+password: Gotodaw2
+
+3- EMP-NO: 350
+Name: Bassam
+Email: bassam@hotmail.com
+password: Gotodaw3
+
+
+
+If code = 100 then the user is logging in from his active device.  
+If code = 101 the user is logged in from an inactive device. 
+If code = 102 the user is logging in from a new device
