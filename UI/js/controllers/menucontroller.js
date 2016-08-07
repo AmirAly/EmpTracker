@@ -9,7 +9,7 @@
     $scope.menuItems = [
     { icon: 'ion-ios-home', text: 'Dashboard', linkTo: 'dashboard()', badge: false },
     { icon: 'ion-android-list', text: 'Schedule', linkTo: 'home()', badge: false },
-    { icon: 'ion-clock', text: 'Attendance', linkTo: 'attendance()', badge: false },
+    { icon: 'ion-clock', text: 'My Attendance', linkTo: 'attendance()', badge: false },
     { icon: 'ion-pinpoint', text: 'Time Clock', linkTo: 'shiftView()', badge: false },
     { icon: 'ion-android-notifications-none', text: 'Notifications', linkTo: 'notifications()', badge: true },
     //{ icon: 'ion-eye', text: 'Challenge', linkTo: 'challenge()', badge: false },

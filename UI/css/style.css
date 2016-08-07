@@ -382,6 +382,11 @@
         display: block;
     }
 
+    .shiftCard .thirdCoulmn .dvTimeContainer{
+        border: 1px solid #C5C5C5;
+    text-align: center;
+    }
+
     .shiftCard .thirdCoulmn .totalHours {
         color: #444;
         font-size: 17px;
@@ -439,6 +444,10 @@
 
     .submenuPage .card {
         margin: 0 !important;
+    }
+
+    .submenuPage .h5{
+        font-size:12px;
     }
 
 .sideMenuContent {
@@ -1022,6 +1031,18 @@ i.icon.icon-right {
     color: #9e0a11;
 }
 
+.dashboardPage h3 span{
+    font-size: 45%;
+    color: #545454;
+    line-height: 2.5;
+}
+
+.dashboardPage .card{
+    margin-top: 0px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
 
 .dashboardPage .listSchedule .item {
     padding-top: 8px;

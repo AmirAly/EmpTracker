@@ -17,7 +17,7 @@
 
         <!--My Totals-->
         <h3>My Totals</h3>
-        
+
         <div class="list listSchedule">
             <div class="item item-divider">
                 <span class="ion-ios-clock-outline"></span> Schedule
@@ -25,43 +25,83 @@
                     Friday, April 8, 2016
                 </p>
             </div>
-
-            <div class="item row">
-                <div class="col col-25">
-                    <h6>12:00 PM</h6>
-                    <h6>03:00 PM</h6>
-                </div>
-                <div class="col col-75">
-                    <div class="dvWorkingHours">
-                        <h4>3:78</h4>
-                        <h5>hours</h5>
+            <div class="card">
+                <div class="shiftCard">
+                    <div class="text-center">
+                        <div class="row row-top">
+                            <div class="col col-20 col-center text-center firstCoulmn">
+                                <div class="row"><span class="col dayNumber">10</span></div>
+                                <span class="col dayName">Wed</span>
+                            </div>
+                            <div class="col text-left secondCoulmn">
+                                <div class="row">
+                                    <span class="col date">03:00 PM-10:00 PM</span>
+                                </div>
+                                <div class="row">
+                                    <span class="col address">Bondi ADHOC</span>
+                                </div>
+                                <div class="row">
+                                    <span class="col area">ADH05</span>
+                                </div>
+                            </div>
+                            <div class="col col-25 text-right padding-right thirdCoulmn">
+                                <div class="dvTimeContainer">
+                                    <div class="totalHours">7.00</div>
+                                    <div class="hoursTxt">hours</div>
+                                    <div ng-show="attendane==true">
+                                        <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
+                                        <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h6>Bondi Station</h6>
-                    <p>35 Hunter St. Condell Park , NSW 2200</p>
                 </div>
             </div>
-
-            <div class="item row">
-                <div class="col col-25">
-                    <h6>08:00 PM</h6>
-                    <h6>10:30 PM</h6>
-                </div>
-                <div class="col col-75">
-                    <div class="dvWorkingHours">
-                        <h4>3:78</h4>
-                        <h5>hours</h5>
+            <div class="card">
+                <div class="shiftCard">
+                    <div class="text-center">
+                        <div class="row row-top">
+                            <div class="col col-20 col-center text-center firstCoulmn">
+                                <div class="row"><span class="col dayNumber">10</span></div>
+                                <span class="col dayName">Wed</span>
+                            </div>
+                            <div class="col text-left secondCoulmn">
+                                <div class="row">
+                                    <span class="col date">03:00 PM-10:00 PM</span>
+                                </div>
+                                <div class="row">
+                                    <span class="col address">Bondi ADHOC</span>
+                                </div>
+                                <div class="row">
+                                    <span class="col area">ADH05</span>
+                                </div>
+                            </div>
+                            <div class="col col-25 text-right padding-right thirdCoulmn">
+                                <div class="dvTimeContainer">
+                                    <div class="totalHours">7.00</div>
+                                    <div class="hoursTxt">hours</div>
+                                    <div ng-show="attendane==true">
+                                        <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
+                                        <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <h6>Sydney Port</h6>
-                    <p>100 Port St. Mascot , NSW 2200</p>
                 </div>
             </div>
         </div>
 
         <!--Current Week-->
-        <h3>Current Week</h3>
-        <div class="text-center padding">
-            <span>Mon 15 Apr - Sun 21 Apr 2016</span>
+        <div class="row">
+            <div class="col">
+                <h3>Current Week <span class="pull-right">Mon 15 Apr - Sun 21 Apr 2016</span></h3>
+            </div>
+            
         </div>
+       
+        
 
         <!--first table-->
         <div class="list listSchedule">
@@ -86,7 +126,7 @@
         <div class="list listSchedule">
             <div class="item item-divider">
                 <img src="images/schedule.png" width="16px" />
-                 Shift Clocked/Worked
+                Shift Clocked/Worked
             </div>
             <div class="item">
                 Total Shifts Worked/Clocked

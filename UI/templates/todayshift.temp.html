@@ -19,11 +19,13 @@
                     </div>
                 </div>
                 <div class="col col-25 text-right padding-right thirdCoulmn">
-                    <div class="totalHours">{{event.TotalHours}}</div>
-                    <div class="hoursTxt">hours</div>
-                    <div ng-show="attendane==true">
-                        <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
-                        <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                    <div class="dvTimeContainer">
+                        <div class="totalHours">{{event.TotalHours}}</div>
+                        <div class="hoursTxt">hours</div>
+                        <div ng-show="attendane==true">
+                            <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
+                            <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                        </div>
                     </div>
                 </div>
             </div>
