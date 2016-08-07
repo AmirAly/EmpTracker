@@ -39,14 +39,14 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <div class="card smallMargin">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Site</span>
                 <span class="text-right col-66 col bluefont">{{shiftSite}}</span>
             </div>
         </div>
 
-        <div class="card">
+        <div class="card smallMargin">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Address</span>
                 <span class="text-right col col-66 bluefont" ng-click="viewMap()">{{shiftaddress}}</span>
@@ -59,7 +59,8 @@
                     <textarea rows="5" class="col" readonly
                               ng-model="shiftNotes"
                               ng-model-options="{ updateOn: 'blur' }"
-                              ng-change="updateNotes(shiftNotes)"></textarea>
+                              ng-change="updateNotes(shiftNotes)">
+                    </textarea>
                 </label>
             </div>
         </div>

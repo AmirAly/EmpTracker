@@ -140,13 +140,26 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                $scope.weeklyEventsArray = _res.data.data;
-                $ionicLoading.hide();
+                if (_res.data.code == 200) {
+                    $scope.weeklyEventsArray = _res.data.data;
+                    $scope.weeklyTotalHours = 0;
+                    for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
+                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
+                    }
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.weeklyEventsArray = '';
+                    $scope.weeklyTotalHours = 0;
+                    $ionicLoading.hide();
+                }
+                
             });
 
             // show in page
-            $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + "," + firstday.getDate();
-            $scope.lastDayOfWeek = shortMonths[lastday.getMonth()] + "," + lastday.getDate();
+            $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + " " + firstday.getDate();
+            $scope.lastDayOfWeek = shortMonths[lastday.getMonth()] + " " + lastday.getDate() + "," + lastday.getFullYear();
         }
         $scope.thisWeek();
         ///////////////////////////////////////
@@ -165,8 +178,8 @@
             var nextWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() + 13);
 
             // show in page
-            $scope.firstDayOfWeek = shortMonths[nextWeekFirstDay.getMonth()] + "," + nextWeekFirstDay.getDate();
-            $scope.lastDayOfWeek = shortMonths[nextWeekLastDay.getMonth()] + "," + nextWeekLastDay.getDate();
+            $scope.firstDayOfWeek = shortMonths[nextWeekFirstDay.getMonth()] + " " + nextWeekFirstDay.getDate();
+            $scope.lastDayOfWeek = shortMonths[nextWeekLastDay.getMonth()] + " " + nextWeekLastDay.getDate() + "," + nextWeekLastDay.getFullYear();
 
             // send to function
             var formatedWeekFirstDay = nextWeekFirstDay.getFullYear() + '-' + (nextWeekFirstDay.getMonth() + 1) + '-' + nextWeekFirstDay.getDate();
@@ -179,8 +192,20 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                $scope.weeklyEventsArray = _res.data.data;
-                $ionicLoading.hide();
+                if (_res.data.code == 200) {
+                    $scope.weeklyEventsArray = _res.data.data;
+                    $scope.weeklyTotalHours = 0;
+                    for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
+                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
+                    }
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.weeklyEventsArray = '';
+                    $scope.weeklyTotalHours = 0;
+                    $ionicLoading.hide();
+                }
             });
 
             // update initial date for next time
@@ -202,8 +227,8 @@
             var preWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 1);
 
             // show in page
-            $scope.firstDayOfWeek = shortMonths[preWeekFirstDay.getMonth()] + "," + preWeekFirstDay.getDate();
-            $scope.lastDayOfWeek = shortMonths[preWeekLastDay.getMonth()] + "," + preWeekLastDay.getDate();
+            $scope.firstDayOfWeek = shortMonths[preWeekFirstDay.getMonth()] + " " + preWeekFirstDay.getDate();
+            $scope.lastDayOfWeek = shortMonths[preWeekLastDay.getMonth()] + " " + preWeekLastDay.getDate() + "," + preWeekLastDay.getFullYear();
 
             // send to function
             var formatedWeekFirstDay = preWeekFirstDay.getFullYear() + '-' + (preWeekFirstDay.getMonth() + 1) + '-' + preWeekFirstDay.getDate();
@@ -216,8 +241,20 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                $scope.weeklyEventsArray = _res.data.data;
-                $ionicLoading.hide();
+                if (_res.data.code == 200) {
+                    $scope.weeklyEventsArray = _res.data.data;
+                    $scope.weeklyTotalHours = 0;
+                    for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
+                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
+                    }
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.weeklyEventsArray = '';
+                    $scope.weeklyTotalHours = 0;
+                    $ionicLoading.hide();
+                }
             });
 
             // update initial date for next time

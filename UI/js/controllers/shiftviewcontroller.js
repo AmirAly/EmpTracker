@@ -1,5 +1,5 @@
 ﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
-
+    $scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
     $scope.$on('$ionicView.enter', function () {
 
         console.log($window.localStorage['IsTempLogin']);

@@ -556,9 +556,36 @@ i.icon.icon-right {
 }
 
 .homePage .card {
-    margin-bottom: 0px;
-    margin-top: 8px;
+    margin: 5px 5px 5px;
 }
+
+.homePage .txtTotalHours{
+   color: #14b99a;
+}
+
+.homePage .dvWeeklyCardsHeader {
+    padding: 5px;
+}
+
+    .homePage .dvWeeklyCardsHeader .row {
+        border-color: #0c63ee;
+        background-color: #387ef5;
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader h4 {
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader .light:hover {
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader .light:before{
+            font-size: 24px;
+    }
+
+
 /*home page calenar*/
 .homePage .flex-calendar .days .day {
     border: 1px solid #EFEFEF;
@@ -577,6 +604,7 @@ i.icon.icon-right {
     border-radius: 0;
     line-height: inherit;
     color: #FFFFFF;
+    background-color:transparent;
 }
 
 .homePage .flex-calendar .days .number {
@@ -585,7 +613,8 @@ i.icon.icon-right {
 
 .homePage .flex-calendar .days .day.selected.today .number span {
     border-radius: 100%;
-    border: 2px solid #033FA0;
+    border: 2px solid red;
+    background-color:red;
     padding: 3px 5px;
     right: 1px !important;
 }
@@ -594,6 +623,7 @@ i.icon.icon-right {
     position: relative;
     bottom: 15px;
     right: 5px;
+        color: #8B8B8B;
 }
 
 .homePage .flex-calendar .days .day.event:before {
@@ -685,33 +715,42 @@ i.icon.icon-right {
 
 
 /*shiftViewPage*/
-.shiftViewPage .bluefont {
-    font-size: 100%;
-    color: #4b8dc0;
-    text-align: right;
+.shiftViewPage {
+    background-color: #ecebec;
 }
 
-.shiftViewPage textarea {
-    resize: none;
-    text-align: left !important;
-    background-color: #fbfafb;
-    color: #4b8dc0;
-}
-
-.shiftViewPage .noborder {
-    border: none !important;
-    padding: 0 !important;
-}
-
-.shiftViewPage .card {
-    border-radius: 10px;
-}
-
-    .shiftViewPage .card .item {
-        background-color: #fbfafb;
-        color: #6d6b6d;
-        padding-top: 10px;
+    .shiftViewPage .bluefont {
+        font-size: 100%;
+        color: #4b8dc0;
+        text-align: right;
     }
+
+    .shiftViewPage textarea {
+        resize: none;
+        text-align: left !important;
+        background-color: #fbfafb;
+        color: #4b8dc0;
+    }
+
+    .shiftViewPage .noborder {
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .shiftViewPage .card {
+        border-radius: 5px;
+    }
+
+        .shiftViewPage .card.smallMargin {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .shiftViewPage .card .item {
+            background-color: #fbfafb;
+            color: #6d6b6d;
+            padding-top: 10px;
+        }
 
 /*challenge Page*/
 .challengePage .basicColorDv {
@@ -1054,10 +1093,16 @@ i.icon.icon-right {
             }
 
 .dashboardPage .listSchedule .item-divider {
-    /*background-color: #7e7e7e;*/
-    background-color: #63228a;
+    /*background-color: #7e7e7e;*/ /*gray*/
+    /*background-color: #63228a;*/ /*purple*/
+    background-color: #387ef5; /*blue*/
     color: #fff;
 }
+
+    .dashboardPage .listSchedule .item-divider img {
+        width: 21px;
+        vertical-align: text-bottom;
+    }
 
     .dashboardPage .listSchedule .item-divider p {
         color: #dededf;
