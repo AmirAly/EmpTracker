@@ -98,9 +98,9 @@
 
     .bar-header span.badge {
         position: absolute !important;
-        right: 0px;
-        padding: 1px 5px;
-        font-size: 12px;
+        right: 3px;
+        padding: 0px 4px;
+        font-size: 10px;
         bottom: 0;
         top: inherit;
     }
@@ -148,6 +148,12 @@
             right: 0;
             top: 4px;
         }
+
+    .bar-header .ion-android-notifications:before {
+        font-size: 24px !important;
+    }
+
+
 
 @media only screen and (min-width: 375px) {
     .bar-header .floatRight span {
@@ -375,16 +381,16 @@
 
 .shiftCard .thirdCoulmn {
     font-stretch: expanded;
-    padding-right: 20px;
+    /*padding-right: 20px;*/
 }
 
     .shiftCard .thirdCoulmn div {
         display: block;
     }
 
-    .shiftCard .thirdCoulmn .dvTimeContainer{
+    .shiftCard .thirdCoulmn .dvTimeContainer {
         border: 1px solid #C5C5C5;
-    text-align: center;
+        text-align: center;
     }
 
     .shiftCard .thirdCoulmn .totalHours {
@@ -446,8 +452,8 @@
         margin: 0 !important;
     }
 
-    .submenuPage .h5{
-        font-size:12px;
+    .submenuPage .h5 {
+        font-size: 12px;
     }
 
 .sideMenuContent {
@@ -568,8 +574,8 @@ i.icon.icon-right {
     margin: 5px 5px 5px;
 }
 
-.homePage .txtTotalHours{
-   color: #14b99a;
+.homePage .txtTotalHours {
+    color: #14b99a;
 }
 
 .homePage .dvWeeklyCardsHeader {
@@ -590,14 +596,14 @@ i.icon.icon-right {
         color: #fff;
     }
 
-    .homePage .dvWeeklyCardsHeader .light:before{
-            font-size: 24px;
+    .homePage .dvWeeklyCardsHeader .light:before {
+        font-size: 24px;
     }
 
 
 /*home page calenar*/
 .homePage .flex-calendar .days .day {
-    border: 1px solid #EFEFEF;
+    border: 1px solid #EFEFEF !important;
 }
 
 
@@ -613,17 +619,24 @@ i.icon.icon-right {
     border-radius: 0;
     line-height: inherit;
     color: #FFFFFF;
-    background-color:transparent;
-}
+    background-color: transparent;
 
+}
+.homePage .flex-calendar .days .day.selected .number span{
+    border-radius: 100%;
+    border: 2px solid #ec575c;
+    padding: 3px 5px;
+    right: 1px !important;
+}
 .homePage .flex-calendar .days .number {
     text-align: right !important;
 }
 
 .homePage .flex-calendar .days .day.selected.today .number span {
     border-radius: 100%;
-    border: 2px solid red;
-    background-color:red;
+        border: 2px solid #ec575c;
+    background-color: #ec575c;
+    color: #fff;
     padding: 3px 5px;
     right: 1px !important;
 }
@@ -632,7 +645,7 @@ i.icon.icon-right {
     position: relative;
     bottom: 15px;
     right: 5px;
-        color: #8B8B8B;
+    color: #8B8B8B;
 }
 
 .homePage .flex-calendar .days .day.event:before {
@@ -645,81 +658,18 @@ i.icon.icon-right {
 
 .homePage .calendarView .badge {
     display: block;
-    position: absolute;
-    padding: 1px 5px;
     font-size: 12px;
-    color: #fff;
-}
-
-.homePage .calendarView .postion1 {
-    left: 0px;
-    top: 0;
-}
-
-.homePage .calendarView .postion2 {
-    right: 0px;
-    top: 0;
-}
-
-.homePage .calendarView .postion3 {
-    left: 0px;
-    bottom: 0;
-}
-
-.homePage .calendarView .postion4 {
-    right: 0px;
-    bottom: 0;
-}
-
-.homePage .calendarView .tentative {
-    background-color: #970314;
-}
-
-.homePage .calendarView .confirmed {
-    background-color: #3b558a;
-}
-
-.homePage .calendarView .void {
-    background-color: #9b59b6;
-}
-
-.homePage .calendarView .training {
-    background-color: #3399ff;
-}
-
-.homePage .dvTotalHrs {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 100%;
-    display: table;
-}
-
-    .homePage .dvTotalHrs .col-25 {
-        border: 1px solid #aaa;
-        display: table-cell;
-        width: 25%;
-        padding: 0;
-        margin: 0;
-    }
-
-        .homePage .dvTotalHrs .col-25 b {
-            line-height: 2;
-        }
-
-.tentativeFont {
-    color: #970314;
-}
-
-.confirmedFont {
-    color: #3b558a;
-}
-
-.voidFont {
-    color: #9b59b6;
-}
-
-.trainingFont {
-    color: #3399ff;
+    content: "";
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    border-radius: 100%;
+    position: absolute;
+    padding: 0px !important;
+    left: calc(100% / 2);
+    bottom: 10px;
+    background-color: #ec575c;
 }
 
 
@@ -829,10 +779,13 @@ i.icon.icon-right {
     .attendancePage .dvTabHeader h3 {
         color: #fff;
         margin-bottom: 0;
+        padding: 5px;
+        font-size: 20px;
     }
 
 .attendancePage .activeDay .weekDaysHeader {
-    background-color: #2c3e50 !important;
+    /*background-color: #2c3e50 !important;*/
+    background-color: #000 !important;
 }
 
 .dvWeekDays {
@@ -1031,13 +984,13 @@ i.icon.icon-right {
     color: #9e0a11;
 }
 
-.dashboardPage h3 span{
-    font-size: 45%;
-    color: #545454;
-    line-height: 2.5;
-}
+    .dashboardPage h3 span {
+        font-size: 45%;
+        color: #545454;
+        line-height: 2.5;
+    }
 
-.dashboardPage .card{
+.dashboardPage .card {
     margin-top: 0px;
     margin-right: 2px;
     margin-bottom: 5px;

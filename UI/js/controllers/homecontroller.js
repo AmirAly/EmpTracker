@@ -2,7 +2,7 @@
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function test() {
 
-        console.log('enter'); 
+        //console.log('enter'); 
         $rootScope.toggledrag = false;
         $scope.notifications = function () {
             $state.go('app.notifications');
@@ -89,7 +89,7 @@
 
         var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+        var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         var intialDate = new Date(); // get current date
 
@@ -111,7 +111,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                console.log(_res);
+                //console.log(_res);
                 $scope.todayEventsArray = _res.data.data;
                 $ionicLoading.hide();
             });
@@ -144,7 +144,7 @@
                     $scope.weeklyEventsArray = _res.data.data;
                     $scope.weeklyTotalHours = 0;
                     for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
-                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
                     $ionicLoading.hide();
@@ -154,7 +154,7 @@
                     $scope.weeklyTotalHours = 0;
                     $ionicLoading.hide();
                 }
-                
+
             });
 
             // show in page
@@ -196,7 +196,7 @@
                     $scope.weeklyEventsArray = _res.data.data;
                     $scope.weeklyTotalHours = 0;
                     for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
-                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
                     $ionicLoading.hide();
@@ -245,7 +245,7 @@
                     $scope.weeklyEventsArray = _res.data.data;
                     $scope.weeklyTotalHours = 0;
                     for (var i = 0; i < $scope.weeklyEventsArray.length; i++) {
-                        console.log($scope.weeklyEventsArray[i].TotalHours);
+                        //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
                     $ionicLoading.hide();
@@ -280,7 +280,7 @@
 
         //get calendar dates
         $scope.getCalendarEvents = function (firstDayMonth, lastDayMonth) {
-            
+
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -298,7 +298,7 @@
             API.execute(req, true).then(function (_res) {
                 $scope.events = _res.data.data;
 
-                console.log($scope.events);
+                //console.log($scope.events);
                 if ($scope.events != 'You are not authorized to view your schedule in this time range') {
                     // prepare data for shift template
                     $scope.adjustData = function (event) {
@@ -307,11 +307,11 @@
                         event.dayNumber = thedate.getDate();
                         event.dayName = (thedate.toString()).substring(0, 3);
                         event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
-                        
+
                         for (var i = 0; i < $scope.events.length; i++) {
                             if ($scope.events[i].StartDate == todayDate) {
                                 $scope.todayShiftsArray.push($scope.events[i]);
-                                console.log($scope.todayShiftsArray);
+                                //console.log($scope.todayShiftsArray);
                             }
                         }
                         $ionicLoading.hide();
@@ -327,7 +327,6 @@
         }
         $scope.getCalendarEvents(firstDayMonthFormated, lastDayMonthFormated);
         //////////////////////////////////////////////////////////////////////////////
-
 
         $scope.calendarEvents = [];
         // Calendar
@@ -355,14 +354,14 @@
                 //console.log(date);
                 var formattedToday = date.year + "-" + date._month + "-" + date.day;
                 $scope.calendarEvents = [];
-                console.log(formattedToday);
+                //console.log(formattedToday);
                 for (var i = 0; i < $scope.events.length; i++) {
                     var eventDate = new Date($scope.events[i].StartDate);
                     var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
                     var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
                     if (formattedToday == formatedEventDay) {
                         $scope.calendarEvents.push($scope.events[i]);
-                        console.log($scope.calendarEvents);
+                        //console.log($scope.calendarEvents);
                     }
 
                 }
@@ -380,14 +379,8 @@
                     template: '<i class="icon ion-loading-d"></i>'
                 });
 
-                $scope.ConfirmedShiftsCounter = 0;
-                $scope.TentativeShiftsCounter = 0;
-                $scope.TrainingShiftsCounter = 0;
-                $scope.VoidShiftsCounter = 0;
-
                 var preMonthFirstDay = new Date(year, month.index, 1);
                 var preMonthLastDay = new Date(year, month.index + 1, 0);
-
 
                 // send to function
                 var formatedMonthFirstDay = preMonthFirstDay.getFullYear() + '-' + (preMonthFirstDay.getMonth() + 1) + '-' + preMonthFirstDay.getDate();
@@ -395,17 +388,8 @@
 
                 $scope.getCalendarEvents(formatedMonthFirstDay, formatedMonthLastDay);
 
-                //$scope.calendarEvents = [];
                 $scope.loadCalendarEvents();
-                //$scope.load();
-                $ionicLoading.show({
-                    content: 'Loading',
-                    animation: 'fade-in',
-                    showBackdrop: true,
-                    maxWidth: 200,
-                    showDelay: 0,
-                    template: '<i class="icon ion-loading-d"></i>'
-                });
+
                 $timeout(function () {
                     angular.element(document.querySelector('#badge' + formatedMonthFirstDay)).parent().triggerHandler('click');
                     angular.element(document.querySelector('#badge' + todayDate)).parent().triggerHandler('click');
@@ -414,14 +398,14 @@
             },
             filteredEventsChange: function (filteredEvents) {
                 $scope.calendarEvents = [];
-                console.log(filteredEvents);
+                //console.log(filteredEvents);
                 $scope.loadCalendarEvents();
             },
         };
 
         $scope.load = function () {
             $scope.calendarEvents = [];
-            console.log($scope.calendarEvents);
+            //console.log($scope.calendarEvents);
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -436,11 +420,7 @@
             }, 2000);
         }
         $scope.load();
-
-
         var checkId = 1;
-        
-              
         $scope.loadCalendarEvents = function () {
 
             if (checkId == 1) {
@@ -459,90 +439,11 @@
 
 
             angular.forEach($scope.events, function (res, Index) {
-
-                $scope.ConfirmedShiftsCounter = 0;
-                $scope.TentativeShiftsCounter = 0;
-                $scope.TrainingShiftsCounter = 0;
-                $scope.VoidShiftsCounter = 0;
-                var status1; var status2; var status3; var status4;
-                var counter1 = 0; var counter2 = 0; var counter3 = 0; var counter4 = 0;
                 var eventDate = new Date(res.StartDate);
-
                 eventDate = eventDate.getFullYear() + '-' + (eventDate.getMonth() + 1) + '-' + eventDate.getDate();
-                //console.log(res.ShiftStatus);
-                if (res.ShiftStatus == 'Confirmed') {
-                    for (var i = 0; i < $scope.events.length; i++) {
-                        if ($scope.events[i].StartDate == res.StartDate && $scope.events[i].ShiftStatus == 'Confirmed') {
-                            counter1++;
-                            if (counter1 >= 2) {
-                                console.log($scope.events[i]);
-                            }
-                        }
-                    }
-                    status1 = 'confirmed';
-                    $timeout(function () {
-                        angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeCCC' + eventDate + '" class="badge postion3 ' + status1 + '">' + counter1 + '</div>');
-                    }, 100);
-                }
-                if (res.ShiftStatus == 'tentative') {
-                    for (var i = 0; i < $scope.events.length; i++) {
-                        if ($scope.events[i].StartDate == res.StartDate && $scope.events[i].ShiftStatus == 'tentative') {
-                            counter2++;
-                            if (counter2 >= 2) {
-                                console.log($scope.events[i]);
-                            }
-                        }
-                    }
-                    status2 = 'tentative';
-                    $timeout(function () {
-                        angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeTTT' + eventDate + '" class="badge postion4 ' + status2 + '">' + counter2 + '</div>');
-                    }, 100);
-                }
-
-                if (res.ShiftStatus == 'Training') {
-                    for (var i = 0; i < $scope.events.length; i++) {
-                        if ($scope.events[i].StartDate == res.StartDate && $scope.events[i].ShiftStatus == 'Training') {
-                            counter3++;
-                            if (counter3 >= 2) {
-                                console.log($scope.events[i]);
-                            }
-                        }
-                    }
-                    status3 = 'training';
-                    $timeout(function () {
-                        angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeTraining' + eventDate + '" class="badge postion1 ' + status3 + '">' + counter3 + '</div>');
-                    }, 100);
-                }
-
-                if (res.ShiftStatus == 'Void') {
-                    for (var i = 0; i < $scope.events.length; i++) {
-                        if ($scope.events[i].StartDate == res.StartDate && $scope.events[i].ShiftStatus == 'Void') {
-                            counter4++;
-                            if (counter4 >= 2) {
-                                console.log($scope.events[i]);
-                            }
-                        }
-                    }
-                    status4 = 'void';
-                    $timeout(function () {
-                        angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeTraining' + eventDate + '" class="badge postion2 ' + status4 + '">' + counter4 + '</div>');
-                    }, 100);
-                }
-
-                for (var k = 0; k < $scope.events.length; k++) {
-                    if ($scope.events[k].ShiftStatus == 'Confirmed') {
-                        $scope.ConfirmedShiftsCounter = $scope.ConfirmedShiftsCounter + $scope.events[k].TotalHours;
-                    }
-                    if ($scope.events[k].ShiftStatus == 'tentative') {
-                        $scope.TentativeShiftsCounter = $scope.TentativeShiftsCounter + $scope.events[k].TotalHours;
-                    }
-                    if ($scope.events[k].ShiftStatus == 'Training') {
-                        $scope.TrainingShiftsCounter = $scope.TrainingShiftsCounter + $scope.events[k].TotalHours;
-                    }
-                    if ($scope.events[k].ShiftStatus == 'Void') {
-                        $scope.VoidShiftsCounter = $scope.VoidShiftsCounter + $scope.events[k].TotalHours;
-                    }
-                }
+                $timeout(function () {
+                    angular.element(document.querySelector('#badge' + eventDate)).append('<div id="badgeCCC' + eventDate + '" class="badge"></div>');
+                }, 100);
 
             }, log);
 

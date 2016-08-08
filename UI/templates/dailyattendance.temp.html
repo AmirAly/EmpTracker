@@ -1,17 +1,17 @@
-﻿<div ng-show="showME==event.dayid">
+﻿<div class="card" >
     <div class="list listSchedule">
         <div class="item row">
             <div class="col col-25">
-                <h6>{{event.from}}</h6>
-                <h6>{{event.to}}</h6>
+                <h6>{{event.ClockIn.ClockingTime  | date:'hh:mm a'}}</h6>
+                <h6>{{event.ClockOut.ClockingTime  | date:'hh:mm a'}}</h6>
             </div>
             <div class="col col-75">
                 <div class="dvWorkingHours">
-                    <h4>{{event.duration}}</h4>
+                    <h4>{{event.TotalHours}}</h4>
                     <h5>hours</h5>
                 </div>
-                <h6>{{event.area}}</h6>
-                <p>{{event.address}}</p>
+                <h6>{{event.ShortSiteName}}</h6>
+                <p>{{event.SiteName}}</p>
             </div>
         </div>
     </div>

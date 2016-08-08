@@ -23,20 +23,22 @@
                     <ion-content overflow-scroll="true" padding="true">
 
                         <div class="dvTabHeader">
-                            <h3 class="padding text-center">My Attendance</h3>
+                            <h3 class="text-center">Attendance Report</h3>
                         </div>
 
-
+                        <!--7 days of this week-->
                         <div class="row dvWeekDays">
-                            <div class="col col-7" ng-repeat="item in thisWeek" ng-class="{activeDay : item.selected}" ng-click="selectItem(item)">
+                            <div class="col col-7" ng-repeat="item in thisWeekDays"
+                                  ng-class="{activeDay : item.selected}" ng-click="selectDay(item)">
                                 <div class="row weekDaysHeader" tabindex="1"><span class="col noPadding">{{item.dayName}}</span></div>
                                 <div class="row weekDaysBody"><span class="col noPadding"><h5>{{item.dayNumber}}</h5><span>{{item.month}}</span></span></div>
-                                <div class="row weekDaysFooter"><span class="col noPadding"></span></div>
+                                <div class="row weekDaysFooter"><span class="col noPadding"><span class="ion-arrow-up-b" ng-show="item.selected"></span></span></div>
                             </div>
                         </div>
 
-                        <div ng-repeat="event in weeklyAttendanceArray" ng-show="weeklyAttendanceArray.length">
-                            <div class="card" ng-if="showME==event.dayid">
+                        <!--attendance of the day-->
+                        <div ng-repeat="event in weeklyAttendanceArray">
+                            <div class="card">
                                 <div ng-include="'templates/dailyattendance.temp.html'"></div>
                             </div>
                         </div>
@@ -56,7 +58,7 @@
             </ion-tab>
 
             <!-- Tab 2 Attendance Report -->
-            <ion-tab title="Attendance Report" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+            <!--<ion-tab title="Attendance Report" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
                 <ion-nav-view name="tab-tab2">
                     <ion-content overflow-scroll="true" padding="true">
 
@@ -118,7 +120,7 @@
                             </tr>
                         </table>
 
-                        <!--<div ng-show ="!todayAttendanceArray.length">
+                        <div ng-show ="!todayAttendanceArray.length">
                             <div class="spacer"></div>
                             <div class="card text-center padding-top dvNoAttendance">
                                 <div class="row">
@@ -127,14 +129,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>-->
+                        </div>
 
 
 
                         <div class="spacer"></div>
                     </ion-content>
                 </ion-nav-view>
-            </ion-tab>
+            </ion-tab>-->
 
 
         </ion-tabs>
