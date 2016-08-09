@@ -3,7 +3,13 @@
     $scope.password = '';
     $scope.companycode = '';
 
-
+    $scope.$on('$ionicView.enter', function () {
+        
+    });
+    document.addEventListener("deviceready", onDeviceReady, false);
+    function onDeviceReady() {
+        console.log(device.cordova);
+    }
     console.log($window.localStorage['UserName']);
     console.log($window.localStorage['authorizationToken']);
 

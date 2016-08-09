@@ -1,9 +1,17 @@
-﻿<div class="card" >
+﻿<div class="card dvDailyAttendanceTemplate">
     <div class="list listSchedule">
         <div class="item row">
             <div class="col col-25">
+                <div class="dvClockInStstus">
+                    <span class="ion-checkmark-circled checkIsTrue"></span>
+                    <!--<span class="ion-information-circled checkIsFalse"></span>-->
+                </div>
                 <h6>{{event.ClockIn.ClockingTime  | date:'hh:mm a'}}</h6>
                 <h6>{{event.ClockOut.ClockingTime  | date:'hh:mm a'}}</h6>
+                <div class="dvClockOutStstus">
+                    <!--<span class="ion-checkmark-circled checkIsTrue"></span>-->
+                    <span class="ion-information-circled checkIsFalse"></span>
+                </div>
             </div>
             <div class="col col-75">
                 <div class="dvWorkingHours">
@@ -16,44 +24,3 @@
         </div>
     </div>
 </div>
-
-<!--<div class="list listSchedule">
-    <div class="item item-divider">
-        <span class="ion-ios-clock-outline"></span> Schedule
-        <p class="pull-right">
-            Friday, April 8, 2016
-        </p>
-    </div>
-
-    <div class="item row">
-        <div class="col col-25">
-            <h6>12:00 PM</h6>
-            <h6>03:00 PM</h6>
-        </div>
-        <div class="col col-75">
-            <div class="dvWorkingHours">
-                <h4>3:78</h4>
-                <h5>hours</h5>
-            </div>
-            <h6>Bondi Station</h6>
-            <p>35 Hunter St. Condell Park , NSW 2200</p>
-        </div>
-    </div>
-
-    <div class="item row">
-        <div class="col col-25">
-            <h6>08:00 PM</h6>
-            <h6>10:30 PM</h6>
-        </div>
-        <div class="col col-75">
-            <div class="dvWorkingHours">
-                <h4>3:78</h4>
-                <h5>hours</h5>
-            </div>
-            <h6>Sydney Port</h6>
-            <p>100 Port St. Mascot , NSW 2200</p>
-        </div>
-    </div>
-
-
-</div>-->

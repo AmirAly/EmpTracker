@@ -17,7 +17,7 @@
     <ion-pane>
         <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
             <!-- Tab 1 My Attendance -->
-            <ion-tab title="My Attendance" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+            <ion-tab title="Daily" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
                 <ion-nav-view name="tab-tab1">
 
                     <ion-content overflow-scroll="true" padding="true">
@@ -36,7 +36,7 @@
                             </div>
                         </div>
 
-                        <!--attendance of the day-->
+                        <!--attendance of the selected day-->
                         <div ng-repeat="event in weeklyAttendanceArray">
                             <div class="card">
                                 <div ng-include="'templates/dailyattendance.temp.html'"></div>
@@ -58,7 +58,7 @@
             </ion-tab>
 
             <!-- Tab 2 Attendance Report -->
-            <!--<ion-tab title="Attendance Report" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline">
+            <ion-tab title="Weekly" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadReportData()">
                 <ion-nav-view name="tab-tab2">
                     <ion-content overflow-scroll="true" padding="true">
 
@@ -88,15 +88,15 @@
 
                             <div class="row">
                                 <div class="col text-center dvSquare">
-                                    <span>04:57</span>
+                                    <span>{{totalHRSHours|| 00}}:{{totalHRSMintes|| 00}}</span>
                                 </div>
                                 <div class="col text-center dvSquare">
-                                    <span>--:00</span>
+                                    <span>{{totalBreakHours || 00}}:{{totalBreakMintes || 00}}</span>
                                 </div>
                             </div>
                         </div>
 
-                        <table>
+                        <table ng-show="weeklyReportDataArray.length">
                             <tr>
                                 <th>Date</th>
                                 <th>Site</th>
@@ -104,39 +104,30 @@
                                 <th>Clock Out</th>
                                 <th>HRS</th>
                             </tr>
-                            <tr>
-                                <td class="text-center"><h4>MON</h4><span>24/7</span></td>
-                                <td>35 Hunter Office</td>
-                                <td>1:15 PM</td>
-                                <td>1:16 PM</td>
-                                <td>0:01</td>
+                            <tr ng-repeat="attendance in weeklyReportDataArray">
+                                <td class="text-center"><h4>{{attendance.dayName}}</h4><span>{{attendance.dayInMonth}}</span></td>
+                                <td>{{attendance.SiteName}}</td>
+                                <td>{{attendance.ClockIn | date:'hh:mm a'}}</td>
+                                <td>{{attendance.ClockOut | date:'hh:mm a'}}</td>
+                                <td>{{attendance.HRS}}</td>
                             </tr>
-                            <tr>
-                                <td class="text-center"><h4>TUS</h4><span>24/7</span></td>
-                                <td>City Center Lirary</td>
-                                <td>1:16 PM</td>
-                                <td>5:16 PM</td>
-                                <td>4:00</td>
-                            </tr>
+
                         </table>
 
-                        <div ng-show ="!todayAttendanceArray.length">
-                            <div class="spacer"></div>
+                        <div ng-show="!weeklyReportDataArray.length">
                             <div class="card text-center padding-top dvNoAttendance">
                                 <div class="row">
                                     <div class="col col-80 col-offset-10">
-                                        <h4>You have not worked and clocked-in today.</h4>
+                                        <h4>You have not worked and clocked-in this week.</h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-
-
                         <div class="spacer"></div>
                     </ion-content>
                 </ion-nav-view>
-            </ion-tab>-->
+            </ion-tab>
 
 
         </ion-tabs>

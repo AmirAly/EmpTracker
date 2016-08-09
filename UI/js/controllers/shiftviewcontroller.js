@@ -198,7 +198,7 @@
 
     $scope.showConfirmOut = function () {
         var confirmPopup = $ionicPopup.confirm({
-            cssClass: 'redPopup',
+            cssClass: 'bluePopup',
             title: '<i class="ion-information-circled "></i> Confirm Clock-Out',
             template: 'Are you sure you want to check out?'
         });
