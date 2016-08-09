@@ -84,7 +84,6 @@
         });
     };
     $scope.openmyaccount = function () {
-        alert(1);
         $state.go('supervisoraccount');
     }
     $scope.openmap = function () {
@@ -92,6 +91,7 @@
     }
  
     $scope.notifications = function () {
+        alert(1);
         $state.go('supervisornotifications');
     }
     $scope.selectedAll = false;
