@@ -1,15 +1,13 @@
 ﻿empTracker.controller("LoginController", function ($scope, $state, API, $window, $ionicLoading, $rootScope) {
-    $scope.name = '';
-    $scope.password = '';
-    $scope.companycode = '';
+    $scope.frmmLogin = {};
+    $scope.frmmLogin.name = '';
+    $scope.frmmLogin.password = '';
+    $scope.frmmLogin.companycode = '';
 
     $scope.$on('$ionicView.enter', function () {
         
     });
-    document.addEventListener("deviceready", onDeviceReady, false);
-    function onDeviceReady() {
-        console.log(device.cordova);
-    }
+    
     console.log($window.localStorage['UserName']);
     console.log($window.localStorage['authorizationToken']);
 
@@ -30,9 +28,9 @@
                 method: 'POST',
                 url: '/Token',
                 data: {
-                    UserName: $scope.name,
-                    Password: $scope.password,
-                    CompanyCode: $scope.companycode,
+                    UserName: $scope.frmmLogin.name,
+                    Password: $scope.frmmLogin.password,
+                    CompanyCode: $scope.frmmLogin.companycode,
                     grant_type: 'password',
                     IMEI: $rootScope.IMEI
                 }
@@ -65,9 +63,9 @@
                         $window.localStorage['UserName'] = $scope.userName;
                         $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
 
-                        $rootScope.name = $scope.name;
-                        $rootScope.password = $scope.password;
-                        $rootScope.companycode = $scope.companycode;
+                        $rootScope.name = $scope.frmmLogin.name;
+                        $rootScope.password = $scope.frmmLogin.password;
+                        $rootScope.companycode = $scope.frmmLogin.companycode;
                         //get Notifications Counter
                         var req = {
                             method: 'GET',

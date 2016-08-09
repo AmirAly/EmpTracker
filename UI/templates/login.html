@@ -1,22 +1,16 @@
-﻿<!-- when using form , structure should be
-    <ion-view>
-      <form>
-        <div class="content"></div>
-      </form>
-    </ion-view>-->
-<ion-view class="loginpage">
-    <ion-header-bar class="bar-dark">
-        <i class=" icon ion-wifi"></i>
-        <i class=" icon ion-ios-location inactive"></i>
-    </ion-header-bar>
-    
-    <form name="frmLogin" ng-submit="submitForm(frmLogin)" >
-        <div overflow-scroll="true" padding="true" class="content has-header padding">
+﻿
+    <form name="frmLogin" ng-submit="submitForm(frmLogin)" class="loginpage">
+
+        <ion-header-bar class="bar-dark">
+            <i class=" icon ion-wifi"></i>
+            <i class=" icon ion-ios-location inactive"></i>
+        </ion-header-bar>
+        <ion-content overflow-scroll="true" padding="true" class="content has-header padding">
             <ion-list class="list listInputs padding">
 
                 <label class="item padding">
                     <i class="icon ion-person placeholder-icon"></i>
-                    <input ng-model="name" type="email" required placeholder="Email" name="userName" id="userName" autocorrect="off" autocapitalize="off">
+                    <input ng-model="frmmLogin.name" type="email" required placeholder="Email" name="userName" id="userName" autocorrect="off" autocapitalize="off">
                     <span ng-show="frmLogin.userName.$touched  && frmLogin.userName.$invalid">
                         <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
                         <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
@@ -24,7 +18,7 @@
                 </label>
                 <label class="item  padding">
                     <i class="icon ion-ios-locked placeholder-icon"></i>
-                    <input ng-model="password" type="password" minlength="6" maxlength="100" required placeholder="Password" name="txtPassword" id="txtPassword">
+                    <input ng-model="frmmLogin.password" type="password" minlength="6" maxlength="100" required placeholder="Password" name="txtPassword" id="txtPassword">
                     <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
                         <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
                         <span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 6 characters long.</span>
@@ -32,7 +26,7 @@
                 </label>
                 <label class="item padding">
                     <i class="icon ion-compose placeholder-icon"></i>
-                    <input ng-model="companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
+                    <input ng-model="frmmLogin.companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
                     <span ng-show="frmLogin.txtCompanyCode.$touched && frmLogin.txtCompanyCode.$invalid">
                         <span class="errorFont" ng-show="frmLogin.txtCompanyCode.$error.required">required</span>
                     </span>
@@ -43,12 +37,9 @@
             <a ui-sref="forget" class="button button-positive button-clear button-block ">
                 Forget Password?
             </a>
-        </div>
-        <div class="spacer"></div>
-        <div class="spacer"></div>
-        <a target="_blank" href="http://www.worktimemanager.com.au" class="button button-positive button-clear button-block ">
-            <span>&nbsp;www.worktimemanager.com.au</span>
-        </a>
+            <a target="_blank" href="http://www.worktimemanager.com.au" class="button button-positive button-clear button-block ">
+                <span>&nbsp;www.worktimemanager.com.au</span>
+            </a>
+        </ion-content>
+       
     </form>
-    
-</ion-view>
