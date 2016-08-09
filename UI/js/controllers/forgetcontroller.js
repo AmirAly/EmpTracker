@@ -1,4 +1,4 @@
-﻿empTracker.controller("forgetController", function ($scope, $state, API, $ionicLoading) {
+﻿empTracker.controller("forgetController", function ($scope, $state, API, $ionicLoading, $window) {
     $scope.afterSendResponceTxt = '';
     $scope.submitForm = function (form) {
         $scope.afterSendResponceTxt = '';

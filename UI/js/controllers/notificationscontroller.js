@@ -1,4 +1,4 @@
-﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http, $rootScope, API, $ionicLoading) {
+﻿empTracker.controller("notificationsController", function ($scope, $state, $timeout, $http, $rootScope, API, $ionicLoading, $window) {
 
     $scope.$on('$ionicView.enter', function () {
         $ionicLoading.show({

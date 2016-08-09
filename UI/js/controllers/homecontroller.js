@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading) {
+﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window) {
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function test() {
 

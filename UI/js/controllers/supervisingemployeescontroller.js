@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout,$ionicLoading,API, $http) {
+﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window) {
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}

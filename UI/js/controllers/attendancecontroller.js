@@ -1,4 +1,4 @@
-﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup, $http, $rootScope, $ionicLoading, API) {
+﻿empTracker.controller("attendanceController", function ($scope, $state, $ionicPopup, $http, $rootScope, $ionicLoading, API, $window) {
 
 
     $scope.openmyaccount = function () {

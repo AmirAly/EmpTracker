@@ -1,4 +1,4 @@
-﻿empTracker.controller("challengeController", function ($scope, $state, $timeout, $rootScope) {
+﻿empTracker.controller("challengeController", function ($scope, $state, $timeout, $rootScope, $window) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;

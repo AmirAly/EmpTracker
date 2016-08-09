@@ -692,7 +692,7 @@ i.icon.icon-right {
     border-radius: 100%;
     position: absolute;
     padding: 0px !important;
-    left: calc(100% / 2);
+    left: 5px;
     bottom: 10px;
     background-color: #ec575c;
 }
@@ -1012,7 +1012,7 @@ i.icon.icon-right {
 }
 
     .dashboardPage h3 span {
-        font-size: 45%;
+        font-size: 40%;
         color: #545454;
         line-height: 2.5;
     }

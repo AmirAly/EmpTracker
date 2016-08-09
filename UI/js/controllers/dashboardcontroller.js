@@ -1,4 +1,4 @@
-﻿empTracker.controller("dashboardController", function ($scope, $state, $rootScope) {
+﻿empTracker.controller("dashboardController", function ($scope, $state, $rootScope, $window) {
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;

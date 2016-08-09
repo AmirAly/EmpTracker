@@ -1,4 +1,4 @@
-﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope,$timeout) {
+﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope, $timeout, $window) {
 
     $scope.$on('$ionicView.enter', function () {
         // me
