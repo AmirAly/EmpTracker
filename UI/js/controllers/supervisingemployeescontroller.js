@@ -1,4 +1,37 @@
 ﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window) {
+
+    $scope.$on('$ionicView.enter', function () {
+        var req = {
+            method: 'GET',
+            url: '/api/Attendance/GetSites',
+            data: {}
+        }
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res);
+            if (_res.data.code == 200) {
+                $scope.categories = _res.data.data;
+                console.log($scope.categories);
+                $ionicLoading.hide();
+            }
+        }, function (error) {
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+        });
+    });
+
     // Triggered on a button click
     $scope.showPopup = function () {
         $scope.time = {}
@@ -51,11 +84,13 @@
         });
     };
     $scope.openmyaccount = function () {
+        alert(1);
         $state.go('supervisoraccount');
     }
     $scope.openmap = function () {
         $state.go('empmap');
     }
+ 
     $scope.notifications = function () {
         $state.go('supervisornotifications');
     }
@@ -67,38 +102,7 @@
             $scope.selectedAll = false;
         }
     };
-    $scope.getAllSites = function () {
-        var req = {
-            method: 'GET',
-            url: '/api/Attendance/GetSites',
-            data: {}
-        }
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0,
-            template: '<i class="icon ion-loading-d"></i>'
-        });
-        // add true to use authentication token
-        API.execute(req, true).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 200) {
-                $scope.categories = _res.data.data;
-                console.log($scope.categories);
-                $ionicLoading.hide();
-            }
-        }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
-        });
-    }
-    $scope.getAllSites();
+
     //$scope.categories = [{ name: 'SNP001', value: 'SNP001' }, { name: 'SNP002', value: 'SNP002' }, { name: 'SNP003', value: 'SNP003' }];
     $scope.getByListEmpBySite = function (_site) {
         console.log(_site.SiteID);
