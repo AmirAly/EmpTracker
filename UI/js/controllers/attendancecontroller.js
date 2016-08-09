@@ -110,6 +110,10 @@
         $ionicLoading.show();
         var totalHRS = 0;
         var totalBreak = 0;
+        $scope.totalHRSHours = 0;
+        $scope.totalHRSMintes = 0;
+        $scope.totalBreakHours = 0;
+        $scope.totalBreakMintes = 0;
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             if (_res.data.code == 200) {
@@ -120,13 +124,13 @@
                     var dayInMonth = attendanceDate.getDate() + '/' + (attendanceDate.getMonth() + 1);
                     var reportObj = { "dayName": shortDays[attendanceDate.getDay()], "dayInMonth": dayInMonth, "SiteName": _res.data.data[i].SiteName, "ClockIn": _res.data.data[i].ClockIn.ClockingTime, "ClockOut": _res.data.data[i].ClockOut.ClockingTime, "HRS": _res.data.data[i].TotalHours };
                     $scope.weeklyReportDataArray.push(reportObj);
-                    // sun weekly hours
+                    // sum weekly hours
                     totalHRS = totalHRS + _res.data.data[i].DecimalTotalHours;
                     console.log(totalHRS);
                     $scope.totalHRSHours = parseInt(totalHRS);
                     $scope.totalHRSMintes = (((totalHRS % 1) * 60 / 100).toFixed(2)).slice(2);
 
-                    // sun break hours
+                    // sum break hours
                     totalBreak = totalBreak + _res.data.data[i].DisplayBreakTime;
                     console.log(totalBreak);
                     $scope.totalBreakHours = parseInt(totalBreak);
