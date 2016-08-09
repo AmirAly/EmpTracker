@@ -114,6 +114,14 @@
                 //console.log(_res);
                 $scope.todayEventsArray = _res.data.data;
                 $ionicLoading.hide();
+            }
+            , function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
         $scope.getTodayEvents();
@@ -155,6 +163,13 @@
                     $ionicLoading.hide();
                 }
 
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
 
             // show in page
@@ -206,6 +221,13 @@
                     $scope.weeklyTotalHours = 0;
                     $ionicLoading.hide();
                 }
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
 
             // update initial date for next time
@@ -255,6 +277,13 @@
                     $scope.weeklyTotalHours = 0;
                     $ionicLoading.hide();
                 }
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
 
             // update initial date for next time
@@ -323,6 +352,13 @@
                     $ionicLoading.hide();
                 }
 
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
         $scope.getCalendarEvents(firstDayMonthFormated, lastDayMonthFormated);

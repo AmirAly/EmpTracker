@@ -36,7 +36,14 @@
                 }
 
             }
-       });
+        }, function (error) {
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+        });
     });
 
     $scope.cancel = function () {
@@ -89,6 +96,13 @@
                     $rootScope.globalUserPhoto = $scope.userData.img;
                     $state.go('app.dashboard');
                 }
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
     }

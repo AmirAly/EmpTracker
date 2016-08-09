@@ -100,13 +100,11 @@
                 }
             }, function (error) {
                 console.log(error);
-                if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                    console.log(error.data.Message);
-                    // should use refresh token here
-                    //..
-
-                }
+                console.log(error.data); /* catch 400  Error here */
                 $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
             // get certain shift data
@@ -142,6 +140,13 @@
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $ionicLoading.hide();
                 }
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
 

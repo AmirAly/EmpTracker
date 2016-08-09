@@ -25,12 +25,14 @@
                 }
                 $ionicLoading.hide();
             }
-            //, function (error) {
-            //    $scope.afterLoginError = true;
-            //    console.log(error.data); /* catch 400  Error here */
-            //    $scope.afterLoginErrorTxt = error.data.error_description;
-            //    $ionicLoading.hide();
-            //}
+            , function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
+            }
             );
             //$state.go('tempdevicelogin');
         }

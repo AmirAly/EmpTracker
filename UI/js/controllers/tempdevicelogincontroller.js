@@ -53,8 +53,12 @@
                 }
             }
         }, function (error) {
+            console.log(error);
             console.log(error.data); /* catch 400  Error here */
             $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
         });
     }
 
@@ -129,19 +133,30 @@
             //    });
 
             }
-        }, function (error) {
-            console.log(error); /* catch 400  Error here */
-            //$ionicLoading.show({
-            //    scope: $scope,
-            //    templateUrl: 'templates/tokenexpired.html',
-            //    animation: 'slide-in-up'
-            //});
-
-            //$timeout(function () {
-            //    $ionicLoading.hide();
-            //}, 3000);
+        }
+        , function (error) {
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
             $ionicLoading.hide();
-        });
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+        }
+        //, function (error) {
+        //    console.log(error); 
+        //    //$ionicLoading.show({
+        //    //    scope: $scope,
+        //    //    templateUrl: 'templates/tokenexpired.html',
+        //    //    animation: 'slide-in-up'
+        //    //});
+
+        //    //$timeout(function () {
+        //    //    $ionicLoading.hide();
+        //    //}, 3000);
+        //    $ionicLoading.hide();
+        //}
+
+        );
     }
 
 });

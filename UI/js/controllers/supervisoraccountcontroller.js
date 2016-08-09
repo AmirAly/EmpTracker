@@ -35,6 +35,13 @@
                 }
 
             }
+        }, function (error) {
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
         });
     });
 
@@ -85,6 +92,13 @@
                     $rootScope.globalUserPhoto = $scope.userData.img;
                     $state.go('supervisingemployees');
                 }
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
     }

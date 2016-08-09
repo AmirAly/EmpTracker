@@ -51,6 +51,14 @@
                     $scope.afterSubmitErrorTxt = 'wrong old password';
                     console.log('wrong old password')
                 }
+            }
+            , function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
 
 

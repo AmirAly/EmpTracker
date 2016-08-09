@@ -22,8 +22,8 @@
                     <select name="categorySelector"
                             class="selectbox"
                             ng-model="search"
-                            ng-options="category.name for category in categories"
-                            ng-change="getByListEmpBySite(search.name)">
+                            ng-options="category.SiteName for category in categories"
+                            ng-change="getByListEmpBySite(search)">
                         <option value="">all</option>
                     </select>
                 </label>
@@ -38,7 +38,7 @@
                     <p>{{emp.StartDate}} - {{emp.EndDate}}</p>
                 </a>
             </li>
-            <li ng-show="!allemployeesArray.length"><h3 class="text-center padding-top">No employees yet</h3></li>
+            <li ng-show="!allemployeesArray.length"><h4 class="text-center padding">No employees yet, please select new location.</h4></li>
 
         </ul>
     </ion-content>
