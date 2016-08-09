@@ -7,10 +7,12 @@
         </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
-        <div class="pull-right floatRight" ng-hide="tempLogin">
-            <img ng-src="{{globalUserPhoto}}" class="circle" ng-click="openmyaccount()" /><span ng-click="openmyaccount()">{{globalUserName}}</span>
-            <a class="button button-icon icon ion-ios-keypad" ng-hide="tempLogin" ng-click="showSubMenu()"></a>
+        
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto}}" class="circle" /><span>{{globalUserName}}</span>
         </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+
     </ion-header-bar>
     
     <ion-content class="shiftViewPage" overflow-scroll="true" padding="true">
