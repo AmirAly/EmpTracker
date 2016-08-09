@@ -91,7 +91,6 @@
     }
  
     $scope.notifications = function () {
-        alert(1);
         $state.go('supervisornotifications');
     }
     $scope.selectedAll = false;

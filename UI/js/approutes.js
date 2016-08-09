@@ -1,4 +1,4 @@
-﻿var empTracker = angular.module('empTracker', ['ionic', 'flexcalendar', 'pascalprecht.translate'])
+﻿var empTracker = angular.module('empTracker', ['ionic', 'ui.router', 'flexcalendar', 'pascalprecht.translate'])
 
 
 empTracker.run(function ($ionicPlatform, $rootScope) {
