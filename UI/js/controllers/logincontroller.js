@@ -58,7 +58,7 @@
                             $rootScope.globalUserPhoto = 'images/unknown.png';
                         }
                         else {
-                            $rootScope.globalUserPhoto = _res.data.data.Photo;
+                            $rootScope.globalUserPhoto = "data:image/png;base64," + _res.data.data.Photo;
                         }
                         $window.localStorage['UserName'] = $scope.userName;
                         $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;

@@ -31,7 +31,7 @@
                     $scope.userData.img = $rootScope.globalUserPhoto;
                 }
                 else {
-                    $scope.userData.img = _res.data.data.Photo;
+                    $scope.userData.img = "data:image/png;base64," + _res.data.data.Photo;
                 }
 
             }
@@ -66,8 +66,9 @@
             console.log($scope.userData.lastname);
             console.log($scope.userData.mobile);
             console.log($scope.userData.email);
-            console.log($scope.userData.img);
-
+            var str = $scope.userData.img;
+            str = str.substring(str.indexOf(",") + 1);
+            console.log(str);
             var mobileNumber = ($scope.userData.mobile).replace(/[^0-9\.]+/g, "");
             console.log(mobileNumber);
 
@@ -80,7 +81,7 @@
                     FirstName: $scope.userData.firstname,
                     LastName: $scope.userData.lastname,
                     Mobile: mobileNumber,
-                    Photo: $scope.userData.img
+                    Photo: str
                 }
             }
             // add true to use authentication token
@@ -90,6 +91,7 @@
                     $ionicLoading.hide();
                     // update global photo
                     $rootScope.globalUserPhoto = $scope.userData.img;
+                    $rootScope.globalUserName = $scope.userData.firstname + " " + $scope.userData.lastname;
                     $state.go('supervisingemployees');
                 }
             }, function (error) {

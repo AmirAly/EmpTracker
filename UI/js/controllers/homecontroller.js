@@ -4,12 +4,16 @@
 
         //console.log('enter'); 
         $rootScope.toggledrag = false;
-        $scope.notifications = function () {
-            $state.go('app.notifications');
-        }
+
         $scope.openmyaccount = function () {
-            $state.go('app.myaccount');
+            alert(1);
+            $location.path('/myaccount');
         }
+        $scope.notifications = function () {
+            alert(2);
+            $location.path('/notifications');
+        }
+
         $scope.showSubMenu = function () {
             $state.go('app.submenu');
         }

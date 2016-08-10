@@ -9,9 +9,9 @@
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         
-        <a ui-sref="app.myaccount" class="pull-right floatRight">
+        <div ng-click="openmyaccount()" class="pull-right floatRight">
             <img ng-src="{{globalUserPhoto}}" class="circle" /><span>{{globalUserName}}</span>
-        </a>
+        </div>
         <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
 
     </ion-header-bar>

@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window) {
+﻿empTracker.controller("supervisingemployeesController", function ($scope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window, $location) {
 
     $scope.$on('$ionicView.enter', function () {
         var req = {
@@ -84,15 +84,19 @@
         });
     };
     $scope.openmyaccount = function () {
-        $state.go('supervisoraccount');
+        alert(1);
+        $location.path('/supervisoraccount');
     }
+    $scope.notifications = function () {
+        alert(2);
+        $location.path('/supervisornotifications');
+    }
+
     $scope.openmap = function () {
         $state.go('empmap');
     }
- 
-    $scope.notifications = function () {
-        $state.go('supervisornotifications');
-    }
+
+
     $scope.selectedAll = false;
     $scope.checkAll = function () {
         if ($scope.selectedAll == false) {
