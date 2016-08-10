@@ -36,6 +36,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         })
 
     .state('tempdevicelogin', {
+        cache: false,
         url: '/tempdevicelogin',
         controller: "tempdeviceloginController",
         templateUrl: 'templates/tempdevicelogin.html'
@@ -68,7 +69,6 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.shiftview', {
-        //url: '/shiftview',
         url: '/shiftView/:shiftid?',
         views: {
             'menuContent': {
@@ -115,6 +115,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         }
     })
     .state('app.myaccount', {
+        cache: false,
         url: '/myaccount',
         views: {
             'menuContent': {
