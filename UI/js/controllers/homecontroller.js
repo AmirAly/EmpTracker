@@ -6,12 +6,12 @@
         $rootScope.toggledrag = false;
 
         $scope.openmyaccount = function () {
-            $location.path('/app/myaccount');
-        }
-        $scope.notifications = function () {
-            $location.path('/app/notifications');
+            $state.go('app.myaccount');
         }
 
+        $scope.notifications = function () {
+            $state.go('app.notifications');
+        }
         $scope.showSubMenu = function () {
             $state.go('app.submenu');
         }

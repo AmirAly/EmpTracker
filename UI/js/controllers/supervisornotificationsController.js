@@ -135,7 +135,7 @@
 
     }
 
-    $scope.back = function () {
+    $scope.notifications = function () {
         //$state.go('supervisingemployees');
         window.history.back();
     }

@@ -1,12 +1,12 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <button class="button button-icon stable zIndexAdjust" ng-click="notifications()">
+        <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
         <i class=" icon ion-wifi"></i>
-        <i class=" icon ion-ios-location inactive" ng-click="notifications()"></i>
-        <div class="pull-right floatRight zIndexAdjust" ng-click="notifications()">
+        <i class=" icon ion-ios-location inactive"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
         </div>
     </ion-header-bar>
@@ -35,7 +35,7 @@
                 <a class="item item-avatar item-borderless" ng-click="openmap()">
                     <img ng-src="{{emp.Photo}}">
                     <h2>{{emp.EmployeeName}}</h2>
-                    <p>{{emp.StartDate}} - {{emp.EndDate}}</p>
+                    <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>
                 </a>
             </li>
             <li ng-show="!allemployeesArray.length"><h4 class="text-center padding">No employees yet, please select new location.</h4></li>

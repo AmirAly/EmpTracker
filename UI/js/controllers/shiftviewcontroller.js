@@ -1,5 +1,5 @@
 ﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
-    $scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
+    //$scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
     $scope.$on('$ionicView.enter', function () {
 
         console.log($window.localStorage['IsTempLogin']);
@@ -26,7 +26,7 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
-                if (_res.data.code = 200) {
+                if (_res.data.code == 200) {
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -36,6 +36,10 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                 }
             }, function (error) {
@@ -86,7 +90,7 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
-                if (_res.data.code = 200) {
+                if (_res.data.code == 200) {
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -96,6 +100,11 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $ionicLoading.hide();
+                }
+                else {
+                    console.log('else');
+                    $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                 }
             }, function (error) {
@@ -128,7 +137,7 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
-                if (_res.data.code = 200) {
+                if (_res.data.code == 200) {
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -138,6 +147,10 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                 }
             }, function (error) {

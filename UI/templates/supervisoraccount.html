@@ -7,7 +7,8 @@
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight">
-            <img ng-src="{{globalUserPhoto}}" class="circle" /><span>{{globalUserName}}</span>
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
         </div>
     </ion-header-bar>
 
@@ -16,7 +17,7 @@
             <div class="padding-horizontal row row-center">
                 <div class="col card">
                     <div class="text-center">
-                        <img ng-click="openImgDialog()" class="circle" ng-src="{{globalUserPhoto}}" />
+                        <img ng-click="openImgDialog()" class="circle" ng-src="{{globalUserPhoto || 'images/unknown.png'}}" />
                     </div>
                 </div>
             </div>

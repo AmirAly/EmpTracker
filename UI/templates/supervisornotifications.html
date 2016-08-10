@@ -1,13 +1,14 @@
 ﻿<ion-view class="notificationsPage">
     <ion-header-bar class="bar-dark">
-        <button class="button button-icon stable" ng-click="back()">
+        <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
         <i class=" icon ion-wifi"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <div class="pull-right floatRight" ng-click="openmyaccount()">
-            <img ng-src="{{globalUserPhoto}}" class="circle" /><span>{{globalUserName}}</span>
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
         </div>
     </ion-header-bar>
 

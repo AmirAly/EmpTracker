@@ -83,13 +83,13 @@
             console.log('Tapped!', res);
         });
     };
+
     $scope.openmyaccount = function () {
-        alert(1);
-        $location.path('/supervisoraccount');
+        $state.go('supervisoraccount');
     }
+
     $scope.notifications = function () {
-        alert(2);
-        $location.path('/supervisornotifications');
+        $state.go('supervisornotifications');
     }
 
     $scope.openmap = function () {
