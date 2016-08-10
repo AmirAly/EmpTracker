@@ -5,12 +5,10 @@
         //console.log('enter'); 
         $rootScope.toggledrag = false;
 
-        $scope.openMyAccount = function () {
-            alert(1);
+        $scope.openmyaccount = function () {
             $location.path('/app/myaccount');
         }
         $scope.notifications = function () {
-            alert(2);
             $location.path('/app/notifications');
         }
 

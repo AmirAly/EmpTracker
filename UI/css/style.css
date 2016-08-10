@@ -90,6 +90,7 @@
 }
 
 .bar-header, .bar-footer {
+    z-index:1 !important;
     background-color: #2c3e50 !important;
     border-color: #1D2935 !important;
     background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%);
@@ -131,7 +132,7 @@
         .bar-header .floatRight img {
             height: auto;
             width: 30px;
-            position: fixed;
+            /*position: fixed;*/
             right: 121px;
             top: 7px;
         }
@@ -143,7 +144,7 @@
             max-width: 75px;
             overflow: hidden !important;
             text-overflow: ellipsis;
-            position: fixed;
+            /*position: fixed;*/
             right: 46px;
             font-size: 9px;
         }
