@@ -122,6 +122,7 @@
         display: inline-block;
         /*width: 50%;*/
         color:#fff;
+        text-decoration:none;
     }
 
         .bar-header .floatRight img {
