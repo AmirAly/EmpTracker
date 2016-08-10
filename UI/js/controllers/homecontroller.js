@@ -1,17 +1,17 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window) {
+﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window, $location) {
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function test() {
 
         //console.log('enter'); 
         $rootScope.toggledrag = false;
 
-        $scope.openmyaccount = function () {
+        $scope.openMyAccount = function () {
             alert(1);
-            $location.path('/myaccount');
+            $location.path('/app/myaccount');
         }
         $scope.notifications = function () {
             alert(2);
-            $location.path('/notifications');
+            $location.path('/app/notifications');
         }
 
         $scope.showSubMenu = function () {
