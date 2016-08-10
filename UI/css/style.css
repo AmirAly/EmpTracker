@@ -16,6 +16,9 @@
 
 /*general*/
 
+.zIndexAdjust{
+        z-index: 99999 !important;
+}
 
 @font-face {
     font-family: 'Oswald';
