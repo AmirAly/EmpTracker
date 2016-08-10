@@ -16,11 +16,8 @@
 
 /*general*/
 
-.zIndexAdjust{
-        z-index: 99999 !important;
-}
 .ion-ios-keypad{
-    background: #2c3e50;
+    background: #2c3e50 !important;
 }
 
 @font-face {
