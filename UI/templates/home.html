@@ -6,10 +6,10 @@
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">{{notifictionsCounter}}</span>
         </button>
-        <i class=" icon ion-wifi" ng-click="notifications()"></i>
-        <i class=" icon ion-ios-location inactive" ui-sref="app.notifications"></i>
+        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-ios-location inactive"></i>
         
-        <div ng-click="openMyAccount()" class="pull-right floatRight">
+        <div ng-click="notifications()" class="pull-right floatRight">
             <img ng-src="{{globalUserPhoto}}" class="circle" /><span>{{globalUserName}}</span>
         </div>
         <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
