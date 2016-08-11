@@ -33,7 +33,7 @@
                     <input type="checkbox" ng-checked="selectedAll">
                 </div>
                 <a class="item item-avatar item-borderless" ng-click="openmap()">
-                    <img ng-src="data:image/png;base64,{{emp.Photo}}">
+                    <img ng-src="data:image/png;base64,{{emp.Photo || defaultEmpPhoto}}">
                     <h2>{{emp.EmployeeName}}</h2>
                     <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>
                 </a>
@@ -41,6 +41,7 @@
             <li ng-show="!allemployeesArray.length"><h4 class="text-center padding">No employees yet, please select new location.</h4></li>
 
         </ul>
+        <div class="spacer2"></div>
     </ion-content>
 
     <ion-footer-bar class="bar-dark">

@@ -130,6 +130,7 @@
         display: inline-block;
         color: #fff;
         text-decoration: none;
+        line-height:2.2;
     }
 
         .bar-header .floatRight:last-child {
@@ -1026,7 +1027,7 @@ i.icon.icon-right {
     .dashboardPage h3 span {
         font-size: 33%;
         color: #545454;
-        line-height: 2.5;
+        line-height: 3.5;
     }
 
 .dashboardPage .card {
