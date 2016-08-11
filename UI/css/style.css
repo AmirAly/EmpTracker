@@ -148,7 +148,7 @@
             white-space: nowrap;
             padding: 7px 3px;
             width: 100%;
-            max-width: 75px;
+            max-width: 60px;
             overflow: hidden !important;
             text-overflow: ellipsis;
             /*position: fixed;*/
@@ -169,13 +169,13 @@
 
 
 @media only screen and (min-width: 375px) {
-    .bar-header .floatRight span {
+    /*.bar-header .floatRight span {
         max-width: 100px;
     }
 
     .bar-header .floatRight img {
         right: 148px;
-    }
+    }*/
 }
 
 .ion-loading-a:before, .ion-loading-b:before, .ion-loading-c:before, .ion-loading-d:before {
