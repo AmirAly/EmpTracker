@@ -1,7 +1,8 @@
-﻿empTracker.controller("supervisorchangepasswordController", function ($scope, $state, $timeout, $ionicLoading, API, $window) {
+﻿empTracker.controller("supervisorchangepasswordController", function ($scope,$rootScope, $state, $timeout, $ionicLoading, API, $window) {
     $scope.afterSubmitError = false;
     $scope.userData = {};
     $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
         $scope.userData = {};
         $scope.frmUpdatePassword.$setPristine();
         $scope.frmUpdatePassword.$setUntouched();
@@ -37,7 +38,7 @@
                     $ionicLoading.hide();
                     showConfirmation();
                     window.setTimeout(function () {
-                        $state.go('supervisingemployees');
+                        $state.go('supervisormenu.supervisingemployees');
                     }, 3500);
                 }
                 else {

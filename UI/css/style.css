@@ -115,9 +115,15 @@
     }
 
     .bar-header i.inactive {
-        color: #ccc;
+        color: #bbb;
     }
 
+    .bar-header .ion-wifi {
+        color: #08da08;
+    }
+    .bar-header .ion-wifi.disconnected {
+        color: #ec575c;
+    }
     .bar-header .floatRight {
         position: absolute;
         top: 5px;

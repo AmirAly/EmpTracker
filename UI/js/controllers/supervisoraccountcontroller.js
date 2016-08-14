@@ -3,6 +3,7 @@
     $scope.emailPattern = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,24}$/;
 
     $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
         $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -92,7 +93,7 @@
                     // update global photo
                     $rootScope.globalUserPhoto = $scope.userData.img;
                     $rootScope.globalUserName = $scope.userData.firstname + " " + $scope.userData.lastname;
-                    $state.go('supervisingemployees');
+                    $state.go('supervisormenu.supervisingemployees');
                 }
             }, function (error) {
                 console.log(error);

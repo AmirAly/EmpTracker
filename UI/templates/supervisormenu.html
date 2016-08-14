@@ -1,0 +1,20 @@
+﻿<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content drag-content="toggledrag">
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu side="left">
+        <ion-header-bar class="bar-dark">
+            <h1 class="title">Supervisor Menu</h1>
+        </ion-header-bar>
+        <ion-content class="has-header sideMenuContent">
+            <!--menu content-->
+            <div class="padding-left" ng-repeat="item in menuItems">
+                <button menu-close ng-click="{{item.linkTo}}" class="button button-icon stable text-left">
+                    <i class="icon {{item.icon}}"></i>
+                    <span ng-show="{{item.badge}}" class="badge badge-dark">{{notifictionsCounter ||0}}</span>
+                    <span class="h5">&nbsp;{{item.text}}</span>
+                </button>
+            </div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

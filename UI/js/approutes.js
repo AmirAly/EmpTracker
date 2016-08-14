@@ -28,12 +28,12 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: "LoginController",
         templateUrl: 'templates/login.html'
     })
-        .state('forget', {
-            cache: false,
-            url: '/forget',
-            controller: "forgetController",
-            templateUrl: 'templates/forget.html'
-        })
+    .state('forget', {
+        cache: false,
+        url: '/forget',
+        controller: "forgetController",
+        templateUrl: 'templates/forget.html'
+    })
 
     .state('tempdevicelogin', {
         cache: false,
@@ -133,45 +133,75 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-            .state('app.viewmap', {
-                url: '/viewmap',
-                views: {
-                    'menuContent': {
-                        controller: "viewmapController",
-                        templateUrl: 'templates/viewmap.html'
-                    }
+        .state('app.viewmap', {
+            url: '/viewmap',
+            views: {
+                'menuContent': {
+                    controller: "viewmapController",
+                    templateUrl: 'templates/viewmap.html'
                 }
-            })
+            }
+        })
 
-    .state('supervisorchangepassword', {
-        url: '/supervisorchangepassword',
-        controller: "supervisorchangepasswordController",
-        templateUrl: 'templates/supervisorchangepassword.html'
+
+
+    .state('supervisormenu', {
+        url: '/supervisormenu',
+        abstract: true,
+        templateUrl: 'templates/supervisormenu.html',
+        controller: 'supervisormenuController'
     })
-    .state('supervisingemployees', {
+
+
+    .state('supervisormenu.supervisingemployees', {
         url: '/supervisingemployees',
-        controller: "supervisingemployeesController",
-        templateUrl: 'templates/supervisingemployees.html'
+        views: {
+            'menuContent': {
+                controller: "supervisingemployeesController",
+                templateUrl: 'templates/supervisingemployees.html'
+            }
+        }
     })
-    .state('empmap', {
-        url: '/empmap',
-        cache: false,
-        controller: "empmapController",
-        templateUrl: 'templates/empmap.html'
 
-    })
-    .state('supervisoraccount', {
+    .state('supervisormenu.supervisoraccount', {
         url: '/supervisoraccount',
-        controller: "supervisoraccountController",
-        templateUrl: 'templates/supervisoraccount.html'
-
+        views: {
+            'menuContent': {
+                controller: "supervisoraccountController",
+                templateUrl: 'templates/supervisoraccount.html'
+            }
+        }
     })
-    .state('supervisornotifications', {
-        url: '/supervisornotifications',
-        controller: "supervisornotificationsController",
-        templateUrl: 'templates/supervisornotifications.html'
 
-    });
+    .state('supervisormenu.supervisorchangepassword', {
+        url: '/supervisorchangepassword',
+        views: {
+            'menuContent': {
+                controller: "supervisorchangepasswordController",
+                templateUrl: 'templates/supervisorchangepassword.html'
+            }
+        }
+    })
+
+    .state('supervisormenu.empmap', {
+        url: '/empmap',
+        views: {
+            'menuContent': {
+                controller: "empmapController",
+                templateUrl: 'templates/empmap.html'
+            }
+        }
+    })
+
+     .state('supervisormenu.supervisornotifications', {
+         url: '/supervisornotifications',
+         views: {
+             'menuContent': {
+                 controller: "supervisornotificationsController",
+                 templateUrl: 'templates/supervisornotifications.html'
+             }
+         }
+     });
 
 
     // Flex Calendar Language Options

@@ -105,7 +105,7 @@
                                 else {
                                     $rootScope.isSupervisor = true;
                                     if (loginCode == 100) { // his device
-                                        $state.go('supervisingemployees');
+                                        $state.go('supervisormenu.supervisingemployees');
                                     }
                                     else if (loginCode == 101) { // inactive device
                                         $scope.afterLoginError = true;

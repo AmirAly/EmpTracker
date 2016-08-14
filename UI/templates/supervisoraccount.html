@@ -1,5 +1,7 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+
         <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
             <span class="badge badge-assertive">{{notifictionsCounter||0}}</span>
@@ -70,7 +72,7 @@
 
             <div class="row row-center">
                 <div class="col col-50 text-center">
-                    <a href="#/supervisorchangepassword">Change Password</a>
+                    <a href="#/supervisormenu/supervisorchangepassword">Change Password</a>
                 </div>
                 <div class="col col-50 text-center">
                     <a href="#/login" ng-click="logout()" >Log out</a>

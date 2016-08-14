@@ -1,7 +1,8 @@
 1- EMP-NO: 20  
 Name :  MUHAMMAD  
-EMAIL:majed.sydney@yahoo.com
-password: Gotodaw1
+EMAIL:majed.sydney@yahoo.com // zeze200788@yahoo.com
+
+password: Gotodaw1 // 123456
 
 2- EMP-NO:  30
 Name: IGOR
@@ -13,7 +14,9 @@ Name: Bassam
 Email: bassam@hotmail.com
 password: Gotodaw3
 
-
+supervisor
+Email: eng.samar.bakr@gmail.com
+password: 123456
 
 If code = 100 then the user is logging in from his active device.  
 If code = 101 the user is logged in from an inactive device. 

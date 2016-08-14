@@ -1,5 +1,6 @@
 ﻿empTracker.controller("supervisornotificationsController", function ($scope, $rootScope, $state, $timeout, $ionicLoading, API, $window) {
     $scope.$on('$ionicView.enter', function () {
+        $rootScope.toggledrag = true;
         $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
