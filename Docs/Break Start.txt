@@ -1,0 +1,22 @@
+var data = JSON.stringify({
+  "ShiftID": "baddc987-05fb-40ae-99fe-e7c04572c666",
+  "Clocking": {
+    "ClockingTime": "2016-07-18 15:00:00",
+    "PunchedVia": "MOB"
+  }
+});
+
+var xhr = new XMLHttpRequest();
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PUT", "https://rostersmanager.com:8080/api/Attendance?action=breakstart");
+xhr.setRequestHeader("authorization", "Bearer kCQAsgQzwjtvghWzZb8L0Ug0xCfka2_XsP7d-47nVMJxljE4J3T6FV6IcdnWttovMPvOxHs4YQVkhTA0Qg89LCOYJ0avjhR9RHs17rSBtIGVYtkueioC-_ppxvNZdtB8eOhs0Nn4nsHN0a60uzmbYGOgunucrvBqMbbb22cwfzu-o7rCs4O0ZccEo-QFDkqBa7g2tniVuEKBFU89vU_ZKPw-boTFa75M4bkG5eM1ZNS77W6keowfEZBAzeKatJuyeSWuSrsBeNMJEgVW9fA02F8GYG3xOgGiuCkvU31DuJmrTgafXK984FrUMkrpWkSBzmnqOpLQUgZcGHnrBx8iY0HWqze6t59PPW_szaHhIERbziXL7dGn3MyC9VPxRyy2M6ARUhKgx-oh6sI4hAt14iw-cmvkLj07EjJBNQAhgUAePQ1lr5Zb8RLf027_7PgoM_-i1_QYgIAnC-CNKKQjguSh6wwM1WY_AgEVH7w_lGQ");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+
+xhr.send(data);

@@ -1,0 +1,30 @@
+var data = JSON.stringify({
+  "SiteID": "AUSPO",
+  "TaskCode": "Patrol",
+  "Notes": "some notes",
+  "Clocking": {
+    "ClockingTime": "2016-07-18 10:11:00",
+    "Latitude": -33.869962,
+    "Longitude": 151.202169,
+    "GPSTrackingMethod": "Network",
+    "PunchedVia": "MOB",
+    "EmployeeNotes": "emp notes",
+    "BatteryLevel": 59,
+    "Vibration": false
+  }
+});
+
+var xhr = new XMLHttpRequest();
+
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open("PUT", "https://rostersmanager.com:8080/api/Attendance?action=in");
+xhr.setRequestHeader("authorization", "Bearer Mx41vrzAJzpHjy7KD7e_VVCL0TnJxswamiEVN8wtyBC7N36UXU00AUzlhzfZhjW5lkvVS8lJdaHSxImGAeCOi4F0X3CmLXPmBuk3aBo-E3U1enYNowYM2I6dnT5tJDibcVCv_y20D6IdhnD14igj74fWR2mrKXgLvo60Y5AnH3rgou8VCrNxNe1Dov4ztDFicXNN79HYbuOqVgAVKw_VTpZp6-0G4Zai_pVN313aznMabk1aRzhf0brAkJ_QzPaZCBCbKzWwWKr8Hl1AVTpCzNZMO3y2L3UM5rvKSWZMqBq3MGMEsrv9lR83sZkyuPhukE4x6KKSO64EprzgQzB5kMKMyo0Syh4DCq3f0DJCUUTg7E-y9UNdHmUehm3KXRG-zDU0EzGu56Fd3gXMuLy1u8sJ-HcZ8BQXARe2_HQ19hsP2Xf_OHN0v1ZPl37cE0BbHUPsLNZ0_9l1DkSs2fHgWpf56dLG7nLlUqQ7w0-qTVTFlmQi5ttScEz_B43Ug1RDof9v77l_wxJ03oPmSEdEvFn0EosDMBKgGVi8OIhv9do");
+xhr.setRequestHeader("content-type", "application/json");
+xhr.setRequestHeader("cache-control", "no-cache");
+
+xhr.send(data);
