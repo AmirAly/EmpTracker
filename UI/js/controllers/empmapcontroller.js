@@ -64,13 +64,13 @@
     });
 
     $scope.backToAllEmps = function () {
-        $state.go('supervisingemployees');
+        $state.go('supervisormenu.supervisingemployees');
     }
     $scope.openmyaccount = function () {
-        $state.go('supervisoraccount');
+        $state.go('supervisormenu.supervisoraccount');
     }
     $scope.notifications = function () {
-        $state.go('supervisornotifications');
+        $state.go('supervisormenu.supervisornotifications');
     }
     $scope.nextEmp = function () {
         window.location.reload(true);
