@@ -4,23 +4,7 @@
     $scope.frmmLogin.password = '';
     $scope.frmmLogin.companycode = '';
 
-document.addEventListener("deviceready", onDeviceReady, false);
-        function onDeviceReady() {
-            $scope.test = "tttt";
-            $scope.devicecordova = device.cordova;
-            $scope.model = device.model;
-            $scope.devicePlatform = device.platform;
-            $scope.deviceID = device.uuid;
-            $scope.deviceVersion = device.version;
-        }
-        $scope.testing = function () {
-            $scope.test = "tttt";
-            $scope.devicecordova = device.cordova;
-            $scope.model = device.model;
-            $scope.devicePlatform = device.platform;
-            $scope.deviceID = device.uuid;
-            $scope.deviceVersion = device.version;
-        }
+
     $scope.$on('$ionicView.enter', function () {
         
     });
@@ -147,5 +131,21 @@ document.addEventListener("deviceready", onDeviceReady, false);
                 $ionicLoading.hide();
             });
         }
+    }
+
+    window.plugins.imeiplugin.getImei(callback);
+    function callback(imei) {
+        console.log("My Android IMEI :" + imei);
+        $scope.IMEI = imei;
+    }
+
+    $scope.testing = function () {
+        $scope.test = "tttt";
+        $scope.devicecordova = device.cordova;
+        $scope.model = device.model;
+        $scope.devicePlatform = device.platform;
+        $scope.deviceID = device.uuid;
+        $scope.deviceVersion = device.version;
+        $scope.IMEI = imei;
     }
 });
