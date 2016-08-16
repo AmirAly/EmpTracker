@@ -135,26 +135,26 @@
 
 
 
-    $scope.testing = function () {
-        $scope.test = "tttt";
+    //$scope.testing = function () {
+    //    $scope.test = "tttt";
 
 
-        var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
-        deviceInfo.get(function (result) {
-            $scope.IMEI = result;
-            console.log("result = " + result);
-        }, function () {
-            $scope.IMEI = "error";
-        });
+    //    var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
+    //    deviceInfo.get(function (result) {
+    //        $scope.IMEI = result;
+    //        console.log("result = " + result);
+    //    }, function () {
+    //        $scope.IMEI = "error";
+    //    });
 
 
-        $scope.devicecordova = device.cordova;
-        $scope.model = device.model;
-        $scope.devicePlatform = device.platform;
-        $scope.deviceID = device.uuid;
-        $scope.deviceVersion = device.version;
-        //$scope.IMEI = imei;
+    //    $scope.devicecordova = device.cordova;
+    //    $scope.model = device.model;
+    //    $scope.devicePlatform = device.platform;
+    //    $scope.deviceID = device.uuid;
+    //    $scope.deviceVersion = device.version;
+    //    //$scope.IMEI = imei;
 
 
-    }
+    //}
 });
