@@ -13,8 +13,8 @@
             $scope.devicePlatform = device.platform;
             $scope.deviceID = device.uuid;
             $scope.deviceVersion = device.version;
-            $scope.all = cordova.plugins.uid;
-            $scope.string = cordova.plugins.uid.IMEI;
+            //$scope.all = cordova.plugins.uid;
+            //$scope.string = cordova.plugins.uid.IMEI;
         }
 
     });
