@@ -73,7 +73,7 @@
 	<gap:plugin name="org.apache.cordova.device" />
 	<gap:plugin name="org.apache.cordova.device-motion" />
 	<gap:plugin name="org.apache.cordova.file" />
-	<gap:plugin name="org.apache.cordova.geolocation" />
+	<!--<gap:plugin name="org.apache.cordova.geolocation" />-->
 	<gap:plugin name="org.apache.cordova.media" />
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
