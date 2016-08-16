@@ -4,8 +4,7 @@
     $scope.frmmLogin.password = '';
     $scope.frmmLogin.companycode = '';
 
-    $scope.$on('$ionicView.enter', function () {
-        document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
             $scope.test = "tttt";
             $scope.devicecordova = device.cordova;
@@ -13,10 +12,17 @@
             $scope.devicePlatform = device.platform;
             $scope.deviceID = device.uuid;
             $scope.deviceVersion = device.version;
-            //$scope.all = cordova.plugins.uid;
-            //$scope.string = cordova.plugins.uid.IMEI;
         }
-
+        $scope.testing = function () {
+            $scope.test = "tttt";
+            $scope.devicecordova = device.cordova;
+            $scope.model = device.model;
+            $scope.devicePlatform = device.platform;
+            $scope.deviceID = device.uuid;
+            $scope.deviceVersion = device.version;
+        }
+    $scope.$on('$ionicView.enter', function () {
+        
     });
     
     console.log($window.localStorage['UserName']);
