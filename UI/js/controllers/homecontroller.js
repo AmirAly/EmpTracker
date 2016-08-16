@@ -1,4 +1,4 @@
-﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window, $location) {
+﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window, $location,$cordovaGeolocation) {
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function test() {
 
@@ -38,25 +38,43 @@
                 if (res) {
                     console.log('You are sure In');
                     $timeout(function () {
-                        var map;
-                        var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
-                        google.maps.event.addDomListener(window, 'load', initialize());
-                        function initialize() {
+                        //var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
+                        ////Create a Map in Your Application
+                        var options = { timeout: 10000, enableHighAccuracy: true };
+
+                        $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+
+                            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
                             var mapOptions = {
-                                zoom: 7,
-                                center: myLatLng,
-                                disableDefaultUI: true
+                                center: latLng,
+                                zoom: 15,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
                             };
-                            map = new google.maps.Map(document.getElementById('map'),
-                                mapOptions);
-                            google.maps.event.addListenerOnce(map, 'idle', function () {
+
+                            $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                            ////Add a Marker and Info Window to Your Map
+                            //Wait until the map is loaded
+                            google.maps.event.addListenerOnce($scope.map, 'idle', function () {
+
                                 var marker = new google.maps.Marker({
-                                    map: map,
+                                    map: $scope.map,
                                     animation: google.maps.Animation.DROP,
-                                    position: myLatLng
+                                    position: latLng
                                 });
+
+                                var infoWindow = new google.maps.InfoWindow({
+                                    content: "Here I am!"
+                                });
+
+                                google.maps.event.addListener(marker, 'click', function () {
+                                    infoWindow.open($scope.map, marker);
+                                });
+
                             });
-                        }
+                        }, function (error) {
+                            console.log("Could not get location");
+                        });
                         $scope.mapView = true;
                     }, 200);
                 } else {
