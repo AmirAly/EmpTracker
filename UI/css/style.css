@@ -121,9 +121,11 @@
     .bar-header .ion-wifi {
         color: #08da08;
     }
-    .bar-header .ion-wifi.disconnected {
-        color: #ec575c;
-    }
+
+        .bar-header .ion-wifi.disconnected {
+            color: #ec575c;
+        }
+
     .bar-header .floatRight {
         position: absolute;
         top: 5px;
@@ -136,7 +138,7 @@
         display: inline-block;
         color: #fff;
         text-decoration: none;
-        line-height:2.2;
+        line-height: 2.2;
     }
 
         .bar-header .floatRight:last-child {
@@ -556,7 +558,11 @@
 /*map page*/
 .mapPage #map {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+}
+
+.mapPage .scroll {
+    height: 100%;
 }
 
 /*supervisor page*/
@@ -604,9 +610,14 @@ i.icon.icon-right {
 
 
 /*home page*/
+
 .homePage #map {
     width: 100%;
-    height: 100vw;
+    height: 100%;
+}
+
+.homePage .scroll {
+    height: 100%;
 }
 
 .homePage .col p {
