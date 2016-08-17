@@ -20,7 +20,7 @@
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Roster/Next?currentTime=' + 'Mon, 15 Aug 2016 06:53:56 GMT',
+                url: '/api/Roster/Next?currentTime=' + '2016-08-17',
                 data: {}
             }
             // add true to use authentication token

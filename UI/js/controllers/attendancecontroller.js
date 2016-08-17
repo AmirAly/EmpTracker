@@ -27,7 +27,7 @@
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
-    });
+    
 
     //////////////////////////////////////////////////////
 
@@ -142,6 +142,10 @@
                
                 $ionicLoading.hide();
             }
+            else {
+                $scope.weeklyReportDataArray = [];
+                $ionicLoading.hide();
+            }
         }
         , function (error) {
             console.log(error);
@@ -238,7 +242,7 @@
     //    });
     //}
 
-
+    });
 
 
 });

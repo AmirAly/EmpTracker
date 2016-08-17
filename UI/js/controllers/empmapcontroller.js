@@ -1,7 +1,7 @@
 ﻿empTracker.controller("empmapController", function ($scope, $state, $timeout, $rootScope, $window, $cordovaGeolocation) {
 
     $scope.$on('$ionicView.enter', function () {
-        $rootScope.toggledrag = true;
+        //$rootScope.toggledrag = true;
         ////Create a Map in Your Application
         var options = { timeout: 10000, enableHighAccuracy: true };
 
