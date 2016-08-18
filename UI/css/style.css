@@ -232,21 +232,13 @@
         float: left;
     }
 
-
-.bluePopup .button-positive,
-.bluePopup .button-positive:active,
-.bluePopup .button.button-positive.active,
-.bluePopup .button.button-positive.activated {
-    background-color: #3276b1;
-    border-color: #2B6AA0;
-}
-
 .bluePopup .popup-body {
     background-color: #f4f4f4;
 }
 
 .bluePopup .popup-head {
-    background-color: #3276b1;
+    border-color: #0c63ee;
+    background-color: #387ef5;
 }
 
     .bluePopup .popup-head h3 {
@@ -414,6 +406,9 @@
     .shiftCard .thirdCoulmn .dvTimeContainer {
         border: 1px solid #C5C5C5;
         text-align: center;
+        width: 48px;
+        height: 48px;
+        float: right;
     }
 
     .shiftCard .thirdCoulmn .totalHours {
@@ -734,7 +729,9 @@ i.icon.icon-right {
 .shiftViewPage {
     background-color: #ecebec;
 }
-
+    .shiftViewPage .errorFont{
+            padding-right: 0px
+    }
     .shiftViewPage .bluefont {
         font-size: 100%;
         color: #4b8dc0;

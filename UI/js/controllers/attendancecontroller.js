@@ -88,6 +88,7 @@
         API.execute(req, true).then(function (_res) {
             if (_res.data.code == 200) {
                 $scope.weeklyAttendanceArray = _res.data.data;
+                console.log($scope.weeklyAttendanceArray);
                 $ionicLoading.hide();
             }
         }
