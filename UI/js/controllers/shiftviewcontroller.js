@@ -5,11 +5,10 @@
         console.log($window.localStorage['IsTempLogin']);
         console.log($stateParams.shiftid);
 
-        $scope.today = new Date();
-        console.log($scope.today.toISOString());
+        $scope.today = new Date();        
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
-        // use var today date with current time instead of $scope.today.toISOString()
-        //..
+        var formatedTodayDateTime = new Date(Date.parse(new Date().toUTCString()));
+        console.log(formatedTodayDateTime);
 
         //Temp user login
         if ($window.localStorage['IsTempLogin'] === 'true') {
@@ -261,7 +260,7 @@
                 "ShiftID": 'ffa68d03-0fa8-4344-aca6-febb0b33dae9',
                 "Notes": "",
                 "Clocking": {
-                    "ClockingTime": $scope.today.toISOString(),
+                    "ClockingTime": formatedTodayDateTime,
                     "PunchedVia": "MOB"
                 }
             }
@@ -363,7 +362,7 @@
                 "RosterShiftID": $scope.ShiftId,
                 "Notes": "",
                 "Clocking": {
-                    "ClockingTime": $scope.today.toISOString(),
+                    "ClockingTime": formatedTodayDateTime,
                     "Latitude": -33.869962,
                     "Longitude": 151.202169,
                     "GPSTrackingMethod": "Network",
