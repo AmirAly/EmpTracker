@@ -1,30 +1,56 @@
-﻿empTracker.controller("LoginController", function ($scope, $state, API, $window, $ionicLoading, $rootScope) {
+﻿empTracker.controller("LoginController", function ($scope, $state, API, $window, $ionicLoading, $rootScope, $cordovaNetwork) {
     $scope.frmmLogin = {};
     $scope.frmmLogin.name = '';
     $scope.frmmLogin.password = '';
     $scope.frmmLogin.companycode = '';
 
 
+    document.addEventListener("deviceready", function () {
+
+        var type = $cordovaNetwork.getNetwork()
+
+        var isOnline = $cordovaNetwork.isOnline()
+
+        var isOffline = $cordovaNetwork.isOffline()
+
+        $scope.test = { "type": type, "isOnline": isOnline, "isOffline": isOffline };
+
+        // listen for Online event
+        $rootScope.$on('networkOffline', function (event, networkState) {
+            var onlineState = networkState;
+            alert('now online');
+        })
+
+        // listen for Offline event
+        $rootScope.$on('networkOffline', function (event, networkState) {
+            var offlineState = networkState;
+            alert('now offline');
+        })
+
+    }, false);
+
     $scope.$on('$ionicView.enter', function () {
-        function checkConnection() {
-            var networkState = navigator.connection.type;
-            $scope.test = navigator.connection;
-            alert(navigator.connection);
-            alert(navigator.connection.type);
-            var states = {};
-            states[Connection.UNKNOWN] = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI] = 'WiFi connection';
-            states[Connection.CELL_2G] = 'Cell 2G connection';
-            states[Connection.CELL_3G] = 'Cell 3G connection';
-            states[Connection.CELL_4G] = 'Cell 4G connection';
-            states[Connection.CELL] = 'Cell generic connection';
-            states[Connection.NONE] = 'No network connection';
 
-            alert('Connection type: ' + states[networkState]);
-        }
+        //function checkConnection() {
+        //    var networkState = navigator.connection.type;
+        //    $scope.test = navigator.connection;
+        //    alert(navigator.connection);
+        //    alert(navigator.connection.type);
+        //    var states = {};
+        //    states[Connection.UNKNOWN] = 'Unknown connection';
+        //    states[Connection.ETHERNET] = 'Ethernet connection';
+        //    states[Connection.WIFI] = 'WiFi connection';
+        //    states[Connection.CELL_2G] = 'Cell 2G connection';
+        //    states[Connection.CELL_3G] = 'Cell 3G connection';
+        //    states[Connection.CELL_4G] = 'Cell 4G connection';
+        //    states[Connection.CELL] = 'Cell generic connection';
+        //    states[Connection.NONE] = 'No network connection';
 
-        checkConnection();
+        //    alert('Connection type: ' + states[networkState]);
+        //}
+        //checkConnection();
+
+
         //$.ajax({
         //    type: "HEAD",
         //    url: 'http://www.google.com',
@@ -165,8 +191,6 @@
 
     //$scope.testing = function () {
     //    $scope.test = "tttt";
-
-
     //    var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
     //    deviceInfo.get(function (result) {
     //        $scope.IMEI = result;
@@ -174,15 +198,11 @@
     //    }, function () {
     //        $scope.IMEI = "error";
     //    });
-
-
     //    $scope.devicecordova = device.cordova;
     //    $scope.model = device.model;
     //    $scope.devicePlatform = device.platform;
     //    $scope.deviceID = device.uuid;
     //    $scope.deviceVersion = device.version;
     //    //$scope.IMEI = imei;
-
-
     //}
 });
