@@ -8,7 +8,8 @@
     $scope.$on('$ionicView.enter', function () {
         function checkConnection() {
             var networkState = navigator.connection.type;
-
+            alert(navigator.connection);
+            alert(navigator.connection.type);
             var states = {};
             states[Connection.UNKNOWN] = 'Unknown connection';
             states[Connection.ETHERNET] = 'Ethernet connection';
