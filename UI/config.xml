@@ -78,6 +78,7 @@
 	<gap:plugin name="org.apache.cordova.network-information" />
 	<gap:plugin name="org.apache.cordova.splashscreen" />
 
+	<gap:plugin name="org.apache.cordova.network-information" />
 	<!--<plugin name="DeviceInformation" value="com.vliesaputra.cordova.plugins.DeviceInformation"/>-->
 
 	<icon src="icon.png" />

@@ -1,5 +1,29 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate'])
 
+empTracker.run(function ($ionicPlatform, $ionicPopup) {
+    $ionicPlatform.ready(function () {
+        alert('enter');
+        if (window.Connection) {
+            alert('enter if connectioin');
+            if (navigator.connection.type == Connection.NONE) {
+                alert('enter if connectioin type');
+                $ionicPopup.confirm({
+                    title: "Internet Disconnected",
+                    content: "The internet is disconnected on your device."
+                })
+                .then(function (result) {
+                    alert('enter then connectioin type');
+                    if (!result) {
+                        ionic.Platform.exitApp();
+                    }
+                });
+            }
+        }
+        else {
+            alert('enter else connectioin');
+        }
+    });
+});
 
 empTracker.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
