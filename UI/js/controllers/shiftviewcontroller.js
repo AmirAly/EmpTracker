@@ -1,5 +1,6 @@
 ﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
     //$scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
+    var formatedTodayDateTime;
     $scope.$on('$ionicView.enter', function () {
         $scope.errorMSG = "";
         console.log($window.localStorage['IsTempLogin']);
@@ -7,9 +8,9 @@
 
         $scope.today = new Date();        
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
-        var formatedTodayDateTime = new Date(Date.parse(new Date().toUTCString()));
-        console.log(formatedTodayDateTime);
 
+        formatedTodayDateTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
+        console.log(formatedTodayDateTime);
         //Temp user login
         if ($window.localStorage['IsTempLogin'] === 'true') {
             $scope.pageTitle = "Available shift";

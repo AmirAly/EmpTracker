@@ -6,7 +6,13 @@
 
 
     $scope.$on('$ionicView.enter', function () {
-        
+        $.ajax({
+            type: "HEAD",
+            url: 'http://www.google.com',
+            error: function () {
+                alert('world is gone !');
+            }
+        });
     });
     
     console.log($window.localStorage['UserName']);

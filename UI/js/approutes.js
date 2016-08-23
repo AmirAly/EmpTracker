@@ -3,8 +3,10 @@
 empTracker.run(function ($ionicPlatform, $ionicPopup) {
     $ionicPlatform.ready(function () {
         alert('enter');
+        alert(window.Connection);
         if (window.Connection) {
             alert('enter if connectioin');
+            alert(navigator.connection.type);
             if (navigator.connection.type == Connection.NONE) {
                 alert('enter if connectioin type');
                 $ionicPopup.confirm({
@@ -23,7 +25,7 @@ empTracker.run(function ($ionicPlatform, $ionicPopup) {
             alert('enter else connectioin');
         }
     });
-});
+})
 
 empTracker.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
