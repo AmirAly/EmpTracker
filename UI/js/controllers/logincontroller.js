@@ -7,59 +7,23 @@
 
 
     $scope.$on('$ionicView.enter', function () {
-        var type = $cordovaNetwork.getNetwork()
 
-        var isOnline = $cordovaNetwork.isOnline()
-
-        var isOffline = $cordovaNetwork.isOffline()
-
-        $scope.test = { "type": type, "isOnline": isOnline, "isOffline": isOffline };
-
-        // listen for Online event
-        $rootScope.$on('networkOffline', function (event, networkState) {
-            var onlineState = networkState;
-            alert('now online');
+        $http.get('/json/attenance.json').then(function (data) {
+            $scope.test = data.data.attenance;
         });
 
-        // listen for Offline event
-        $rootScope.$on('networkOffline', function (event, networkState) {
-            var offlineState = networkState;
-            alert('now offline');
+        $.ajax({
+            type: "HEAD",
+            url: 'http://www.google.com',
+            error: function () {
+                alert('world is gone !');
+            },
+            success: function () {
+                alert('ONline')
+            }
         });
-
-
-        //function checkConnection() {
-        //    var networkState = navigator.connection.type;
-        //    $scope.test = navigator.connection;
-        //    alert(navigator.connection);
-        //    alert(navigator.connection.type);
-        //    var states = {};
-        //    states[Connection.UNKNOWN] = 'Unknown connection';
-        //    states[Connection.ETHERNET] = 'Ethernet connection';
-        //    states[Connection.WIFI] = 'WiFi connection';
-        //    states[Connection.CELL_2G] = 'Cell 2G connection';
-        //    states[Connection.CELL_3G] = 'Cell 3G connection';
-        //    states[Connection.CELL_4G] = 'Cell 4G connection';
-        //    states[Connection.CELL] = 'Cell generic connection';
-        //    states[Connection.NONE] = 'No network connection';
-
-        //    alert('Connection type: ' + states[networkState]);
-        //}
-        //checkConnection();
-
-
-        //$.ajax({
-        //    type: "HEAD",
-        //    url: 'http://www.google.com',
-        //    error: function () {
-        //        alert('world is gone !');
-        //    },
-        //    success: function () {
-        //        alert('ONline')
-        //    }
-        //});
     });
-    
+
     console.log($window.localStorage['UserName']);
     console.log($window.localStorage['authorizationToken']);
 
