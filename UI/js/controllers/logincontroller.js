@@ -5,8 +5,8 @@
     $scope.frmmLogin.companycode = '';
 
 
-    document.addEventListener("deviceready", function () {
 
+    $scope.$on('$ionicView.enter', function () {
         var type = $cordovaNetwork.getNetwork()
 
         var isOnline = $cordovaNetwork.isOnline()
@@ -19,17 +19,14 @@
         $rootScope.$on('networkOffline', function (event, networkState) {
             var onlineState = networkState;
             alert('now online');
-        })
+        });
 
         // listen for Offline event
         $rootScope.$on('networkOffline', function (event, networkState) {
             var offlineState = networkState;
             alert('now offline');
-        })
+        });
 
-    }, false);
-
-    $scope.$on('$ionicView.enter', function () {
 
         //function checkConnection() {
         //    var networkState = navigator.connection.type;
