@@ -44,6 +44,8 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
                     $ionicLoading.hide();
                 }
                 else {
@@ -109,6 +111,8 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
                     $ionicLoading.hide();
                 }
                 else {
@@ -157,6 +161,8 @@
                     $scope.shiftSite = _res.data.data.ShortLocationName;
                     $scope.shiftaddress = _res.data.data.LocationName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
+                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
                     $ionicLoading.hide();
                 }
                 else {
@@ -195,7 +201,7 @@
         console.log(text);
     }
     $scope.viewMap = function () {
-        $state.go('app.viewmap');
+        $state.go('app.viewmap', { Latitude: $scope.ShiftLatitude, Longitude: $scope.ShiftLongitude });
     }
     $scope.load = function () {
         $scope.clockOut = false;

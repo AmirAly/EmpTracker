@@ -27,6 +27,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: "LoginController",
         templateUrl: 'templates/login.html'
     })
+
     .state('forget', {
         cache: false,
         url: '/forget',
@@ -40,12 +41,14 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: "tempdeviceloginController",
         templateUrl: 'templates/tempdevicelogin.html'
     })
+
     .state('app', {
         url: '/app',
         abstract: true,
         templateUrl: 'templates/menu.html',
         controller: 'MenuController'
     })
+
     .state('app.home', {
         cache: false,
         url: '/home',
@@ -76,6 +79,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+
     .state('app.attendance', {
         url: '/attendance',
         views: {
@@ -95,6 +99,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+
     .state('app.challenge', {
         url: '/challenge',
         views: {
@@ -104,6 +109,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+
     .state('app.changepassword', {
         url: '/changepassword',
         views: {
@@ -113,6 +119,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+
     .state('app.myaccount', {
         cache: false,
         url: '/myaccount',
@@ -123,6 +130,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+
     .state('app.dashboard', {
         url: '/dashboard',
         views: {
@@ -132,15 +140,16 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
-        .state('app.viewmap', {
-            url: '/viewmap',
-            views: {
-                'menuContent': {
-                    controller: "viewmapController",
-                    templateUrl: 'templates/viewmap.html'
-                }
+
+    .state('app.viewmap', {
+        url: '/viewmap/:Latitude/:Longitude',
+        views: {
+            'menuContent': {
+                controller: "viewmapController",
+                templateUrl: 'templates/viewmap.html'
             }
-        })
+        }
+    })
 
 
 

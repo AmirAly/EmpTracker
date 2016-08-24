@@ -1,10 +1,16 @@
 {
-  "name": "trunk",
+    "name": "trunk",
     "app_id": "",
     "documentRoot": "UI",
     "createDocumentRoot": "UI",
     "watchPatterns": [
-    "UI/**/*",
-    "!UI/lib/**/*"
+        "UI/**/*",
+        "!UI/lib/**/*"
+    ],
+    "proxies": [
+    {
+      "path": "/Help",
+      "proxyUrl": "http://rostersmanager.com:90/Help"
+    }
   ]
 }

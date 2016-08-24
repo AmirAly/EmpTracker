@@ -2,7 +2,7 @@
 
     $scope.$on('$ionicView.enter', function () {
         //$rootScope.toggledrag = true;
-        ////Create a Map in Your Application
+        //Create a Map in Your Application
         var options = { timeout: 10000, enableHighAccuracy: true };
 
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {

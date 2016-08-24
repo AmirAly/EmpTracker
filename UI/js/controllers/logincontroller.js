@@ -1,27 +1,22 @@
-﻿empTracker.controller("LoginController", function ($scope, $state, API, $window, $ionicLoading, $rootScope, $cordovaNetwork) {
+﻿empTracker.controller("LoginController", function ($scope, $rootScope, $state, API, $window, $ionicLoading, $rootScope, $cordovaNetwork, $http) {
     $scope.frmmLogin = {};
     $scope.frmmLogin.name = '';
     $scope.frmmLogin.password = '';
     $scope.frmmLogin.companycode = '';
 
-
+    $rootScope.internetStatus = 'disconnected';
 
     $scope.$on('$ionicView.enter', function () {
-
-        $http.get('/json/attenance.json').then(function (data) {
-            $scope.test = data.data.attenance;
-        });
-
-        $.ajax({
+        $http({
             type: "HEAD",
-            url: 'http://www.google.com',
-            error: function () {
-                alert('world is gone !');
-            },
-            success: function () {
-                alert('ONline')
-            }
+            method: "GET",
+            url: "http://rostersmanager.com:90/Help"
+        }).then(function (response) {
+            $rootScope.internetStatus = 'connected';
+        }, function (response) {
+            $rootScope.internetStatus = 'disconnected';
         });
+
     });
 
     console.log($window.localStorage['UserName']);
