@@ -1,6 +1,6 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <i class=" icon ion-wifi"></i>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
         <i class=" icon ion-ios-location inactive"></i>
         <button class="hide"></button>
     </ion-header-bar>

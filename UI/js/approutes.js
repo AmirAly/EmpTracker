@@ -1,6 +1,6 @@
-﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate'])
+﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope) {
+empTracker.run(function ($ionicPlatform, $rootScope, InternetConnection) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -9,14 +9,19 @@ empTracker.run(function ($ionicPlatform, $rootScope) {
             StatusBar.styleDefault();
         }
     });
-})
+    // set default value of internetStatus
+    $rootScope.internetStatus = 'disconnected';
+    $rootScope.checkInternet = function () {
+        setInterval(function () {
+            InternetConnection.checkConnection();
+        }, 1000);
+    };
+    $rootScope.checkInternet();
+});
 
 empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
-
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
-
 }]);
-
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
