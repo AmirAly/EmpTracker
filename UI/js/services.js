@@ -59,7 +59,7 @@ empTracker.factory('InternetConnection', function ($http, $rootScope) {
             }).then(function (response) {
                 $rootScope.internetStatus = 'connected';
             }, function (response) {
-                $rootScope.internetStatus = 'disconnected'; 
+                $rootScope.internetStatus = 'disconnected';
             });
             
             }

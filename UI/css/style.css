@@ -96,9 +96,9 @@
     background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%);
 }
 
-    .bar-header .button:hover,.bar-header .button:focus,.bar-header .button:active {
+    .bar-header .button:hover, .bar-header .button:focus, .bar-header .button:active {
         color: #fff;
-        opacity:1;
+        opacity: 1;
     }
 
     .bar-header span.badge {
@@ -730,9 +730,11 @@ i.icon.icon-right {
 .shiftViewPage {
     background-color: #ecebec;
 }
-    .shiftViewPage .errorFont{
-            padding-right: 0px
+
+    .shiftViewPage .errorFont {
+        padding-right: 0px;
     }
+
     .shiftViewPage .bluefont {
         font-size: 100%;
         color: #4b8dc0;
@@ -767,28 +769,22 @@ i.icon.icon-right {
         }
 
 /*challenge Page*/
-.challengePage .basicColorDv {
-    background-color: rgb(237,95,83);
-    min-width: 50vw;
-    min-height: 50vw;
+.challengePage img {
+    width: 100%;
+    height: 100%;
 }
 
-.challengePage .firstColorDv {
-    background-color: rgb(237,95,83);
-    min-width: 18vw;
-    min-height: 18vw;
+.challengePage .txtChoices {
+    text-transform: capitalize;
+    font-size: 26px;
+    padding: 10px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
 }
 
-.challengePage .secondColorDv {
-    background-color: rgb(66,165,246);
-    min-width: 18vw;
-    min-height: 18vw;
-}
-
-.challengePage .thirdColorDv {
-    background-color: rgb(57,156,30);
-    min-width: 18vw;
-    min-height: 18vw;
+.challengePage h1 {
+    color:red;
+    font-size: 40px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
 }
 
 /*notifications Page*/
@@ -1054,6 +1050,10 @@ i.icon.icon-right {
     margin-left: 2px;
 }
 
+    .dashboardPage .card .todayShiftCard {
+        padding: 0px;
+    }
+
 .dashboardPage .listSchedule .item {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -1128,6 +1128,7 @@ i.icon.icon-right {
     /*background-color: #63228a;*/ /*purple*/
     background-color: #387ef5; /*blue*/
     color: #fff;
+    padding: 8px;
 }
 
     .dashboardPage .listSchedule .item-divider img {

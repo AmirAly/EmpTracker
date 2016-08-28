@@ -21,11 +21,13 @@
         // today
         var d = new Date();
         var todayname = days[d.getDay()];
-        var todaymonthname = months[d.getMonth()];
-        $scope.todayDateString = todayname + ', ' + todaymonthname + d.getDate() + ', ' + d.getFullYear();
+        $scope.todayDateString = todayname + ', ' + months[d.getMonth()] +' '+ d.getDate() + ', ' + d.getFullYear();
 
         var todayDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
         $scope.todayDate = todayDate;
+
+        $scope.currentTime = d.getHours() + ':' +d.getMinutes() + ':' + d.getSeconds();
+        //console.log($scope.currentTime);
 
         // this week first / end
         var intialDate = new Date(); // get current date
@@ -41,7 +43,7 @@
         $scope.lastDayOfWeek = " " + shortDays[lastday.getDay()] + " " + lastday.getDate() + " " + shortMonths[lastday.getMonth()] + " " + lastday.getFullYear();
 
         // this week shifts
-        $scope.thisWeek = function () {
+        $scope.thisWeekShifts = function () {
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -53,7 +55,7 @@
 
             var req = {
                 method: 'GET',
-                url: '/api/Roster?startDate=' + formatedFirstDay + '&endDate=' + formatedLastday + '',
+                url: '/api/Roster?startDate=' + $scope.todayDate + '&endDate=' + $scope.todayDate ,
                 data: {}
             }
             // add true to use authentication token
@@ -84,7 +86,7 @@
             });
 
         }
-        $scope.thisWeek();
+        $scope.thisWeekShifts();
 
         $scope.statistiics = function () {
             $ionicLoading.show({
@@ -98,23 +100,16 @@
 
             var req = {
                 method: 'GET',
-                url: '/api/Roster?startDate=' + formatedFirstDay + '&endDate=' + formatedLastday + '',
+                url: '/api/attendance/statistics?CurrentTime=' + $scope.currentTime + '&StartDate=' + formatedFirstDay + '&EndDate=' + formatedLastday,
                 data: {}
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
+                console.log(_res);
                 if (_res.data.code == 200) {
                     // fill data
-                    $scope.totals = {
-                        'TotalShiftsScheduled': 0,
-                        'TotalShiftsWorked': 0,
-                        'NoShow': 0,
-                        'LateArrival': 1,
-                        'EarlyLeave': 0,
-                        'MissingClockOut': 0,
-                        'TotalHoursScheduled': 0,
-                        'TotalHoursWorked': 0
-                    };
+                    console.log(_res.data.data);
+                    $scope.totals = _res.data.data;
                     $ionicLoading.hide();
                 }
                 else {
@@ -122,7 +117,7 @@
                         'TotalShiftsScheduled': 0,
                         'TotalShiftsWorked': 0,
                         'NoShow': 0,
-                        'LateArrival': 1,
+                        'LateArrival': 0,
                         'EarlyLeave': 0,
                         'MissingClockOut': 0,
                         'TotalHoursScheduled': 0,
@@ -140,7 +135,7 @@
                 $state.go('login');
             });
         }
-
+        $scope.statistiics();
     });
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');

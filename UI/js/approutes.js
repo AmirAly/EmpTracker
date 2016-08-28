@@ -14,7 +14,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, InternetConnection) {
     $rootScope.checkInternet = function () {
         setInterval(function () {
             InternetConnection.checkConnection();
-        }, 1000);
+        }, 500);
     };
     $rootScope.checkInternet();
 });
