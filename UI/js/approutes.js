@@ -55,7 +55,6 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.home', {
-        cache: false,
         url: '/home',
         views: {
             'menuContent': {
@@ -126,7 +125,6 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.myaccount', {
-        cache: false,
         url: '/myaccount',
         views: {
             'menuContent': {

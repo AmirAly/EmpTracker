@@ -23,31 +23,28 @@
             </div>
         </div>
         <h3 class="text-center">{{question.question}}</h3>
-        <div class="padding-horizontal">
-            <div class="padding row row-center">
-                <div class="col ">
-                    <div class="card text-center txtChoices" style="color:{{question.choise1}}">
+        <div class="row row-center">
+                <div class="col">
+                    <div ng-click="answer(question.choise1)" class="card text-center txtChoices" style="color:{{question.choise1}}">
                         {{question.choise1}}
                     </div>
                 </div>
-                <div class="col ">
-                    <div class="card text-center txtChoices" style="color:{{question.choise2}}">
+                <div class="col">
+                    <div ng-click="answer(question.choise2)" class="card text-center txtChoices" style="color:{{question.choise2}}">
                         {{question.choise2}}
                     </div>
                 </div>
-                <div class="col ">
-                    <div class="card text-center txtChoices" style="color:{{question.choise3}}">
+                <div class="col">
+                    <div ng-click="answer(question.choise3)" class="card text-center txtChoices" style="color:{{question.choise3}}">
                         {{question.choise3}}
                     </div>
                 </div>
-                <div class="col ">
-                    <div class="card text-center txtChoices" style="color:{{question.choise4}}">
+                <div class="col">
+                    <div ng-click="answer(question.choise4)" class="card text-center txtChoices" style="color:{{question.choise4}}">
                         {{question.choise4}}
                     </div>
                 </div>
             </div>
-        </div>
-        <!--<span style="color:{{question.rightanswer}}">{{question.rightanswer}}</span>-->
-        <h1 ng-bind="counter" data-ng-init="countdown()" class="text-center"></h1>
+        <h1 ng-bind="counter" animate-on-change="counter" data-ng-init="countdown()" class="text-center"></h1>
     </ion-content>
 </ion-view>
