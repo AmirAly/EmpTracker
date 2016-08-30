@@ -67,6 +67,7 @@
     }
 
 });
+
 empTracker.directive('animateOnChange', function ($animate, $timeout) {
     return function (scope, elem, attr) {
         scope.$watch(attr.animateOnChange, function (newValue, oldValue) {

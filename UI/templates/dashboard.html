@@ -20,7 +20,7 @@
         <!--My Totals-->
         <h3>My Totals</h3>
 
-        <div class="list listSchedule">
+        <div class="list listSchedule" ng-init="thisWeekShifts()">
             <div class="item item-divider">
                 <span class="ion-ios-clock-outline"></span> Schedule
                 <p class="pull-right">
@@ -36,18 +36,18 @@
             <div class="card text-center padding" ng-show="!weeklyEventsArray.length">
                 <h4>There is no shifts</h4>
             </div>
-            
+
         </div>
 
         <!--Current Week-->
-        <div class="row">
+        <div class="row" ng-init="statistics()">
             <div class="col">
                 <h3>Current Week <span class="pull-right">{{firstDayOfWeek}}-{{lastDayOfWeek}}</span></h3>
             </div>
-            
+
         </div>
-       
-        
+
+
 
         <!--first table-->
         <div class="list listSchedule">
@@ -57,7 +57,7 @@
             <div class="item">
                 Total Shift Scheduled
                 <span class="item-note">
-                 {{totals.TotalShiftsScheduled}}
+                    {{totals.TotalShiftsScheduled}}
                 </span>
             </div>
             <div class="item">
@@ -77,7 +77,7 @@
             <div class="item">
                 Total Shifts Worked/Clocked
                 <span class="item-note">
-                   {{totals.TotalShiftsWorked}}
+                    {{totals.TotalShiftsWorked}}
                 </span>
             </div>
             <div class="item">
@@ -101,7 +101,7 @@
             <div class="item">
                 Missing Clock out
                 <span class="item-note fontRed">
-                   {{totals.MissingClockOut}}
+                    {{totals.MissingClockOut}}
                 </span>
             </div>
         </div>

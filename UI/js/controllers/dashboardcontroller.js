@@ -14,81 +14,34 @@
         'TotalHoursScheduled': 0,
         'TotalHoursWorked': 0
     };
-    
 
+    var formatedFirstDay, formatedLastday;
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
         // today
         var d = new Date();
         var todayname = days[d.getDay()];
-        $scope.todayDateString = todayname + ', ' + months[d.getMonth()] +' '+ d.getDate() + ', ' + d.getFullYear();
+        $scope.todayDateString = todayname + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
         var todayDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
         $scope.todayDate = todayDate;
 
-        $scope.currentTime = d.getHours() + ':' +d.getMinutes() + ':' + d.getSeconds();
-        //console.log($scope.currentTime);
+        $scope.currentTime = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
         // this week first / end
         var intialDate = new Date(); // get current date
 
         var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
-        var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+        formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
 
         var lastday = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 6)).toUTCString()));
-        var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
+        formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
 
         // show in page 
         $scope.firstDayOfWeek = shortDays[firstday.getDay()] + " " + firstday.getDate() + " " + shortMonths[firstday.getMonth()] + " ";
         $scope.lastDayOfWeek = " " + shortDays[lastday.getDay()] + " " + lastday.getDate() + " " + shortMonths[lastday.getMonth()] + " " + lastday.getFullYear();
 
-        // this week shifts
-        $scope.thisWeekShifts = function () {
-            $ionicLoading.show({
-                content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                maxWidth: 200,
-                showDelay: 0,
-                template: '<i class="icon ion-loading-d"></i>'
-            });
-
-            var req = {
-                method: 'GET',
-                url: '/api/Roster?startDate=' + $scope.todayDate + '&endDate=' + $scope.todayDate ,
-                data: {}
-            }
-            // add true to use authentication token
-            API.execute(req, true).then(function (_res) {
-                if (_res.data.code == 200) {
-                    $scope.weeklyEventsArray = _res.data.data;
-                    $scope.adjustData = function (event) {
-                        $scope.todayShiftsArray = [];
-                        var thedate = new Date(event.StartDate);
-                        event.dayNumber = thedate.getDate();
-                        event.dayName = (thedate.toString()).substring(0, 3);
-                        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
-                    }
-                    $ionicLoading.hide();
-                }
-                else {
-                    $scope.weeklyEventsArray = '';
-                    $ionicLoading.hide();
-                }
-
-            }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
-            });
-
-        }
-        $scope.thisWeekShifts();
-
-        $scope.statistiics = function () {
+        $scope.statistics = function () {
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -135,8 +88,53 @@
                 $state.go('login');
             });
         }
-        $scope.statistiics();
+        $scope.thisWeekShifts = function () {
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
+
+            var req = {
+                method: 'GET',
+                url: '/api/Roster?startDate=' + $scope.todayDate + '&endDate=' + $scope.todayDate,
+                data: {}
+            }
+            // add true to use authentication token
+            API.execute(req, true).then(function (_res) {
+                if (_res.data.code == 200) {
+                    $scope.weeklyEventsArray = _res.data.data;
+                    $scope.adjustData = function (event) {
+                        $scope.todayShiftsArray = [];
+                        var thedate = new Date(event.StartDate);
+                        event.dayNumber = thedate.getDate();
+                        event.dayName = (thedate.toString()).substring(0, 3);
+                        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+                    }
+                    $ionicLoading.hide();
+                }
+                else {
+                    $scope.weeklyEventsArray = '';
+                    $ionicLoading.hide();
+                }
+
+            }, function (error) {
+                console.log(error);
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
+            });
+
+        }
+
+
     });
+    
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -146,4 +144,5 @@
     $scope.notifications = function () {
         $state.go('app.notifications');
     }
+
 });

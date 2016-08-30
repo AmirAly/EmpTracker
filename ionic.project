@@ -8,9 +8,9 @@
         "!UI/lib/**/*"
     ],
     "proxies": [
-    {
-      "path": "/Help",
-      "proxyUrl": "http://rostersmanager.com:90/Help"
-    }
-  ]
+        {
+            "path": "/Help",
+            "proxyUrl": "http://rostersmanager.com:90"
+        }
+    ]
 }

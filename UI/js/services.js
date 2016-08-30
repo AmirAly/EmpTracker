@@ -55,7 +55,7 @@ empTracker.factory('InternetConnection', function ($http, $rootScope) {
             $http({
                 type: "HEAD",
                 method: "GET",
-                url: "http://rostersmanager.com:90/Help"
+                url: "http://rostersmanager.com:90"
             }).then(function (response) {
                 $rootScope.internetStatus = 'connected';
             }, function (response) {

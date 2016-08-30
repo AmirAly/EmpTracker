@@ -9,14 +9,14 @@ empTracker.run(function ($ionicPlatform, $rootScope, InternetConnection) {
             StatusBar.styleDefault();
         }
     });
-    // set default value of internetStatus
-    $rootScope.internetStatus = 'disconnected';
-    $rootScope.checkInternet = function () {
-        setInterval(function () {
-            InternetConnection.checkConnection();
-        }, 500);
-    };
-    $rootScope.checkInternet();
+    //// set default value of internetStatus
+    //$rootScope.internetStatus = 'disconnected';
+    //$rootScope.checkInternet = function () {
+    //    setInterval(function () {
+    //        InternetConnection.checkConnection();
+    //    }, 10000);
+    //};
+    //$rootScope.checkInternet();
 });
 
 empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
