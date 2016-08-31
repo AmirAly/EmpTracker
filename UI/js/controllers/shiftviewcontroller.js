@@ -11,6 +11,7 @@
 
         formatedTodayDateTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
         console.log(formatedTodayDateTime);
+//1111111111111111111111111111111111111111111111111111111111111111111111111111111111
         //Temp user login
         if ($window.localStorage['IsTempLogin'] === 'true') {
             $scope.pageTitle = "Available shift";
@@ -78,6 +79,7 @@
 
             });
         }
+//2222222222222222222222222222222222222222222222222222222222222222222222222222222
             //next shift normal user
         else if ($stateParams.shiftid == "") {
             $rootScope.toggledrag = true;
@@ -129,6 +131,7 @@
                 $state.go('login');
             });
         }
+ //3333333333333333333333333333333333333333333333333333333333333333333333333333333
             // get certain shift data
         else {
             $scope.tempLogin = false;
