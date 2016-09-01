@@ -340,7 +340,7 @@
             });
             var req = {
                 method: 'GET',
-                url: '/api/Roster?startDate=' + firstDayMonth + '&endDate=' + lastDayMonth + '',
+                url: '/api/Roster/Monthly?startDate=' + firstDayMonth + '&endDate=' + lastDayMonth + '',
                 data: {}
             }
             // add true to use authentication token

@@ -6,12 +6,12 @@
         console.log($window.localStorage['IsTempLogin']);
         console.log($stateParams.shiftid);
 
-        $scope.today = new Date();        
+        $scope.today = new Date();
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
 
         formatedTodayDateTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
         console.log(formatedTodayDateTime);
-//1111111111111111111111111111111111111111111111111111111111111111111111111111111111
+        //1111111111111111111111111111111111111111111111111111111111111111111111111111111111
         //Temp user login
         if ($window.localStorage['IsTempLogin'] === 'true') {
             $scope.pageTitle = "Available shift";
@@ -34,8 +34,11 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
+                console.log(_res.data.data.IsClockedIn);
+                console.log(_res.data.data.IsClockedOut);
                 if (_res.data.code == 200) {
-                    $scope.ShiftId = _res.data.data.ShiftId;
+                    $scope.ShiftId = _res.data.data.RosterShiftId;
+                    $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -47,6 +50,11 @@
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
                     $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
+                    if (_res.data.data.IsClockedIn == true && _res.data.data.IsClockedOut == false) {
+                        //if already clocked in , show break btn & clockout btn
+                        $scope.clockOut = true;
+                        $scope.breakOut = false;
+                    }
                     $ionicLoading.hide();
                 }
                 else {
@@ -79,7 +87,7 @@
 
             });
         }
-//2222222222222222222222222222222222222222222222222222222222222222222222222222222
+            //2222222222222222222222222222222222222222222222222222222222222222222222222222222
             //next shift normal user
         else if ($stateParams.shiftid == "") {
             $rootScope.toggledrag = true;
@@ -102,8 +110,11 @@
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
+                console.log(_res.data.data.IsClockedIn);
+                console.log(_res.data.data.IsClockedOut);
                 if (_res.data.code == 200) {
-                    $scope.ShiftId = _res.data.data.ShiftId;
+                    $scope.ShiftId = _res.data.data.RosterShiftId;
+                    $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -115,6 +126,11 @@
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
                     $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
+                    if (_res.data.data.IsClockedIn == true && _res.data.data.IsClockedOut == false) {
+                        //if already clocked in , show break btn & clockout btn
+                        $scope.clockOut = true;
+                        $scope.breakOut = false;
+                    }
                     $ionicLoading.hide();
                 }
                 else {
@@ -131,7 +147,7 @@
                 $state.go('login');
             });
         }
- //3333333333333333333333333333333333333333333333333333333333333333333333333333333
+            //3333333333333333333333333333333333333333333333333333333333333333333333333333333
             // get certain shift data
         else {
             $scope.tempLogin = false;
@@ -154,7 +170,8 @@
             API.execute(req, true).then(function (_res) {
                 console.log(_res.data);
                 if (_res.data.code == 200) {
-                    $scope.ShiftId = _res.data.data.ShiftId;
+                    $scope.ShiftId = _res.data.data.RosterShiftId;
+                    $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
                     $scope.pageTitle = _res.data.data.TaskName;
                     var StartingDay = new Date(new Date(_res.data.data.StartDate).getFullYear(), new Date(_res.data.data.StartDate).getMonth(), new Date(_res.data.data.StartDate).getDate());
                     $scope.shiftDate = shortMonths[StartingDay.getMonth()] + " " + StartingDay.getDate() + " , " + StartingDay.getFullYear();
@@ -242,8 +259,7 @@
         confirmPopup.then(function (res) {
             if (res) {
                 console.log('You are sure Out');
-                $scope.clockOut = false;
-                $scope.breakOut = false;
+                $scope.clockOutShift();
 
             } else {
                 console.log('You are not sure Out');
@@ -267,7 +283,8 @@
             method: 'PUT',
             url: '/api/Attendance?action=breakstart',
             data: {
-                "ShiftID": 'ffa68d03-0fa8-4344-aca6-febb0b33dae9',
+                "ShiftID": $scope.ShiftId,
+                "AttendanceShiftId": $scope.AttendanceShiftId,
                 "Notes": "",
                 "Clocking": {
                     "ClockingTime": formatedTodayDateTime,
@@ -307,6 +324,7 @@
                 $ionicLoading.hide();
             }
             else {
+                $scope.errorMSG = _res.data.data;
                 console.log('fail');
                 $ionicLoading.hide();
             }
@@ -341,11 +359,74 @@
 
     }
     $scope.finishBreak = function () {
-        count = false;
-        $scope.timecounter = -1;
-        $scope.minutes = 0;
-        $scope.seconds = 0;
-        $scope.breakOut = false;
+       
+        $scope.errorMSG = "";
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        //api here
+        var req = {
+            method: 'PUT',
+            url: '/api/Attendance?action=breakend',
+            data: {
+                "ShiftID": $scope.ShiftId,
+                "AttendanceShiftId": $scope.AttendanceShiftId,
+                "Notes": "",
+                "Clocking": {
+                    "ClockingTime": formatedTodayDateTime,
+                    "PunchedVia": "MOB"
+                }
+            }
+        }
+        console.log(req.data);
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code == 200) {
+                count = false;
+                $scope.timecounter = -1;
+                $scope.minutes = 0;
+                $scope.seconds = 0;
+                $scope.breakOut = false;
+
+                console.log('pass');
+                $ionicLoading.hide();
+            }
+            else {
+                console.log('fail');
+                $ionicLoading.hide();
+            }
+        }, function (error) {
+            console.log(error);
+            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                console.log(error.data.Message);
+                // should use refresh token here
+                //..
+                $ionicLoading.show({
+                    scope: $scope,
+                    templateUrl: 'templates/tokenexpired.html',
+                    animation: 'slide-in-up'
+                });
+
+                $timeout(function () {
+                    $ionicLoading.hide();
+                    // logout
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                }, 5000);
+            }
+            else {
+                $ionicLoading.hide();
+            }
+
+        });
+
     }
 
     $scope.logout = function () {
@@ -377,8 +458,7 @@
                     "Longitude": 151.202169,
                     "GPSTrackingMethod": "Network",
                     "PunchedVia": "MOB",
-                    "EmployeeNotes": "",
-                    "Photo": ""
+                    "EmployeeNotes": ""
                 }
             }
         }
@@ -389,6 +469,88 @@
             if (_res.data.code == 200) {
                 console.log('pass');
                 $scope.clockOut = true;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+                $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
+            }
+            else if (_res.data.code == 500) {
+                $scope.errorMSG = 'you are already clocked in this shift.';
+                $scope.clockOut = true;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+            }
+            else if (_res.data.code == 400) {
+                $scope.errorMSG = 'You are already clocked in another shift.';
+                $ionicLoading.hide();
+                console.log('fail');
+
+            }
+            else {
+                $scope.errorMSG = _res.data.data;
+                $ionicLoading.hide();
+                console.log('fail');
+            }
+        }, function (error) {
+            console.log(error);
+            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                console.log(error.data.Message);
+                // should use refresh token here
+                //..
+                $ionicLoading.show({
+                    scope: $scope,
+                    templateUrl: 'templates/tokenexpired.html',
+                    animation: 'slide-in-up'
+                });
+
+                $timeout(function () {
+                    $ionicLoading.hide();
+                    // logout
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                }, 5000);
+            }
+            else {
+                $ionicLoading.hide();
+            }
+
+        });
+    }
+    $scope.clockOutShift = function () {
+        $scope.errorMSG = "";
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        //api here
+        var req = {
+            method: 'PUT',
+            url: '/api/Attendance?action=out',
+            data: {
+                "RosterShiftID": $scope.ShiftId,
+                "AttendanceShiftId": $scope.AttendanceShiftId,
+                "Notes": "",
+                "Clocking": {
+                    "ClockingTime": formatedTodayDateTime,
+                    "Latitude": -33.869962,
+                    "Longitude": 151.202169,
+                    "GPSTrackingMethod": "Network",
+                    "PunchedVia": "MOB",
+                    "EmployeeNotes": ""
+                }
+            }
+        }
+        console.log(req.data);
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code == 200) {
+                console.log('pass');
+                $scope.clockOut = false;
                 $scope.breakOut = false;
                 $ionicLoading.hide();
             }
