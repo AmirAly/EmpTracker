@@ -131,7 +131,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
-                //console.log(_res);
+                console.log(_res);
                 $scope.todayEventsArray = _res.data.data;
                 $ionicLoading.hide();
             }

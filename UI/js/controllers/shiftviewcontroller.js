@@ -185,6 +185,10 @@
                     $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
                     $ionicLoading.hide();
                 }
+                else if (_res.data.code == 403) {
+                    $scope.pageTitle = "Shift not available";
+                    $ionicLoading.hide();
+                }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
@@ -270,6 +274,7 @@
     var count = true;
     $scope.takeBreak = function () {
         $scope.errorMSG = "";
+        console.log(243234);
         $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -295,6 +300,7 @@
         console.log(req.data);
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
+            console.log(_res);
             console.log(_res.data);
             if (_res.data.code == 200) {
                 $scope.breakDurationEnd = false;
@@ -304,7 +310,7 @@
                 $scope.countdown = function () {
                     stopped = $timeout(function () {
                         $scope.timecounter++;
-                        if ($scope.timecounter != 0 && $scope.minutes <= 44 && count == true && $scope.timecounter <= 90) {
+                        if ($scope.timecounter != 0 && $scope.minutes <= 44 && count == true) {
                             console.log($scope.timecounter);
                             $scope.minutes = parseInt(($scope.timecounter / 60));
                             $scope.seconds = ($scope.timecounter % 60);
