@@ -343,6 +343,7 @@
                 url: '/api/Roster/Monthly?startDate=' + firstDayMonth + '&endDate=' + lastDayMonth + '',
                 data: {}
             }
+            console.log(req);
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
                 $scope.events = _res.data.data;

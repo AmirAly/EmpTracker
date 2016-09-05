@@ -42,6 +42,7 @@
 .circle {
     border-radius: 50%;
     height: 40vw;
+        max-width: 40%;
     vertical-align: middle;
 }
 
@@ -147,7 +148,7 @@
         }
 
         .bar-header .floatRight img {
-            height: auto;
+            height: 30px;
             width: 30px;
             /*position: fixed;*/
             right: 121px;

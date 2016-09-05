@@ -86,6 +86,7 @@
         $ionicLoading.show();
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 200) {
                 $scope.weeklyAttendanceArray = _res.data.data;
                 console.log($scope.weeklyAttendanceArray);
@@ -112,12 +113,12 @@
             data: {}
         }
         $ionicLoading.show();
-        var totalHRS = 0;
-        var totalBreak = 0;
-        $scope.totalHRSHours = 0;
-        $scope.totalHRSMintes = 0;
-        $scope.totalBreakHours = 0;
-        $scope.totalBreakMintes = 0;
+        $scope.totalHRS = 0;
+        $scope.totalBreak = 0;
+        //$scope.totalHRSHours = 0;
+        //$scope.totalHRSMintes = 0;
+        //$scope.totalBreakHours = 0;
+        //$scope.totalBreakMintes = 0;
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             if (_res.data.code == 200) {
@@ -129,18 +130,19 @@
                     var reportObj = { "dayName": shortDays[attendanceDate.getDay()], "dayInMonth": dayInMonth, "SiteName": _res.data.data[i].SiteName, "ClockIn": _res.data.data[i].ClockIn.ClockingTime, "ClockOut": _res.data.data[i].ClockOut.ClockingTime, "HRS": _res.data.data[i].TotalHours };
                     $scope.weeklyReportDataArray.push(reportObj);
                     // sum weekly hours
-                    totalHRS = totalHRS + _res.data.data[i].DecimalTotalHours;
-                    console.log(totalHRS);
-                    $scope.totalHRSHours = parseInt(totalHRS);
-                    $scope.totalHRSMintes = (((totalHRS % 1) * 60 / 100).toFixed(2)).slice(2);
+                    $scope.totalHRS = $scope.totalHRS + _res.data.data[i].DecimalTotalHours;
+                    
+                    //$scope.totalHRSHours = parseInt($scope.totalHRS);
+                    //$scope.totalHRSMintes = ((($scope.totalHRS % 1) * 60 / 100).toFixed(2)).slice(2);
 
                     // sum break hours
-                    totalBreak = totalBreak + _res.data.data[i].DisplayBreakTime;
-                    console.log(totalBreak);
-                    $scope.totalBreakHours = parseInt(totalBreak);
-                    $scope.totalBreakMintes = (((totalBreak % 1) * 60 / 100).toFixed(2)).slice(2);
+                    $scope.totalBreak = $scope.totalBreak + _res.data.data[i].BreakDuration;
+                    
+                    //$scope.totalBreakHours = parseInt($scope.totalBreak);
+                    //$scope.totalBreakMintes = ((($scope.totalBreak % 1) * 60 / 100).toFixed(2)).slice(2);
                 }
-               
+                console.log($scope.totalHRS);
+                console.log($scope.totalBreak);
                 $ionicLoading.hide();
             }
             else {
