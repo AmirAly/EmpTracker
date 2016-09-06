@@ -274,7 +274,6 @@
     var count = true;
     $scope.takeBreak = function () {
         $scope.errorMSG = "";
-        console.log(243234);
         $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -473,6 +472,7 @@
         API.execute(req, true).then(function (_res) {
             console.log(_res.data);
             if (_res.data.code == 200) {
+                $rootScope.UserIsInShift = true;
                 console.log('pass');
                 $scope.clockOut = true;
                 $scope.breakOut = false;
@@ -555,6 +555,7 @@
         API.execute(req, true).then(function (_res) {
             console.log(_res.data);
             if (_res.data.code == 200) {
+                $rootScope.UserIsInShift = false;
                 console.log('pass');
                 $scope.clockOut = false;
                 $scope.breakOut = false;

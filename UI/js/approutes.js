@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope, InternetConnection) {
+empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -9,15 +9,45 @@ empTracker.run(function ($ionicPlatform, $rootScope, InternetConnection) {
             StatusBar.styleDefault();
         }
     });
-    // set default value of internetStatus
+
+    // set default value of internetStatus checkConnection
     $rootScope.internetStatus = 'disconnected';
     $rootScope.checkInternet = function () {
         setInterval(function () {
-            InternetConnection.checkConnection();
-            //console.log('test');
+            //InternetConnection.checkConnection();
         }, 1000);
     };
     $rootScope.checkInternet();
+
+    // get current location lat lng
+    $rootScope.getCurrentLocation = function () {
+        CurrentLocation.getLatLng();
+    };
+
+    //// call get location when needed 
+    //$rootScope.getCurrentLocation();
+
+    // challenge called every 10 minutes if UserIsInShift : 600000 ms
+    $rootScope.UserIsInShift = false;
+    $rootScope.wakeupChallange = function () {
+        setInterval(function () {
+            if ($rootScope.UserIsInShift == true) {
+                $state.go('app.challenge');
+            }
+        }, 600000);
+    };
+    $rootScope.wakeupChallange();
+
+    // perodical update called every 10 minutes if UserIsInShift = 600000 ms
+    $rootScope.perodicalUpdate = function () {
+        setInterval(function () {
+            if ($rootScope.UserIsInShift == true) {
+                CallPerodicalUpdate.sendUpdate();
+            }
+        }, 600000);
+    };
+    $rootScope.perodicalUpdate();
+
 });
 
 empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
@@ -148,6 +178,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.viewmap', {
+        cache: false,
         url: '/viewmap/:Latitude/:Longitude',
         views: {
             'menuContent': {
@@ -157,6 +188,15 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         }
     })
 
+    .state('app.unscheduledshift', {
+        url: '/unscheduledshift',
+        views: {
+            'menuContent': {
+                controller: "unscheduledshiftController",
+                templateUrl: 'templates/unscheduledshift.html'
+            }
+        }
+    })
 
 
     .state('supervisormenu', {

@@ -1,27 +1,25 @@
 ﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope, $timeout, $window, $stateParams, $cordovaGeolocation) {
-
-    $scope.$on('$ionicView.enter', function () {
-             //$rootScope.toggledrag = true;
-   var map;
-        //Create a Map in Your Application
+    var currentShiftLatitude; var currentShiftLongitude; var currentUserLatitude; var currentUserLongitude;
         var options = { timeout: 10000, enableHighAccuracy: true };
-
+        $scope.$on('$ionicView.enter', function () {
+        var map;
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
             // shift coordinates
-            var currentShiftLatitude = $stateParams.Latitude;
-            var currentShiftLongitude = $stateParams.Longitude;
+            currentShiftLatitude = $stateParams.Latitude;
+            currentShiftLongitude = $stateParams.Longitude;
             console.log(currentShiftLatitude);
             console.log(currentShiftLongitude);
             // user coordinates ('ll be used in navigation)
-            var currentUserLatitude = position.coords.latitude;
-            var currentUserLongitude = position.coords.longitude;
+            currentUserLatitude = position.coords.latitude;
+            currentUserLongitude = position.coords.longitude;
             console.log(currentUserLatitude);
             console.log(currentUserLongitude);
 
-            var latLng = new google.maps.LatLng(currentShiftLatitude, currentShiftLongitude);
+            var latLngShift = new google.maps.LatLng(currentShiftLatitude, currentShiftLongitude);
+            var latLngUser = new google.maps.LatLng(currentUserLatitude, currentUserLongitude);
 
             var mapOptions = {
-                center: latLng,
+                center: latLngShift,
                 zoom: 18,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
@@ -31,63 +29,83 @@
             //Wait until the map is loaded
             google.maps.event.addListenerOnce($scope.map, 'idle', function () {
 
-                var marker = new google.maps.Marker({
+                var marker1 = new google.maps.Marker({
                     map: $scope.map,
                     animation: google.maps.Animation.DROP,
-                    position: latLng
+                    position: latLngShift
                 });
 
-                var infoWindow = new google.maps.InfoWindow({
-                    content: "Here I am!"
+                var infoWindow1 = new google.maps.InfoWindow({
+                    content: "Here the shift!"
                 });
 
-                google.maps.event.addListener(marker, 'click', function () {
-                    infoWindow.open($scope.map, marker);
+                google.maps.event.addListener(marker1, 'click', function () {
+                    infoWindow1.open($scope.map, marker1);
+                });
+
+
+                var marker2 = new google.maps.Marker({
+                    map: $scope.map,
+                    animation: google.maps.Animation.DROP,
+                    position: latLngUser
+                });
+
+                var infoWindow2 = new google.maps.InfoWindow({
+                    content: "Here I'm!"
+                });
+
+                google.maps.event.addListener(marker2, 'click', function () {
+                    infoWindow2.open($scope.map, marker2);
                 });
 
             });
         }, function (error) {
             console.log("Could not get location");
         });
-
     });
 
-    // failed :(
     $scope.Navigate = function () {
-        //directionsService = new google.maps.DirectionsService();
-        //navigator.geolocation.getCurrentPosition(function (position) {
-        //    var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-        //    lat1 = position.coords.latitude;
-        //    lng1 = position.coords.longitude;
-        //    console.log('lat1= ' + lat1 + ' lng1= ' + lng1);
-        //    directionsDisplay = new google.maps.DirectionsRenderer();
-        //    var mapOptions = {
-        //        center: { lat: lat1, lng: lng1 },
-        //        zoom: 7
-        //    };
-        //    map = new google.maps.Map(document.getElementById('map'),
-        //        mapOptions);
-        //    directionsDisplay.setMap(map);
-        //    start = new google.maps.LatLng(lat1, lng1); // me
-        //    end = new google.maps.LatLng(lat2, lng2);   // shift
-        //    var request = {
-        //        origin: start,
-        //        destination: end,
-        //        travelMode: google.maps.TravelMode.DRIVING
-        //    };
-        //    directionsService.route(request, function (response, status) {
-        //        if (status == google.maps.DirectionsStatus.OK) {
-        //            directionsDisplay.setDirections(response);
-        //            var me = new google.maps.LatLng(lat1, lng1);
-        //            map.panTo(me);
-        //        }
-        //        else {
-        //            console.debug(response);
-        //        }
-        //    });
-        //});
-    }
+        var directionsService = new google.maps.DirectionsService();
+        $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+            var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            lat1 = position.coords.latitude;
+            lng1 = position.coords.longitude;
 
+            //// enable for test purpose only
+            lat1 = -33.8757436;
+            lng1 = 151.2172687;
+
+            console.log(currentShiftLatitude, currentShiftLongitude);
+            console.log('lat1= ' + lat1 + ' lng1= ' + lng1);
+            directionsDisplay = new google.maps.DirectionsRenderer();
+            var mapOptions = {
+                center: { lat: lat1, lng: lng1 },
+                zoom: 7
+            };
+            map = new google.maps.Map(document.getElementById('map'),
+                mapOptions);
+            directionsDisplay.setMap(map);
+            start = new google.maps.LatLng(lat1, lng1); // me
+            end = new google.maps.LatLng(currentShiftLatitude, currentShiftLongitude);// shift
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: 'DRIVING'
+            };
+            directionsService.route(request, function (response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsDisplay.setDirections(response);
+                    var me = new google.maps.LatLng(lat1, lng1);
+                    map.panTo(me);
+                }
+                else {
+                    console.debug(response);
+                }
+            });
+        }, function (error) {
+            console.log("Could not get location");
+        });
+    }
 
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');

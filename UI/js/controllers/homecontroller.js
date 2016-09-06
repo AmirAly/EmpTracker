@@ -18,95 +18,11 @@
         $scope.shiftView = function (_shiftId) {
             $state.go('app.shiftview', { shiftid: _shiftId });
         }
-        $scope.started = false;
-        $scope.mapView = false;
 
-        $scope.showMap = function () {
-
-            var confirmPopup = $ionicPopup.confirm({
-                cssClass: 'bluePopup',
-                title: '<i class="ion-information-circled "></i> Location services disabled',
-                template: '<p>Location services must be enabled to start/end shifts.</p><p>Please tab below to enable location service in setting.</p>',
-                cancelText: 'Cancel',
-                cancelType: 'button-default',
-                okText: 'Enable',
-                okType: 'button-positive'
-            });
-
-            confirmPopup.then(function (res) {
-
-                if (res) {
-                    console.log('You are sure In');
-                    $timeout(function () {
-                        //var myLatLng = new google.maps.LatLng(-25.038580, 133.433440);
-                        ////Create a Map in Your Application
-                        var options = { timeout: 10000, enableHighAccuracy: true };
-
-                        $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-
-                            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-
-                            var mapOptions = {
-                                center: latLng,
-                                zoom: 15,
-                                mapTypeId: google.maps.MapTypeId.ROADMAP
-                            };
-
-                            $scope.map = new google.maps.Map(document.getElementById("map"), mapOptions);
-                            ////Add a Marker and Info Window to Your Map
-                            //Wait until the map is loaded
-                            google.maps.event.addListenerOnce($scope.map, 'idle', function () {
-
-                                var marker = new google.maps.Marker({
-                                    map: $scope.map,
-                                    animation: google.maps.Animation.DROP,
-                                    position: latLng
-                                });
-
-                                var infoWindow = new google.maps.InfoWindow({
-                                    content: "Here I am!"
-                                });
-
-                                google.maps.event.addListener(marker, 'click', function () {
-                                    infoWindow.open($scope.map, marker);
-                                });
-
-                            });
-                        }, function (error) {
-                            console.log("Could not get location");
-                        });
-                        $scope.mapView = true;
-                    }, 200);
-                } else {
-                    console.log('You are not sure In');
-                    $scope.mapView = false;
-                }
-            });
-
+        $scope.goToUnscheduledShift = function () {
+            $state.go('app.unscheduledshift');
         }
-
-        $scope.showClockInConfirmation = function () {
-            var confirmPopup = $ionicPopup.confirm({
-                cssClass: 'bluePopup',
-                title: '<i class="ion-information-circled "></i> Confirm Clock-In',
-                template: '<p>Are you sure you want to check in?</p>Location: <p>Taren Point Road , Compound Z</p>',
-                cancelText: 'Cancel',
-                cancelType: 'button-default',
-                okText: 'Clock-In',
-                okType: 'button-positive'
-            });
-
-            confirmPopup.then(function (res) {
-                if (res) {
-                    console.log('You are sure In');
-
-                } else {
-                    console.log('You are not sure In');
-                }
-            });
-        }
-
-
+       
         var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

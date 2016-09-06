@@ -33,7 +33,7 @@
                             <div class=" text-center" ng-show="!todayEventsArray.length">
                                 <img src="images/noshift.png" />
                                 <div class="padding">
-                                    <button class="button button-block button-positive" ng-click="showMap()">Start Unscheduled Shift</button>
+                                    <button class="button button-block button-positive" ng-click="goToUnscheduledShift()">Start Unscheduled Shift</button>
                                 </div>
                                 <div class="row" ng-show="mapView==true">
                                     <div class="col card padding text-center">
@@ -49,9 +49,9 @@
                                         <div ng-include="'templates/todayshift.temp.html'"></div>
                                     </div>
                                 </div>
-                                <button ng-click="showClockInConfirmation()" class="button button-block button-positive icon ion-android-stopwatch">
+                                <!--<button ng-click="showClockInConfirmation()" class="button button-block button-positive icon ion-android-stopwatch">
                                     <span>&nbsp;Clock-In</span>
-                                </button>
+                                </button>-->
                             </div>
 
                             <div class="spacer"></div>
