@@ -73,14 +73,14 @@ $scope.counter = 30;
         $rootScope.currentUserLongitude = 0;
         console.log('emp sleep');
 
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0,
-            template: '<i class="icon ion-loading-d"></i>'
-        });
+        //$ionicLoading.show({
+        //    content: 'Loading',
+        //    animation: 'fade-in',
+        //    showBackdrop: true,
+        //    maxWidth: 200,
+        //    showDelay: 0,
+        //    template: '<i class="icon ion-loading-d"></i>'
+        //});
         $rootScope.getCurrentLocation();
         $scope.$watch('$root.currentUserLongitude', function () {
             if ($rootScope.currentUserLongitude != 0) {
@@ -108,7 +108,7 @@ $scope.counter = 30;
                 API.execute(req, true).then(function (_res) {
                     console.log(_res);
                     if (_res.data.code == 200) {
-                        $ionicLoading.hide();
+                        //$ionicLoading.hide();
                         $ionicHistory.goBack();
                     }
                     else {
@@ -118,7 +118,7 @@ $scope.counter = 30;
                 }, function (error) {
                     console.log(error);
                     console.log(error.data); /* catch 400  Error here */
-                    $ionicLoading.hide();
+                    //$ionicLoading.hide();
                     $window.localStorage['IsTempLogin'] = false;
                     localStorage.clear();
                     $state.go('login');
