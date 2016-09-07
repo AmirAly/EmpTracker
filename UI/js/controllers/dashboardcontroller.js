@@ -105,6 +105,7 @@
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
+                console.log(_res);
                 if (_res.data.code == 200) {
                     $scope.weeklyEventsArray = _res.data.data;
                     $scope.adjustData = function (event) {
@@ -131,6 +132,8 @@
             });
 
         }
+        $scope.statistics();
+        $scope.thisWeekShifts();
 
         $scope.today = new Date();
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
