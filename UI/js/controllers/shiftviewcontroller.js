@@ -534,7 +534,7 @@
                         $ionicLoading.hide();
                     }
                     else if (_res.data.code == 400) {
-                        $scope.errorMSG = 'You are already clocked in another shift.';
+                        $scope.errorMSG = 'You are already clocked in shift.';
                         $ionicLoading.hide();
                         console.log('fail');
 
