@@ -1,6 +1,6 @@
 ﻿empTracker.controller("challengeController", function ($scope, $state, $timeout, $rootScope, $window, $http, $ionicHistory, $ionicLoading, API) {
     var stopped;
-    
+
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = false;
@@ -19,32 +19,32 @@
                 $scope.randamQuestion();
             });
         }
-$scope.counter = 30;
-    $scope.stopCounter = false
-    $scope.countdown = function () {
-        if ($scope.stopCounter == false) {
-            stopped = $timeout(function () {
-                if ($scope.counter != 0 && $scope.stopCounter == false)
-                    $scope.countdown();
-                else {
-                    if ($scope.counter == 0) {
-                        //user didn't answerd & counter end
-                        console.log('time ended with no answer');
-                        //call failed api back with ionic history
-                        $scope.failedChallenge();
-                        return false
-                    }
+        $scope.counter = 30;
+        $scope.stopCounter = false
+        $scope.countdown = function () {
+            if ($scope.stopCounter == false) {
+                stopped = $timeout(function () {
+                    if ($scope.counter != 0 && $scope.stopCounter == false)
+                        $scope.countdown();
                     else {
-                        //user answerd & counter stopped
-                        return false
-                    }
-                };
-                $scope.counter--;
-            }, 1000);
-        }
+                        if ($scope.counter == 0) {
+                            //user didn't answerd & counter end
+                            console.log('time ended with no answer');
+                            //call failed api back with ionic history
+                            $scope.failedChallenge();
+                            return false
+                        }
+                        else {
+                            //user answerd & counter stopped
+                            return false
+                        }
+                    };
+                    $scope.counter--;
+                }, 1000);
+            }
 
-    };
-    $scope.countdown();
+        };
+        $scope.countdown();
     });
 
     // choose randam question to show
