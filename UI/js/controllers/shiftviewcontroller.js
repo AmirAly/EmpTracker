@@ -62,29 +62,34 @@
                     $ionicLoading.hide();
                 }
             }, function (error) {
+                //console.log(error);
+                //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                //    console.log(error.data.Message);
+                //    // should use refresh token here
+                //    //..
+                //    $ionicLoading.show({
+                //        scope: $scope,
+                //        templateUrl: 'templates/tokenexpired.html',
+                //        animation: 'slide-in-up'
+                //    });
+
+                //    $timeout(function () {
+                //        $ionicLoading.hide();
+                //        // logout
+                //        $window.localStorage['IsTempLogin'] = false;
+                //        localStorage.clear();
+                //        $state.go('login');
+                //    }, 5000);
+                //}
+                //else {
+                //    $ionicLoading.hide();
+                //}
                 console.log(error);
-                if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                    console.log(error.data.Message);
-                    // should use refresh token here
-                    //..
-                    $ionicLoading.show({
-                        scope: $scope,
-                        templateUrl: 'templates/tokenexpired.html',
-                        animation: 'slide-in-up'
-                    });
-
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                        // logout
-                        $window.localStorage['IsTempLogin'] = false;
-                        localStorage.clear();
-                        $state.go('login');
-                    }, 5000);
-                }
-                else {
-                    $ionicLoading.hide();
-                }
-
+                console.log(error.data); /* catch 400  Error here */
+                $ionicLoading.hide();
+                $window.localStorage['IsTempLogin'] = false;
+                localStorage.clear();
+                $state.go('login');
             });
         }
             //2222222222222222222222222222222222222222222222222222222222222222222222222222222
@@ -237,20 +242,27 @@
     var stopped;
     // A confirm dialog
     $scope.showConfirmIn = function () {
-        var confirmPopup = $ionicPopup.confirm({
-            cssClass: 'bluePopup',
-            title: '<i class="ion-information-circled "></i> Confirm Clock-In',
-            template: 'Are you sure you want to check in?'
-        });
+        if ($scope.pageTitle != "No upcoming shifts") {
 
-        confirmPopup.then(function (res) {
-            if (res) {
-                console.log('You are sure In');
-                $scope.clockInShift();
-            } else {
-                console.log('You are not sure In');
-            }
-        });
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Clock-In',
+                template: 'Are you sure you want to check in?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    $scope.clockInShift();
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+        }
+        else {
+            $scope.pageTitle = "You can't clock in , No upcoming shifts"
+        }
+
     };
 
     $scope.showConfirmOut = function () {
@@ -452,102 +464,103 @@
     }
 
     $scope.clockInShift = function () {
-        $rootScope.currentUserLatitude = 0;
-        $rootScope.currentUserLongitude = 0;
-        $scope.errorMSG = "";
-        $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0,
-            template: '<i class="icon ion-loading-d"></i>'
-        });
-        $rootScope.getCurrentLocation();
-        $scope.$watch('$root.currentUserLongitude', function () {
-            if ($rootScope.currentUserLongitude != 0) {
-                console.log($rootScope.currentUserLatitude);
-                console.log($rootScope.currentUserLongitude);
-           
-        //api here
-        var req = {
-            method: 'PUT',
-            url: '/api/Attendance?action=in',
-            data: {
-                "RosterShiftID": $scope.ShiftId,
-                "Notes": "",
-                "Clocking": {
-                    "ClockingTime": formatedTodayDateTime,
-                    "Latitude": $rootScope.currentUserLatitude,
-                    "Longitude": $rootScope.currentUserLongitude,
-                    "GPSTrackingMethod": "Network",
-                    "PunchedVia": "MOB",
-                    "EmployeeNotes": ""
+            $rootScope.currentUserLatitude = 0;
+            $rootScope.currentUserLongitude = 0;
+            $scope.errorMSG = "";
+            $ionicLoading.show({
+                content: 'Loading',
+                animation: 'fade-in',
+                showBackdrop: true,
+                maxWidth: 200,
+                showDelay: 0,
+                template: '<i class="icon ion-loading-d"></i>'
+            });
+            $rootScope.getCurrentLocation();
+            $scope.$watch('$root.currentUserLongitude', function () {
+                if ($rootScope.currentUserLongitude != 0) {
+                    console.log($rootScope.currentUserLatitude);
+                    console.log($rootScope.currentUserLongitude);
+
+                    //api here
+                    var req = {
+                        method: 'PUT',
+                        url: '/api/Attendance?action=in',
+                        data: {
+                            "RosterShiftID": $scope.ShiftId,
+                            "Notes": "",
+                            "Clocking": {
+                                "ClockingTime": formatedTodayDateTime,
+                                "Latitude": $rootScope.currentUserLatitude,
+                                "Longitude": $rootScope.currentUserLongitude,
+                                "GPSTrackingMethod": "Network",
+                                "PunchedVia": "MOB",
+                                "EmployeeNotes": ""
+                            }
+                        }
+                    }
+                    console.log(req.data);
+                    // add true to use authentication token
+                    API.execute(req, true).then(function (_res) {
+                        console.log(_res.data);
+                        if (_res.data.code == 200) {
+                            $rootScope.UserIsInShift = true;
+                            console.log('pass');
+                            $scope.clockOut = true;
+                            $scope.breakOut = false;
+                            $ionicLoading.hide();
+                            $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
+                        }
+                        else if (_res.data.code == 500) {
+                            $scope.errorMSG = 'you are already clocked in this shift.';
+                            $scope.clockOut = true;
+                            $scope.breakOut = false;
+                            $ionicLoading.hide();
+                        }
+                        else if (_res.data.code == 400) {
+                            $scope.errorMSG = 'You are already clocked in another shift.';
+                            $ionicLoading.hide();
+                            console.log('fail');
+
+                        }
+                        else {
+                            $scope.errorMSG = _res.data.data;
+                            $ionicLoading.hide();
+                            console.log('fail');
+                        }
+                    },
+                    function (error) {
+                        console.log(error);
+                        console.log(error.data); /* catch 400  Error here */
+                        $ionicLoading.hide();
+                        $window.localStorage['IsTempLogin'] = false;
+                        localStorage.clear();
+                        $state.go('login');
+                        //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                        //    console.log(error.data.Message);
+                        //    // should use refresh token here
+                        //    //..
+                        //    $ionicLoading.show({
+                        //        scope: $scope,
+                        //        templateUrl: 'templates/tokenexpired.html',
+                        //        animation: 'slide-in-up'
+                        //    });
+
+                        //    $timeout(function () {
+                        //        $ionicLoading.hide();
+                        //        // logout
+                        //        $window.localStorage['IsTempLogin'] = false;
+                        //        localStorage.clear();
+                        //        $state.go('login');
+                        //    }, 5000);
+                        //}
+                        //else {
+                        //    $ionicLoading.hide();
+                        //}
+
+                    });
                 }
-            }
-        }
-        console.log(req.data);
-        // add true to use authentication token
-        API.execute(req, true).then(function (_res) {
-            console.log(_res.data);
-            if (_res.data.code == 200) {
-                $rootScope.UserIsInShift = true;
-                console.log('pass');
-                $scope.clockOut = true;
-                $scope.breakOut = false;
-                $ionicLoading.hide();
-                $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
-            }
-            else if (_res.data.code == 500) {
-                $scope.errorMSG = 'you are already clocked in this shift.';
-                $scope.clockOut = true;
-                $scope.breakOut = false;
-                $ionicLoading.hide();
-            }
-            else if (_res.data.code == 400) {
-                $scope.errorMSG = 'You are already clocked in another shift.';
-                $ionicLoading.hide();
-                console.log('fail');
+            });
 
-            }
-            else {
-                $scope.errorMSG = _res.data.data;
-                $ionicLoading.hide();
-                console.log('fail');
-            }
-        },
-        function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
-            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-            //    console.log(error.data.Message);
-            //    // should use refresh token here
-            //    //..
-            //    $ionicLoading.show({
-            //        scope: $scope,
-            //        templateUrl: 'templates/tokenexpired.html',
-            //        animation: 'slide-in-up'
-            //    });
-
-            //    $timeout(function () {
-            //        $ionicLoading.hide();
-            //        // logout
-            //        $window.localStorage['IsTempLogin'] = false;
-            //        localStorage.clear();
-            //        $state.go('login');
-            //    }, 5000);
-            //}
-            //else {
-            //    $ionicLoading.hide();
-            //}
-
-        });
- }
-        });
     }
     $scope.clockOutShift = function () {
         $rootScope.currentUserLatitude = 0;

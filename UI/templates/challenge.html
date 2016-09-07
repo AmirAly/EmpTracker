@@ -19,10 +19,18 @@
     <ion-content class="challengePage " overflow-scroll="true" padding="true">
         <div class="padding row row-center">
             <div class="col-50 col-offset-25">
-                    <img class="responsive-sm" src="{{question.photo}}" />
+                    <img src="{{question.photo}}" />
             </div>
         </div>
-        <h3 class="text-center">{{question.question}}</h3>
+        <div class="padding-horizontal row row-center">
+            <div class="col">
+                <div class="text-center">
+                    <img ng-src="{{question.photo}}" />
+                </div>
+            </div>
+        </div>
+
+        <h4 class="text-center">{{question.question}}</h4>
         <div class="row row-center">
                 <div class="col">
                     <div ng-click="answer(question.choise1)" class="card text-center txtChoices" style="color:{{question.choise1}}">
@@ -46,5 +54,6 @@
                 </div>
             </div>
         <h1 ng-bind="counter" animate-on-change="counter" data-ng-init="countdown()" class="text-center"></h1>
+        <div class="spacer"></div>
     </ion-content>
 </ion-view>

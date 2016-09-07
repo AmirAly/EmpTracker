@@ -770,16 +770,16 @@ i.icon.icon-right {
         }
 
 /*challenge Page*/
-.challengePage img {
+/*.challengePage img {
     width: 100%;
     height: 100%;
-}
+}*/
 
 .challengePage .txtChoices {
     text-transform: capitalize;
     /*font-size: 26px;
     padding: 10px;*/
-    font-size: 24px;
+    font-size: 20px;
     padding: 10px 5px;
     text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555;
 }
@@ -1213,4 +1213,8 @@ i.icon.icon-right {
 /*unscheduledPage*/
 .unscheduledPage .errorFont {
     padding-right: 0px;
+}
+
+.unscheduledPage .item-select select{
+    max-width:50% !important;
 }
