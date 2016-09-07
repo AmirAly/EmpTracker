@@ -1,4 +1,4 @@
-﻿empTracker.controller("empmapController", function ($scope, $state, $timeout, $rootScope, $window, $cordovaGeolocation) {
+﻿empTracker.controller("empmapController", function ($scope, $state, $timeout,$stateParams, $rootScope, $window, $cordovaGeolocation) {
 
     $scope.$on('$ionicView.enter', function () {
         //$rootScope.toggledrag = true;
@@ -6,8 +6,8 @@
         var options = { timeout: 10000, enableHighAccuracy: true };
 
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-
-            var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            // emp coordinates
+            var latLng = new google.maps.LatLng($stateParams.Latitude, $stateParams.Longitude);
 
             var mapOptions = {
                 center: latLng,
@@ -27,7 +27,7 @@
                 });
 
                 var infoWindow = new google.maps.InfoWindow({
-                    content: "Here I am!"
+                    content: "Here employee!"
                 });
 
                 google.maps.event.addListener(marker, 'click', function () {

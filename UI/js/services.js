@@ -22,7 +22,7 @@
 
             //console.log($http(_req));
             return $http(_req);
-            
+
         },
         refreshtoken: function (_req, _isAuth) {
             // _isAuth means need token
@@ -61,8 +61,8 @@ empTracker.factory('InternetConnection', function ($http, $rootScope) {
             }, function (response) {
                 $rootScope.internetStatus = 'disconnected';
             });
-            
-            }
+
+        }
     };
 });
 
@@ -73,56 +73,59 @@ empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation)
             $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
                 $rootScope.currentUserLatitude = position.coords.latitude;
                 $rootScope.currentUserLongitude = position.coords.longitude;
-                console.log($rootScope.currentUserLatitude);
-                console.log($rootScope.currentUserLongitude);
-            }), function (error) {
+            })
+            , function (error) {  //not working !!
                 console.log("Could not get location , You have to enable location on your device");
-            };
+            }
+
         }
     };
 });
 
-empTracker.factory('CallPerodicalUpdate', function ($rootScope) {
+empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state, API) {
     return {
         sendUpdate: function () {
-            $scope.today = new Date();
-            $scope.currentTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
-            console.log($scope.currentTime);
-            var req = {
-                method: 'POST',
-                url: '/api/Attendance/Log/PeriodicalUpdate',
-                data: {
-                    SiteID: "AUSPO",
-                    TaskCode: "Patrol",
-                    Notes: "some notes",
-                    Clocking: {
-                        ClockingTime: $scope.currentTime,
-                        Latitude: '',
-                        Longitude: '',
-                        GPSTrackingMethod: 'Network',
-                        PunchedVia: 'MOB',
-                        EmployeeNotes: 'emp notes',
-                        BatteryLevel: '',
-                        Vibration: ''
+            $rootScope.currentUserLatitude = 0;
+            $rootScope.currentUserLongitude = 0;
+            $rootScope.getCurrentLocation();
+            $rootScope.$watch('$root.currentUserLongitude', function () {
+                if ($rootScope.currentUserLongitude != 0) {
+                    console.log($rootScope.currentUserLatitude);
+                    console.log($rootScope.currentUserLongitude);
+                    var today = new Date();
+                    var currentTime = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+                    console.log(currentTime);
+                    var req = {
+                        method: 'POST',
+                        url: '/api/Attendance/Log/PeriodicalUpdate',
+                        data: {
+                            CurrentTime: currentTime,
+                            Latitude: $rootScope.currentUserLatitude,
+                            Longitude: $rootScope.currentUserLongitude,
+                            GPSTrackingMethod: 'Network',
+                            PunchedVia: 'MOB',
+                        }
                     }
-                }
-            }
-            // add true to use authentication token
-            API.execute(req, true).then(function (_res) {
-                console.log(_res);
-                if (_res.data.code == 200) {
-                    console.log('update sent');
-                }
-                else {
-                    console.log('unexpected error');
-                }
+                    console.log(req);
+                    // add true to use authentication token
+                    API.execute(req, true).then(function (_res) {
+                        console.log(_res);
+                        if (_res.data.code == 200) {
+                            console.log('update sent');
+                        }
+                        else {
+                            console.log('unexpected error');
+                        }
 
-            }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                    }, function (error) {
+                        console.log(error);
+                        console.log(error.data); /* catch 400  Error here */
+                        $window.localStorage['IsTempLogin'] = false;
+                        localStorage.clear();
+                        $state.go('login');
+                    });
+
+                }
             });
         }
     };

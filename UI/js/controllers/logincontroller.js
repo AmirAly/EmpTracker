@@ -51,7 +51,9 @@
                 }
                 // add true to use authentication token
                 API.execute(req, true).then(function (_res) {
+                    console.log(_res.data.data);
                     console.log(_res.data);
+                    
                     if (_res.data.code = 200) {
                         $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
                         console.log($scope.userName);
@@ -64,7 +66,7 @@
                         //console.log($rootScope.globalUserPhoto);
                         $window.localStorage['UserName'] = $scope.userName;
                         $rootScope.globalUserName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
-
+                        $rootScope.EmpNo = _res.data.data.EmpNo;
                         $rootScope.name = $scope.frmmLogin.name;
                         $rootScope.password = $scope.frmmLogin.password;
                         $rootScope.companycode = $scope.frmmLogin.companycode;

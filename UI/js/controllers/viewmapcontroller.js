@@ -72,8 +72,8 @@
             lng1 = position.coords.longitude;
 
             //// enable for test purpose only
-            lat1 = -33.8757436;
-            lng1 = 151.2172687;
+            //lat1 = -33.8757436;
+            //lng1 = 151.2172687;
 
             console.log(currentShiftLatitude, currentShiftLongitude);
             console.log('lat1= ' + lat1 + ' lng1= ' + lng1);

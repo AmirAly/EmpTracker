@@ -14,7 +14,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
     $rootScope.internetStatus = 'disconnected';
     $rootScope.checkInternet = function () {
         setInterval(function () {
-            //InternetConnection.checkConnection();
+            InternetConnection.checkConnection();
         }, 1000);
     };
     $rootScope.checkInternet();
@@ -24,8 +24,8 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         CurrentLocation.getLatLng();
     };
 
-    //// call get location when needed 
-    //$rootScope.getCurrentLocation();
+    // call get location when needed 
+    $rootScope.getCurrentLocation();
 
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
@@ -239,7 +239,8 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('supervisormenu.empmap', {
-        url: '/empmap',
+        cache: false,
+        url: '/empmap/:Latitude/:Longitude',
         views: {
             'menuContent': {
                 controller: "empmapController",

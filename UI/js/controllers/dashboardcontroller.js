@@ -132,6 +132,70 @@
 
         }
 
+        $scope.today = new Date();
+        var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
+
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        //api here
+        var req = {
+            method: 'GET',
+            url: '/api/Roster/Next?currentTime=' + formatedTodayDate,
+            data: {}
+        }
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            console.log(_res.data.data.IsClockedIn);
+            console.log(_res.data.data.IsClockedOut);
+            if (_res.data.code == 200) {
+                if (_res.data.data.IsClockedIn == true && _res.data.data.IsClockedOut == false) {
+                    //if already clocked in 
+                    $rootScope.UserIsInShift = true;
+                }
+                $ionicLoading.hide();
+            }
+            else {
+                console.log('error');
+                $ionicLoading.hide();
+            }
+        }, function (error) {
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+            //console.log(error);
+            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+            //    console.log(error.data.Message);
+            //    // should use refresh token here
+            //    //..
+            //    $ionicLoading.show({
+            //        scope: $scope,
+            //        templateUrl: 'templates/tokenexpired.html',
+            //        animation: 'slide-in-up'
+            //    });
+
+            //    $timeout(function () {
+            //        $ionicLoading.hide();
+            //        // logout
+            //        $window.localStorage['IsTempLogin'] = false;
+            //        localStorage.clear();
+            //        $state.go('login');
+            //    }, 5000);
+            //}
+            //else {
+            //    $ionicLoading.hide();
+            //}
+
+        });
 
     });
     

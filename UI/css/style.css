@@ -42,7 +42,7 @@
 .circle {
     border-radius: 50%;
     height: 40vw;
-        max-width: 40%;
+    max-width: 40%;
     vertical-align: middle;
 }
 
@@ -781,34 +781,37 @@ i.icon.icon-right {
     padding: 10px;*/
     font-size: 24px;
     padding: 10px 5px;
-    text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555; 
+    text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555;
 }
 
 .challengePage h1 {
-    color:red;
+    color: red;
     font-size: 40px;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 /*challengePage counter down effect*/
 .challengePage .change {
     font-size: 50px !important;
 }
+
 .challengePage .change-add,
 .challengePage .change-remove {
-  font-size: 40px !important;
-  transition: all 0.3s;
-  -webkit-transition: all 0.3 ease-in-out;
+    font-size: 40px !important;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3 ease-in-out;
 }
+
 .challengePage .change-add-active {
-  font-size: 50px !important;
+    font-size: 50px !important;
 }
+
 .challengePage .change-remove {
     font-size: 50px !important;
-
 }
+
 .challengePage .change-remove-active {
-  font-size: 40px !important;
+    font-size: 40px !important;
 }
 
 
@@ -1207,3 +1210,7 @@ i.icon.icon-right {
         padding-top: 0px;
         padding-bottom: 0px;
     }
+/*unscheduledPage*/
+.unscheduledPage .errorFont {
+    padding-right: 0px;
+}

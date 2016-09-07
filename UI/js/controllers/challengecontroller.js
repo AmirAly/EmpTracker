@@ -69,6 +69,8 @@ $scope.counter = 30;
     }
 
     $scope.failedChallenge = function () {
+        $rootScope.currentUserLatitude = 0;
+        $rootScope.currentUserLongitude = 0;
         console.log('emp sleep');
 
         $ionicLoading.show({
@@ -79,42 +81,51 @@ $scope.counter = 30;
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
+        $rootScope.getCurrentLocation();
+        $scope.$watch('$root.currentUserLongitude', function () {
+            if ($rootScope.currentUserLongitude != 0) {
+                console.log($rootScope.currentUserLatitude);
+                console.log($rootScope.currentUserLongitude);
 
-        $scope.today = new Date();
-        $scope.currentTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
-        console.log($scope.currentTime);
-        var req = {
-            method: 'POST',
-            url: '/api/Attendance/Log/FailedChallengeQuestion',
-            data: {
-                CurrentTime: $scope.currentTime,
-                Longitude: '',
-                Latitude: '',
-                GPSTrackingMethod: '',
-                BatteryLevel: '',
-                SoundLevel: '',
-                Vibration:''
-            }
-        }
-        // add true to use authentication token
-        API.execute(req, true).then(function (_res) {
-            console.log(_res);
-            if (_res.data.code == 200) {
-                $ionicLoading.hide();
-                $ionicHistory.goBack();
-            }
-            else {
-                console.log('unexpected error');
-            }
+                $scope.today = new Date();
+                $scope.currentTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
+                console.log($scope.currentTime);
+                var req = {
+                    method: 'POST',
+                    url: '/api/Attendance/Log/FailedChallengeQuestion',
+                    data: {
+                        CurrentTime: $scope.currentTime,
+                        Longitude: $rootScope.currentUserLongitude,
+                        Latitude: $rootScope.currentUserLatitude,
+                        GPSTrackingMethod: 'Network',
+                        PunchedVia: 'MOB',
+                        BatteryLevel: '',
+                        SoundLevel: '',
+                        Vibration: ''
+                    }
+                }
+                // add true to use authentication token
+                API.execute(req, true).then(function (_res) {
+                    console.log(_res);
+                    if (_res.data.code == 200) {
+                        $ionicLoading.hide();
+                        $ionicHistory.goBack();
+                    }
+                    else {
+                        console.log('unexpected error');
+                    }
 
-        }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+                }, function (error) {
+                    console.log(error);
+                    console.log(error.data); /* catch 400  Error here */
+                    $ionicLoading.hide();
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                });
+            }
         });
+
     }
 
 });

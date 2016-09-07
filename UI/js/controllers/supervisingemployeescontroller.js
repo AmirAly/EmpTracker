@@ -8,14 +8,14 @@
             url: '/api/Attendance/GetSites',
             data: {}
         }
-        //$ionicLoading.show({
-        //    content: 'Loading',
-        //    animation: 'fade-in',
-        //    showBackdrop: true,
-        //    maxWidth: 200,
-        //    showDelay: 0,
-        //    template: '<i class="icon ion-loading-d"></i>'
-        //});
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             console.log(_res);
@@ -25,12 +25,12 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            //console.log(error);
-            //console.log(error.data); /* catch 400  Error here */
-            //$ionicLoading.hide();
-            //$window.localStorage['IsTempLogin'] = false;
-            //localStorage.clear();
-            //$state.go('login');
+            console.log(error);
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
         });
     });
 
@@ -86,8 +86,8 @@
         });
     };
 
-    $scope.openmap = function () {
-        $state.go('supervisormenu.empmap');
+    $scope.openmap = function (emp) {
+        $state.go('supervisormenu.empmap', { Latitude: emp.LocationCoordinates.Latitude, Longitude: emp.LocationCoordinates.Logitude });
     }
 
 

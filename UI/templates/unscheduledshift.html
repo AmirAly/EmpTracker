@@ -15,8 +15,50 @@
 
     </ion-header-bar>
 
-    <ion-content class="dashboardPage " overflow-scroll="true" padding="true">
+    <ion-content class="unscheduledPage" overflow-scroll="true" padding="true">
+        <ul class="list list-inset">
+            <li class="item item-divider">
+                <label class="item item-input item-select">
+                    <span class="input-label">
+                        <b>Choose Site </b>
+                    </span>
 
-     
+                    <select name="siteSelector"
+                            class="selectbox"
+                            ng-model="searchSites"
+                            ng-options="site.SiteName for site in sites"
+                            ng-change="chooseSite(searchSites)">
+                        <option value="" disabled selected>all</option>
+                    </select>
+                </label>
+            </li>
+
+            <li class="item item-divider">
+                <label class="item item-input item-select">
+                    <span class="input-label">
+                        <b>Choose Task </b>
+                    </span>
+
+                    <select name="taskSelector"
+                            class="selectbox"
+                            ng-model="searchTasks"
+                            ng-options="task.TaskName for task in tasks"
+                            ng-change="chooseTask(searchTasks)">
+                        <option value="" disabled selected>all</option>
+                    </select>
+                </label>
+            </li>
+
+        </ul>
+        <div class="spacer2"></div>
+
+        <button ng-click="showClockInConfirmation()" ng-show="showClockInBtn" class="button button-block button-positive icon ion-android-stopwatch">
+            <span>&nbsp;Clock-In</span>
+        </button>
+
+        <div class="text-center">
+            <span class="errorFont">{{errorMSG}}</span>
+        </div>
+
     </ion-content>
 </ion-view>

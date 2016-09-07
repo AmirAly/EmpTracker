@@ -34,7 +34,7 @@
                 <div class="checkbox checkbox-dark">
                     <input type="checkbox" ng-checked="selectedAll">
                 </div>
-                <a class="item item-avatar item-borderless" ng-click="openmap()">
+                <a class="item item-avatar item-borderless" ng-click="openmap(emp)">
                     <img ng-src="data:image/png;base64,{{emp.Photo || defaultEmpPhoto}}">
                     <h2>{{emp.EmployeeName}}</h2>
                     <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>

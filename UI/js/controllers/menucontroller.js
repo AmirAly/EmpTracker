@@ -12,7 +12,7 @@
     { icon: 'ion-clock', text: 'My Attendance', linkTo: 'attendance()', badge: false },
     { icon: 'ion-pinpoint', text: 'Time Clock', linkTo: 'shiftView()', badge: false },
     { icon: 'ion-android-notifications-none', text: 'Notifications', linkTo: 'notifications()', badge: true },
-    //{ icon: 'ion-eye', text: 'Challenge', linkTo: 'challenge()', badge: false },
+    { icon: 'ion-eye', text: 'Challenge', linkTo: 'challenge()', badge: false },
     { icon: 'ion-person', text: 'My Account', linkTo: 'myaccount()', badge: false },
     { icon: 'ion-log-out', text: 'Logout', linkTo: 'logout()', badge: false }];
 
@@ -39,9 +39,9 @@
         localStorage.clear();
         $state.go('login');
     }
-    //$scope.challenge = function () {
-    //    $state.go('app.challenge');
-    //}
+    $scope.challenge = function () {
+        $state.go('app.challenge');
+    }
     $scope.myaccount = function () {
         $state.go('app.myaccount');
     }

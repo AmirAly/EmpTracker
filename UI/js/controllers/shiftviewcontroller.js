@@ -334,29 +334,34 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
+            //console.log(error);
+            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+            //    console.log(error.data.Message);
+            //    // should use refresh token here
+            //    //..
+            //    $ionicLoading.show({
+            //        scope: $scope,
+            //        templateUrl: 'templates/tokenexpired.html',
+            //        animation: 'slide-in-up'
+            //    });
+
+            //    $timeout(function () {
+            //        $ionicLoading.hide();
+            //        // logout
+            //        $window.localStorage['IsTempLogin'] = false;
+            //        localStorage.clear();
+            //        $state.go('login');
+            //    }, 5000);
+            //}
+            //else {
+            //    $ionicLoading.hide();
+            //}
             console.log(error);
-            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                console.log(error.data.Message);
-                // should use refresh token here
-                //..
-                $ionicLoading.show({
-                    scope: $scope,
-                    templateUrl: 'templates/tokenexpired.html',
-                    animation: 'slide-in-up'
-                });
-
-                $timeout(function () {
-                    $ionicLoading.hide();
-                    // logout
-                    $window.localStorage['IsTempLogin'] = false;
-                    localStorage.clear();
-                    $state.go('login');
-                }, 5000);
-            }
-            else {
-                $ionicLoading.hide();
-            }
-
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
         });
 
 
@@ -408,27 +413,33 @@
             }
         }, function (error) {
             console.log(error);
-            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                console.log(error.data.Message);
-                // should use refresh token here
-                //..
-                $ionicLoading.show({
-                    scope: $scope,
-                    templateUrl: 'templates/tokenexpired.html',
-                    animation: 'slide-in-up'
-                });
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+            //console.log(error);
+            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+            //    console.log(error.data.Message);
+            //    // should use refresh token here
+            //    //..
+            //    $ionicLoading.show({
+            //        scope: $scope,
+            //        templateUrl: 'templates/tokenexpired.html',
+            //        animation: 'slide-in-up'
+            //    });
 
-                $timeout(function () {
-                    $ionicLoading.hide();
-                    // logout
-                    $window.localStorage['IsTempLogin'] = false;
-                    localStorage.clear();
-                    $state.go('login');
-                }, 5000);
-            }
-            else {
-                $ionicLoading.hide();
-            }
+            //    $timeout(function () {
+            //        $ionicLoading.hide();
+            //        // logout
+            //        $window.localStorage['IsTempLogin'] = false;
+            //        localStorage.clear();
+            //        $state.go('login');
+            //    }, 5000);
+            //}
+            //else {
+            //    $ionicLoading.hide();
+            //}
 
         });
 
@@ -441,6 +452,8 @@
     }
 
     $scope.clockInShift = function () {
+        $rootScope.currentUserLatitude = 0;
+        $rootScope.currentUserLongitude = 0;
         $scope.errorMSG = "";
         $ionicLoading.show({
             content: 'Loading',
@@ -450,6 +463,12 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
+        $rootScope.getCurrentLocation();
+        $scope.$watch('$root.currentUserLongitude', function () {
+            if ($rootScope.currentUserLongitude != 0) {
+                console.log($rootScope.currentUserLatitude);
+                console.log($rootScope.currentUserLongitude);
+           
         //api here
         var req = {
             method: 'PUT',
@@ -459,8 +478,8 @@
                 "Notes": "",
                 "Clocking": {
                     "ClockingTime": formatedTodayDateTime,
-                    "Latitude": -33.869962,
-                    "Longitude": 151.202169,
+                    "Latitude": $rootScope.currentUserLatitude,
+                    "Longitude": $rootScope.currentUserLongitude,
                     "GPSTrackingMethod": "Network",
                     "PunchedVia": "MOB",
                     "EmployeeNotes": ""
@@ -496,33 +515,43 @@
                 $ionicLoading.hide();
                 console.log('fail');
             }
-        }, function (error) {
+        },
+        function (error) {
             console.log(error);
-            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                console.log(error.data.Message);
-                // should use refresh token here
-                //..
-                $ionicLoading.show({
-                    scope: $scope,
-                    templateUrl: 'templates/tokenexpired.html',
-                    animation: 'slide-in-up'
-                });
+            console.log(error.data); /* catch 400  Error here */
+            $ionicLoading.hide();
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+            //    console.log(error.data.Message);
+            //    // should use refresh token here
+            //    //..
+            //    $ionicLoading.show({
+            //        scope: $scope,
+            //        templateUrl: 'templates/tokenexpired.html',
+            //        animation: 'slide-in-up'
+            //    });
 
-                $timeout(function () {
-                    $ionicLoading.hide();
-                    // logout
-                    $window.localStorage['IsTempLogin'] = false;
-                    localStorage.clear();
-                    $state.go('login');
-                }, 5000);
-            }
-            else {
-                $ionicLoading.hide();
-            }
+            //    $timeout(function () {
+            //        $ionicLoading.hide();
+            //        // logout
+            //        $window.localStorage['IsTempLogin'] = false;
+            //        localStorage.clear();
+            //        $state.go('login');
+            //    }, 5000);
+            //}
+            //else {
+            //    $ionicLoading.hide();
+            //}
 
+        });
+ }
         });
     }
     $scope.clockOutShift = function () {
+        $rootScope.currentUserLatitude = 0;
+        $rootScope.currentUserLongitude = 0;
         $scope.errorMSG = "";
         $ionicLoading.show({
             content: 'Loading',
@@ -532,70 +561,85 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
-        //api here
-        var req = {
-            method: 'PUT',
-            url: '/api/Attendance?action=out',
-            data: {
-                "RosterShiftID": $scope.ShiftId,
-                "AttendanceShiftId": $scope.AttendanceShiftId,
-                "Notes": "",
-                "Clocking": {
-                    "ClockingTime": formatedTodayDateTime,
-                    "Latitude": -33.869962,
-                    "Longitude": 151.202169,
-                    "GPSTrackingMethod": "Network",
-                    "PunchedVia": "MOB",
-                    "EmployeeNotes": ""
+        $rootScope.getCurrentLocation();
+        $scope.$watch('$root.currentUserLongitude', function () {
+            if ($rootScope.currentUserLongitude != 0) {
+                console.log($rootScope.currentUserLatitude);
+                console.log($rootScope.currentUserLongitude);
+                //api here
+                var req = {
+                    method: 'PUT',
+                    url: '/api/Attendance?action=out',
+                    data: {
+                        "RosterShiftID": $scope.ShiftId,
+                        "AttendanceShiftId": $scope.AttendanceShiftId,
+                        "Notes": "",
+                        "Clocking": {
+                            "ClockingTime": formatedTodayDateTime,
+                            "Latitude": $rootScope.currentUserLatitude,
+                            "Longitude": $rootScope.currentUserLongitude,
+                            "GPSTrackingMethod": "Network",
+                            "PunchedVia": "MOB",
+                            "EmployeeNotes": ""
+                        }
+                    }
                 }
-            }
-        }
-        console.log(req.data);
-        // add true to use authentication token
-        API.execute(req, true).then(function (_res) {
-            console.log(_res.data);
-            if (_res.data.code == 200) {
-                $rootScope.UserIsInShift = false;
-                console.log('pass');
-                $scope.clockOut = false;
-                $scope.breakOut = false;
-                $ionicLoading.hide();
-            }
-            else if (_res.data.code == 500) {
-                $scope.errorMSG = 'you are already clocked in';
-                $scope.clockOut = true;
-                $scope.breakOut = false;
-                $ionicLoading.hide();
-            }
-            else {
-                $scope.errorMSG = _res.data.data;
-                $ionicLoading.hide();
-                console.log('fail');
-            }
-        }, function (error) {
-            console.log(error);
-            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                console.log(error.data.Message);
-                // should use refresh token here
-                //..
-                $ionicLoading.show({
-                    scope: $scope,
-                    templateUrl: 'templates/tokenexpired.html',
-                    animation: 'slide-in-up'
-                });
-
-                $timeout(function () {
+                console.log(req.data);
+                // add true to use authentication token
+                API.execute(req, true).then(function (_res) {
+                    console.log(_res.data);
+                    if (_res.data.code == 200) {
+                        $rootScope.UserIsInShift = false;
+                        console.log('pass');
+                        $scope.clockOut = false;
+                        $scope.breakOut = false;
+                        $ionicLoading.hide();
+                    }
+                    else if (_res.data.code == 500) {
+                        $scope.errorMSG = 'you are already clocked in';
+                        $scope.clockOut = true;
+                        $scope.breakOut = false;
+                        $ionicLoading.hide();
+                    }
+                    else {
+                        $scope.errorMSG = _res.data.data;
+                        $ionicLoading.hide();
+                        console.log('fail');
+                    }
+                },
+                function (error) {
+                    console.log(error);
+                    console.log(error.data); /* catch 400  Error here */
                     $ionicLoading.hide();
-                    // logout
                     $window.localStorage['IsTempLogin'] = false;
                     localStorage.clear();
                     $state.go('login');
-                }, 5000);
-            }
-            else {
-                $ionicLoading.hide();
-            }
+                    //console.log(error);
+                    //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                    //    console.log(error.data.Message);
+                    //    // should use refresh token here
+                    //    //..
+                    //    $ionicLoading.show({
+                    //        scope: $scope,
+                    //        templateUrl: 'templates/tokenexpired.html',
+                    //        animation: 'slide-in-up'
+                    //    });
 
+                    //    $timeout(function () {
+                    //        $ionicLoading.hide();
+                    //        // logout
+                    //        $window.localStorage['IsTempLogin'] = false;
+                    //        localStorage.clear();
+                    //        $state.go('login');
+                    //    }, 5000);
+                    //}
+                    //else {
+                    //    $ionicLoading.hide();
+                    //}
+
+                });
+            }
         });
+
     }
 });
