@@ -120,7 +120,7 @@
         API.execute(req, true).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 200) {
-                $scope.allemployeesArray = _res.data.data;
+                $rootScope.allemployeesArray = _res.data.data;
                 console.log(_res.data.data);
                 $ionicLoading.hide();
             }

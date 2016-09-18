@@ -20,10 +20,10 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
     $rootScope.checkInternet();
 
     // get current location lat lng
+    $rootScope.locationService = 'inactive';
     $rootScope.getCurrentLocation = function () {
         CurrentLocation.getLatLng();
     };
-
     // call get location when needed 
     $rootScope.getCurrentLocation();
 

@@ -66,18 +66,31 @@ empTracker.factory('InternetConnection', function ($http, $rootScope) {
     };
 });
 
-empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation) {
+empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation, $ionicLoading, $timeout) {
     var options = { timeout: 10000, enableHighAccuracy: true };
     return {
-        getLatLng: function () {
+        getLatLng: function (options) {
             $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                console.log('Geolocation pass');
+                $rootScope.locationService = 'active';
                 $rootScope.currentUserLatitude = position.coords.latitude;
                 $rootScope.currentUserLongitude = position.coords.longitude;
-            })
-            , function (error) {  //not working !!
-                console.log("Could not get location , You have to enable location on your device");
             }
-
+            , function (err) {
+                $rootScope.locationService = 'inactive';
+                console.log("Could not get location , You have to enable location on your device");
+                    $ionicLoading.show({
+                        template: '<div class="padding">\
+                                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                    <h4>Can\'t get your location</h4>\
+                                    <h5>You have to allow geolocation service on your device.</h4>\
+                                </div>',
+                        animation: 'slide-in-up'
+                    });
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 5000);
+            });
         }
     };
 });

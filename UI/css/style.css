@@ -116,9 +116,15 @@
         padding-left: 10px;
     }
 
-    .bar-header i.inactive {
-        color: #bbb;
+
+    .bar-header .ion-ios-location {
+        color: #fff;
     }
+
+    .bar-header .ion-ios-location.inactive {
+        color: #888;
+    }
+
 
     .bar-header .ion-wifi {
         color: #08da08;
