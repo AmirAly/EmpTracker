@@ -149,7 +149,7 @@
         //api here
         var req = {
             method: 'GET',
-            url: '/api/Roster/Next?currentTime=' + formatedTodayDate,
+            url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
             data: {}
         }
         // add true to use authentication token

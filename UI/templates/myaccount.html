@@ -6,7 +6,7 @@
             <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
         </button>
         <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
-        <i class=" icon ion-ios-location inactive"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
         
         <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>

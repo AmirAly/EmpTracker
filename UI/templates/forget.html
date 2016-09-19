@@ -1,7 +1,7 @@
 ﻿    <form name="frmForget" ng-submit="submitForm(frmForget)" class="forgetPage">
         <ion-header-bar class="bar-dark">
             <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
-            <i class=" icon ion-ios-location inactive"></i>
+            <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
         </ion-header-bar>
         <ion-content overflow-scroll="true" padding="true" class="content has-header padding">
             <div class="text-center">

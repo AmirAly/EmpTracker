@@ -1,4 +1,5 @@
 ﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
+    var count = true;
     //$scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
     var formatedTodayDateTime;
     $scope.$on('$ionicView.enter', function () {
@@ -28,7 +29,7 @@
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Roster/Next?currentTime=' + formatedTodayDate,
+                url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
                 data: {}
             }
             // add true to use authentication token
@@ -45,17 +46,44 @@
                     $scope.startDate = _res.data.data.StartDate;
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
-                    $scope.shiftSite = _res.data.data.ShortLocationName;
-                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftSite = _res.data.data.ShortSiteName;
+                    $scope.shiftaddress = _res.data.data.SiteName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
-                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
-                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
+                    $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
                     if (_res.data.data.IsClockedIn == true && _res.data.data.IsClockedOut == false) {
                         //if already clocked in , show break btn & clockout btn
                         if (_res.data.data.IsInBreak == true) {
+                            count = false;
+                            $scope.timecounter = -1;
+                            $scope.minutes = 0;
+                            $scope.seconds = 0;
+
                             console.log('in break');
                             $scope.clockOut = true;
                             $scope.breakOut = true;
+                            $scope.breakDurationEnd = true;
+                            count = true;
+                            $scope.timecounter = 0;
+                            $scope.countdown = function () {
+                                stopped = $timeout(function () {
+                                    $scope.timecounter++;
+                                    if ($scope.timecounter != 0 && $scope.minutes <= 44 && count == true) {
+                                        console.log($scope.timecounter);
+                                        $scope.minutes = parseInt(($scope.timecounter / 60));
+                                        $scope.seconds = ($scope.timecounter % 60);
+                                        console.log($scope.minutes);
+                                        console.log($scope.seconds);
+                                        $scope.countdown();
+                                    }
+                                    else {
+                                        console.log('else');
+                                        $scope.breakDurationEnd = false;
+                                        return false
+                                    };
+                                }, 1000);
+                            };
+                            $scope.countdown();
                         }
                         else {
                             console.log('no break');
@@ -118,7 +146,7 @@
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Roster/Next?currentTime=' + formatedTodayDate,
+                url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
                 data: {}
             }
             // add true to use authentication token
@@ -135,17 +163,44 @@
                     $scope.startDate = _res.data.data.StartDate;
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
-                    $scope.shiftSite = _res.data.data.ShortLocationName;
-                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftSite = _res.data.data.ShortSiteName;
+                    $scope.shiftaddress = _res.data.data.SiteName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
-                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
-                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
+                    $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
                     if (_res.data.data.IsClockedIn == true && _res.data.data.IsClockedOut == false) {
                         //if already clocked in , show break btn & clockout btn
                         if (_res.data.data.IsInBreak == true) {
+                            count = false;
+                            $scope.timecounter = -1;
+                            $scope.minutes = 0;
+                            $scope.seconds = 0;
+
                             console.log('in break');
                             $scope.clockOut = true;
                             $scope.breakOut = true;
+                            $scope.breakDurationEnd = true;
+                            count = true;
+                            $scope.timecounter = 0;
+                            $scope.countdown = function () {
+                                stopped = $timeout(function () {
+                                    $scope.timecounter++;
+                                    if ($scope.timecounter != 0 && $scope.minutes <= 44 && count == true) {
+                                        console.log($scope.timecounter);
+                                        $scope.minutes = parseInt(($scope.timecounter / 60));
+                                        $scope.seconds = ($scope.timecounter % 60);
+                                        console.log($scope.minutes);
+                                        console.log($scope.seconds);
+                                        //$scope.countdown();
+                                    }
+                                    else {
+                                        console.log('else');
+                                        $scope.breakDurationEnd = false;
+                                        return false
+                                    };
+                                }, 1000);
+                            };
+                            $scope.countdown();
                         }
                         else {
                             console.log('no break');
@@ -300,7 +355,7 @@
         });
     };
     $scope.breakDurationEnd = false;
-    var count = true;
+    
     $scope.takeBreak = function () {
         $scope.errorMSG = "";
         $ionicLoading.show({
@@ -331,7 +386,7 @@
             console.log(_res);
             console.log(_res.data);
             if (_res.data.code == 200) {
-                $scope.breakDurationEnd = false;
+                $scope.breakDurationEnd = true;
                 $scope.breakOut = true;
                 count = true;
                 $scope.timecounter = 0;
@@ -348,7 +403,7 @@
                         }
                         else {
                             console.log('else');
-                            $scope.breakDurationEnd = true;
+                            $scope.breakDurationEnd = false;
                             return false
                         };
                     }, 1000);

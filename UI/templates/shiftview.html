@@ -6,7 +6,7 @@
             <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
         </button>
         <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
-        <i class=" icon ion-ios-location inactive"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
         
         <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="item item-text-wrap row row-center padding">
                     <span class="col">Break (Duration)</span>
-                    <span class="text-right col-50 col bluefont">{{shiftBreak == 0 && '00:00' || shiftBreak | date:'hh:mm' }}</span>
+                    <span class="text-right col-50 col bluefont">{{shiftBreak || '00:00'}}</span>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
         </div>
 
         <div ng-show="clockOut" ng-hide="!clockOut">
-            <button class="button button-balanced button-block" ng-hide="breakOut" ng-click="takeBreak()">
+            <button class="button button-balanced button-block" ng-hide="breakOut == true" ng-click="takeBreak()">
                 <span>&nbsp;Break Start</span>
             </button>
             <button class="button button-block" ng-class="{'button-balanced' : breakDurationEnd == false,'button-assertive' : breakDurationEnd == true}" ng-show="breakOut" ng-click="finishBreak()">

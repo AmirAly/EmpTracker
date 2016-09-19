@@ -117,7 +117,7 @@
     }
 
 
-    .bar-header .ion-ios-location {
+    .bar-header  i,.bar-header .ion-ios-location {
         color: #fff;
     }
 

@@ -76,6 +76,7 @@
             if ($rootScope.allemployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.allemployeesArray[i].LocationCoordinates.Logitude == lng){
                 emp.selected = true;
                 $scope.indexToShow = i;
+                console.log($scope.empArray[i]);
             }
             $scope.empArray.push(emp)
         }
@@ -83,29 +84,24 @@
     }
     
     $scope.nextEmp = function () {
-        console.log($scope.indexToShow);
-        if (typeof $scope.indexToShow !== 'undefined') {
-            $scope.indexToShow = ($scope.indexToShow + 1);
+        $scope.indexToShow = ($scope.indexToShow + 1);
+        if ($scope.indexToShow < $scope.empArray.length) {
+            console.log($scope.empArray[$scope.indexToShow]);
         }
         else {
             $scope.indexToShow = 0;
-        }
-        console.log($scope.empArray[$scope.indexToShow]);
-        for (var i = 0; i < $scope.empArray.length; i++) {
-            if ($scope.empArray[i].id == $scope.indexToShow) {
-                //$scope.empArray[i + 1];
-            }
+            console.log($scope.empArray[$scope.indexToShow]);
         }
 
 
-        lat1 = -33.8757436;
-        lng1 = 151.2172687;
+        lat1 = -33.8757436; //$scope.empArray[$scope.indexToShow].Lat
+        lng1 = 151.2172687; //$scope.empArray[$scope.indexToShow].Lng
 
         $scope.map.panTo({ lat: lat1, lng: lng1 });
         $scope.map.setZoom(15);
         window.setTimeout(function () {
             marker.setPosition({ lat: lat1, lng: lng1 });
-            var html = "Here employee 222222!";
+            var html = $scope.empArray[$scope.indexToShow].Name;
             infowindow.setContent(html);
             infowindow.open(map, marker, html);
         }, 100);
