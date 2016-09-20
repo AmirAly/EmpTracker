@@ -98,36 +98,7 @@
                     $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                 }
-            }, function (error) {
-                //console.log(error);
-                //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                //    console.log(error.data.Message);
-                //    // should use refresh token here
-                //    //..
-                //    $ionicLoading.show({
-                //        scope: $scope,
-                //        templateUrl: 'templates/tokenexpired.html',
-                //        animation: 'slide-in-up'
-                //    });
-
-                //    $timeout(function () {
-                //        $ionicLoading.hide();
-                //        // logout
-                //        $window.localStorage['IsTempLogin'] = false;
-                //        localStorage.clear();
-                //        $state.go('login');
-                //    }, 5000);
-                //}
-                //else {
-                //    $ionicLoading.hide();
-                //}
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
-            });
+            }, API.showtokenerror(error));
         }
             //2222222222222222222222222222222222222222222222222222222222222222222222222222222
             //next shift normal user
@@ -216,12 +187,7 @@
                     $ionicLoading.hide();
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
         }
             //3333333333333333333333333333333333333333333333333333333333333333333333333333333
@@ -271,12 +237,7 @@
                     $ionicLoading.hide();
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
         }
 
@@ -418,42 +379,10 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            //console.log(error);
-            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-            //    console.log(error.data.Message);
-            //    // should use refresh token here
-            //    //..
-            //    $ionicLoading.show({
-            //        scope: $scope,
-            //        templateUrl: 'templates/tokenexpired.html',
-            //        animation: 'slide-in-up'
-            //    });
-
-            //    $timeout(function () {
-            //        $ionicLoading.hide();
-            //        // logout
-            //        $window.localStorage['IsTempLogin'] = false;
-            //        localStorage.clear();
-            //        $state.go('login');
-            //    }, 5000);
-            //}
-            //else {
-            //    $ionicLoading.hide();
-            //}
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
-
-
-
-
     }
     $scope.finishBreak = function () {
-
         $scope.errorMSG = "";
         $ionicLoading.show({
             content: 'Loading',
@@ -496,40 +425,13 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
-            //console.log(error);
-            //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-            //    console.log(error.data.Message);
-            //    // should use refresh token here
-            //    //..
-            //    $ionicLoading.show({
-            //        scope: $scope,
-            //        templateUrl: 'templates/tokenexpired.html',
-            //        animation: 'slide-in-up'
-            //    });
-
-            //    $timeout(function () {
-            //        $ionicLoading.hide();
-            //        // logout
-            //        $window.localStorage['IsTempLogin'] = false;
-            //        localStorage.clear();
-            //        $state.go('login');
-            //    }, 5000);
-            //}
-            //else {
-            //    $ionicLoading.hide();
-            //}
-
+            API.showTokenError(error);
         });
-
     }
 
     $scope.logout = function () {
+        $rootScope.UserIsInShift = false;
+        // logout
         $window.localStorage['IsTempLogin'] = false;
         localStorage.clear();
         $state.go('login');
@@ -600,36 +502,9 @@
                         console.log('fail');
                     }
                 },
-                function (error) {
-                    console.log(error);
-                    console.log(error.data); /* catch 400  Error here */
-                    $ionicLoading.hide();
-                    $window.localStorage['IsTempLogin'] = false;
-                    localStorage.clear();
-                    $state.go('login');
-                    //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                    //    console.log(error.data.Message);
-                    //    // should use refresh token here
-                    //    //..
-                    //    $ionicLoading.show({
-                    //        scope: $scope,
-                    //        templateUrl: 'templates/tokenexpired.html',
-                    //        animation: 'slide-in-up'
-                    //    });
-
-                    //    $timeout(function () {
-                    //        $ionicLoading.hide();
-                    //        // logout
-                    //        $window.localStorage['IsTempLogin'] = false;
-                    //        localStorage.clear();
-                    //        $state.go('login');
-                    //    }, 5000);
-                    //}
-                    //else {
-                    //    $ionicLoading.hide();
-                    //}
-
-                });
+               function (error) {
+                   API.showTokenError(error);
+               });
             }
         });
 
@@ -693,35 +568,7 @@
                     }
                 },
                 function (error) {
-                    console.log(error);
-                    console.log(error.data); /* catch 400  Error here */
-                    $ionicLoading.hide();
-                    $window.localStorage['IsTempLogin'] = false;
-                    localStorage.clear();
-                    $state.go('login');
-                    //console.log(error);
-                    //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                    //    console.log(error.data.Message);
-                    //    // should use refresh token here
-                    //    //..
-                    //    $ionicLoading.show({
-                    //        scope: $scope,
-                    //        templateUrl: 'templates/tokenexpired.html',
-                    //        animation: 'slide-in-up'
-                    //    });
-
-                    //    $timeout(function () {
-                    //        $ionicLoading.hide();
-                    //        // logout
-                    //        $window.localStorage['IsTempLogin'] = false;
-                    //        localStorage.clear();
-                    //        $state.go('login');
-                    //    }, 5000);
-                    //}
-                    //else {
-                    //    $ionicLoading.hide();
-                    //}
-
+                    API.showTokenError(error);
                 });
             }
         });

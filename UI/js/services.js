@@ -1,4 +1,4 @@
-﻿empTracker.factory('API', ['$http', '$window', function ($http, $window) {
+﻿empTracker.factory('API', ['$http', '$window', '$ionicLoading', '$timeout', '$state', '$rootScope', function ($http, $window, $ionicLoading, $timeout, $state, $rootScope) {
     var _url = "http://rostersmanager.com:90";
     var headers = {};
     return {
@@ -44,6 +44,31 @@
             //console.log($http(_req));
             return $http(_req);
 
+        },
+        showTokenError: function (error) {
+            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
+                console.log(error.data.Message);
+                // should use refresh token here ?
+                //..
+                $ionicLoading.show({
+                    templateUrl: 'templates/tokenexpired.html',
+                    animation: 'slide-in-up'
+                });
+
+                $timeout(function () {
+                    console.log(error);
+                    console.log(error.data); /* catch 400  Error here */
+                    $ionicLoading.hide();
+                    $rootScope.UserIsInShift = false;
+                    // logout
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                }, 5000);
+            }
+            else {
+                $ionicLoading.hide();
+            }
         }
 
     };
@@ -131,11 +156,7 @@ empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state,
                         }
 
                     }, function (error) {
-                        console.log(error);
-                        console.log(error.data); /* catch 400  Error here */
-                        $window.localStorage['IsTempLogin'] = false;
-                        localStorage.clear();
-                        $state.go('login');
+                        API.showTokenError(error);
                     });
 
                 }

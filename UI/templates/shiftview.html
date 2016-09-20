@@ -77,7 +77,7 @@
             <button class="button button-balanced button-block" ng-hide="breakOut == true" ng-click="takeBreak()">
                 <span>&nbsp;Break Start</span>
             </button>
-            <button class="button button-block" ng-class="{'button-balanced' : breakDurationEnd == false,'button-assertive' : breakDurationEnd == true}" ng-show="breakOut" ng-click="finishBreak()">
+            <button class="button button-block button-assertive" ng-show="breakOut" ng-click="finishBreak()" ng-class="{'button-assertive' : breakDurationEnd == true}">
                 <span>&nbsp;End Break (<span>{{minutes}} : {{seconds}}</span>)</span>
             </button>
         </div>

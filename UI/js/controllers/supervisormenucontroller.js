@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisormenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window) {
+﻿empTracker.controller("supervisormenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window, $rootScope) {
     $scope.openmyaccount = function () {
         $state.go('supervisormenu.supervisoraccount');
     }
@@ -25,6 +25,7 @@
         $state.go('supervisormenu.supervisornotifications');
     }
     $scope.logout = function () {
+        $rootScope.UserIsInShift = false;
         $window.localStorage['IsTempLogin'] = false;
         localStorage.clear();
         $state.go('login');

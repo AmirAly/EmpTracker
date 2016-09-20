@@ -75,6 +75,14 @@
 
     // fill first tab
     $scope.getDayAttendance = function (selectedDay) {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         var attendanceDay = selectedDay;
         var formatedAttendanceDay = attendanceDay.getFullYear() + '-' + (attendanceDay.getMonth() + 1) + '-' + attendanceDay.getDate();
         console.log(formatedAttendanceDay);
@@ -83,7 +91,7 @@
             url: '/api/Attendance/ByEmployee?startDate=' + formatedAttendanceDay + '&endDate=' + formatedAttendanceDay,
             data: {}
         }
-        $ionicLoading.show();
+        
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             console.log(_res);
@@ -92,14 +100,8 @@
                 console.log($scope.weeklyAttendanceArray);
                 $ionicLoading.hide();
             }
-        }
-        , function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+        }, function (error) {
+            API.showTokenError(error);
         });
 
     }
@@ -107,12 +109,19 @@
 
 
     $scope.fillWeeklyReportData = function (startDate, EndDate) {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         var req = {
             method: 'GET',
             url: '/api/Attendance/ByEmployee?startDate=' + startDate + '&endDate=' + EndDate,
             data: {}
         }
-        $ionicLoading.show();
         $scope.totalHRS = 0;
         $scope.totalBreak = 0;
         //$scope.totalHRSHours = 0;
@@ -151,12 +160,7 @@
             }
         }
         , function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     }
     // show in page

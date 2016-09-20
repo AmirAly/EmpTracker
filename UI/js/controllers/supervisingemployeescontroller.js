@@ -25,12 +25,7 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     });
 
@@ -101,6 +96,9 @@
     };
 
     $scope.getByListEmpBySite = function (_site) {
+        $scope.today = new Date();
+        var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
+        console.log(formatedTodayDate);
         console.log(_site.SiteID);
         $ionicLoading.show({
             content: 'Loading',
@@ -113,7 +111,8 @@
         // use today date & use card to let user select location
         var req = {
             method: 'GET',
-            url: '/api/Roster/' + _site.SiteID + '?startDate=2016-7-1&endDate=2016-7-1&getBy=site',
+            //url: '/api/Roster/' + _site.SiteID + '?startDate=' + formatedTodayDate + '&endDate=' + formatedTodayDate + '&getBy=site',
+            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=' + formatedTodayDate,
             data: {}
         }
         // add true to use authentication token
@@ -125,12 +124,7 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     }
 

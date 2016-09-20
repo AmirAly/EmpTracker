@@ -35,12 +35,7 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     });
    
@@ -70,12 +65,7 @@
                 $ionicLoading.hide();
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     }
 
@@ -169,37 +159,9 @@
                     console.log('fail');
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
-                //console.log(error);
-                //if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                //    console.log(error.data.Message);
-                //    // should use refresh token here
-                //    //..
-                //    $ionicLoading.show({
-                //        scope: $scope,
-                //        templateUrl: 'templates/tokenexpired.html',
-                //        animation: 'slide-in-up'
-                //    });
-
-                //    $timeout(function () {
-                //        $ionicLoading.hide();
-                //        // logout
-                //        $window.localStorage['IsTempLogin'] = false;
-                //        localStorage.clear();
-                //        $state.go('login');
-                //    }, 5000);
-                //}
-                //else {
-                //    $ionicLoading.hide();
-                //}
-
+                API.showTokenError(error);
             });
-        }
+          }
         });
 
         

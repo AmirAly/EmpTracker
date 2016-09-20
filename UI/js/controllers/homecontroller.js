@@ -52,12 +52,7 @@
                 $ionicLoading.hide();
             }
             , function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
         }
         $scope.getTodayEvents();
@@ -100,12 +95,7 @@
                 }
 
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
 
             // show in page
@@ -158,12 +148,7 @@
                     $ionicLoading.hide();
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
 
             // update initial date for next time
@@ -214,12 +199,7 @@
                     $ionicLoading.hide();
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
 
             // update initial date for next time
@@ -290,12 +270,7 @@
                 }
 
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
         }
         $scope.getCalendarEvents(firstDayMonthFormated, lastDayMonthFormated);

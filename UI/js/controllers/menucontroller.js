@@ -1,11 +1,13 @@
-﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window) {
+﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window, $rootScope) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
     $scope.toggleLeftSideMenu = function () {
         $ionicSideMenuDelegate.toggleLeft();
     };
-
+    $scope.back = function () {
+        window.history.back();
+    }
     $scope.menuItems = [
     { icon: 'ion-ios-home', text: 'Dashboard', linkTo: 'dashboard()', badge: false },
     { icon: 'ion-android-list', text: 'Schedule', linkTo: 'home()', badge: false },
@@ -35,6 +37,7 @@
         $state.go('app.notifications');
     }
     $scope.logout = function () {
+        $rootScope.UserIsInShift = false;
         $window.localStorage['IsTempLogin'] = false;
         localStorage.clear();
         $state.go('login');

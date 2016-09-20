@@ -1,5 +1,6 @@
 ﻿empTracker.controller("tempdeviceloginController", function ($scope, $state, API, $window, $rootScope, $ionicLoading) {
     $scope.logout = function () {
+        $rootScope.UserIsInShift = false;
         $window.localStorage['IsTempLogin'] = false;
         localStorage.clear();
         $state.go('login');
@@ -48,12 +49,7 @@
                 }
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     }
 
@@ -105,28 +101,8 @@
             }
         }
         , function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
-        }
-        //, function (error) {
-        //    console.log(error); 
-        //    //$ionicLoading.show({
-        //    //    scope: $scope,
-        //    //    templateUrl: 'templates/tokenexpired.html',
-        //    //    animation: 'slide-in-up'
-        //    //});
-
-        //    //$timeout(function () {
-        //    //    $ionicLoading.hide();
-        //    //}, 3000);
-        //    $ionicLoading.hide();
-        //}
-
-        );
+            API.showTokenError(error);
+        });
     }
 
 });

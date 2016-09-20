@@ -37,18 +37,12 @@
 
             }
         }, function (error) {
-            console.log(error);
-            console.log(error.data); /* catch 400  Error here */
-            $ionicLoading.hide();
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            API.showTokenError(error);
         });
     });
 
     $scope.cancel = function () {
         window.history.back();
-        //$state.go('supervisingemployees');
     }
 
     $scope.updateAccount = function (form) {
@@ -96,12 +90,7 @@
                     $state.go('supervisormenu.supervisingemployees');
                 }
             }, function (error) {
-                console.log(error);
-                console.log(error.data); /* catch 400  Error here */
-                $ionicLoading.hide();
-                $window.localStorage['IsTempLogin'] = false;
-                localStorage.clear();
-                $state.go('login');
+                API.showTokenError(error);
             });
         }
     }
@@ -135,6 +124,7 @@
     }
 
     $scope.logout = function () {
+        $rootScope.UserIsInShift = false;
         $window.localStorage['IsTempLogin'] = false;
         localStorage.clear();
         $state.go('login');
