@@ -112,14 +112,14 @@
         var req = {
             method: 'GET',
             //url: '/api/Roster/' + _site.SiteID + '?startDate=' + formatedTodayDate + '&endDate=' + formatedTodayDate + '&getBy=site',
-            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=' + formatedTodayDate,
+            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=' + formatedTodayDate,//2016-08-28
             data: {}
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             console.log(_res);
             if (_res.data.code == 200) {
-                $rootScope.allemployeesArray = _res.data.data;
+                $rootScope.allemployeesArray = _res.data.data.Rostered;
                 console.log(_res.data.data);
                 $ionicLoading.hide();
             }
