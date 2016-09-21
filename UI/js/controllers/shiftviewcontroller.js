@@ -162,7 +162,7 @@
                                         $scope.seconds = ($scope.timecounter % 60);
                                         console.log($scope.minutes);
                                         console.log($scope.seconds);
-                                        //$scope.countdown();
+                                        $scope.countdown();
                                     }
                                     else {
                                         console.log('else');
@@ -575,3 +575,20 @@
 
     }
 });
+
+////new timer
+////js
+//var sec = 0;
+//function pad(val) {
+//    return val > 9 ? val : "0" + val;
+//}
+//var timer = setInterval(function () {
+//    document.getElementById("seconds").innerHTML = pad(++sec % 60);
+//    document.getElementById("minutes").innerHTML = pad(parseInt(sec / 60, 10));
+//}, 1000);
+//setTimeout(function () {
+//    clearInterval(timer);
+//}, 11000);
+
+////html
+//<span id="minutes">00</span>:<span id="seconds">00</span>

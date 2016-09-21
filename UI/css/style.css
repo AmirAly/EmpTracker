@@ -117,13 +117,13 @@
     }
 
 
-    .bar-header  i,.bar-header .ion-ios-location {
+    .bar-header i, .bar-header .ion-ios-location {
         color: #fff;
     }
 
-    .bar-header .ion-ios-location.inactive {
-        color: #888;
-    }
+        .bar-header .ion-ios-location.inactive {
+            color: #888;
+        }
 
 
     .bar-header .ion-wifi {
@@ -240,16 +240,16 @@
         float: left;
     }
 
-.bluePopup .popup-body {
+.popup-body {
     background-color: #f4f4f4;
 }
 
-.bluePopup .popup-head {
+.popup-head {
     border-color: #0c63ee;
     background-color: #387ef5;
 }
 
-    .bluePopup .popup-head h3 {
+.popup-head h3 {
         color: #fff;
         line-height: inherit;
     }
@@ -578,24 +578,33 @@
     .supervisorPage .item-checkbox .checkbox .checkbox-icon:before {
         border-color: #ddd;
     }
+    .supervisorPage .item-checkbox .checkbox input:checked:before{
+        background:#33cd5f;
+    }
 
-.supervisorPage .item-avatar img{
-    height:40px;
-}
-.supervisorPage .item-avatar .badge-balanced{
-    right:0px;
-}
-
-.supervisorPage .btnContainer{
-        padding-top: 0px;
-    padding-bottom: 0px;
+.supervisorPage .item-avatar img {
+    height: 40px;
 }
 
-.supervisorPage .btnContainer .button-block {
-    background-color: #2c3e50 !important;
-    border-color: #1D2935 !important;
-    color:#fff;
-}    
+.supervisorPage .item-avatar .badge-balanced {
+    right: 0px;
+}
+
+.supervisorPage .btnContainer .button-clear {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 999;
+    font-size: 22px;
+}
+
+.supervisorPage .btnContainer .selectbox {
+    right: 15px;
+}
+
+.supervisorPage .btnContainer .item-select:after {
+    right: 40px;
+}
 
 .supervisorAccountPage .list .placeholder-icon,
 .loginpage .list .placeholder-icon {
@@ -1238,6 +1247,6 @@ i.icon.icon-right {
     padding-right: 0px;
 }
 
-.unscheduledPage .item-select select{
-    max-width:50% !important;
+.unscheduledPage .item-select select {
+    max-width: 50% !important;
 }

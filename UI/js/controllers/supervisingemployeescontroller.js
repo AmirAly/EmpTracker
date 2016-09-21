@@ -1,5 +1,9 @@
-﻿empTracker.controller("supervisingemployeesController", function ($scope,$rootScope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window, $location) {
+﻿empTracker.controller("supervisingemployeesController", function ($scope, $rootScope, $state, $ionicPopup, $timeout, $ionicLoading, API, $http, $window, $location) {
     $scope.defaultEmpPhoto = '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';
+    $rootScope.allemployeesArray = [];
+    $scope.selectedAll = false; // represent all check boxes selection
+    $scope.selectedAllboxes = false; // represent selectall btn colors
+    $scope.selectedEmployeesCounter = 0;
 
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
@@ -29,72 +33,6 @@
         });
     });
 
-    // Triggered on a button click
-    $scope.showPopup = function () {
-        $scope.time = {}
-        $scope.time.hour = 8;
-        $scope.time.minute = 30;
-        // custom popup
-        var myPopup = $ionicPopup.show({
-            template: '<div class="row">\
-                <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
-                <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
-            </div>',
-            title: '<i class="ion-information-circled"></i> there is (3) employee(s) selected',
-            scope: $scope,
-            buttons: [
-              {
-                  text: 'Out',
-                  type: 'button-dark',
-                  onTap: function (e) {
-                      if (!$scope.time.hour) {
-                          //don't allow the user to close unless he enters 
-                          e.preventDefault();
-                      } else {
-                          return $scope.time.hour;
-                      }
-                  }
-              },
-              {
-                  text: '<b>In</b>',
-                  type: 'button-dark',
-                  onTap: function (e) {
-                      if (!$scope.time.hour) {
-                          //don't allow the user to close unless he enters 
-                          e.preventDefault();
-                      } else {
-                          return $scope.time.hour;
-                      }
-                  }
-              },
-              {
-                  text: '<b>X</b>',
-                  type: 'button-assertive',
-                  onTap: function (e) {
-                      myPopup.close();
-                  }
-              }
-            ]
-        });
-        myPopup.then(function (res) {
-            console.log('Tapped!', res);
-        });
-    };
-
-    $scope.openmap = function (emp) {
-        $state.go('supervisormenu.empmap', { Latitude: emp.LocationCoordinates.Latitude, Longitude: emp.LocationCoordinates.Logitude });
-    }
-
-
-    $scope.selectedAll = false;
-    $scope.checkAll = function () {
-        if ($scope.selectedAll == false) {
-            $scope.selectedAll = true;
-        } else {
-            $scope.selectedAll = false;
-        }
-    };
-
     $scope.getByListEmpBySite = function (_site) {
         $scope.today = new Date();
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
@@ -112,7 +50,7 @@
         var req = {
             method: 'GET',
             //url: '/api/Roster/' + _site.SiteID + '?startDate=' + formatedTodayDate + '&endDate=' + formatedTodayDate + '&getBy=site',
-            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=' + formatedTodayDate,//2016-08-28
+            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=2016-08-28',//2016-08-28  formatedTodayDate
             data: {}
         }
         // add true to use authentication token
@@ -128,17 +66,140 @@
         });
     }
 
+    $scope.checkAll = function () {
+        if ($scope.selectedAll == false) {
+            for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+                $rootScope.allemployeesArray[i].selected = true;
+            }
+            $scope.selectedEmployeesCounter = $rootScope.allemployeesArray.length;
+            $scope.selectedAll = true;
+            $scope.selectedAllboxes = true;
+        }
+        else {
+            for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+                $rootScope.allemployeesArray[i].selected = false;
+            }
+            $scope.selectedEmployeesCounter = 0;
+            $scope.selectedAll = false;
+            $scope.selectedAllboxes = false;
+        }
+        // final value
+        console.log($rootScope.allemployeesArray);
+    };
 
-    //if (ionic.Platform.isAndroid()) {
-    //    // get json from external file
-    //    $http.get('/android_asset/www/json/employees.json').then(function (data) {
-    //        $scope.allemployeesArray = data.data.employees;
-    //    });
-    //}
-    //else {
-    //    // get json from external file
-    //    $http.get('/json/employees.json').then(function (data) {
-    //        $scope.allemployeesArray = data.data.employees;
-    //    });
-    //}
+    $scope.changeSelectdValues = function () {
+        var selected = 0;
+        var unselected = 0;
+        for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+            if ($rootScope.allemployeesArray[i].selected == true)
+                selected++;
+            else
+                unselected++;
+        }
+        if (selected == $rootScope.allemployeesArray.length) {
+            console.log('you selected All');
+            $scope.selectedAll = true;
+            $scope.selectedAllboxes = true;
+        }
+
+        else if (unselected == $rootScope.allemployeesArray.length) {
+            console.log('you un selected All');
+            $scope.selectedAll = false;
+            $scope.selectedAllboxes = false;
+        }
+        else {
+            console.log('else');
+            console.log(selected);
+            console.log(unselected);
+            $scope.selectedAllboxes = false;
+        }
+        // final value
+        console.log($rootScope.allemployeesArray);
+        $scope.selectedEmployeesCounter = selected;
+    }
+
+
+    // Triggered on a button click
+    $scope.showClockInPopup = function () {
+        $scope.time = { hour: 8, minute: 30 };
+        // custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="row">\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
+            </div>',
+            title: '<i class="ion-information-circled"></i>(' + $scope.selectedEmployeesCounter + ') employee(s) selected',
+            scope: $scope,
+            buttons: [
+               { text: 'Cancel' },
+               {
+                   text: '<b>Clock In</b>',
+                   type: 'button-positive',
+                   onTap: function(e) {
+                       if (!$scope.time.hour) {
+                           //don't allow the user to close unless he enters value
+                           e.preventDefault();
+                       } else {
+                           var clockTime = $scope.time.hour + ':' + $scope.time.minute;
+                           return clockTime;
+                       }
+                   }
+               }
+            ]
+        });
+        myPopup.then(function (res) {
+            console.log('Clock In at ', res);
+        });
+    };
+
+    // Triggered on a button click
+    $scope.showClockOutPopup = function () {
+        $scope.time = { hour: 8, minute: 30 };
+        // custom popup
+        var myPopup = $ionicPopup.show({
+            template: '<div class="row">\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
+                <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
+            </div>',
+            title: '<i class="ion-information-circled"></i>(' + $scope.selectedEmployeesCounter + ') employee(s) selected',
+            scope: $scope,
+            buttons: [
+               { text: 'Cancel' },
+               {
+                   text: '<b>Clock Out</b>',
+                   type: 'button-positive',
+                   onTap: function (e) {
+                       if (!$scope.time.hour) {
+                           //don't allow the user to close unless he enters value
+                           e.preventDefault();
+                       } else {
+                           var clockTime = $scope.time.hour + ':' + $scope.time.minute;
+                           return clockTime;
+                       }
+                   }
+               }
+            ]
+        });
+        myPopup.then(function (res) {
+            console.log('Clock Out at ', res);
+        });
+    };
+
+    $scope.openmap = function (emp) {
+        $state.go('supervisormenu.empmap', { Latitude: emp.LocationCoordinates.Latitude, Longitude: emp.LocationCoordinates.Logitude });
+    }
+
 });
+
+//if (ionic.Platform.isAndroid()) {
+//    // get json from external file
+//    $http.get('/android_asset/www/json/employees.json').then(function (data) {
+//        $scope.allemployeesArray = data.data.employees;
+//    });
+//}
+//else {
+//    // get json from external file
+//    $http.get('/json/employees.json').then(function (data) {
+//        $scope.allemployeesArray = data.data.employees;
+//    });
+//}

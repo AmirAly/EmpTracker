@@ -15,7 +15,7 @@
     
     <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
         <ul class="list list-inset">
-            <li class="item item-divider">
+            <li class="item item-divider btnContainer">
                 <label class="item item-input item-select">
                     <span class="input-label">
                         <b> Location </b>
@@ -29,16 +29,13 @@
                         <option value="">all</option>
                     </select>
                 </label>
-            </li>
-            <li ng-show="allemployeesArray.length" class="item btnContainer">
-                <button class="button button-block ion-android-done-all" ng-click="checkAll()">
-                    <span ng-hide="selectedAll">&nbsp;Select All</span>
-                    <span ng-show="selectedAll">&nbsp;Deselect All</span>
-                </button>
+                <button ng-class="{'button-balanced' : selectedAllboxes}"
+                        class="button button-clear ion-checkmark-circled"
+                        ng-click="checkAll()" ng-show="allemployeesArray.length"></button>
             </li>
             <li ng-show="allemployeesArray.length" ng-repeat="emp in allemployeesArray | filter:search.name" class="item item-checkbox">
                 <div class="checkbox checkbox-dark">
-                    <input type="checkbox" ng-checked="selectedAll">
+                    <input type="checkbox" ng-model="emp.selected" ng-change="changeSelectdValues()" ng-checked="selectedAll">
                 </div>
                 <a class="item item-avatar item-borderless" ng-click="openmap(emp)">
                     <img ng-src="data:image/png;base64,{{emp.Photo || defaultEmpPhoto}}">
@@ -54,10 +51,10 @@
 
     <ion-footer-bar class="bar-dark">
         <div class="button-bar">
-            <button class="button button-clear ion-ios-stopwatch" ng-click="showPopup(in)">
+            <button class="button button-clear ion-ios-stopwatch" ng-disabled="selectedEmployeesCounter == 0" ng-click="showClockInPopup()">
                 <span>&nbsp;Clock in</span>
             </button>
-            <button class="button button-clear ion-ios-stopwatch-outline" ng-click="showPopup(out)">
+            <button class="button button-clear ion-ios-stopwatch-outline" ng-disabled="selectedEmployeesCounter == 0" ng-click="showClockOutPopup()">
                 <span>&nbsp;Clock out</span>
             </button>
         </div>
