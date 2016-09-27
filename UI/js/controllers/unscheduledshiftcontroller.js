@@ -10,6 +10,7 @@
         $state.go('app.notifications');
     }
     $scope.$on('$ionicView.enter', function () {
+        $scope.errorMSG = "";
         $scope.showClockInBtn = false;
         console.log($rootScope.EmpNo);
         $rootScope.toggledrag = true;

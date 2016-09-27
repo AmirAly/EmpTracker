@@ -114,14 +114,16 @@
                 showDelay: 0,
                 template: '<i class="icon ion-loading-d"></i>'
             });
+            console.log(formatedTodayDateTime);
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
+                url: '/api/Attendance/Current?currentTime=' + formatedTodayDateTime,
                 data: {}
             }
             // add true to use authentication token
             API.execute(req, true).then(function (_res) {
+                console.log(_res);
                 console.log(_res.data);
                 console.log(_res.data.data.IsClockedIn);
                 console.log(_res.data.data.IsClockedOut);
