@@ -50,15 +50,30 @@
         var req = {
             method: 'GET',
             //url: '/api/Roster/' + _site.SiteID + '?startDate=' + formatedTodayDate + '&endDate=' + formatedTodayDate + '&getBy=site',
-            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=2016-08-28',//2016-08-28  formatedTodayDate
+            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=2016-08-28',// 2016-08-28 || formatedTodayDate
             data: {}
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
+            $rootScope.allemployeesArray = [];
             console.log(_res);
             if (_res.data.code == 200) {
-                $rootScope.allemployeesArray = _res.data.data.Rostered;
+                $rootScope.rosteredEmployeesArray = _res.data.data.Rostered;
+                $rootScope.otherEmployeesArray = _res.data.data.Other;
+
+                for (var i = 0; i < $rootScope.rosteredEmployeesArray.length; i++) {
+                    if ($rootScope.rosteredEmployeesArray[i].IsClockedIn != true) {
+                        $rootScope.allemployeesArray.push($rootScope.rosteredEmployeesArray[i]);
+                    }
+                }
+                for (var i = 0; i < $rootScope.otherEmployeesArray.length; i++) {
+                    if ($rootScope.otherEmployeesArray[i].IsClockedIn != true) {
+                        $rootScope.allemployeesArray.push($rootScope.otherEmployeesArray[i]);
+                    }
+                }
+
                 console.log(_res.data.data);
+                console.log($rootScope.allemployeesArray);
                 $ionicLoading.hide();
             }
         }, function (error) {
@@ -67,6 +82,7 @@
     }
 
     $scope.checkAll = function () {
+
         if ($scope.selectedAll == false) {
             for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
                 $rootScope.allemployeesArray[i].selected = true;
@@ -135,7 +151,7 @@
                {
                    text: '<b>Clock In</b>',
                    type: 'button-positive',
-                   onTap: function(e) {
+                   onTap: function (e) {
                        if (!$scope.time.hour) {
                            //don't allow the user to close unless he enters value
                            e.preventDefault();
@@ -186,7 +202,15 @@
     };
 
     $scope.openmap = function (emp) {
-        $state.go('supervisormenu.empmap', { Latitude: emp.LocationCoordinates.Latitude, Longitude: emp.LocationCoordinates.Logitude });
+        console.log(emp);
+        if (emp.Shifts.length > 0) {
+            console.log(emp.Shifts[0].LocationCoordinates);
+            $state.go('supervisormenu.empmap', { Latitude: emp.Shifts[0].LocationCoordinates.Latitude, Longitude: emp.Shifts[0].LocationCoordinates.Logitude });
+        }
+        else {
+            console.log('no cordinates');
+            $state.go('supervisormenu.empmap', { Latitude: null, Longitude: null });
+        }
     }
 
 });

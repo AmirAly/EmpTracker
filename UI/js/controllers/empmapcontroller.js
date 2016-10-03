@@ -55,6 +55,12 @@
             }, 5000);
         });
         $scope.adjustEmpData($stateParams.Latitude, $stateParams.Longitude);
+        if ($stateParams.Latitude == null || $stateParams.Longitude == null) {
+            $scope.noCoordinates = true;
+        }
+        else {
+            $scope.noCoordinates = false;
+        }
     });
 
     $scope.backToAllEmps = function () {
@@ -70,10 +76,20 @@
     $scope.adjustEmpData = function (lat, lng) {
         $scope.empArray = [];
         var emp;
-        console.log($rootScope.allemployeesArray);
-        for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
-            emp = { "id": i, "Name": $rootScope.allemployeesArray[i].EmployeeName, "Lat": $rootScope.allemployeesArray[i].LocationCoordinates.Latitude, "Lng": $rootScope.allemployeesArray[i].LocationCoordinates.Logitude, "selected": false };
-            if ($rootScope.allemployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.allemployeesArray[i].LocationCoordinates.Logitude == lng){
+        console.log($rootScope.rosteredEmployeesArray);
+        console.log($rootScope.otherEmployeesArray);
+        for (var i = 0; i < $rootScope.rosteredEmployeesArray.length; i++) {
+            emp = { "id": i, "Name": $rootScope.rosteredEmployeesArray[i].Name, "Lat": $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Latitude, "Lng": $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Logitude, "selected": false };
+            if ($rootScope.rosteredEmployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Logitude == lng) {
+                emp.selected = true;
+                $scope.indexToShow = i;
+                console.log($scope.empArray[i]);
+            }
+            $scope.empArray.push(emp)
+        }
+        for (var i = 0; i < $rootScope.otherEmployeesArray.length; i++) {
+            emp = { "id": i, "Name": $rootScope.otherEmployeesArray[i].Name, "Lat": $rootScope.otherEmployeesArray[i].LocationCoordinates.Latitude, "Lng": $rootScope.otherEmployeesArray[i].LocationCoordinates.Logitude, "selected": false };
+            if ($rootScope.otherEmployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.otherEmployeesArray[i].LocationCoordinates.Logitude == lng) {
                 emp.selected = true;
                 $scope.indexToShow = i;
                 console.log($scope.empArray[i]);

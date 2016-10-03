@@ -41,8 +41,10 @@
 
 .circle {
     border-radius: 50%;
-    height: 40vw;
-    max-width: 40%;
+    /*height: 40vw;
+    max-width: 40%;*/
+    height: 150px;
+    width: 150px;
     vertical-align: middle;
 }
 

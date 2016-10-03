@@ -14,8 +14,8 @@
     </ion-header-bar>
 
     <ion-content class="has-header has-footer mapPage" ng-controller="empmapController" overflow-scroll="true">
-        <!--<div class=" text-center" id="map"></div>-->
-        <div id="map" data-tap-disabled="true"></div>
+        <div id="map" data-tap-disabled="true" ng-hide="noCoordinates"></div>
+        <div ng-show="noCoordinates"> no coordinates now </div>
     </ion-content>
 
     <ion-footer-bar class="bar-dark">
