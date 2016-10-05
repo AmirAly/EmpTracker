@@ -33,6 +33,24 @@
         });
     });
 
+    angular.element(document.querySelector('#dvRoastered')).addClass('positive-bg');
+    angular.element(document.querySelector('#dvFree')).removeClass('positive-bg');
+
+    $scope.chooseRoastered = function (_status) {
+        if (_status == 1) {
+            console.log('1');
+            angular.element(document.querySelector('#dvRoastered')).addClass('positive-bg');
+            angular.element(document.querySelector('#dvFree')).removeClass('positive-bg');
+            //show dv with roasterd data
+        }
+        else {
+            console.log('0');
+            angular.element(document.querySelector('#dvRoastered')).removeClass('positive-bg');
+            angular.element(document.querySelector('#dvFree')).addClass('positive-bg');
+            // show dv with other data
+        }
+    }
+
     $scope.getByListEmpBySite = function (_site) {
         $scope.today = new Date();
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
@@ -204,8 +222,8 @@
     $scope.openmap = function (emp) {
         console.log(emp);
         if (emp.Shifts.length > 0) {
-            console.log(emp.Shifts[0].LocationCoordinates);
-            $state.go('supervisormenu.empmap', { Latitude: emp.Shifts[0].LocationCoordinates.Latitude, Longitude: emp.Shifts[0].LocationCoordinates.Logitude });
+            console.log(emp.Shifts[0].SiteCoordinates);
+            $state.go('supervisormenu.empmap', { Latitude: emp.Shifts[0].SiteCoordinates.Latitude, Longitude: emp.Shifts[0].SiteCoordinates.Logitude });
         }
         else {
             console.log('no cordinates');

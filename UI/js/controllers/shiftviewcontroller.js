@@ -223,11 +223,11 @@
                     $scope.startDate = _res.data.data.StartDate;
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
-                    $scope.shiftSite = _res.data.data.ShortLocationName;
-                    $scope.shiftaddress = _res.data.data.LocationName;
+                    $scope.shiftSite = _res.data.data.ShortSiteName;
+                    $scope.shiftaddress = _res.data.data.SiteName;
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
-                    $scope.ShiftLatitude = _res.data.data.LocationCoordinates.Latitude;
-                    $scope.ShiftLongitude = _res.data.data.LocationCoordinates.Logitude;
+                    $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
+                    $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
                     $ionicLoading.hide();
                 }
                 else if (_res.data.code == 403) {

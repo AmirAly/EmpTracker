@@ -79,22 +79,24 @@
         console.log($rootScope.rosteredEmployeesArray);
         console.log($rootScope.otherEmployeesArray);
         for (var i = 0; i < $rootScope.rosteredEmployeesArray.length; i++) {
-            emp = { "id": i, "Name": $rootScope.rosteredEmployeesArray[i].Name, "Lat": $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Latitude, "Lng": $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Logitude, "selected": false };
-            if ($rootScope.rosteredEmployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.rosteredEmployeesArray[i].LocationCoordinates.Logitude == lng) {
+            console.log($rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Latitude);
+            emp = { "id": i, "Name": $rootScope.rosteredEmployeesArray[i].Name, "Lat": $rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Latitude, "Lng": $rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Logitude, "selected": false };
+            if (emp.Latitude == lat && emp.Logitude == lng) {
                 emp.selected = true;
                 $scope.indexToShow = i;
                 console.log($scope.empArray[i]);
             }
-            $scope.empArray.push(emp)
+            console.log(emp);
+            $scope.empArray.push(emp);
         }
         for (var i = 0; i < $rootScope.otherEmployeesArray.length; i++) {
-            emp = { "id": i, "Name": $rootScope.otherEmployeesArray[i].Name, "Lat": $rootScope.otherEmployeesArray[i].LocationCoordinates.Latitude, "Lng": $rootScope.otherEmployeesArray[i].LocationCoordinates.Logitude, "selected": false };
-            if ($rootScope.otherEmployeesArray[i].LocationCoordinates.Latitude == lat && $rootScope.otherEmployeesArray[i].LocationCoordinates.Logitude == lng) {
+            emp = { "id": i, "Name": $rootScope.otherEmployeesArray[i].Name, "Lat": $rootScope.otherEmployeesArray[i].SiteCoordinates.Latitude, "Lng": $rootScope.otherEmployeesArray[i].SiteCoordinates.Logitude, "selected": false };
+            if ($rootScope.otherEmployeesArray[i].SiteCoordinates.Latitude == lat && $rootScope.otherEmployeesArray[i].SiteCoordinates.Logitude == lng) {
                 emp.selected = true;
                 $scope.indexToShow = i;
                 console.log($scope.empArray[i]);
             }
-            $scope.empArray.push(emp)
+            $scope.empArray.push(emp);
         }
         console.log($scope.empArray);
     }

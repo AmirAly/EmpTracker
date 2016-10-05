@@ -12,7 +12,7 @@
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
         </div>
     </ion-header-bar>
-    
+
     <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
         <ul class="list list-inset">
             <li class="item item-divider btnContainer">
@@ -37,6 +37,15 @@
             <li class="item item-divider text-center">
                 (Rostered) employees have shifts today
             </li>
+
+            <li class="item noPadding">
+                <div class="row noPadding dvTabHeader" ng-init="roasteredClicked = 1">
+                    <div class="col col-center text-center" ng-click="chooseRoastered(1)" id="dvRoastered">Roastered</div>
+                    <div class="col col-center text-center" ng-click="chooseRoastered(0)" id="dvFree">Free</div>
+                </div>
+            </li>
+
+
             <li ng-show="rosteredEmployeesArray.length" ng-repeat="emp in rosteredEmployeesArray | filter:search.name" class="item item-checkbox">
                 <div class="checkbox checkbox-dark">
                     <input type="checkbox" ng-model="emp.selected" ng-show="!emp.IsClockedIn" ng-change="changeSelectdValues()" ng-checked="selectedAll">

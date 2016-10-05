@@ -608,6 +608,14 @@
     right: 40px;
 }
 
+.supervisorPage .dvTabHeader .col{
+    /*background-color: #3498db;*/
+    border: 1px solid #fff;
+    color: #aaa;
+    padding: 10px 16px;
+}
+
+/*supervisor Account Page*/
 .supervisorAccountPage .list .placeholder-icon,
 .loginpage .list .placeholder-icon {
     position: absolute;
