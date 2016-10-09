@@ -34,9 +34,9 @@
                         ng-click="checkAll()" ng-show="allemployeesArray.length"></button>
             </li>
 
-            <li class="item item-divider text-center">
+            <!--<li class="item item-divider text-center">
                 (Rostered) employees have shifts today
-            </li>
+            </li>-->
 
             <li class="item noPadding">
                 <div class="row noPadding dvTabHeader" ng-init="roasteredClicked = 1">
@@ -46,9 +46,9 @@
             </li>
 
 
-            <li ng-show="rosteredEmployeesArray.length" ng-repeat="emp in rosteredEmployeesArray | filter:search.name" class="item item-checkbox">
+            <li ng-show="allemployeesArray.length" ng-repeat="emp in allemployeesArray | filter:search.name" class="item item-checkbox">
                 <div class="checkbox checkbox-dark">
-                    <input type="checkbox" ng-model="emp.selected" ng-show="!emp.IsClockedIn" ng-change="changeSelectdValues()" ng-checked="selectedAll">
+                    <input type="checkbox" ng-model="emp.selected" ng-change="changeSelectdValues()" ng-checked="selectedAll">
                 </div>
                 <a class="item item-avatar item-borderless" ng-click="openmap(emp)">
                     <img ng-src="data:image/png;base64,{{emp.Photo || defaultEmpPhoto}}">
@@ -56,13 +56,13 @@
                     <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>
                 </a>
             </li>
-            <li ng-show="!rosteredEmployeesArray.length"><h4 class="text-center padding">No employees, please select new location.</h4></li>
+            <li ng-show="!allemployeesArray.length"><h4 class="text-center padding">No employees, please select new location.</h4></li>
 
-            <li class="item item-divider text-center">
+            <!--<li class="item item-divider text-center">
                 (Free) employees don't have shifts today
-            </li>
+            </li>-->
 
-            <li ng-show="otherEmployeesArray.length" ng-repeat="emp in otherEmployeesArray | filter:search.name" class="item item-checkbox">
+            <!--<li ng-show="otherEmployeesArray.length" ng-repeat="emp in otherEmployeesArray | filter:search.name" class="item item-checkbox">
                 <div class="checkbox checkbox-dark">
                     <input type="checkbox" ng-model="emp.selected" ng-show="!emp.IsClockedIn" ng-change="changeSelectdValues()" ng-checked="selectedAll">
                 </div>
@@ -72,7 +72,7 @@
                     <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>
                 </a>
             </li>
-            <li ng-show="!otherEmployeesArray.length"><h4 class="text-center padding">No employees, please select new location.</h4></li>
+            <li ng-show="!otherEmployeesArray.length"><h4 class="text-center padding">No employees, please select new location.</h4></li>-->
 
         </ul>
         <div class="spacer2"></div>

@@ -37,17 +37,28 @@
     angular.element(document.querySelector('#dvFree')).removeClass('positive-bg');
 
     $scope.chooseRoastered = function (_status) {
+        // remove data of checked emps
+        for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+            $rootScope.allemployeesArray[i].selected = false;
+        }
+        $scope.selectedEmployeesCounter = 0;
+        $scope.selectedAll = false;
+        $scope.selectedAllboxes = false;
+
+        // check _status change
         if (_status == 1) {
             console.log('1');
             angular.element(document.querySelector('#dvRoastered')).addClass('positive-bg');
             angular.element(document.querySelector('#dvFree')).removeClass('positive-bg');
             //show dv with roasterd data
+            $rootScope.allemployeesArray = $rootScope.rosteredEmployeesArray;
         }
         else {
             console.log('0');
             angular.element(document.querySelector('#dvRoastered')).removeClass('positive-bg');
             angular.element(document.querySelector('#dvFree')).addClass('positive-bg');
             // show dv with other data
+            $rootScope.allemployeesArray = $rootScope.otherEmployeesArray;
         }
     }
 
@@ -79,16 +90,7 @@
                 $rootScope.rosteredEmployeesArray = _res.data.data.Rostered;
                 $rootScope.otherEmployeesArray = _res.data.data.Other;
 
-                for (var i = 0; i < $rootScope.rosteredEmployeesArray.length; i++) {
-                    if ($rootScope.rosteredEmployeesArray[i].IsClockedIn != true) {
-                        $rootScope.allemployeesArray.push($rootScope.rosteredEmployeesArray[i]);
-                    }
-                }
-                for (var i = 0; i < $rootScope.otherEmployeesArray.length; i++) {
-                    if ($rootScope.otherEmployeesArray[i].IsClockedIn != true) {
-                        $rootScope.allemployeesArray.push($rootScope.otherEmployeesArray[i]);
-                    }
-                }
+                $rootScope.allemployeesArray = $rootScope.rosteredEmployeesArray;
 
                 console.log(_res.data.data);
                 console.log($rootScope.allemployeesArray);
@@ -220,6 +222,7 @@
     };
 
     $scope.openmap = function (emp) {
+        // try add name , id of emp
         console.log(emp);
         if (emp.Shifts.length > 0) {
             console.log(emp.Shifts[0].SiteCoordinates);

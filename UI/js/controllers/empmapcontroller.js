@@ -76,11 +76,10 @@
     $scope.adjustEmpData = function (lat, lng) {
         $scope.empArray = [];
         var emp;
-        console.log($rootScope.rosteredEmployeesArray);
-        console.log($rootScope.otherEmployeesArray);
-        for (var i = 0; i < $rootScope.rosteredEmployeesArray.length; i++) {
-            console.log($rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Latitude);
-            emp = { "id": i, "Name": $rootScope.rosteredEmployeesArray[i].Name, "Lat": $rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Latitude, "Lng": $rootScope.rosteredEmployeesArray[i].Shifts[0].SiteCoordinates.Logitude, "selected": false };
+        // i'm here
+        for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+            console.log($rootScope.allemployeesArray[i].Shifts[0].SiteCoordinates.Latitude);
+            emp = { "id": i, "Name": $rootScope.allemployeesArray[i].Name, "Lat": $rootScope.allemployeesArray[i].Shifts[0].SiteCoordinates.Latitude, "Lng": $rootScope.allemployeesArray[i].Shifts[0].SiteCoordinates.Logitude, "selected": false };
             if (emp.Latitude == lat && emp.Logitude == lng) {
                 emp.selected = true;
                 $scope.indexToShow = i;
@@ -89,15 +88,8 @@
             console.log(emp);
             $scope.empArray.push(emp);
         }
-        for (var i = 0; i < $rootScope.otherEmployeesArray.length; i++) {
-            emp = { "id": i, "Name": $rootScope.otherEmployeesArray[i].Name, "Lat": $rootScope.otherEmployeesArray[i].SiteCoordinates.Latitude, "Lng": $rootScope.otherEmployeesArray[i].SiteCoordinates.Logitude, "selected": false };
-            if ($rootScope.otherEmployeesArray[i].SiteCoordinates.Latitude == lat && $rootScope.otherEmployeesArray[i].SiteCoordinates.Logitude == lng) {
-                emp.selected = true;
-                $scope.indexToShow = i;
-                console.log($scope.empArray[i]);
-            }
-            $scope.empArray.push(emp);
-        }
+
+       
         console.log($scope.empArray);
     }
     

@@ -251,7 +251,7 @@
     background-color: #387ef5;
 }
 
-.popup-head h3 {
+    .popup-head h3 {
         color: #fff;
         line-height: inherit;
     }
@@ -580,8 +580,9 @@
     .supervisorPage .item-checkbox .checkbox .checkbox-icon:before {
         border-color: #ddd;
     }
-    .supervisorPage .item-checkbox .checkbox input:checked:before{
-        background:#33cd5f;
+
+    .supervisorPage .item-checkbox .checkbox input:checked:before {
+        background: #33cd5f;
     }
 
 .supervisorPage .item-avatar img {
@@ -608,12 +609,15 @@
     right: 40px;
 }
 
-.supervisorPage .dvTabHeader .col{
-    /*background-color: #3498db;*/
+.supervisorPage .dvTabHeader .col {
     border: 1px solid #fff;
     color: #aaa;
     padding: 10px 16px;
 }
+
+    .supervisorPage .dvTabHeader .col.positive-bg {
+        color: #fff;
+    }
 
 /*supervisor Account Page*/
 .supervisorAccountPage .list .placeholder-icon,
