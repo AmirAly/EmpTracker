@@ -154,6 +154,10 @@
                 }
                 $ionicLoading.hide();
             }
+            else if (_res.data.code == 404) {
+                console.log(_res.data.data);
+                $ionicLoading.hide();
+            }
             else {
                 console.log('error');
                 $ionicLoading.hide();

@@ -240,7 +240,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
 
     .state('supervisormenu.empmap', {
         cache: false,
-        url: '/empmap/:Latitude/:Longitude',
+        url: '/empmap/:Name/:EmpNo/:Latitude/:Longitude',
         views: {
             'menuContent': {
                 controller: "empmapController",

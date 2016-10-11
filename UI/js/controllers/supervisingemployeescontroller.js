@@ -92,8 +92,10 @@
 
                 $rootScope.allemployeesArray = $rootScope.rosteredEmployeesArray;
 
+                $rootScope.allemployeesArray = _res.data.data;
+
                 console.log(_res.data.data);
-                console.log($rootScope.allemployeesArray);
+                //console.log($rootScope.allemployeesArray);
                 $ionicLoading.hide();
             }
         }, function (error) {
@@ -227,14 +229,12 @@
         if (emp.Shifts.length > 0) {
             console.log('if');
             console.log(emp.Shifts[0].SiteCoordinates);
-            console.log(emp.Shifts[0].SiteCoordinates.Latitude);
-            console.log(emp.Shifts[0].SiteCoordinates.Logitude);
-            $state.go('supervisormenu.empmap', { Latitude: emp.Shifts[0].SiteCoordinates.Latitude, Longitude: emp.Shifts[0].SiteCoordinates.Logitude });
+            $state.go('supervisormenu.empmap', { Name: emp.Name, EmpNo: emp.EmpNo, Latitude: emp.Shifts[0].SiteCoordinates.Latitude, Longitude: emp.Shifts[0].SiteCoordinates.Logitude });
         }
         else {
             console.log('else');
             console.log('no cordinates');
-            $state.go('supervisormenu.empmap', { Latitude: null, Longitude: null });
+            $state.go('supervisormenu.empmap', { Name: emp.Name, EmpNo: emp.EmpNo, Latitude: null, Longitude: null });
         }
     }
 
