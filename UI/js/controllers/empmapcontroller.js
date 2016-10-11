@@ -8,7 +8,7 @@
             $rootScope.locationService = 'active';
             // emp coordinates
             var latLng = new google.maps.LatLng($stateParams.Latitude, $stateParams.Longitude);
-            latLng = { lat: -33.8657436, lng: 151.2172687 }
+            //latLng = { lat: -33.8657436, lng: 151.2172687 }
             var mapOptions = {
                 center: latLng,
                 zoom: 15,

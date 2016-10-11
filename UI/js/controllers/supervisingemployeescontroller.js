@@ -225,10 +225,14 @@
         // try add name , id of emp
         console.log(emp);
         if (emp.Shifts.length > 0) {
+            console.log('if');
             console.log(emp.Shifts[0].SiteCoordinates);
+            console.log(emp.Shifts[0].SiteCoordinates.Latitude);
+            console.log(emp.Shifts[0].SiteCoordinates.Logitude);
             $state.go('supervisormenu.empmap', { Latitude: emp.Shifts[0].SiteCoordinates.Latitude, Longitude: emp.Shifts[0].SiteCoordinates.Logitude });
         }
         else {
+            console.log('else');
             console.log('no cordinates');
             $state.go('supervisormenu.empmap', { Latitude: null, Longitude: null });
         }
