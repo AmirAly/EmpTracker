@@ -94,7 +94,7 @@
                     method: 'POST',
                     url: '/api/Attendance/Log/FailedChallengeQuestion',
                     data: {
-                        CurrentTime: $scope.currentTime,
+                        //CurrentTime: $scope.currentTime,
                         Longitude: $rootScope.currentUserLongitude,
                         Latitude: $rootScope.currentUserLatitude,
                         GPSTrackingMethod: 'Network',

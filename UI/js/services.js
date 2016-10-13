@@ -137,7 +137,7 @@ empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state,
                         method: 'POST',
                         url: '/api/Attendance/Log/PeriodicalUpdate',
                         data: {
-                            CurrentTime: currentTime,
+                            //CurrentTime: currentTime,
                             Latitude: $rootScope.currentUserLatitude,
                             Longitude: $rootScope.currentUserLongitude,
                             GPSTrackingMethod: 'Network',

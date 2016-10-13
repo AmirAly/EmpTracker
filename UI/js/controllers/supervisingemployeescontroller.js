@@ -26,6 +26,8 @@
             if (_res.data.code == 200) {
                 $scope.categories = _res.data.data;
                 console.log($scope.categories);
+                $rootScope.allemployeesArray = [];
+                $scope.errorMSG = '';
                 $ionicLoading.hide();
             }
         }, function (error) {
@@ -62,11 +64,12 @@
         }
     }
 
-    $scope.getByListEmpBySite = function (_site) {
+    $scope.getByListEmpBySite = function (_siteID) {
         $scope.today = new Date();
         var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
         console.log(formatedTodayDate);
-        console.log(_site.SiteID);
+        console.log(_siteID);
+        $scope.siteId = _siteID;
         $ionicLoading.show({
             content: 'Loading',
             animation: 'fade-in',
@@ -78,13 +81,17 @@
         // use today date & use card to let user select location
         var req = {
             method: 'GET',
-            //url: '/api/Roster/' + _site.SiteID + '?startDate=' + formatedTodayDate + '&endDate=' + formatedTodayDate + '&getBy=site',
-            url: '/api/Attendance/GetEmployees?SiteId=' + _site.SiteID + '&day=2016-08-28',// 2016-08-28 || formatedTodayDate
+            //url: '/api/Attendance/GetEmployees',
+            url: '/api/Attendance/GetEmployees?SiteId=' + _siteID + '&day=2016-08-28',// 2016-08-28 || formatedTodayDate
             data: {}
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             $rootScope.allemployeesArray = [];
+            // clear selected
+            $scope.selectedAll = false;
+            $scope.selectedAllboxes = false;
+            //$scope.errorMSG = '';
             console.log(_res);
             if (_res.data.code == 200) {
                 $rootScope.rosteredEmployeesArray = _res.data.data.Rostered;
@@ -162,7 +169,7 @@
         $scope.time = { hour: 8, minute: 30 };
         // custom popup
         var myPopup = $ionicPopup.show({
-            template: '<div class="row">\
+            template: '<div class="row"><div class="col col-center text-center">Enter UTC Time</div></div><div class="row">\
                 <div class="padding col"><input type="number" class="text-center" ng-model="time.hour"></div>\
                 <div class="padding col"><input type="number" class="text-center" ng-model="time.minute"></div>\
             </div>',
@@ -174,11 +181,13 @@
                    text: '<b>Clock In</b>',
                    type: 'button-positive',
                    onTap: function (e) {
+                       console.log('clock in clicked');
                        if (!$scope.time.hour) {
                            //don't allow the user to close unless he enters value
                            e.preventDefault();
                        } else {
                            var clockTime = $scope.time.hour + ':' + $scope.time.minute;
+                           $scope.clockInEmployees(clockTime);
                            return clockTime;
                        }
                    }
@@ -189,6 +198,70 @@
             console.log('Clock In at ', res);
         });
     };
+
+    $scope.clockInEmployees = function (_clockTime) {
+        $rootScope.currentUserLatitude = 0;
+        $rootScope.currentUserLongitude = 0;
+        $scope.errorMSG = "";
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        $rootScope.getCurrentLocation();
+        $scope.$watch('$root.currentUserLongitude', function () {
+            if ($rootScope.currentUserLongitude != 0) {
+                console.log($rootScope.currentUserLatitude);
+                console.log($rootScope.currentUserLongitude);
+                console.log($rootScope.allemployeesArray);
+                for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+                    if ($rootScope.allemployeesArray[i].selected == true) {
+                        //api here
+                        var req = {
+                            method: 'PUT',
+                            url: '/api/Attendance?action=in',
+                            data: {
+                                "EmpNo":$rootScope.allemployeesArray[i].EmpNo,
+                                "SiteId": "ADH05",
+                                "TaskCode": "Greeter   ",
+                                "Notes": "",
+                                "Clocking": {
+                                    "ClockingTime": _clockTime,
+                                    //"Latitude": $rootScope.currentUserLatitude,
+                                    //"Longitude": $rootScope.currentUserLongitude,
+                                    "GPSTrackingMethod": "Network",
+                                    "PunchedVia": "MOB",
+                                    "EmployeeNotes": ""
+                                }
+                            }
+                        }
+                        console.log(req.data);
+                        // add true to use authentication token
+                        API.execute(req, true).then(function (_res) {
+                            console.log(_res);
+                            if (_res.data.code == 200) {
+                                console.log('pass');
+                            }
+                            else {
+                                $scope.errorMSG = _res.data.data;
+                            }
+                        },
+                       function (error) {
+                           API.showTokenError(error);
+                       });
+                    }
+                }
+                // call refresh list
+                $scope.getByListEmpBySite($scope.siteId);
+                $ionicLoading.hide();
+                console.log('done');
+            }
+        });
+
+    }
 
     // Triggered on a button click
     $scope.showClockOutPopup = function () {
