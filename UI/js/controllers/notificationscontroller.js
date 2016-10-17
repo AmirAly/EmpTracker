@@ -22,6 +22,11 @@
             if (_res.data.code = 200) {
                 $scope.allAlertsArray = _res.data.data;
                 for (var i = 0; i < _res.data.data.length; i++) {
+                    // UTC time
+                    console.log(_res.data.data[i].UtcDateCreated);
+                    // Local time
+                    var localTime = API.convertUTCToLocalTime(_res.data.data[i].UtcDateCreated);
+                    _res.data.data[i].shownDate = localTime;
                     if (_res.data.data[i].IsRead == false) {
                         $rootScope.notifictionsCounter++;
                     }
@@ -36,6 +41,7 @@
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
+
     $scope.showSubMenu = function () {
         $state.go('app.submenu');
     }
@@ -53,7 +59,7 @@
         notificationIds = [];
         var counter = 0;
         for (var i = 0; i < $scope.allAlertsArray.length; i++) {
-            if ($scope.allAlertsArray[i].IsRead==false) {
+            if ($scope.allAlertsArray[i].IsRead == false) {
                 notificationIds[counter] = $scope.allAlertsArray[i].ID;
                 counter++;
             }
@@ -98,7 +104,7 @@
         var req = {
             method: 'PUT',
             url: '/api/Notification',
-            data:  notificationIds
+            data: notificationIds
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {

@@ -83,12 +83,14 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
-        var attendanceDay = selectedDay;
-        var formatedAttendanceDay = attendanceDay.getFullYear() + '-' + (attendanceDay.getMonth() + 1) + '-' + attendanceDay.getDate();
+        var formatedAttendanceDay = API.convertLocalTimeToUTC(selectedDay);
+        //var attendanceDay = selectedDay;
+        //console.log(selectedDay);
+        //var formatedAttendanceDay = attendanceDay.getFullYear() + '-' + (attendanceDay.getMonth() + 1) + '-' + attendanceDay.getDate();
         console.log(formatedAttendanceDay);
         var req = {
             method: 'GET',
-            url: '/api/Attendance/ByEmployee?startDate=' + formatedAttendanceDay + '&endDate=' + formatedAttendanceDay,
+            url: '/api/Attendance/ByEmployee?UtcStartDate=' + formatedAttendanceDay + '&UtcEndDate=' + formatedAttendanceDay,
             data: {}
         }
         
@@ -117,9 +119,11 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
+        var formatedStartDate = API.convertLocalTimeToUTC(startDate);
+        var formatedEndDate = API.convertLocalTimeToUTC(EndDate);
         var req = {
             method: 'GET',
-            url: '/api/Attendance/ByEmployee?startDate=' + startDate + '&endDate=' + EndDate,
+            url: '/api/Attendance/ByEmployee?UtcStartDate=' + formatedStartDate + '&UtcEndDate=' + formatedEndDate,
             data: {}
         }
         $scope.totalHRS = 0;

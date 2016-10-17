@@ -22,7 +22,7 @@
             <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index,'{{alert.ID}}')" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
                 <i class="icon ion-alert-circled"></i>
                 <span class="text-left txtalert">{{alert.NotificationBody}}</span>
-                <span class="text-left item-note">{{alert.DateCreated  | date:'MMM dd, At  hh:mm'}}</span>
+                <span class="text-left item-note">{{alert.shownDate  | date:'MMM dd, At  hh:mm'}}</span>
             </a>
         </div>
 

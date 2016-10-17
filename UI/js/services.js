@@ -45,9 +45,9 @@
             return $http(_req);
 
         },
-        showTokenError: function (error) {
-            if (error.status == 401 && error.statusText == "Unauthorized") { /* catch 401  Error here */
-                console.log(error.data.Message);
+        showTokenError: function (_error) {
+            if (_error.status == 401 && _error.statusText == "Unauthorized") { /* catch 401  Error here */
+                console.log(_error.data.Message);
                 // should use refresh token here ?
                 //..
                 $ionicLoading.show({
@@ -56,8 +56,8 @@
                 });
 
                 $timeout(function () {
-                    console.log(error);
-                    console.log(error.data); /* catch 400  Error here */
+                    console.log(_error);
+                    console.log(_error.data); /* catch 400  Error here */
                     $ionicLoading.hide();
                     $rootScope.UserIsInShift = false;
                     // logout
@@ -69,8 +69,13 @@
             else {
                 $ionicLoading.hide();
             }
+        },
+        convertUTCToLocalTime: function (_uTCTime) {
+            return (new Date(_uTCTime));
+        },
+        convertLocalTimeToUTC: function (_LocalTime) {
+            return new Date(_LocalTime).toISOString();
         }
-
     };
 }]);
 
@@ -104,17 +109,17 @@ empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation,
             , function (err) {
                 $rootScope.locationService = 'inactive';
                 console.log("Could not get location , You have to enable location on your device");
-                    $ionicLoading.show({
-                        template: '<div class="padding">\
+                $ionicLoading.show({
+                    template: '<div class="padding">\
                                     <a class="button button-icon icon energized ion-alert-circled"></a>\
                                     <h4>Can\'t get your location</h4>\
                                     <h5>You have to allow geolocation service on your device.</h4>\
                                 </div>',
-                        animation: 'slide-in-up'
-                    });
-                    $timeout(function () {
-                        $ionicLoading.hide();
-                    }, 5000);
+                    animation: 'slide-in-up'
+                });
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 5000);
             });
         }
     };

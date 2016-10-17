@@ -8,7 +8,7 @@
         'TotalShiftsScheduled': 0,
         'TotalShiftsWorked': 0,
         'NoShow': 0,
-        'LateArrival': 1,
+        'LateArrival': 0,
         'EarlyLeave': 0,
         'MissingClockOut': 0,
         'TotalHoursScheduled': 0,
@@ -32,10 +32,10 @@
         var intialDate = new Date(); // get current date
 
         var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
-        formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
+        formatedFirstDay = API.convertLocalTimeToUTC(firstday);
 
         var lastday = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 6)).toUTCString()));
-        formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
+        formatedLastday = API.convertLocalTimeToUTC(lastday);
 
         // show in page 
         $scope.firstDayOfWeek = shortDays[firstday.getDay()] + " " + firstday.getDate() + " " + shortMonths[firstday.getMonth()] + " ";
@@ -50,10 +50,11 @@
                 showDelay: 0,
                 template: '<i class="icon ion-loading-d"></i>'
             });
-
+            console.log(API.convertLocalTimeToUTC(firstday));
+            console.log(API.convertLocalTimeToUTC(lastday));
             var req = {
                 method: 'GET',
-                url: '/api/attendance/statistics?CurrentTime=' + $scope.currentTime + '&StartDate=' + formatedFirstDay + '&EndDate=' + formatedLastday,
+                url: '/api/attendance/statistics?UtcStartDate=' + formatedFirstDay + '&UtcEndDate=' + formatedLastday,
                 data: {}
             }
             // add true to use authentication token
@@ -126,7 +127,7 @@
         $scope.thisWeekShifts();
 
         $scope.today = new Date();
-        var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
+        //var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
 
         $ionicLoading.show({
             content: 'Loading',
@@ -139,11 +140,12 @@
         //api here
         var req = {
             method: 'GET',
-            url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
+            url: '/api/Attendance/Current',
             data: {}
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
+            console.log(_res);
             console.log(_res.data);
             console.log(_res.data.data.IsClockedIn);
             console.log(_res.data.data.IsClockedOut);

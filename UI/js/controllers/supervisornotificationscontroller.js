@@ -21,6 +21,11 @@
             if (_res.data.code = 200) {
                 $scope.allAlertsArray = _res.data.data;
                 for (var i = 0; i < _res.data.data.length; i++) {
+                    // UTC time
+                    console.log(_res.data.data[i].UtcDateCreated);
+                    // Local time
+                    var localTime = API.convertUTCToLocalTime(_res.data.data[i].UtcDateCreated);
+                    _res.data.data[i].shownDate = localTime;
                     if (_res.data.data[i].IsRead == false) {
                         $rootScope.notifictionsCounter++;
                     }

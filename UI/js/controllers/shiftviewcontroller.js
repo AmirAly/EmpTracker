@@ -8,7 +8,7 @@
         console.log($stateParams.shiftid);
 
         $scope.today = new Date();
-        var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
+        //var formatedTodayDate = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate();
 
         formatedTodayDateTime = $scope.today.getFullYear() + '-' + ($scope.today.getMonth() + 1) + '-' + $scope.today.getDate() + ' ' + $scope.today.getHours() + ':' + $scope.today.getMinutes() + ':' + $scope.today.getSeconds();
         console.log(formatedTodayDateTime);
@@ -29,7 +29,7 @@
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Attendance/Current?currentTime=' + formatedTodayDate,
+                url: '/api/Attendance/Current',
                 data: {}
             }
             // add true to use authentication token
@@ -118,7 +118,7 @@
             //api here
             var req = {
                 method: 'GET',
-                url: '/api/Attendance/Current?currentTime=' + formatedTodayDateTime,
+                url: '/api/Attendance/Current',
                 data: {}
             }
             // add true to use authentication token
