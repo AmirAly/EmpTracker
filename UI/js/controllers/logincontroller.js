@@ -88,38 +88,50 @@
                                         $rootScope.notifictionsCounter++;
                                     }
                                 }
-                                $ionicLoading.hide();
-                                // if user is Employee
-                                if (userType == 'Employee') {
-                                    $rootScope.isSupervisor = false;
-                                    if (loginCode == 100) { // his device
-                                        $state.go('app.dashboard');
-                                    }
-                                    else if (loginCode == 101) { // inactive device
-                                        $scope.afterLoginError = true;
-                                        $scope.afterLoginErrorTxt = 'Inactive Device';
-                                        $state.go('tempdevicelogin');
-                                    }
-                                    else if (loginCode == 102) { // new device
-                                        $state.go('tempdevicelogin');
-                                    }
+                                // call settings api 
+                                var req = {
+                                    method: 'GET',
+                                    url: '/api/Settings',
+                                    data: {}
                                 }
-                                    //if user is supervisor
-                                else {
-                                    $rootScope.isSupervisor = true;
-                                    if (loginCode == 100) { // his device
-                                        $state.go('supervisormenu.supervisingemployees');
-                                    }
-                                    else if (loginCode == 101) { // inactive device
-                                        $scope.afterLoginError = true;
-                                        $scope.afterLoginErrorTxt = 'Inactive Device';
-                                        $state.go('tempdevicelogin');
-                                    }
-                                    else if (loginCode == 102) { // new device
-                                        $state.go('tempdevicelogin');
-                                    }
-                                }
+                                // add true to use authentication token
+                                API.execute(req, true).then(function (_res) {
+                                    console.log(_res.data);
+                                    if (_res.data.code = 200) {
 
+                                        $ionicLoading.hide();
+                                        // if user is Employee
+                                        if (userType == 'Employee') {
+                                            $rootScope.isSupervisor = false;
+                                            if (loginCode == 100) { // his device
+                                                $state.go('app.dashboard');
+                                            }
+                                            else if (loginCode == 101) { // inactive device
+                                                $scope.afterLoginError = true;
+                                                $scope.afterLoginErrorTxt = 'Inactive Device';
+                                                $state.go('tempdevicelogin');
+                                            }
+                                            else if (loginCode == 102) { // new device
+                                                $state.go('tempdevicelogin');
+                                            }
+                                        }
+                                            //if user is supervisor
+                                        else {
+                                            $rootScope.isSupervisor = true;
+                                            if (loginCode == 100) { // his device
+                                                $state.go('supervisormenu.supervisingemployees');
+                                            }
+                                            else if (loginCode == 101) { // inactive device
+                                                $scope.afterLoginError = true;
+                                                $scope.afterLoginErrorTxt = 'Inactive Device';
+                                                $state.go('tempdevicelogin');
+                                            }
+                                            else if (loginCode == 102) { // new device
+                                                $state.go('tempdevicelogin');
+                                            }
+                                        }
+                                    }
+                                });
                             }
                         });
                     }

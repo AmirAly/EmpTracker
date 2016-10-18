@@ -18,6 +18,16 @@
     var formatedFirstDay, formatedLastday;
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
+        $scope.totals = {
+            'TotalShiftsScheduled': 0,
+            'TotalShiftsWorked': 0,
+            'NoShow': 0,
+            'LateArrival': 0,
+            'EarlyLeave': 0,
+            'MissingClockOut': 0,
+            'TotalHoursScheduled': 0,
+            'TotalHoursWorked': 0
+        };
         // today
         var d = new Date();
         var todayname = days[d.getDay()];
