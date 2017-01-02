@@ -1,0 +1,7 @@
+﻿{
+    "employees": [
+        { "EmployeeName": "Samar Ahmed Ali","SiteID": "SNP001",  "photo": "images/1.jpg", "StartDate": "09.00" ,"EndDate": "08:30"},
+        { "EmployeeName": "Lara Mansour", "SiteID": "SNP002", "photo": "images/2.jpg", "StartDate": "00.00"  ,"EndDate": "08:30"},
+        { "EmployeeName": "Adam Werni", "SiteID": "SNP003", "photo": "images/3.jpg", "StartDate": "00.00"  ,"EndDate": "08:30"}
+    ]
+}

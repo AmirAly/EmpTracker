@@ -1,0 +1,47 @@
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <button class="hide"></button>
+    </ion-header-bar>
+
+    <ion-content class="has-header has-footer tempdevicePage" overflow-scroll="true" padding="true">
+            <div class="spacer"></div>
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <img class="circle" ng-src="{{globalUserPhoto}}" src="{{globalUserPhoto}}" />
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <h3>Welcome&nbsp;<b>{{globalUserName}}</b>.</h3>
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <p>This device is not registered with any of your accounts.</p>
+                </div>
+            </div>
+
+            <div class="padding row row-center">
+                <div class="col text-center">
+                    <a ng-click="logout()" href="#/tempdevicelogin.html">Log me out</a>
+                </div>
+            </div>
+
+    </ion-content>
+
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-android-checkmark-circle" ng-click="tempDeviceLogin()">
+                <span>&nbsp;Temp Guest login</span>
+            </button>
+            <button class="button button-clear ion-ios-plus-outline" ng-click="newDeviceLogin()">
+                <span>&nbsp;New Device</span>
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

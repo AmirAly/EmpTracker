@@ -1,0 +1,34 @@
+﻿<div ng-click="shiftView(event.RosterShiftId)" ng-init="adjustData(event)">
+    <div class=" shiftCard todayShiftCard">
+        <div class="text-center">
+            <p><span>Today</span></p>
+            <div class="row row-top">
+                <div class="col col-20 col-center text-center firstCoulmn">
+                    <div class="row"><span class="col dayNumber">{{event.StartDate  | date:'dd'}}</span></div>
+                    <span class="col dayName">{{event.StartDate | date:'EEE'}}</span>
+                </div>
+                <div class="col text-left secondCoulmn">
+                    <div class="row">
+                        <span class="col date">{{event.StartDate  | date:'hh:mm a'}}-{{event.EndDate  | date:'hh:mm a'}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="col address">{{event.ShortSiteName}}</span>
+                    </div>
+                    <div class="row">
+                        <span class="col area">{{event.SiteID}}</span>
+                    </div>
+                </div>
+                <div class="col col-25 text-right thirdCoulmn">
+                    <div class="dvTimeContainer">
+                        <div class="totalHours">{{event.TotalHours}}</div>
+                        <div class="hoursTxt">hours</div>
+                        <div ng-show="attendane==true">
+                            <i ng-if="event.late==false" class="icon ion-checkmark-round balanced"></i>
+                            <i ng-if="event.late==true" class="icon ion-close-round assertive"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

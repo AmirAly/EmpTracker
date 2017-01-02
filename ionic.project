@@ -1,16 +1,11 @@
 {
-    "name": "trunk",
-    "app_id": "",
-    "documentRoot": "UI",
-    "createDocumentRoot": "UI",
-    "watchPatterns": [
-        "UI/**/*",
-        "!UI/lib/**/*"
-    ],
-    "proxies": [
-        {
-            "path": "/Help",
-            "proxyUrl": "http://rostersmanager.com:90"
-        }
-    ]
+  "name": "emptracker",
+  "app_id": "",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }

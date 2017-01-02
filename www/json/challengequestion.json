@@ -1,0 +1,14 @@
+﻿{
+    "questions": [
+        { "id": "1", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "green", "choise4": "orange", "rightanswer": "orange", "photo": "images/challenge/1.png" },
+        { "id": "2", "question": "What's the car color?", "choise1": "red", "choise2": "gray", "choise3": "green", "choise4": "yellow", "rightanswer": "gray", "photo": "images/challenge/2.png" },
+        { "id": "3", "question": "What's the car color?", "choise1": "brown", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "brown", "photo": "images/challenge/3.png" },
+        { "id": "4", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "red", "photo": "images/challenge/4.png" },
+        { "id": "5", "question": "What's the car color?", "choise1": "red", "choise2": "cyan", "choise3": "green", "choise4": "yellow", "rightanswer": "cyan", "photo": "images/challenge/5.png" },
+        { "id": "6", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "blue", "photo": "images/challenge/6.png" },
+        { "id": "7", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "fuchsia", "choise4": "yellow", "rightanswer": "fuchsia", "photo": "images/challenge/7.png" },
+        { "id": "8", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "green", "photo": "images/challenge/8.png" },
+        { "id": "9", "question": "What's the car color?", "choise1": "purple", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "purple", "photo": "images/challenge/9.png" },
+        { "id": "10", "question": "What's the car color?", "choise1": "red", "choise2": "blue", "choise3": "green", "choise4": "yellow", "rightanswer": "yellow", "photo": "images/challenge/10.png" }
+    ]
+}

@@ -1,0 +1,26 @@
+﻿<div class="card dvDailyAttendanceTemplate">
+    <div class="list listSchedule">
+        <div class="item row">
+            <div class="col col-25">
+                <div class="dvClockInStstus">
+                    <span ng-show="event.ClockIn.ClockingTime != null" class="ion-checkmark-circled checkIsTrue"></span>
+                    <span ng-show="event.ClockIn.ClockingTime == null" class="ion-information-circled checkIsFalse"></span>
+                </div>
+                <h6>{{event.ClockIn.ClockingTime  | date:'hh:mm a'}}</h6>
+                <h6>{{event.ClockOut.ClockingTime  | date:'hh:mm a'}}</h6>
+                <div class="dvClockOutStstus">
+                    <span ng-show="event.ClockOut.ClockingTime != null" class="ion-checkmark-circled checkIsTrue"></span>
+                    <span ng-show="event.ClockOut.ClockingTime == null" class="ion-information-circled checkIsFalse"></span>
+                </div>
+            </div>
+            <div class="col col-75">
+                <div class="dvWorkingHours">
+                    <h4>{{event.TotalHours}}</h4>
+                    <h5>hours</h5>
+                </div>
+                <h6>{{event.ShortSiteName}}</h6>
+                <p>{{event.SiteName}}</p>
+            </div>
+        </div>
+    </div>
+</div>

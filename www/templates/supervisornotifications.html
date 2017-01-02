@@ -1,0 +1,40 @@
+﻿<ion-view class="notificationsPage">
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
+        </div>
+    </ion-header-bar>
+
+    <ion-content overflow-scroll="true" class="has-header has-footer">
+
+        <div class="list listAlerts">
+            <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index,'{{alert.ID}}')" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
+                <i class="icon ion-alert-circled"></i>
+                <span class="text-left txtalert">{{alert.NotificationBody}}</span>
+                <span class="text-left item-note">{{alert.shownDate  | date:'MMM dd, At  hh:mm'}}</span>
+            </a>
+        </div>
+
+        <div class="card text-center padding-top" ng-show="!allAlertsArray.length">
+            <h4>There is no notifications</h4>
+        </div>
+    </ion-content>
+
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-android-done-all" ng-click="markAllAsRead()">
+                <span>&nbsp;Mark All as read</span>
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

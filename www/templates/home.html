@@ -1,0 +1,132 @@
+﻿<ion-view view-title="Tabs" class="homePage">
+
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
+        </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+
+    </ion-header-bar>
+    
+    <ion-pane>
+        <div class="has-header has-footer">
+            <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top ">
+
+                <!-- Tab 1 -->
+                <ion-tab title="Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline">
+                    <ion-nav-view name="tab-tab1">
+                        <ion-content overflow-scroll="true" padding="true" class="calendarView ">
+                            <div class="padding-top">
+                                <h3 class="text-center">Today</h3>
+                                <h4 class="text-center">{{todayDateString}}</h4>
+                            </div>
+                            <!--no schedual today part-->
+                            <div class=" text-center" ng-show="!todayEventsArray.length">
+                                <img src="images/noshift.png" />
+                                <div class="padding">
+                                    <button class="button button-block button-positive" ng-click="goToUnscheduledShift()">Start Unscheduled Shift</button>
+                                </div>
+                                <div class="row" ng-show="mapView==true">
+                                    <div class="col card padding text-center">
+                                        <div id="map"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- today shifts part-->
+                            <div class="list padding" ng-show="todayEventsArray.length">
+                                <div ng-repeat="event in todayEventsArray">
+                                    <div class="item item-text-wrap text-center">
+                                        <div ng-include="'templates/todayshift.temp.html'"></div>
+                                    </div>
+                                </div>
+                                <!--<button ng-click="showClockInConfirmation()" class="button button-block button-positive icon ion-android-stopwatch">
+                                    <span>&nbsp;Clock-In</span>
+                                </button>-->
+                            </div>
+
+                            <div class="spacer"></div>
+                            <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
+                        </ion-content>
+                    </ion-nav-view>
+                </ion-tab>
+
+                <!-- Tab 2 -->
+                <ion-tab title="Weekly Time cards" icon-on="ion-android-calendar" icon-off="ion-android-calendar">
+                    <ion-nav-view name="tab-tab2">
+                        <ion-content overflow-scroll="true" padding="true" >
+                            <div class="dvWeeklyCardsHeader">
+                                <div class="row row-center">
+                                    <div class="col col-20 text-left">
+                                        <button ng-click="preWeek()" class="button button-icon icon ion-android-arrow-dropleft-circle light"></button>
+                                    </div>
+                                    <div class="col col-60">
+                                        <div>
+                                            <h4 class="text-center">
+                                                <span>{{firstDayOfWeek}}</span>
+                                                <span>
+                                                    to
+                                                </span>
+                                                <span>{{lastDayOfWeek}}</span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <div class="col col-20 text-right">
+                                        <button ng-click="nextWeek()" class="button button-icon icon ion-android-arrow-dropright-circle light"></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-hide="!weeklyEventsArray.length">
+                                <div class="row">
+                                    <div class="padding-left txtTotalHours"><span>Total Hours: </span><span>{{weeklyTotalHours}}</span></div>
+                                </div>
+                            </div>
+                            <div ng-repeat="event in weeklyEventsArray track by $index">
+                                <div class="card">
+                                    <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
+                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
+                                </div>
+                            </div>
+                            <div class="card text-center padding-top" ng-show="!weeklyEventsArray.length">
+                                <h3>There is no shifts</h3>
+                            </div>
+                            <div class="spacer"></div>
+                        </ion-content>
+                    </ion-nav-view>
+                </ion-tab>
+
+                <!-- Tab 3 -->
+                <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadCalendarEvents()">
+                    <ion-nav-view name="tab-tab3">
+                        <ion-content overflow-scroll="true" padding="true" class="calendarView ">
+                            <flex-calendar options="options" events="events"></flex-calendar>
+
+                            <div class="list padding">
+                                <div ng-repeat="event in calendarEvents">
+                                    <div class="item item-text-wrap text-center">
+                                        <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
+                                        <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
+                                    </div>
+                                </div>
+                                <div class="card text-center padding-top" ng-show="!calendarEvents.length">
+                                    <h3>There is no shifts</h3>
+                                </div>
+                            </div>
+
+                            <div class="spacer"></div>
+                        </ion-content>
+                    </ion-nav-view>
+                </ion-tab>
+            </ion-tabs>
+        </div>
+    </ion-pane>
+</ion-view>

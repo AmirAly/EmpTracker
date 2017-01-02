@@ -1,0 +1,138 @@
+﻿<ion-view view-title="Tabs" class="attendancePage">
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
+        </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+
+    </ion-header-bar>
+
+
+    <ion-pane>
+        <ion-tabs class="tabs-background-calm tabs-color-light tabs-icon-top">
+            <!-- Tab 1 My Attendance -->
+            <ion-tab title="Daily" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+                <ion-nav-view name="tab-tab1">
+
+                    <ion-content overflow-scroll="true" padding="true">
+
+                        <div class="dvTabHeader">
+                            <h3 class="text-center">Attendance Report</h3>
+                        </div>
+
+                        <!--7 days of this week-->
+                        <div class="row dvWeekDays">
+                            <div class="col col-7" ng-repeat="item in thisWeekDays"
+                                  ng-class="{activeDay : item.selected}" ng-click="selectDay(item)">
+                                <div class="row weekDaysHeader" tabindex="1"><span class="col noPadding">{{item.dayName}}</span></div>
+                                <div class="row weekDaysBody"><span class="col noPadding"><h5>{{item.dayNumber}}</h5><span>{{item.month}}</span></span></div>
+                                <div class="row weekDaysFooter"><span class="col noPadding"><span class="ion-arrow-up-b" ng-show="item.selected"></span></span></div>
+                            </div>
+                        </div>
+
+                        <!--attendance of the selected day-->
+                        <div ng-repeat="event in weeklyAttendanceArray">
+                            <div class="card">
+                                <div ng-include="'templates/dailyattendance.temp.html'"></div>
+                            </div>
+                        </div>
+
+                        <!--if no data-->
+                        <div class="card text-center padding-top dvNoAttendance" ng-show="!weeklyAttendanceArray.length">
+                            <div class="row">
+                                <div class="col col-80 col-offset-10">
+                                    <h4>You have not worked and clocked-in today.</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="spacer"></div>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+
+            <!-- Tab 2 Attendance Report -->
+            <ion-tab title="Weekly" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadReportData()">
+                <ion-nav-view name="tab-tab2">
+                    <ion-content overflow-scroll="true" padding="true">
+
+                        <div class="dvTabHeader">
+                            <h3 class="padding text-center">Attendance Report</h3>
+                        </div>
+
+                        <div class="dvWeekRange">
+                            <div class="row">
+                                <div class="col col-10 text-left"><i class="ion-android-arrow-dropleft-circle" ng-click="preWeek()"></i></div>
+                                <div class="col col-80 text-center">
+                                    <h4 class="padding text-center">{{weekDate}}</h4>
+                                </div>
+                                <div class="col col-10 text-right"><i class="ion-android-arrow-dropright-circle" ng-click="nextWeek()"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="card attendanceCard">
+                            <div class="row">
+                                <div class="col col-50 text-center">
+                                    <h5>Hours worked</h5>
+                                </div>
+                                <div class="col col-50 text-center">
+                                    <h5>Break Mintes</h5>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col text-center dvSquare">
+                                    <span>{{totalHRS || 0.0}}</span>
+                                </div>
+                                <div class="col text-center dvSquare">
+                                    <span>{{totalBreak || 0.0}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <table ng-show="weeklyReportDataArray.length">
+                            <tr>
+                                <th>Date</th>
+                                <th>Site</th>
+                                <th>Clock IN</th>
+                                <th>Clock Out</th>
+                                <th>HRS</th>
+                            </tr>
+                            <tr ng-repeat="attendance in weeklyReportDataArray">
+                                <td class="text-center"><h4>{{attendance.dayName}}</h4><span>{{attendance.dayInMonth}}</span></td>
+                                <td>{{attendance.SiteName}}</td>
+                                <td>{{attendance.ClockIn | date:'hh:mm a'}}</td>
+                                <td>{{attendance.ClockOut | date:'hh:mm a'}}</td>
+                                <td>{{attendance.HRS}}</td>
+                            </tr>
+
+                        </table>
+
+                        <div ng-show="!weeklyReportDataArray.length">
+                            <div class="card text-center padding-top dvNoAttendance">
+                                <div class="row">
+                                    <div class="col col-80 col-offset-10">
+                                        <h4>You have not worked and clocked-in this week.</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="spacer"></div>
+                    </ion-content>
+                </ion-nav-view>
+            </ion-tab>
+
+
+        </ion-tabs>
+    </ion-pane>
+</ion-view>

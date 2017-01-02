@@ -1,0 +1,16 @@
+﻿{
+    "notifications": [
+        { "text": "Check mail", "href": "#/app/notifications", "class": "" , "ngclass": "markAll"},
+        { "text": "Call Magy", "href": "#/app/notifications", "class": "" , "ngclass": "markAll"},
+        { "text": "Record album", "href": "#/app/notifications", "class": "" , "ngclass": "markAll"},
+        { "text": "Friends", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Check mail", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Call Magy", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Record album", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Friends", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Check mail", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Call Magy", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Record album", "href": "#/app/notifications", "class": "oldNotification" },
+        { "text": "Friends", "href": "#/app/notifications", "class": "oldNotification" }
+    ]
+}
