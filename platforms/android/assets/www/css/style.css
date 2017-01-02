@@ -1,0 +1,1266 @@
+/*
+- general classes used in all/ most of pages
+- popup part
+- Tabs part
+- shiftCard
+- validation
+- menu
+- login
+- map page
+- supervisor page
+- home page
+- challenge Page
+- notifications Page
+- attendance Page
+*/
+
+/*general*/
+
+.ion-ios-keypad {
+    background: #2c3e50 !important;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/oswald.woff) format('woff');
+}
+
+.spacer {
+    height: 40px;
+}
+
+.spacer2 {
+    height: 20px;
+}
+
+.spacer3 {
+    height: 10px;
+}
+
+.circle {
+    border-radius: 50%;
+    /*height: 40vw;
+    max-width: 40%;*/
+    height: 150px;
+    width: 150px;
+    vertical-align: middle;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.ion-log-out:before {
+    transform: rotate(-180deg);
+}
+
+.flex {
+    display: flex !important;
+}
+
+.submenuPage .badge, .sideMenuContent .badge {
+    position: absolute !important;
+    left: 16px;
+    bottom: 0;
+    top: initial !important;
+    padding: 1px 5px;
+    font-size: 12px;
+}
+
+    .sideMenuContent .badge.badge-dark {
+        background-color: #222;
+    }
+
+.pane, .view {
+    /*background-color: #ecf0f1 !important;*/
+    background-color: #e5e5e5 !important;
+}
+
+.actionBlue {
+    background-color: #3498db !important;
+    border-color: #287BB3 !important;
+    color: #fff !important;
+}
+
+.fontActionBlue {
+    color: #3498db !important;
+}
+
+.bar-header, .bar-footer {
+    z-index: 2 !important;
+    background-color: #2c3e50 !important;
+    border-color: #1D2935 !important;
+    background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%);
+}
+
+    .bar-header .button:hover, .bar-header .button:focus, .bar-header .button:active {
+        color: #fff;
+        opacity: 1;
+    }
+
+    .bar-header span.badge {
+        position: absolute !important;
+        right: 3px;
+        padding: 0px 4px;
+        font-size: 10px;
+        bottom: 0;
+        top: inherit;
+    }
+
+    .bar-header i:not(.ion-android-notifications) {
+        line-height: 2.5;
+        padding-left: 10px;
+    }
+
+
+    .bar-header i, .bar-header .ion-ios-location {
+        color: #fff;
+    }
+
+        .bar-header .ion-ios-location.inactive {
+            color: #888;
+        }
+
+
+    .bar-header .ion-wifi {
+        color: #08da08;
+    }
+
+        .bar-header .ion-wifi.disconnected {
+            color: #ec575c;
+        }
+
+    .bar-header .floatRight {
+        position: absolute;
+        top: 5px;
+        right: 46px;
+        max-width: 90px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        bottom: 5px;
+        display: inline-block;
+        color: #fff;
+        text-decoration: none;
+        line-height: 2.2;
+    }
+
+        .bar-header .floatRight:last-child {
+            right: 10px !important;
+        }
+
+        .bar-header .floatRight img {
+            height: 30px;
+            width: 30px;
+            /*position: fixed;*/
+            right: 121px;
+            top: 7px;
+        }
+
+        .bar-header .floatRight span {
+            white-space: nowrap;
+            padding: 7px 3px;
+            width: 100%;
+            max-width: 60px;
+            overflow: hidden !important;
+            text-overflow: ellipsis;
+            /*position: fixed;*/
+            right: 46px;
+            font-size: 9px;
+        }
+
+        .bar-header .floatRight .button.button-icon.icon.ion-ios-keypad {
+            position: fixed;
+            right: 0;
+            top: 4px;
+        }
+
+    .bar-header .ion-android-notifications:before {
+        font-size: 24px !important;
+    }
+
+
+
+@media only screen and (min-width: 375px) {
+    /*.bar-header .floatRight span {
+        max-width: 100px;
+    }
+
+    .bar-header .floatRight img {
+        right: 148px;
+    }*/
+}
+
+.ion-loading-a:before, .ion-loading-b:before, .ion-loading-c:before, .ion-loading-d:before {
+    font-size: 28px;
+}
+
+.menu .bar-header {
+    background-color: #111 !important;
+}
+
+.bar-footer {
+    padding: 0px;
+    bottom: -1px;
+    height: 45px;
+}
+
+    .bar-footer .floatLeft {
+        text-align: left !important;
+    }
+
+    .bar-footer .button {
+        border-right: 2px solid #000 !important;
+    }
+
+        .bar-footer .button:last-child:not(.modalBtn),
+        .bar-footer .lastButton {
+            border-right: none !important;
+        }
+
+
+
+/*popup part*/
+.popup-body span, .popup-body p {
+    color: #7e7879;
+}
+
+.popup-head {
+    border-bottom: 1px solid #2c3e50;
+    padding: 10px !important;
+}
+
+    .popup-head i {
+        font-size: 18px;
+        vertical-align: middle;
+        float: left;
+    }
+
+.popup-body {
+    background-color: #f4f4f4;
+}
+
+.popup-head {
+    border-color: #0c63ee;
+    background-color: #387ef5;
+}
+
+    .popup-head h3 {
+        color: #fff;
+        line-height: inherit;
+    }
+
+
+.redPopup .button-positive,
+.redPopup .button-positive:active,
+.redPopup .button.button-positive.active,
+.redPopup .button.button-positive.activated {
+    background-color: #6d0f14;
+    border-color: #5D0C11;
+}
+
+.redPopup .popup-body {
+    background-color: #f4f4f4;
+}
+
+.redPopup .popup-head {
+    background-color: #6d0f14;
+}
+
+    .redPopup .popup-head h3 {
+        color: #fff;
+        line-height: inherit;
+    }
+
+
+
+
+/*Tabs part*/
+.tabs {
+    background-color: #2c3e50 !important;
+    border-color: #1D2935 !important;
+    background-image: linear-gradient(0deg, #1D2935, #1D2935 50%, transparent 50%) !important;
+}
+
+    .tabs a.tab-item {
+        border-left: 1px solid #213446 !important;
+        border-right: 1px solid #213446 !important;
+        max-width: none !important;
+    }
+
+        .tabs a.tab-item.tab-item-active {
+            border-top: 1px solid #1D2935 !important;
+            margin-top: 0px !important;
+            background-color: #1D2935;
+        }
+
+
+/*shiftCard*/
+.shiftCard.todayShiftCard {
+    position: relative;
+    color: #fff;
+    padding: 5px;
+    overflow: hidden;
+}
+
+    .shiftCard.todayShiftCard p {
+        display: inline;
+    }
+
+        .shiftCard.todayShiftCard p span {
+            position: absolute;
+            display: inline-block;
+            z-index: 9999;
+            left: -30px;
+            color: #fff;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2), inset 0px 5px 30px rgba(255,255,255,0.2);
+            text-align: center;
+            top: 9px;
+            background: #f1c40f;
+            background: #f58e22;
+            width: 100px;
+            padding: 2px 10px;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+        }
+
+        .shiftCard.todayShiftCard p:before {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -17px;
+            left: 69px;
+            z-index: -1;
+        }
+
+        .shiftCard.todayShiftCard p:after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: 74px;
+            z-index: -1;
+            left: -10px;
+        }
+
+.shiftCard .firstCoulmn {
+    font-stretch: extra-condensed;
+    font-size: 23px;
+    font-weight: bold;
+    color: #9c9ea1;
+    border-right: 2px solid #e5e5e5;
+    white-space: nowrap;
+    padding-left: 0px;
+}
+
+    .shiftCard .firstCoulmn span {
+        font-family: 'Oswald' !important;
+        font-weight: 400;
+    }
+
+    .shiftCard .firstCoulmn .dayNumber {
+        font-size: 34px;
+        margin-bottom: 5px;
+    }
+
+    .shiftCard .firstCoulmn .dayName {
+        font-size: 21px;
+    }
+
+.shiftCard .secondCoulmn {
+    color: #444;
+    line-height: 1;
+    width: 55%;
+    margin-right: 10px;
+    padding-left: 0px;
+}
+
+    .shiftCard .secondCoulmn .date {
+        font-size: 17px;
+        font-weight: bold;
+        white-space: nowrap;
+        padding-left: 0px;
+        color: #606165;
+    }
+
+    .shiftCard .secondCoulmn .address {
+        font-size: 16px;
+        padding-left: 0px;
+        color: #606063;
+    }
+
+    .shiftCard .secondCoulmn .area {
+        font-size: 14px;
+        color: #aaa;
+        padding-left: 0px;
+    }
+
+.shiftCard .thirdCoulmn {
+    font-stretch: expanded;
+    /*padding-right: 20px;*/
+}
+
+    .shiftCard .thirdCoulmn div {
+        display: block;
+    }
+
+    .shiftCard .thirdCoulmn .dvTimeContainer {
+        border: 1px solid #C5C5C5;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        float: right;
+    }
+
+    .shiftCard .thirdCoulmn .totalHours {
+        color: #444;
+        font-size: 17px;
+        font-weight: bold;
+        position: relative;
+        top: 7px;
+    }
+
+    .shiftCard .thirdCoulmn .hoursTxt {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+    .shiftCard .thirdCoulmn .totalEarned {
+        color: #3498db;
+        font-size: 17px;
+        font-weight: bold;
+        position: relative;
+        top: 7px;
+    }
+
+    .shiftCard .thirdCoulmn .earnedTxt {
+        font-size: 12px;
+        color: #aaa;
+    }
+
+/*Daily Attendance Template*/
+.dvDailyAttendanceTemplate .dvClockInStstus {
+    position: absolute;
+    right: -7px;
+    top: -6px;
+    z-index: 9999999999;
+}
+
+.dvDailyAttendanceTemplate .dvClockOutStstus {
+    position: absolute;
+    right: -7px;
+    bottom: -6px;
+    z-index: 9999999999;
+}
+
+.dvDailyAttendanceTemplate .checkIsTrue {
+    background: #fbfbfb;
+    color: green;
+}
+
+.dvDailyAttendanceTemplate .checkIsFalse {
+    background: #fbfbfb;
+    color: #FF5722;
+}
+
+/*validation*/
+.errorFont {
+    color: #e42112;
+    font-size: 12px;
+    padding-right: 44px;
+}
+
+.ng-invalid.ng-dirty.ng-touched:not(form) {
+    border-bottom: 1px solid #B83E2C;
+}
+
+
+/*menu*/
+.submenuPage {
+    background-color: #1f497d;
+}
+
+    .submenuPage .badge {
+        position: absolute !important;
+        left: auto !important;
+        bottom: 0;
+        top: initial !important;
+        padding: 1px 5px;
+        font-size: 12px;
+        color: #fff !important;
+    }
+
+    .submenuPage .card {
+        margin: 0 !important;
+    }
+
+    .submenuPage .h5 {
+        font-size: 12px;
+    }
+
+.sideMenuContent {
+    background-color: #2c3e50 !important;
+    color: #fff;
+}
+
+    .sideMenuContent .h4, .sideMenuContent .h5, .sideMenuContent i {
+        color: #ddd;
+        font-size: 16px;
+    }
+
+    .sideMenuContent .button:hover {
+        color: #fff;
+    }
+
+    .sideMenuContent .button-icon .icon:before, .sideMenuContent .button-icon.icon:before,
+    .sideMenufooter .button-icon .icon:before, .sideMenufooter .button-icon.icon:before {
+        font-size: 26px !important;
+    }
+
+
+/*login page*/
+.loginpage .button.disabled, .loginpage .button[disabled] {
+    opacity: 1 !important;
+}
+
+.loginpage .bar-footer {
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+}
+
+.loginpage div.errorFont {
+    padding-right: 10px;
+}
+
+.listInputs.list .list .item.item-input {
+    margin-bottom: 10px;
+}
+
+    .listInputs.list .list .item.item-input input {
+        padding-left: 10px;
+    }
+
+    .listInputs.list .list .item.item-input i {
+        margin-right: 10px;
+    }
+
+        .listInputs.list .list .item.item-input i:before {
+            font-size: 22px;
+            vertical-align: middle;
+        }
+
+
+
+/*map page*/
+.mapPage #map {
+    width: 100%;
+    height: 100%;
+}
+
+.mapPage .scroll {
+    height: 100%;
+}
+
+/*supervisor page*/
+.supervisorPage .item-checkbox .checkbox {
+    z-index: -1;
+}
+
+    .supervisorPage .item-checkbox .checkbox input:before,
+    .supervisorPage .item-checkbox .checkbox .checkbox-icon:before {
+        border-color: #ddd;
+    }
+
+    .supervisorPage .item-checkbox .checkbox input:checked:before {
+        background: #33cd5f;
+    }
+
+.supervisorPage .item-avatar img {
+    height: 40px;
+}
+
+.supervisorPage .item-avatar .badge-balanced {
+    right: 0px;
+}
+
+.supervisorPage .btnContainer .button-clear {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 999;
+    font-size: 22px;
+}
+
+.supervisorPage .btnContainer .selectbox {
+    right: 15px;
+}
+
+.supervisorPage .btnContainer .item-select:after {
+    right: 40px;
+}
+
+.supervisorPage .dvTabHeader .col {
+    border: 1px solid #fff;
+    color: #aaa;
+    padding: 10px 16px;
+}
+
+    .supervisorPage .dvTabHeader .col.positive-bg {
+        color: #fff;
+    }
+
+/*supervisor Account Page*/
+.supervisorAccountPage .list .placeholder-icon,
+.loginpage .list .placeholder-icon {
+    position: absolute;
+    top: 16px;
+}
+
+.supervisorAccountPage .list input,
+.loginpage .list input {
+    padding-left: 22px;
+}
+
+
+/*accordion part*/
+/*.list .item.item-accordion {
+    line-height: 38px;
+    padding: 0;
+    transition: 0.09s all linear;
+}
+
+i.icon.icon-right {
+    float: right;
+}
+
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}*/
+
+
+/*home page*/
+
+.homePage #map {
+    width: 100%;
+    height: 100%;
+    min-height: 350px;
+}
+
+.homePage .scroll {
+    height: 100%;
+}
+
+.homePage .col p {
+    font-size: 12px;
+}
+
+.homePage .card {
+    margin: 5px 5px 5px;
+}
+
+.homePage .txtTotalHours {
+    color: #14b99a;
+}
+
+.homePage .dvWeeklyCardsHeader {
+    padding: 5px;
+}
+
+    .homePage .dvWeeklyCardsHeader .row {
+        border-color: #0c63ee;
+        background-color: #387ef5;
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader h4 {
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader .light:hover {
+        color: #fff;
+    }
+
+    .homePage .dvWeeklyCardsHeader .light:before {
+        font-size: 24px;
+    }
+
+
+/*home page calenar*/
+.homePage .flex-calendar .days .day {
+    border: 1px solid #EFEFEF !important;
+}
+
+
+.homePage .flex-calendar .month i {
+    line-height: 60px;
+    font-size: 22px;
+    padding: 5px;
+}
+
+.homePage .flex-calendar .days .day.selected .number {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    line-height: inherit;
+    color: #FFFFFF;
+    background-color: transparent;
+}
+
+    .homePage .flex-calendar .days .day.selected .number span {
+        border-radius: 100%;
+        border: 2px solid #ec575c;
+        padding: 3px 5px;
+        right: 1px !important;
+    }
+
+.homePage .flex-calendar .days .number {
+    text-align: right !important;
+}
+
+.homePage .flex-calendar .days .day.selected.today .number span {
+    border-radius: 100%;
+    border: 2px solid #ec575c;
+    background-color: #ec575c;
+    color: #fff;
+    padding: 3px 5px;
+    right: 1px !important;
+}
+
+.homePage .flex-calendar .days .number span {
+    position: relative;
+    bottom: 15px;
+    right: 5px;
+    color: #8B8B8B;
+}
+
+.homePage .flex-calendar .days .day.event:before {
+    margin-left: 0;
+}
+
+.homePage .calendarView .item {
+    padding: 0px;
+}
+
+.homePage .calendarView .badge {
+    display: block;
+    font-size: 12px;
+    content: "";
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    min-height: 6px;
+    border-radius: 100%;
+    position: absolute;
+    padding: 0px !important;
+    left: 5px;
+    bottom: 10px;
+    background-color: #ec575c;
+}
+
+
+/*shiftViewPage*/
+.shiftViewPage {
+    background-color: #ecebec;
+}
+
+    .shiftViewPage .errorFont {
+        padding-right: 0px;
+    }
+
+    .shiftViewPage .bluefont {
+        font-size: 100%;
+        color: #4b8dc0;
+        text-align: right;
+    }
+
+    .shiftViewPage textarea {
+        resize: none;
+        text-align: left !important;
+        background-color: #fbfafb;
+        color: #4b8dc0;
+    }
+
+    .shiftViewPage .noborder {
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .shiftViewPage .card {
+        border-radius: 5px;
+    }
+
+        .shiftViewPage .card.smallMargin {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .shiftViewPage .card .item {
+            background-color: #fbfafb;
+            color: #6d6b6d;
+            padding-top: 10px;
+        }
+
+/*challenge Page*/
+/*.challengePage img {
+    width: 100%;
+    height: 100%;
+}*/
+
+.challengePage .txtChoices {
+    text-transform: capitalize;
+    /*font-size: 26px;
+    padding: 10px;*/
+    font-size: 18px;
+    padding: 10px 5px;
+    text-shadow: -1px -1px 0 #555, 1px -1px 0 #555, -1px 1px 0 #555, 1px 1px 0 #555;
+}
+
+.challengePage h1 {
+    color: red;
+    font-size: 40px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/*challengePage counter down effect*/
+.challengePage .change {
+    font-size: 50px !important;
+}
+
+.challengePage .change-add,
+.challengePage .change-remove {
+    font-size: 40px !important;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3 ease-in-out;
+}
+
+.challengePage .change-add-active {
+    font-size: 50px !important;
+}
+
+.challengePage .change-remove {
+    font-size: 50px !important;
+}
+
+.challengePage .change-remove-active {
+    font-size: 40px !important;
+}
+
+
+
+/*notifications Page*/
+.notificationsPage .oldNotification {
+    color: #aaa;
+}
+
+.notificationsPage .bar.bar-positive {
+    border-color: #0c63ee !important;
+    background-color: #387ef5 !important;
+    background-image: linear-gradient(0deg, #0c63ee, #0c63ee 50%, transparent 50%) !important;
+    color: #fff !important;
+}
+
+.notificationsPage .list {
+    margin-bottom: 0px;
+}
+
+.notificationsPage .listAlerts .txtalert {
+    display: block;
+}
+
+.notificationsPage .listAlerts .item-note {
+    display: block;
+    float: left;
+}
+
+
+/*attendance Page*/
+
+.attendancePage .ion-checkmark-round, .attendancePage .ion-close-round {
+    font-size: 34px;
+}
+
+.attendancePage .dvNoAttendance {
+    line-height: 1.5;
+}
+
+.attendancePage .dvTabHeader {
+    background-color: #1f497d;
+}
+
+    .attendancePage .dvTabHeader h3 {
+        color: #fff;
+        margin-bottom: 0;
+        padding: 5px;
+        font-size: 20px;
+    }
+
+.attendancePage .activeDay .weekDaysHeader {
+    /*background-color: #2c3e50 !important;*/
+    background-color: #000 !important;
+}
+
+.dvWeekDays {
+    padding: 0px;
+}
+
+.attendancePage .dvWeekDays .col-7 {
+    width: calc(100% / 7);
+    text-align: center;
+    padding: 0;
+    border: 1px solid #ccc;
+}
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysHeader {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+        background-color: #1f497d;
+        color: #fff;
+    }
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysBody {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: #fff;
+        color: #606165;
+    }
+
+        .attendancePage .dvWeekDays .col-7 .weekDaysBody h5 {
+            font-size: 22px;
+            margin-bottom: 0px;
+            margin-top: 5px;
+            color: #9c9ea1;
+        }
+
+    .attendancePage .dvWeekDays .col-7 .weekDaysFooter {
+        padding-left: 0;
+        padding-right: 0;
+        background-color: #eaedf3;
+        height: 15px;
+    }
+
+.attendancePage .listSchedule .item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #FBFBFB;
+}
+
+    .attendancePage .listSchedule .item h6 {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    .attendancePage .listSchedule .item .col-25 {
+        border-right: 1px dashed green;
+        margin-right: 10px;
+        position: relative;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    /*.attendancePage .listSchedule .item .col-25:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+        .attendancePage .listSchedule .item .col-25:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }*/
+
+    .attendancePage .listSchedule .item .col-75 {
+        position: relative;
+    }
+
+        .attendancePage .listSchedule .item .col-75 p {
+            line-height: 2;
+        }
+
+        .attendancePage .listSchedule .item .col-75 .dvWorkingHours {
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            border: 1px solid #C5C5C5;
+            text-align: center;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+            .attendancePage .listSchedule .item .col-75 .dvWorkingHours h4 {
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+
+            .attendancePage .listSchedule .item .col-75 .dvWorkingHours h5 {
+                font-size: 12px;
+            }
+
+.attendancePage .listSchedule .item-divider {
+    background-color: #7e7e7e;
+    color: #fff;
+}
+
+    .attendancePage .listSchedule .item-divider p {
+        color: #dededf;
+    }
+
+.attendancePage .listSchedule .item-note {
+    color: #000;
+    width: 18%;
+}
+
+    .attendancePage .listSchedule .item-note.fontRed {
+        color: #c72626;
+    }
+
+.attendancePage .attendanceCard {
+    width: 98%;
+    margin: 5px !important;
+}
+
+    .attendancePage .attendanceCard h5 {
+        color: #808080;
+    }
+
+.attendancePage .dvWeekRange {
+    color: #fff;
+    background-color: #3498db;
+    margin-bottom: 5px;
+}
+
+    .attendancePage .dvWeekRange h4 {
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .attendancePage .dvWeekRange i {
+        font-size: 22px;
+        padding: 5px;
+    }
+
+.attendancePage .dvSquare {
+    border: 1px solid #bbb;
+    margin: 5px;
+    color: #808080;
+}
+
+.attendancePage .card {
+    margin: 0;
+}
+
+.attendancePage table {
+    width: 98%;
+    background-color: #f7f7f7;
+    margin: 5px !important;
+}
+
+.attendancePage table, .attendancePage th, .attendancePage td {
+    border: 1px solid #aaa;
+    border-collapse: collapse;
+    padding: 5px;
+    color: #555;
+}
+
+    .attendancePage td h4 {
+        color: #6F6F6F;
+        font-weight: 700;
+    }
+
+.attendancePage th {
+    white-space: nowrap;
+}
+
+.attendancePage table tr td:nth-child(3),
+.attendancePage table tr td:nth-child(4),
+.attendancePage table tr td:nth-child(5) {
+    background-color: #fff;
+}
+
+/*dashboard page*/
+.dashboardPage h3 {
+    border-bottom: 2px solid #CCCCCC;
+    padding-bottom: 5px;
+    color: #9e0a11;
+}
+
+    .dashboardPage h3 span {
+        font-size: 33%;
+        color: #545454;
+        line-height: 3.5;
+    }
+
+.dashboardPage .card {
+    margin-top: 0px;
+    margin-right: 2px;
+    margin-bottom: 5px;
+    margin-left: 2px;
+}
+
+    .dashboardPage .card .todayShiftCard {
+        padding: 0px;
+    }
+
+.dashboardPage .listSchedule .item {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    background-color: #FBFBFB;
+}
+
+    .dashboardPage .listSchedule .item h6 {
+        font-size: 14px;
+        line-height: 2;
+    }
+
+    .dashboardPage .listSchedule .item .col-25 {
+        border-right: 1px dashed green;
+        margin-right: 10px;
+        position: relative;
+        margin-top: 7px;
+        margin-bottom: 7px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+        .dashboardPage .listSchedule .item .col-25 :before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+        .dashboardPage .listSchedule .item .col-25 :after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: -2px;
+            border-radius: 100%;
+            box-shadow: inset 0 0 0 0px white,0 0 0 2px green;
+            border: solid #FBFBFB 2px;
+        }
+
+    .dashboardPage .listSchedule .item .col-75 {
+        position: relative;
+    }
+
+        .dashboardPage .listSchedule .item .col-75 p {
+            line-height: 2;
+        }
+
+        .dashboardPage .listSchedule .item .col-75 .dvWorkingHours {
+            position: absolute;
+            right: 15px;
+            top: 0px;
+            border: 1px solid #C5C5C5;
+            text-align: center;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+
+            .dashboardPage .listSchedule .item .col-75 .dvWorkingHours h4 {
+                margin-bottom: 0;
+                font-size: 14px;
+            }
+
+            .dashboardPage .listSchedule .item .col-75 .dvWorkingHours h5 {
+                font-size: 12px;
+            }
+
+.dashboardPage .listSchedule .item-divider {
+    /*background-color: #7e7e7e;*/ /*gray*/
+    /*background-color: #63228a;*/ /*purple*/
+    background-color: #387ef5; /*blue*/
+    color: #fff;
+    padding: 8px;
+}
+
+    .dashboardPage .listSchedule .item-divider img {
+        width: 21px;
+        vertical-align: text-bottom;
+    }
+
+    .dashboardPage .listSchedule .item-divider p {
+        color: #dededf;
+    }
+
+.dashboardPage .listSchedule .item-note {
+    color: #000;
+    width: 18%;
+}
+
+    .dashboardPage .listSchedule .item-note.fontRed {
+        color: #c72626;
+    }
+
+/*password Confirmation*/
+.loading {
+    max-width: 80%;
+}
+
+/*forget page*/
+.forgetPage .errorFont {
+    padding-right: initial;
+}
+
+.forgetPage .roundedDv {
+    padding: 18px;
+    padding-left: 10px;
+    border: 1px solid #bbb;
+    border-radius: 7px;
+    background-color: #F7F7F7;
+}
+
+    .forgetPage .roundedDv h3 {
+        color: #7f7f7f;
+        font-weight: bold;
+    }
+
+    .forgetPage .roundedDv p,
+    .forgetPage .roundedDv .spnEmail {
+        color: #646464;
+    }
+
+    .forgetPage .roundedDv label {
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+/*unscheduledPage*/
+.unscheduledPage .errorFont {
+    padding-right: 0px;
+}
+
+.unscheduledPage .item-select select {
+    max-width: 50% !important;
+}

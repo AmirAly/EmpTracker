@@ -1,0 +1,75 @@
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+        </div>
+    </ion-header-bar>
+
+    <ion-content class="has-header has-footer supervisorPage" overflow-scroll="true" padding="true">
+         <ul class="list list-inset">
+             
+            <li class="item item-divider btnContainer">
+                <label class="item item-input item-select">
+                    <span class="input-label">
+                        <b> Location </b>
+                    </span>
+
+                    <select name="categorySelector"
+                            class="selectbox"
+                            ng-model="search"
+                            ng-options="category.SiteName for category in categories"
+                            ng-change="getByListEmpBySite(search.SiteID)">
+                        <option value="">all</option>
+                    </select>
+                </label>
+                <button ng-class="{'button-balanced' : selectedAllboxes}"
+                        class="button button-clear ion-checkmark-circled"
+                        ng-click="checkAll()" ng-show="allemployeesArray.length"></button>
+            </li>
+
+             <li class="item noPadding text-center" ng-show="errorMSG">
+                 <span class="errorFont">{{errorMSG}}</span>
+             </li>
+
+            <li class="item noPadding">
+                <div class="row noPadding dvTabHeader" ng-init="roasteredClicked = 1">
+                    <div class="col col-center text-center" ng-click="chooseRoastered(1)" id="dvRoastered">Roastered</div>
+                    <div class="col col-center text-center" ng-click="chooseRoastered(0)" id="dvFree">Other</div>
+                </div>
+            </li>
+
+
+            <li ng-show="allemployeesArray.length" ng-repeat="emp in allemployeesArray | filter:search.name" class="item item-checkbox">
+                <div class="checkbox checkbox-dark">
+                    <input type="checkbox" ng-model="emp.selected" ng-change="changeSelectdValues()" ng-checked="selectedAll">
+                </div>
+                <a class="item item-avatar item-borderless" ng-click="openmap(emp)">
+                    <img ng-src="data:image/png;base64,{{emp.Photo || defaultEmpPhoto}}">
+                    <h2>{{emp.Name}}</h2> <span class="badge badge-balanced" ng-show="emp.IsClockedIn">c</span>
+                    <p>{{emp.StartDate| date:'hh:mm a'}} - {{emp.EndDate| date:'hh:mm a'}}</p>
+                </a>
+            </li>
+            <li ng-show="!allemployeesArray.length"><h4 class="text-center padding">No employees, please select new location.</h4></li>
+        </ul>
+        <div class="spacer2"></div>
+    </ion-content>
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button button-clear ion-ios-stopwatch" ng-disabled="selectedEmployeesCounter == 0" ng-click="showClockInPopup()">
+                <span>&nbsp;Clock in</span>
+            </button>
+            <button class="button button-clear ion-ios-stopwatch-outline" ng-disabled="selectedEmployeesCounter == 0" ng-click="showClockOutPopup()">
+                <span>&nbsp;Clock out</span>
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

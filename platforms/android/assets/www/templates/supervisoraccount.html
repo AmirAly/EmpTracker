@@ -1,0 +1,95 @@
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
+        </div>
+    </ion-header-bar>
+
+    <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
+        <ion-content class="supervisorAccountPage" overflow-scroll="true" padding="true">
+            <div class="padding-horizontal row row-center">
+                <div class="col card">
+                    <div class="text-center">
+                        <img ng-click="openImgDialog()" class="circle" ng-src="{{userData.img}}" />
+                    </div>
+                </div>
+            </div>
+            <div class="padding-horizontal">
+                <ion-list class="list listInputs">
+                    <label class="item  padding">
+                        <i class="icon ion-compose placeholder-icon"></i>
+                        <input ng-model="userData.employeeNO" type="text" readonly placeholder="Employee NO" name="txtEmployeeNO" id="txtEmployeeNO">
+                        <span ng-show="frmUpdateAccount.txtEmployeeNO.$dirty && frmUpdateAccount.txtEmployeeNO.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtEmployeeNO.$error.required">required</span>
+                        </span>
+                    </label>
+
+                    <label class="item padding">
+                        <i class="icon ion-person placeholder-icon"></i>
+                        <input ng-model="userData.firstname" type="text" readonly placeholder="First Name" name="txtFirstName" id="txtFirstName">
+                        <span ng-show="frmUpdateAccount.txtFirstName.$dirty && frmUpdateAccount.txtFirstName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtFirstName.$error.required">required</span>
+                        </span>
+                    </label>
+
+                    <label class="item padding">
+                        <i class="icon ion-person placeholder-icon"></i>
+                        <input ng-model="userData.lastname" type="text" readonly placeholder="Last Name" name="txtLastName" id="txtLastName">
+                        <span ng-show="frmUpdateAccount.txtLastName.$dirty && frmUpdateAccount.txtLastName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtLastName.$error.required">required</span>
+                        </span>
+                    </label>
+
+                    <label class="item  padding">
+                        <i class="icon ion-iphone placeholder-icon"></i>
+                        <input ng-model="userData.mobile" maxlength="12" type="tel" pattern="^\d{4}-\d{3}-\d{3}$" required placeholder="Mobile" name="txtMobile" id="txtMobile">
+                        <span ng-show="frmUpdateAccount.txtMobile.$dirty && frmUpdateAccount.txtMobile.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.required">required</span>
+                            <span class="errorFont" ng-show="frmUpdateAccount.txtMobile.$error.pattern">invalid phone syntax ,it should look like xxxx-xxx-xxx</span>
+                        </span>
+                    </label>
+
+                    <label class="item  padding">
+                        <i class="icon ion-ios-email placeholder-icon"></i>
+                        <input ng-model="userData.email" ng-pattern="emailPattern" type="email" required placeholder="Email" name="userName" id="userName">
+                        <span ng-show="frmUpdateAccount.userName.$touched  && frmUpdateAccount.userName.$invalid">
+                            <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.required">required</span>
+                            <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.email">invalid email</span>
+                            <span class="errorFont" ng-show="frmUpdateAccount.userName.$error.pattern">invalid email syntax</span>
+                        </span>
+                    </label>
+                </ion-list>
+            </div>
+
+            <div class="row row-center">
+                <div class="col col-50 text-center">
+                    <a href="#/supervisormenu/supervisorchangepassword">Change Password</a>
+                </div>
+                <div class="col col-50 text-center">
+                    <a href="#/login" ng-click="logout()" >Log out</a>
+                </div>
+            </div>
+            <div class="spacer"></div>
+        </ion-content>
+
+        <ion-footer-bar class="bar-dark">
+            <div class="button-bar">
+                <button class="button button-clear ion-ios-close-outline" type="button" ng-click="cancel()">
+                    <span>&nbsp;Cancel</span>
+                </button>
+                <button class="button button-clear ion-android-checkmark-circle" type="submit" ng-disabled="frmUpdateAccount.$invalid">
+                    <span>&nbsp;Update</span>
+                </button>
+            </div>
+        </ion-footer-bar>
+    </form>
+</ion-view>

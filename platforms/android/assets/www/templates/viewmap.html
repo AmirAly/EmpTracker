@@ -1,0 +1,34 @@
+﻿<ion-view>
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+
+        </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+
+    </ion-header-bar>
+
+    <ion-content class="has-header has-footer mapPage" overflow-scroll="true">
+        <div ng-init="load()" class=" text-center" id="map"></div>
+    </ion-content>
+
+
+    <ion-footer-bar class="bar-dark">
+        <div class="button-bar">
+            <button class="button  button-clear ion-arrow-left-c " ng-click="goBack()">
+                <span>&nbsp;Back</span>
+            </button>
+            <button class="button button-clear ion-paper-airplane lastButton" ng-click="Navigate()">
+                <span>&nbsp;Start Navigation</span>
+            </button>
+
+        </div>
+    </ion-footer-bar>
+</ion-view>
