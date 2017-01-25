@@ -9,6 +9,35 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             StatusBar.styleDefault();
         }
 
+        $rootScope.showToast = function (_message) {
+            window.plugins.toast.showWithOptions({
+                message: _message,
+                duration: "long",
+                position: "center",
+                styling: {
+                    textColor: '#f44336', // Ditto. Default #FFFFFF
+                    textSize: '20.5', // Default is approx. 13.
+                    opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                    cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
+                    backgroundColor: '#111111',
+                    horizontalPadding: '10',// iOS default 16, Android default 50
+                    verticalPadding: '6' // iOS default 12, Android default 30
+                    // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
+                }
+            },
+
+           //Success callback
+            function (args) {
+                console.log('cordovaToast: ' + JSON.stringify(args));
+                if (args && args.event == "touch") {
+                    //alert("touched");
+                }
+            },
+            function (error) {
+                log('cordovaToast error: ', error);
+            });
+        }
+
         if (window.cordova) {
             FCMPlugin.getToken(
                 function (sucess) {

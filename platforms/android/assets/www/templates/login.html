@@ -5,16 +5,22 @@
             <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
             <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
         </ion-header-bar>
-        <ion-content overflow-scroll="true" padding="true" class="content has-header padding">
-
-            <br />
+        <ion-content  padding="true" class="content has-header padding">
+		<ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="doRefresh()"></ion-refresher>
+	  
+	  
+<button type="button" class="button" ng-click="showToast('hhhhhhh')">show toast</button>
+ <ion-list>
+        <ion-item ng-repeat="item in items">{{item}}</ion-item>
+      </ion-list>
+            <!--<br />
             tokken: {{tokken}} <br />
             dataFCM:  {{dataFCM}} <br />
             msgFCM:  {{msgFCM}} <br />
             errFCM:  {{errFCM}} <br />
             notificationstatusFCM:  {{notificationstatusFCM}} <br />
             receivedDataFCM: {{receivedDataFCM}} <br />
-            msgDataFCM: {{msgDataFCM}} <br />
+            msgDataFCM: {{msgDataFCM}} <br />-->
 
              <!--test : {{test}} <br />
             devicecordova : {{devicecordova}} <br />
