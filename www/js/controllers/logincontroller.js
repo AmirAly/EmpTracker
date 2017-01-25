@@ -1,13 +1,29 @@
-﻿empTracker.controller("LoginController", function ($scope, $rootScope, $state, $timeout, API, $window, $ionicLoading, $rootScope, $cordovaNetwork, $http) {
+﻿empTracker.controller("LoginController", function ($scope, $rootScope, $state, $timeout, API, $window, $ionicLoading, $rootScope, $cordovaNetwork, $http, $cordovaToast) {
     $scope.frmmLogin = {};
     $scope.frmmLogin.name = '';
     $scope.frmmLogin.password = '';
     $scope.frmmLogin.companycode = '';
 
     $scope.$on('$ionicView.enter', function () {
-        
+
     });
-    
+    //$scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+    //$scope.doRefresh = function () {
+
+    //    console.log('Refreshing!');
+    //    $timeout(function () {
+    //        //simulate async response
+    //        $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
+
+    //        //Stop the ion-refresher from spinning
+    //        $scope.$broadcast('scroll.refreshComplete');
+
+    //    }, 1000);
+
+    //};
+
+
 
     console.log($window.localStorage['UserName']);
     console.log($window.localStorage['authorizationToken']);
@@ -53,7 +69,7 @@
                 API.execute(req, true).then(function (_res) {
                     console.log(_res.data.data);
                     console.log(_res.data);
-                    
+
                     if (_res.data.code = 200) {
                         $scope.userName = _res.data.data.FirstName + ' ' + _res.data.data.LastName;
                         console.log($scope.userName);

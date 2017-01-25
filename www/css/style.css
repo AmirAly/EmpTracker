@@ -1264,3 +1264,12 @@ i.icon.icon-right {
 .unscheduledPage .item-select select {
     max-width: 50% !important;
 }
+
+/*changeImg*/
+.changeImg .button.calm:hover {
+    color: #11c1f3;
+}
+
+.changeImg .button.energized:hover {
+    color: #ffc900;
+}
