@@ -17,15 +17,6 @@
         ////console.log('Last week start sunday ' + moment().startOf('week').subtract(1, 'weeks')._d);
         ////console.log('Last week end saturday ' + moment().endOf('week').subtract(1, 'weeks')._d);
 
-        //console.log('----------------------------------------');
-        ////start monday mondayWeekStart , mondayWeekEnd
-        //console.log(moment().isoWeekday(1).startOf('isoweek').format('dddd DD MM YYYY'));
-        //console.log(moment().isoWeekday(1).endOf('isoweek').format('dddd DD MM YYYY'));
-        ////start sunday sundayWeekStart , sundayWeekEnd
-        //console.log(moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days').format('dddd DD MM YYYY'));
-        //console.log(moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days').format('dddd DD MM YYYY'));
-        //console.log('----------------------------------------');
-
         $scope.frmmLogin = {};
         $scope.frmLogin.$setPristine();
         $scope.frmLogin.$setUntouched();
@@ -174,6 +165,7 @@
                                 console.log(_res.data);
                                 if (_res.data.code = 200) {
                                     $rootScope.userSettings = _res.data.data;
+                                    LocalStorage.setObject('userSettingsObject', _res.data.data);
                                     $ionicLoading.hide();
                                     // if user is Employee
                                     var userObj = {

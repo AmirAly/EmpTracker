@@ -36,6 +36,7 @@
                         }
                         else {
                             //user answerd & counter stopped
+                            $ionicHistory.goBack();
                             return false
                         }
                     };
@@ -112,11 +113,15 @@
                         $ionicHistory.goBack();
                     }
                     else {
-                        console.log('unexpected error');
+                        console.log(_res.data.data);
+                        $rootScope.showToast(_res.data.data);
+                        $ionicHistory.goBack();
                     }
 
                 }, function (error) {
                     API.showTokenError(error);
+                }).finally(function () {
+                    $ionicHistory.goBack();
                 });
             }
         });

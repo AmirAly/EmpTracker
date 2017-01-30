@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate) {
+empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -10,6 +10,8 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }
 
         $rootScope.showToast = function (_message) {
+            var audio = new Audio('msg.wav');
+            audio.play();
             window.plugins.toast.showWithOptions({
                 message: _message,
                 duration: "long",
@@ -36,6 +38,15 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
                 log('cordovaToast error: ', error);
             });
         }
+
+        $rootScope.userSettings = LocalStorage.getObject('userSettingsObject');
+
+        //start monday mondayWeekStart , mondayWeekEnd
+        $rootScope.mondayWeekStart = moment().isoWeekday(1).startOf('isoweek'); console.log($rootScope.mondayWeekStart._d);
+        $rootScope.mondayWeekEnd = moment().isoWeekday(1).endOf('isoweek'); console.log($rootScope.mondayWeekEnd._d);
+        //start sunday sundayWeekStart , sundayWeekEnd
+        $rootScope.sundayWeekStart = moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days'); console.log($rootScope.sundayWeekStart._d);
+        $rootScope.sundayWeekEnd = moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days'); console.log($rootScope.sundayWeekEnd._d);
 
         if (window.cordova) {
             FCMPlugin.getToken(
@@ -141,6 +152,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     $urlRouterProvider.otherwise('/login');
     $stateProvider
     .state('login', {
+        cache: false,
         url: '/login',
         controller: "LoginController",
         templateUrl: 'templates/login.html'
