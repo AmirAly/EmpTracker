@@ -42,7 +42,7 @@
             $rootScope.showToast("You can't logout as you still clocked in a shift");
         }
         else {
-            LocalStorage.clear();
+            LocalStorage.clear('UserLocalObject');
             $rootScope.UserIsInShift = false;
             $window.localStorage['IsTempLogin'] = false;
             localStorage.clear();

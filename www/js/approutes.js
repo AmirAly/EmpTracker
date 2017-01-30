@@ -10,33 +10,43 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }
 
         $rootScope.showToast = function (_message) {
-            var audio = new Audio('msg.wav');
-            audio.play();
-           // window.plugins.toast.showWithOptions({
-           //     message: _message,
-           //     duration: "long",
-           //     position: "center",
-           //     styling: {
-           //         textColor: '#f44336', // Ditto. Default #FFFFFF
-           //         textSize: '20.5', // Default is approx. 13.
-           //         opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-           //         cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
-           //         backgroundColor: '#111111',
-           //         horizontalPadding: '16',// iOS default 16, Android default 50
-           //         verticalPadding: '12' // iOS default 12, Android default 30
-           //         // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
-           //     }
-           // },
-           ////Success callback
-           // function (args) {
-           //     console.log('cordovaToast: ' + JSON.stringify(args));
-           //     if (args && args.event == "touch") {
-           //         //alert("touched");
-           //     }
-           // },
-           // function (error) {
-           //     log('cordovaToast error: ', error);
-           // });
+            
+            window.plugins.toast.showWithOptions({
+                message: _message,
+                duration: "long",
+                position: "center",
+                styling: {
+                    textColor: '#f44336', // Ditto. Default #FFFFFF
+                    //textSize: '20.5', // Default is approx. 13.
+                    opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                    cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
+                    backgroundColor: '#111111',
+                    horizontalPadding: '16',// iOS default 16, Android default 50
+                    verticalPadding: '12' // iOS default 12, Android default 30
+                    // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
+                }
+            },
+           //Success callback
+            function (args) {
+                console.log('cordovaToast: ' + JSON.stringify(args));
+                if (args && args.event == "touch") {
+                    //alert("touched");
+                }
+            },
+            function (error) {
+                log('cordovaToast error: ', error);
+            });
+
+            //var audio = new Audio('http://codedreaming.com/wp-content/uploads/main_tune.mp3');
+            if (ionic.Platform.isAndroid()) {
+                var audio = new Audio('/android_asset/www/sounds/msg.wav');
+                audio.play();
+            }
+            else {
+                var audio = new Audio('sounds/msg.wav');
+                audio.play();
+            }
+
         }
 
         $rootScope.userSettings = LocalStorage.getObject('userSettingsObject');

@@ -67,6 +67,7 @@
                     // logout
                     $window.localStorage['IsTempLogin'] = false;
                     localStorage.clear();
+                    $ionicLoading.hide();
                     $state.go('login');
                 }, 5000);
             }
@@ -191,8 +192,9 @@ empTracker.factory('LocalStorage', function ($window) {
         getObject: function (key) {
             return JSON.parse($window.localStorage.getItem(key) || '{}');
         },
-        clear: function () {
-            $window.localStorage.clear();
+        clear: function (key) {
+            $window.localStorage.setItem(key, null);
+            //$window.localStorage.clear();
         }
 
        //, resetObject: function (key, value) {

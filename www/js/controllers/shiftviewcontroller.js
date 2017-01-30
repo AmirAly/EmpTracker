@@ -452,7 +452,7 @@
         }
         else {
             // logout
-            LocalStorage.clear();
+            LocalStorage.clear('UserLocalObject');
             $rootScope.UserIsInShift = false;
             $window.localStorage['IsTempLogin'] = false;
             localStorage.clear();
@@ -489,6 +489,7 @@
                         navigator.camera.getPicture(function (data) {// on succsess
                             if (data.indexOf('base64') < 0) {
                                 $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                                //$scope.empPhoto = data;
                                 $scope.doClockIn();
                             }
                             else {
@@ -507,6 +508,7 @@
                     }
                     else {
                         console.log('take');
+                        $ionicLoading.hide();
                     }
                     
                 }
@@ -517,6 +519,8 @@
 
     $scope.doClockIn = function () {
         //api here
+        var str = $scope.empPhoto;
+        str = str.substring(str.indexOf(",") + 1);
         var req = {
             method: 'PUT',
             url: '/api/Attendance?action=in',
@@ -530,7 +534,7 @@
                     "GPSTrackingMethod": "Network",
                     "PunchedVia": "MOB",
                     "EmployeeNotes": "",
-                    "Photo": $scope.empPhoto
+                    "Photo": str
                 }
             }
         }
@@ -549,7 +553,7 @@
             else if (_res.data.code == 500) {
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                //$scope.errorMSG = 'you are already clocked in this shift.';
+                $scope.errorMSG = 'you are already clocked in this shift.';
                 $scope.clockOut = true;
                 $scope.breakOut = false;
                 $ionicLoading.hide();
@@ -557,7 +561,7 @@
             else {
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                //$scope.errorMSG = _res.data.data;
+                $scope.errorMSG = _res.data.data;
                 $ionicLoading.hide();
                 console.log('fail');
             }

@@ -182,7 +182,7 @@
         }
         else {
             // logout
-            LocalStorage.clear();
+            LocalStorage.clear('UserLocalObject');
             $rootScope.UserIsInShift = false;
             $window.localStorage['IsTempLogin'] = false;
             localStorage.clear();

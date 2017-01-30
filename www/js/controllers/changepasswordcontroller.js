@@ -18,7 +18,7 @@
     $scope.updatePassword = function (form) {
         $scope.afterSubmitError = false;
         if (form.$valid) {
-            
+
             $ionicLoading.show({
                 content: 'Loading',
                 animation: 'fade-in',
@@ -46,10 +46,11 @@
                     }, 3500);
                 }
                 else {
-                    console.log(_res.data.data);
-                    $rootScope.showToast(_res.data.data);
-
                     $ionicLoading.hide();
+                    console.log(_res.data.data[""][0]);
+                    $rootScope.showToast(_res.data.data[""][0]);
+
+
                     $scope.afterSubmitError = true;
                     $scope.afterSubmitErrorTxt = 'wrong old password';
                     console.log('wrong old password')
