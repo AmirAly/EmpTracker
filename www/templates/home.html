@@ -63,7 +63,8 @@
                 <!-- Tab 2 -->
                 <ion-tab title="Weekly Time cards" icon-on="ion-android-calendar" icon-off="ion-android-calendar">
                     <ion-nav-view name="tab-tab2">
-                        <ion-content overflow-scroll="true" padding="true" >
+                        <ion-content padding="true" on-swipe-right="preWeek()" on-swipe-left="nextWeek()">
+                            <ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="thisWeek()"></ion-refresher>
                             <div class="dvWeeklyCardsHeader">
                                 <div class="row row-center">
                                     <div class="col col-20 text-left">
@@ -107,7 +108,7 @@
                 <!-- Tab 3 -->
                 <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" on-select="loadCalendarEvents()">
                     <ion-nav-view name="tab-tab3">
-                        <ion-content overflow-scroll="true" padding="true" class="calendarView ">
+                        <ion-content  padding="true" class="calendarView ">
                             <flex-calendar options="options" events="events"></flex-calendar>
 
                             <div class="list padding">

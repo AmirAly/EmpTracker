@@ -1,9 +1,16 @@
 ﻿empTracker.controller("tempdeviceloginController", function ($scope, $state, API, $window, $rootScope, $ionicLoading) {
     $scope.logout = function () {
-        $rootScope.UserIsInShift = false;
-        $window.localStorage['IsTempLogin'] = false;
-        localStorage.clear();
-        $state.go('login');
+        if ($rootScope.UserIsInShift == true) {
+            // You can't log out as you still clocked in shift
+            $rootScope.showToast("You can't logout as you still clocked in a shift");
+        }
+        else {
+            LocalStorage.clear();
+            $rootScope.UserIsInShift = false;
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+        }
     }
 
     $scope.newDeviceLogin = function () {

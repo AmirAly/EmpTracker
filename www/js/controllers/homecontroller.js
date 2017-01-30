@@ -285,7 +285,9 @@
         }
         $scope.getCalendarEvents(firstDayMonthFormated, lastDayMonthFormated);
         //////////////////////////////////////////////////////////////////////////////
-
+        if ($rootScope.userSettings.GeneralSettings.WeekStart == "MON")
+            $scope.startIsMonday = true;
+        else $scope.startIsMonday = false;
         $scope.calendarEvents = [];
         // Calendar
         // With "use strict", Dates can be passed ONLY as strings (ISO format: YYYY-MM-DD)
@@ -296,7 +298,7 @@
             maxDate: "2100-12-31",
             disabledDates: [],
             dayNamesLength: 1, // 1 for "M", 2 for "Mo", 3 for "Mon"; 9 will show full day names. Default is 1.
-            mondayIsFirstDay: false, //set monday as first day of week if :true , Default is false
+            mondayIsFirstDay: $scope.startIsMonday, //set monday as first day of week if :true , Default is false
             eventClick: function (date) { // called before dateClick and only if clicked day has events
                 $scope.calendarEvents = [];
             },

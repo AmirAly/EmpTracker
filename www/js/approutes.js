@@ -20,12 +20,11 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
                     opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
                     cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
                     backgroundColor: '#111111',
-                    horizontalPadding: '10',// iOS default 16, Android default 50
-                    verticalPadding: '6' // iOS default 12, Android default 30
+                    horizontalPadding: '16',// iOS default 16, Android default 50
+                    verticalPadding: '12' // iOS default 12, Android default 30
                     // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
                 }
             },
-
            //Success callback
             function (args) {
                 console.log('cordovaToast: ' + JSON.stringify(args));
@@ -107,13 +106,20 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
     $rootScope.wakeupChallange = function () {
-        setInterval(function () {
+        var rand = Math.floor(Math.random() * 3600000) + 1800000;
+        var i = setInterval(function () {
             if ($rootScope.UserIsInShift == true) {
+                console.log(rand);
+                rand = Math.floor(Math.random() * 3600000) + 1800000
                 $state.go('app.challenge');
             }
-        }, 600000);
+            else {
+                clearInterval(i);
+            }
+        }, rand);
     };
     $rootScope.wakeupChallange();
+
 
     // perodical update called every 10 minutes if UserIsInShift = 600000 ms
     $rootScope.perodicalUpdate = function () {

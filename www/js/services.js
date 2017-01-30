@@ -20,7 +20,7 @@
             _req.url = _url + _req.url;
             _req.headers = headers;
 
-            //console.log($http(_req));
+            console.log($http(_req));
             return $http(_req);
 
         },
@@ -49,16 +49,20 @@
             if (_error.status == 401 && _error.statusText == "Unauthorized") { /* catch 401  Error here */
                 console.log(_error.data.Message);
                 // should use refresh token here ?
-                //..
-                $ionicLoading.show({
-                    templateUrl: 'templates/tokenexpired.html',
-                    animation: 'slide-in-up'
-                });
-
+                //.. 
+                //$ionicLoading.show({
+                //    //templateUrl: 'templates/tokenexpired.html',
+                //    template:'<div class="padding">\
+                //                <a class="button button-icon icon energized ion-alert-circled"></a>\
+                //                <h4>' + _error.data.Message + '</h4>\
+                //              </div>',
+                //    animation: 'slide-in-up'
+                //});
+                $rootScope.showToast(_error.data.Message);
                 $timeout(function () {
                     console.log(_error);
                     console.log(_error.data); /* catch 400  Error here */
-                    $ionicLoading.hide();
+                    //$ionicLoading.hide();
                     $rootScope.UserIsInShift = false;
                     // logout
                     $window.localStorage['IsTempLogin'] = false;
@@ -170,4 +174,31 @@ empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state,
             });
         }
     };
+});
+
+empTracker.factory('LocalStorage', function ($window) {
+    return {
+        //set: function (key, value) {
+        //    $window.localStorage.setItem(key, value);
+        //},
+        //get: function (key, defaultValue) {
+        //    return $window.localStorage.getItem(key) || defaultValue;
+        //},
+
+        setObject: function (key, value) {
+            $window.localStorage.setItem(key, JSON.stringify(value));
+        },
+        getObject: function (key) {
+            return JSON.parse($window.localStorage.getItem(key) || '{}');
+        },
+        clear: function () {
+            $window.localStorage.clear();
+        }
+
+       //, resetObject: function (key, value) {
+       //    $window.localStorage.setItem(key, JSON.stringify(value));
+       //}
+
+    }
+
 });

@@ -1,4 +1,4 @@
-﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window) {
+﻿empTracker.controller("shiftviewController", function ($scope, $state, $ionicPopup, $timeout, $rootScope, $stateParams, API, $ionicLoading, $window, LocalStorage) {
     var count = true;
     //$scope.shiftNotes = 'teext1\nteext2\nteext3\nteext4\nteext5\nteext6';
     var formatedTodayDateTime;
@@ -98,7 +98,9 @@
                     $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                 }
-            }, API.showtokenerror(error));
+            }, function (error) {
+                API.showTokenError(error);
+            });
         }
             //2222222222222222222222222222222222222222222222222222222222222222222222222222222
             //next shift normal user
@@ -318,7 +320,7 @@
         });
     };
     $scope.breakDurationEnd = false;
-    
+
     $scope.takeBreak = function () {
         $scope.errorMSG = "";
         $ionicLoading.show({
@@ -376,7 +378,8 @@
                 $ionicLoading.hide();
             }
             else {
-                $scope.errorMSG = _res.data.data;
+                $rootScope.showToast(_res.data.data);
+                //$scope.errorMSG = _res.data.data;
                 console.log('fail');
                 $ionicLoading.hide();
             }
@@ -432,11 +435,19 @@
     }
 
     $scope.logout = function () {
-        $rootScope.UserIsInShift = false;
-        // logout
-        $window.localStorage['IsTempLogin'] = false;
-        localStorage.clear();
-        $state.go('login');
+        if ($rootScope.UserIsInShift == true) {
+            // You can't log out as you still clocked in shift
+            $rootScope.showToast("You can't logout as you still clocked in a shift");
+        }
+        else {
+            // logout
+            LocalStorage.clear();
+            $rootScope.UserIsInShift = false;
+            $window.localStorage['IsTempLogin'] = false;
+            localStorage.clear();
+            $state.go('login');
+        }
+
     }
 
     $scope.clockInShift = function () {
@@ -456,61 +467,93 @@
             if ($rootScope.currentUserLongitude != 0) {
                 console.log($rootScope.currentUserLatitude);
                 console.log($rootScope.currentUserLongitude);
-
-                //api here
-                var req = {
-                    method: 'PUT',
-                    url: '/api/Attendance?action=in',
-                    data: {
-                        "RosterShiftID": $scope.ShiftId,
-                        "Notes": "",
-                        "Clocking": {
-                            "ClockingTime": formatedTodayDateTime,
-                            "Latitude": $rootScope.currentUserLatitude,
-                            "Longitude": $rootScope.currentUserLongitude,
-                            "GPSTrackingMethod": "Network",
-                            "PunchedVia": "MOB",
-                            "EmployeeNotes": ""
-                        }
-                    }
+                $scope.empPhoto = "";
+                console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
+                if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
+                    $scope.empPhoto = "";
+                    $scope.doClockIn();
                 }
-                console.log(req.data);
-                // add true to use authentication token
-                API.execute(req, true).then(function (_res) {
-                    console.log(_res.data);
-                    if (_res.data.code == 200) {
-                        $rootScope.UserIsInShift = true;
-                        console.log('pass');
-                        $scope.clockOut = true;
-                        $scope.breakOut = false;
-                        $ionicLoading.hide();
-                        $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
-                    }
-                    else if (_res.data.code == 500) {
-                        $scope.errorMSG = 'you are already clocked in this shift.';
-                        $scope.clockOut = true;
-                        $scope.breakOut = false;
-                        $ionicLoading.hide();
-                    }
-                    else if (_res.data.code == 400) {
-                        $scope.errorMSG = 'You are already clocked in shift.';
-                        $ionicLoading.hide();
-                        console.log('fail');
-
+                else { // open camera
+                    if (navigator && navigator.camera) {
+                        navigator.camera.getPicture(function (data) {// on succsess
+                            if (data.indexOf('base64') < 0) {
+                                $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                                $scope.doClockIn();
+                            }
+                            else {
+                                $scope.empPhoto = data;
+                                $scope.doClockIn();
+                            }
+                        }, null, {
+                            sourceType: Camera.PictureSourceType.CAMERA,
+                            quality: 50,
+                            targetWidth: 140,
+                            targetHeight: 140,
+                            destinationType: Camera.DestinationType.DATA_URL,
+                            cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                            correctOrientation: true
+                        });
                     }
                     else {
-                        $scope.errorMSG = _res.data.data;
-                        $ionicLoading.hide();
-                        console.log('fail');
+                        console.log('take');
                     }
-                },
-               function (error) {
-                   API.showTokenError(error);
-               });
+                    
+                }
             }
         });
 
     }
+
+    $scope.doClockIn = function () {
+        //api here
+        var req = {
+            method: 'PUT',
+            url: '/api/Attendance?action=in',
+            data: {
+                "RosterShiftID": $scope.ShiftId,
+                "Notes": "",
+                "Clocking": {
+                    "ClockingTime": formatedTodayDateTime,
+                    "Latitude": $rootScope.currentUserLatitude,
+                    "Longitude": $rootScope.currentUserLongitude,
+                    "GPSTrackingMethod": "Network",
+                    "PunchedVia": "MOB",
+                    "EmployeeNotes": "",
+                    "Photo": $scope.empPhoto
+                }
+            }
+        }
+        console.log(req.data);
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code == 200) {
+                $rootScope.UserIsInShift = true;
+                console.log('pass');
+                $scope.clockOut = true;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+                $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
+            }
+            else if (_res.data.code == 500) {
+                $rootScope.showToast(_res.data.data);
+                //$scope.errorMSG = 'you are already clocked in this shift.';
+                $scope.clockOut = true;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+            }
+            else {
+                $rootScope.showToast(_res.data.data);
+                //$scope.errorMSG = _res.data.data;
+                $ionicLoading.hide();
+                console.log('fail');
+            }
+        },
+       function (error) {
+           API.showTokenError(error);
+       });
+    }
+
     $scope.clockOutShift = function () {
         $rootScope.currentUserLatitude = 0;
         $rootScope.currentUserLongitude = 0;
@@ -558,13 +601,15 @@
                         $ionicLoading.hide();
                     }
                     else if (_res.data.code == 500) {
-                        $scope.errorMSG = 'you are already clocked in';
+                        //$scope.errorMSG = 'you are already clocked in';
+                        $rootScope.showToast(_res.data.data);
                         $scope.clockOut = true;
                         $scope.breakOut = false;
                         $ionicLoading.hide();
                     }
                     else {
-                        $scope.errorMSG = _res.data.data;
+                        //$scope.errorMSG = _res.data.data;
+                        $rootScope.showToast(_res.data.data);
                         $ionicLoading.hide();
                         console.log('fail');
                     }
