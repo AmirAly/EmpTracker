@@ -46,6 +46,9 @@
                     }, 3500);
                 }
                 else {
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
+
                     $ionicLoading.hide();
                     $scope.afterSubmitError = true;
                     $scope.afterSubmitErrorTxt = 'wrong old password';

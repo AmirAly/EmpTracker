@@ -14,8 +14,8 @@
         </div>
     </ion-header-bar>
 
-    <ion-content overflow-scroll="true" class="has-header has-footer">
-
+    <ion-content class="has-header has-footer">
+        <ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="fillData()"></ion-refresher>
         <div class="list listAlerts">
             <a ng-repeat="alert in allAlertsArray" ng-click="markOneAsRead($index,'{{alert.ID}}')" id="notification{{$index}}" class="item item-icon-left {{markAll}} " ng-class="{true:'oldNotification', false:''}[alert.IsRead]">
                 <i class="icon ion-alert-circled"></i>

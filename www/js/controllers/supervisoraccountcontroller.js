@@ -36,6 +36,11 @@
                 }
 
             }
+            else {
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
+                $ionicLoading.hide();
+            }
         }, function (error) {
             API.showTokenError(error);
         });
@@ -88,6 +93,11 @@
                     $rootScope.globalUserPhoto = $scope.userData.img;
                     $rootScope.globalUserName = $scope.userData.firstname + " " + $scope.userData.lastname;
                     $state.go('supervisormenu.supervisingemployees');
+                }
+                else {
+                    $ionicLoading.hide();
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
                 }
             }, function (error) {
                 API.showTokenError(error);

@@ -96,6 +96,8 @@
                 }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
                     $ionicLoading.hide();
                 }
             }, function (error) {
@@ -188,6 +190,8 @@
                 else {
                     console.log('else');
                     $scope.pageTitle = "No upcoming shifts";
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
                     $ionicLoading.hide();
                 }
             }, function (error) {
@@ -233,11 +237,15 @@
                     $ionicLoading.hide();
                 }
                 else if (_res.data.code == 403) {
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
                     $scope.pageTitle = "Shift not available";
                     $ionicLoading.hide();
                 }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
                     $ionicLoading.hide();
                 }
             }, function (error) {
@@ -378,8 +386,9 @@
                 $ionicLoading.hide();
             }
             else {
-                $rootScope.showToast(_res.data.data);
                 //$scope.errorMSG = _res.data.data;
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
                 console.log('fail');
                 $ionicLoading.hide();
             }
@@ -427,6 +436,8 @@
             }
             else {
                 console.log('fail');
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
                 $ionicLoading.hide();
             }
         }, function (error) {
@@ -536,6 +547,7 @@
                 $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
             }
             else if (_res.data.code == 500) {
+                console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
                 //$scope.errorMSG = 'you are already clocked in this shift.';
                 $scope.clockOut = true;
@@ -543,6 +555,7 @@
                 $ionicLoading.hide();
             }
             else {
+                console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
                 //$scope.errorMSG = _res.data.data;
                 $ionicLoading.hide();
@@ -602,6 +615,7 @@
                     }
                     else if (_res.data.code == 500) {
                         //$scope.errorMSG = 'you are already clocked in';
+                        console.log(_res.data.data);
                         $rootScope.showToast(_res.data.data);
                         $scope.clockOut = true;
                         $scope.breakOut = false;
@@ -609,6 +623,7 @@
                     }
                     else {
                         //$scope.errorMSG = _res.data.data;
+                        console.log(_res.data.data);
                         $rootScope.showToast(_res.data.data);
                         $ionicLoading.hide();
                         console.log('fail');
