@@ -35,6 +35,11 @@
                 console.log($scope.sites);
                 $ionicLoading.hide();
             }
+            else {
+                console.log(_res.data.data);
+                $ionicLoading.hide();
+                $rootScope.showToast(_res.data.data);
+            }
         }, function (error) {
             API.showTokenError(error);
         });
@@ -64,6 +69,11 @@
                 $scope.tasks = _res.data.data;
                 console.log($scope.tasks);
                 $ionicLoading.hide();
+            }
+            else {
+                console.log(_res.data.data);
+                $ionicLoading.hide();
+                $rootScope.showToast(_res.data.data);
             }
         }, function (error) {
             API.showTokenError(error);
@@ -145,11 +155,11 @@
                     $state.go('app.shiftview');
                 }
                 else if (_res.data.code == 500) {
-                    $scope.errorMSG = 'you are already clocked in this shift.';
+                    //$scope.errorMSG = 'you are already clocked in this shift.';
                     $ionicLoading.hide();
                 }
                 else if (_res.data.code == 400) {
-                    $scope.errorMSG = 'You are already clocked in a shift.';
+                    //$scope.errorMSG = 'You are already clocked in a shift.';
                     $ionicLoading.hide();
                     console.log('fail');
 
@@ -158,6 +168,7 @@
                     $scope.errorMSG = _res.data.data;
                     $ionicLoading.hide();
                     console.log('fail');
+                    $rootScope.showToast(_res.data.data);
                 }
             }, function (error) {
                 API.showTokenError(error);

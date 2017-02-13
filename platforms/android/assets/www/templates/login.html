@@ -1,70 +1,66 @@
 ﻿
-    <form name="frmLogin" ng-submit="submitForm(frmLogin)" class="loginpage">
+<form name="frmLogin" ng-submit="submitForm(frmLogin)" class="loginpage">
 
-        <ion-header-bar class="bar-dark">
-            <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
-            <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
-        </ion-header-bar>
-        <ion-content  padding="true" class="content has-header padding">
-		<ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="doRefresh()"></ion-refresher>
-	  
-	  
-<button type="button" class="button" ng-click="showToast('hhhhhhh')">show toast</button>
- <ion-list>
-        <ion-item ng-repeat="item in items">{{item}}</ion-item>
-      </ion-list>
-            <!--<br />
-            tokken: {{tokken}} <br />
-            dataFCM:  {{dataFCM}} <br />
-            msgFCM:  {{msgFCM}} <br />
-            errFCM:  {{errFCM}} <br />
-            notificationstatusFCM:  {{notificationstatusFCM}} <br />
-            receivedDataFCM: {{receivedDataFCM}} <br />
-            msgDataFCM: {{msgDataFCM}} <br />-->
+    <ion-header-bar class="bar-dark">
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+    </ion-header-bar>
+    <ion-content padding="true" class="content has-header padding">
+        <!--<ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="doRefresh()"></ion-refresher>-->
 
-             <!--test : {{test}} <br />
-            devicecordova : {{devicecordova}} <br />
-            model : {{model}} <br />
-            devicePlatform : {{devicePlatform}} <br />
-            deviceID : {{deviceID}} <br />
-            deviceVersion : {{deviceVersion}} <br />
-            IMEI : {{IMEI}} <br />
-            <button type="button" ng-click="testing()">ggggggggggggggg</button>-->
 
-            <ion-list class="list listInputs padding">
+        <!--<button type="button" class="button" ng-click="showToast('hhhhhhh')">show toast</button>
 
-                <label class="item padding">
-                    <i class="icon ion-person placeholder-icon"></i>
-                    <input ng-model="frmmLogin.name" type="email" required placeholder="Email" name="userName" id="userName" autocorrect="off" autocapitalize="off">
-                    <span ng-show="frmLogin.userName.$touched  && frmLogin.userName.$invalid">
-                        <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
-                        <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
-                    </span>
-                </label>
-                <label class="item  padding">
-                    <i class="icon ion-ios-locked placeholder-icon"></i>
-                    <input ng-model="frmmLogin.password" type="password" minlength="6" maxlength="100" required placeholder="Password" name="txtPassword" id="txtPassword">
-                    <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
-                        <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
-                        <span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 6 characters long.</span>
-                    </span>
-                </label>
-                <label class="item padding">
-                    <i class="icon ion-compose placeholder-icon"></i>
-                    <input ng-model="frmmLogin.companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
-                    <span ng-show="frmLogin.txtCompanyCode.$touched && frmLogin.txtCompanyCode.$invalid">
-                        <span class="errorFont" ng-show="frmLogin.txtCompanyCode.$error.required">required</span>
-                    </span>
-                </label>
-            </ion-list>
-            <div class="errorFont padding-horizontal" ng-show="afterLoginError">{{afterLoginErrorTxt}}</div>
-            <button class="button button-positive button-block" ng-disabled="frmLogin.$invalid" type="submit">&nbsp;Login</button>
-            <a ui-sref="forget" class="button button-positive button-clear button-block ">
-                Forget Password?
-            </a>
-            <a target="_blank" href="http://www.worktimemanager.com.au" class="button button-positive button-clear button-block ">
-                <span>&nbsp;www.worktimemanager.com.au</span>
-            </a>
-        </ion-content>
+        <ion-list>
+            <ion-item ng-repeat="item in items">{{item}}</ion-item>
+        </ion-list>-->
+
+
+        <!--<br />
+        tokken: {{tokken}} <br />
+        dataFCM:  {{dataFCM}} <br />
+        msgFCM:  {{msgFCM}} <br />
+        errFCM:  {{errFCM}} <br />
+        notificationstatusFCM:  {{notificationstatusFCM}} <br />
+        receivedDataFCM: {{receivedDataFCM}} <br />
+        msgDataFCM: {{msgDataFCM}} <br />-->
+
        
-    </form>
+
+        <ion-list class="list listInputs padding">
+
+            <label class="item padding">
+                <i class="icon ion-person placeholder-icon"></i>
+                <input ng-model="frmmLogin.name" type="email" required placeholder="Email" name="userName" id="userName" autocorrect="off" autocapitalize="off">
+                <span ng-show="frmLogin.userName.$touched  && frmLogin.userName.$invalid">
+                    <span class="errorFont" ng-show="frmLogin.userName.$error.required">required</span>
+                    <span class="errorFont" ng-show="frmLogin.userName.$error.email">invalid email</span>
+                </span>
+            </label>
+            <label class="item  padding">
+                <i class="icon ion-ios-locked placeholder-icon"></i>
+                <input ng-model="frmmLogin.password" type="password"  required placeholder="Password" name="txtPassword" id="txtPassword">
+                <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
+                    <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
+                    <!--<span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 3 characters long.</span>-->
+                </span>
+            </label>
+            <label class="item padding">
+                <i class="icon ion-compose placeholder-icon"></i>
+                <input ng-model="frmmLogin.companycode" type="text" required placeholder="Company Code" name="txtCompanyCode" id="txtCompanyCode">
+                <span ng-show="frmLogin.txtCompanyCode.$touched && frmLogin.txtCompanyCode.$invalid">
+                    <span class="errorFont" ng-show="frmLogin.txtCompanyCode.$error.required">required</span>
+                </span>
+            </label>
+        </ion-list>
+        <div class="errorFont padding-horizontal" ng-show="afterLoginError">{{afterLoginErrorTxt}}</div>
+        <button class="button button-positive button-block" ng-disabled="frmLogin.$invalid" type="submit">&nbsp;Login</button>
+        <a ui-sref="forget" class="button button-positive button-clear button-block ">
+            Forget Password?
+        </a>
+        <a target="_blank" onclick="window.open('http://www.worktimemanager.com.au', '_blank', 'location=yes'); return false;" class="button button-positive button-clear button-block ">
+            <span>&nbsp;www.worktimemanager.com.au</span>
+        </a>
+    </ion-content>
+
+</form>

@@ -97,12 +97,11 @@
                 $rootScope.rosteredEmployeesArray = _res.data.data.Rostered;
                 $rootScope.otherEmployeesArray = _res.data.data.Other;
 
-                $rootScope.allemployeesArray = $rootScope.rosteredEmployeesArray;
-
-                $rootScope.allemployeesArray = _res.data.data;
-
+                // $rootScope.allemployeesArray = $rootScope.rosteredEmployeesArray;
                 console.log(_res.data.data);
-                //console.log($rootScope.allemployeesArray);
+                $rootScope.allemployeesArray = _res.data.data;
+                $scope.chooseRoastered(1);
+
                 $ionicLoading.hide();
             }
         }, function (error) {
@@ -224,7 +223,7 @@
                             method: 'PUT',
                             url: '/api/Attendance?action=in',
                             data: {
-                                "EmpNo":$rootScope.allemployeesArray[i].EmpNo,
+                                "EmpNo": $rootScope.allemployeesArray[i].EmpNo,
                                 "SiteId": "ADH05",
                                 "TaskCode": "Greeter   ",
                                 "Notes": "",
@@ -285,6 +284,7 @@
                            e.preventDefault();
                        } else {
                            var clockTime = $scope.time.hour + ':' + $scope.time.minute;
+                           $scope.clockOutEmployees(clockTime);
                            return clockTime;
                        }
                    }
@@ -295,6 +295,72 @@
             console.log('Clock Out at ', res);
         });
     };
+
+
+    $scope.clockOutEmployees = function (_clockTime) {
+        $rootScope.currentUserLatitude = 0;
+        $rootScope.currentUserLongitude = 0;
+        $scope.errorMSG = "";
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
+        $rootScope.getCurrentLocation();
+        $scope.$watch('$root.currentUserLongitude', function () {
+            if ($rootScope.currentUserLongitude != 0) {
+                console.log($rootScope.currentUserLatitude);
+                console.log($rootScope.currentUserLongitude);
+                console.log($rootScope.allemployeesArray);
+                for (var i = 0; i < $rootScope.allemployeesArray.length; i++) {
+                    if ($rootScope.allemployeesArray[i].selected == true) {
+                        //api here
+                        var req = {
+                            method: 'PUT',
+                            url: '/api/Attendance?action=out',
+                            data: {
+                                "EmpNo": $rootScope.allemployeesArray[i].EmpNo,
+                                "SiteId": $rootScope.allemployeesArray[i].Shifts[0].SiteID,
+                                "TaskCode": $rootScope.allemployeesArray[i].Shifts[0].TaskCode,
+                                "AttendanceShiftId": $rootScope.allemployeesArray[i].Shifts[0].AttendanceShiftId,
+                                "Notes": "",
+                                "Clocking": {
+                                    "ClockingTime": _clockTime,
+                                    //"Latitude": $rootScope.currentUserLatitude,
+                                    //"Longitude": $rootScope.currentUserLongitude,
+                                    "GPSTrackingMethod": "Network",
+                                    "PunchedVia": "MOB",
+                                    "EmployeeNotes": ""
+                                }
+                            }
+                        }
+                        console.log(req.data);
+                        // add true to use authentication token
+                        API.execute(req, true).then(function (_res) {
+                            console.log(_res);
+                            if (_res.data.code == 200) {
+                                console.log('pass');
+                            }
+                            else {
+                                $scope.errorMSG = _res.data.data;
+                            }
+                        },
+                       function (error) {
+                           API.showTokenError(error);
+                       });
+                    }
+                }
+                // call refresh list
+                $scope.getByListEmpBySite($scope.siteId);
+                $ionicLoading.hide();
+                console.log('done');
+            }
+        });
+
+    }
 
     $scope.openmap = function (emp) {
         // try add name , id of emp

@@ -27,7 +27,7 @@
                             ng-model="search"
                             ng-options="category.SiteName for category in categories"
                             ng-change="getByListEmpBySite(search.SiteID)">
-                        <option value="">all</option>
+                        <option value="" disabled selected>Choose Location</option>
                     </select>
                 </label>
                 <button ng-class="{'button-balanced' : selectedAllboxes}"

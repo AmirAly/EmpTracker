@@ -130,7 +130,7 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
-                cameraDirection: 1, // "1" is used for front-facing camera and "2" is used for back-facing camera.
+                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
                 correctOrientation: true
             });
         }
@@ -143,7 +143,7 @@
     }
     $scope.selectPhoto = function () {
         if (navigator && navigator.camera) {
-            navigator.camera.getPicture(function (data) {// on succsess
+            navigator.camera.getPicture(function (data) { // on succsess
                 if (data.indexOf('base64') < 0) {
                     $scope.userData.img= 'data:image/jpeg;base64,' + data;
                 }
@@ -157,6 +157,7 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
+                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
                 correctOrientation: true
             });
         }

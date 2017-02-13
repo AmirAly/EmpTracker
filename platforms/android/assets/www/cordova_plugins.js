@@ -101,6 +101,20 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-sim/www/sim.js",
+        "id": "cordova-plugin-sim.Sim",
+        "merges": [
+            "window.plugins.sim"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-sim/www/android/sim.js",
+        "id": "cordova-plugin-sim.SimAndroid",
+        "merges": [
+            "window.plugins.sim"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -117,7 +131,8 @@ module.exports.metadata =
     "cordova-plugin-velda-devicefeedback": "0.0.2",
     "cordova-plugin-geolocation": "2.1.0",
     "cordova-plugin-x-toast": "2.5.2",
-    "cordova-plugin-camera": "2.1.1"
+    "cordova-plugin-camera": "2.1.1",
+    "cordova-plugin-sim": "1.3.3"
 };
 // BOTTOM OF METADATA
 });

@@ -9,6 +9,9 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
+        $scope.fillData();
+    });
+    $scope.fillData = function () {
         var req = {
             method: 'GET',
             url: '/api/Notification',
@@ -19,6 +22,7 @@
             $rootScope.notifictionsCounter = 0;
             console.log(_res.data);
             if (_res.data.code = 200) {
+                $scope.$broadcast('scroll.refreshComplete');
                 $scope.allAlertsArray = _res.data.data;
                 for (var i = 0; i < _res.data.data.length; i++) {
                     // UTC time
@@ -32,11 +36,16 @@
                 }
                 $ionicLoading.hide();
             }
+            else {
+                $ionicLoading.hide();
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
+               
+            }
         }, function (error) {
             API.showTokenError(error);
         });
-    });
-
+    }
     $scope.openmyaccount = function () {
         $state.go('supervisoraccount');
     }
@@ -78,8 +87,10 @@
                 $scope.markAll = 'oldNotification';
                 $rootScope.notifictionsCounter = 0;
             }
-            if (_res.data.code == 400) {
+            else {
                 $ionicLoading.hide();
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
             }
         }, function (error) {
             API.showTokenError(error);
@@ -117,8 +128,10 @@
                     $rootScope.notifictionsCounter--;
                 }
             }
-            if (_res.data.code == 400) {
+            else {
                 $ionicLoading.hide();
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
             }
         }, function (error) {
             API.showTokenError(error);

@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate) {
+empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -9,23 +9,51 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             StatusBar.styleDefault();
         }
 
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            console.log(device.cordova);
+            console.log(JSON.stringify(device));
+            $rootScope.DeviceType = device.platform;
+            $rootScope.DeviceName = device.model;
+            window.plugins.sim.getSimInfo(function getSimInfoSuccessCallback(result) {
+                console.log('111111111111111111111111');
+                console.log(JSON.stringify(result));
+                $rootScope.IMEI = result.deviceId;
+            }, function getSimInfoErrorCallback(error) {
+                console.log('000000000000000000000000');
+                console.log(JSON.stringify(error));
+            });
+        }
+
+        //$rootScope.IMEI = 6;
+
+        
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($ionicHistory.currentStateName() === 'app.dashboard') {
+                event.preventDefault();
+            } else {
+                $ionicHistory.goBack();
+            }
+        }, 100);
+
         $rootScope.showToast = function (_message) {
+            
             window.plugins.toast.showWithOptions({
                 message: _message,
                 duration: "long",
                 position: "center",
                 styling: {
                     textColor: '#f44336', // Ditto. Default #FFFFFF
-                    textSize: '20.5', // Default is approx. 13.
+                    //textSize: '20.5', // Default is approx. 13.
                     opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
                     cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
                     backgroundColor: '#111111',
-                    horizontalPadding: '10',// iOS default 16, Android default 50
-                    verticalPadding: '6' // iOS default 12, Android default 30
+                    horizontalPadding: '16',// iOS default 16, Android default 50
+                    verticalPadding: '12' // iOS default 12, Android default 30
                     // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
                 }
             },
-
            //Success callback
             function (args) {
                 console.log('cordovaToast: ' + JSON.stringify(args));
@@ -36,12 +64,33 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             function (error) {
                 log('cordovaToast error: ', error);
             });
+
+            //var audio = new Audio('http://codedreaming.com/wp-content/uploads/main_tune.mp3');
+            if (ionic.Platform.isAndroid()) {
+                var audio = new Audio('/android_asset/www/sounds/msg.wav');
+                audio.play();
+            }
+            else {
+                var audio = new Audio('sounds/msg.wav');
+                audio.play();
+            }
+
         }
+
+        $rootScope.userSettings = LocalStorage.getObject('userSettingsObject');
+
+        //start monday mondayWeekStart , mondayWeekEnd
+        $rootScope.mondayWeekStart = moment().isoWeekday(1).startOf('isoweek'); //console.log($rootScope.mondayWeekStart._d);
+        $rootScope.mondayWeekEnd = moment().isoWeekday(1).endOf('isoweek'); //console.log($rootScope.mondayWeekEnd._d);
+        //start sunday sundayWeekStart , sundayWeekEnd
+        $rootScope.sundayWeekStart = moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days'); //console.log($rootScope.sundayWeekStart._d);
+        $rootScope.sundayWeekEnd = moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days'); //console.log($rootScope.sundayWeekEnd._d);
 
         if (window.cordova) {
             FCMPlugin.getToken(
                 function (sucess) {
                     $rootScope.tokken = sucess;
+                    $rootScope.MessagingRegistrationNo = sucess;
                     console.log(sucess);
                 }
                 , function (err) {
@@ -51,13 +100,14 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             FCMPlugin.onNotification(
                 function (data) {
                     $rootScope.dataFCM = data;
-                    console.log(data);
+                    console.log(JSON.stringify(data));
                     if (data.wasTapped) {
                         //Notification was received on device tray and tapped by the user.
-                        //$state.go('yourpage', { id: data.pageId });
+                        //$state.go('forget');
                         $rootScope.notificationstatusFCM = 'onNotification tapped true';
                         console.log('onNotification tapped true');
                     } else {
+                        //$state.go('tempdevicelogin');
                         //Notification was received in foreground. User needs to be notified.
                         $rootScope.notificationstatusFCM = 'onNotification tapped false';
                         console.log('onNotification tapped false');
@@ -107,13 +157,20 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
     $rootScope.wakeupChallange = function () {
-        setInterval(function () {
+        var rand = Math.floor(Math.random() * 3600000) + 1800000;
+        var i = setInterval(function () {
             if ($rootScope.UserIsInShift == true) {
+                console.log(rand);
+                rand = Math.floor(Math.random() * 3600000) + 1800000
                 $state.go('app.challenge');
             }
-        }, 600000);
+            else {
+                clearInterval(i);
+            }
+        }, rand);
     };
     $rootScope.wakeupChallange();
+
 
     // perodical update called every 10 minutes if UserIsInShift = 600000 ms
     $rootScope.perodicalUpdate = function () {
@@ -135,6 +192,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     $urlRouterProvider.otherwise('/login');
     $stateProvider
     .state('login', {
+        cache: false,
         url: '/login',
         controller: "LoginController",
         templateUrl: 'templates/login.html'

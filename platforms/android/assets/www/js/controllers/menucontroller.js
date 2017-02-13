@@ -1,4 +1,4 @@
-﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window, $rootScope) {
+﻿empTracker.controller("MenuController", function ($scope, $state,$ionicPopup, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -37,10 +37,34 @@
         $state.go('app.notifications');
     }
     $scope.logout = function () {
-        $rootScope.UserIsInShift = false;
-        $window.localStorage['IsTempLogin'] = false;
-        localStorage.clear();
-        $state.go('login');
+        if ($rootScope.UserIsInShift == true) {
+            // You can't log out as you still clocked in shift
+            $rootScope.showToast("You can't logout as you still clocked in a shift");
+        }
+        else {
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+
+           
+        }
+
     }
     //$scope.challenge = function () {
     //    $state.go('app.challenge');
