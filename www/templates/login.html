@@ -24,14 +24,8 @@
         notificationstatusFCM:  {{notificationstatusFCM}} <br />
         receivedDataFCM: {{receivedDataFCM}} <br />
         msgDataFCM: {{msgDataFCM}} <br />-->
-        <!--test : {{test}} <br />
-        devicecordova : {{devicecordova}} <br />
-        model : {{model}} <br />
-        devicePlatform : {{devicePlatform}} <br />
-        deviceID : {{deviceID}} <br />
-        deviceVersion : {{deviceVersion}} <br />
-        IMEI : {{IMEI}} <br />
-        <button type="button" ng-click="testing()">ggggggggggggggg</button>-->
+
+       
 
         <ion-list class="list listInputs padding">
 
@@ -45,10 +39,10 @@
             </label>
             <label class="item  padding">
                 <i class="icon ion-ios-locked placeholder-icon"></i>
-                <input ng-model="frmmLogin.password" type="password" minlength="6" maxlength="100" required placeholder="Password" name="txtPassword" id="txtPassword">
+                <input ng-model="frmmLogin.password" type="password"  required placeholder="Password" name="txtPassword" id="txtPassword">
                 <span ng-show="frmLogin.txtPassword.$touched && frmLogin.txtPassword.$invalid">
                     <span class="errorFont" ng-show="frmLogin.txtPassword.$error.required">required</span>
-                    <span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 6 characters long.</span>
+                    <!--<span class="errorFont" ng-show="frmLogin.txtPassword.$error.minlength">at least 3 characters long.</span>-->
                 </span>
             </label>
             <label class="item padding">
@@ -64,7 +58,7 @@
         <a ui-sref="forget" class="button button-positive button-clear button-block ">
             Forget Password?
         </a>
-        <a target="_blank" href="http://www.worktimemanager.com.au" class="button button-positive button-clear button-block ">
+        <a target="_blank" onclick="window.open('http://www.worktimemanager.com.au', '_blank', 'location=yes'); return false;" class="button button-positive button-clear button-block ">
             <span>&nbsp;www.worktimemanager.com.au</span>
         </a>
     </ion-content>

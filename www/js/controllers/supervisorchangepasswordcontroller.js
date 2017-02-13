@@ -44,10 +44,10 @@
                 else {
                     $ionicLoading.hide();
                     console.log(_res.data.data);
-                    $rootScope.showToast(_res.data.data);
                     $scope.afterSubmitError = true;
                     $scope.afterSubmitErrorTxt = 'wrong old password';
-                    console.log('wrong old password')
+                    console.log('wrong old password');
+                    $rootScope.showToast(_res.data.data);
                 }
             }, function (error) {
                 API.showTokenError(error);

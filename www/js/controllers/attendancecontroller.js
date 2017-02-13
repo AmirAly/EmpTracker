@@ -123,9 +123,10 @@
             }
             else {
                 $scope.weeklyAttendanceArray = [];
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
+                
             }
         }, function (error) {
             API.showTokenError(error);
@@ -186,9 +187,10 @@
             }
             else {
                 $scope.weeklyReportDataArray = [];
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
+               
             }
         }
         , function (error) {

@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage) {
+empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -8,6 +8,34 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            console.log(device.cordova);
+            console.log(JSON.stringify(device));
+            $rootScope.DeviceType = device.platform;
+            $rootScope.DeviceName = device.model;
+            window.plugins.sim.getSimInfo(function getSimInfoSuccessCallback(result) {
+                console.log('111111111111111111111111');
+                console.log(JSON.stringify(result));
+                $rootScope.IMEI = result.deviceId;
+            }, function getSimInfoErrorCallback(error) {
+                console.log('000000000000000000000000');
+                console.log(JSON.stringify(error));
+            });
+        }
+
+        //$rootScope.IMEI = 6;
+
+        
+
+        $ionicPlatform.registerBackButtonAction(function (event) {
+            if ($ionicHistory.currentStateName() === 'app.dashboard') {
+                event.preventDefault();
+            } else {
+                $ionicHistory.goBack();
+            }
+        }, 100);
 
         $rootScope.showToast = function (_message) {
             
@@ -52,16 +80,17 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         $rootScope.userSettings = LocalStorage.getObject('userSettingsObject');
 
         //start monday mondayWeekStart , mondayWeekEnd
-        $rootScope.mondayWeekStart = moment().isoWeekday(1).startOf('isoweek'); console.log($rootScope.mondayWeekStart._d);
-        $rootScope.mondayWeekEnd = moment().isoWeekday(1).endOf('isoweek'); console.log($rootScope.mondayWeekEnd._d);
+        $rootScope.mondayWeekStart = moment().isoWeekday(1).startOf('isoweek'); //console.log($rootScope.mondayWeekStart._d);
+        $rootScope.mondayWeekEnd = moment().isoWeekday(1).endOf('isoweek'); //console.log($rootScope.mondayWeekEnd._d);
         //start sunday sundayWeekStart , sundayWeekEnd
-        $rootScope.sundayWeekStart = moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days'); console.log($rootScope.sundayWeekStart._d);
-        $rootScope.sundayWeekEnd = moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days'); console.log($rootScope.sundayWeekEnd._d);
+        $rootScope.sundayWeekStart = moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days'); //console.log($rootScope.sundayWeekStart._d);
+        $rootScope.sundayWeekEnd = moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days'); //console.log($rootScope.sundayWeekEnd._d);
 
         if (window.cordova) {
             FCMPlugin.getToken(
                 function (sucess) {
                     $rootScope.tokken = sucess;
+                    $rootScope.MessagingRegistrationNo = sucess;
                     console.log(sucess);
                 }
                 , function (err) {
@@ -71,13 +100,14 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             FCMPlugin.onNotification(
                 function (data) {
                     $rootScope.dataFCM = data;
-                    console.log(data);
+                    console.log(JSON.stringify(data));
                     if (data.wasTapped) {
                         //Notification was received on device tray and tapped by the user.
-                        //$state.go('yourpage', { id: data.pageId });
+                        //$state.go('forget');
                         $rootScope.notificationstatusFCM = 'onNotification tapped true';
                         console.log('onNotification tapped true');
                     } else {
+                        //$state.go('tempdevicelogin');
                         //Notification was received in foreground. User needs to be notified.
                         $rootScope.notificationstatusFCM = 'onNotification tapped false';
                         console.log('onNotification tapped false');

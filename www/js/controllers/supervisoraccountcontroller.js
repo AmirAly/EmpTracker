@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisoraccountController", function ($scope, $state, $rootScope, $ionicLoading, API, $window, LocalStorage) {
+﻿empTracker.controller("supervisoraccountController", function ($scope, $state,$ionicPopup, $rootScope, $ionicLoading, API, $window, LocalStorage) {
     $scope.userData = {};
     $scope.emailPattern = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,24}$/;
 
@@ -37,9 +37,10 @@
 
             }
             else {
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
+               
             }
         }, function (error) {
             API.showTokenError(error);
@@ -181,12 +182,26 @@
             $rootScope.showToast("You can't logout as you still clocked in a shift");
         }
         else {
-            // logout
-            LocalStorage.clear('UserLocalObject');
-            $rootScope.UserIsInShift = false;
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+            
         }
     }
 });

@@ -1,4 +1,4 @@
-﻿empTracker.controller("dashboardController", function ($scope, $state, $rootScope, $window, API, $ionicLoading) {
+﻿empTracker.controller("dashboardController", function ($scope, $state, $rootScope, $window, API, $ionicLoading, $filter) {
     var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     var shortDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -33,8 +33,8 @@
         var todayname = days[d.getDay()];
         $scope.todayDateString = todayname + ', ' + months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
 
-        var todayDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-        $scope.todayDate = todayDate;
+        //var todayDate = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+        $scope.todayDate = $filter('date')(new Date(), 'yyyy-MM-dd');
 
         $scope.currentTime = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
 
@@ -43,7 +43,7 @@
 
         var firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
         formatedFirstDay = API.convertLocalTimeToUTC(firstday);
-
+        console.log(formatedFirstDay);
         var lastday = new Date(Date.parse(new Date(intialDate.setDate((intialDate.getDate() - intialDate.getDay()) + 6)).toUTCString()));
         formatedLastday = API.convertLocalTimeToUTC(lastday);
 
@@ -119,7 +119,13 @@
                         var thedate = new Date(event.StartDate);
                         event.dayNumber = thedate.getDate();
                         event.dayName = (thedate.toString()).substring(0, 3);
-                        event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+                       // event.formattedDate = thedate.getFullYear() + "-" + (thedate.getMonth() + 1) + "-" + thedate.getDate();
+                        event.formattedDate = $filter('date')(new Date(event.StartDate), 'yyyy-MM-dd');
+                        console.log('------------');
+                        console.log(event.StartDate);
+                        console.log(new Date(event.StartDate));
+                        console.log(event.formattedDate);
+                        console.log('------------');
                     }
                     $ionicLoading.hide();
                 }

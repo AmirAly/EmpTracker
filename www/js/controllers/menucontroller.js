@@ -1,4 +1,4 @@
-﻿empTracker.controller("MenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
+﻿empTracker.controller("MenuController", function ($scope, $state,$ionicPopup, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -11,10 +11,9 @@
     $scope.menuItems = [
     { icon: 'ion-ios-home', text: 'Dashboard', linkTo: 'dashboard()', badge: false },
     { icon: 'ion-android-list', text: 'Schedule', linkTo: 'home()', badge: false },
-    { icon: 'ion-clock', text: 'My Attendance', linkTo: 'attendance()', badge: false },
-    { icon: 'ion-pinpoint', text: 'Time Clock', linkTo: 'shiftView()', badge: false },
+    { icon: 'ion-pinpoint', text: 'Clock-In / Clock-Out', linkTo: 'shiftView()', badge: false },
+    { icon: 'ion-clock', text: 'Attendance History', linkTo: 'attendance()', badge: false },
     { icon: 'ion-android-notifications-none', text: 'Notifications', linkTo: 'notifications()', badge: true },
-    //{ icon: 'ion-eye', text: 'Challenge', linkTo: 'challenge()', badge: false },
     { icon: 'ion-person', text: 'My Account', linkTo: 'myaccount()', badge: false },
     { icon: 'ion-log-out', text: 'Logout', linkTo: 'logout()', badge: false }];
 
@@ -42,11 +41,27 @@
             $rootScope.showToast("You can't logout as you still clocked in a shift");
         }
         else {
-            LocalStorage.clear('UserLocalObject');
-            $rootScope.UserIsInShift = false;
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+
+           
         }
 
     }

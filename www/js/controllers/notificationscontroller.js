@@ -38,9 +38,9 @@
                 $ionicLoading.hide();
             }
             else {
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
             }
         }, function (error) {
             API.showTokenError(error);
@@ -88,9 +88,9 @@
                 $rootScope.notifictionsCounter = 0;
             }
             else {
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
             }
         }, function (error) {
             API.showTokenError(error);
@@ -129,9 +129,9 @@
                 }
             }
             else {
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
             }
         }, function (error) {
             API.showTokenError(error);

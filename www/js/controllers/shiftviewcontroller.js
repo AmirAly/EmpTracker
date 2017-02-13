@@ -96,9 +96,10 @@
                 }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
+                    $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
+                    
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -190,9 +191,10 @@
                 else {
                     console.log('else');
                     $scope.pageTitle = "No upcoming shifts";
+                    $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
+                   
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -237,16 +239,18 @@
                     $ionicLoading.hide();
                 }
                 else if (_res.data.code == 403) {
-                    console.log(_res.data.data);
-                    $rootScope.showToast(_res.data.data);
                     $scope.pageTitle = "Shift not available";
                     $ionicLoading.hide();
+                    console.log(_res.data.data);
+                    $rootScope.showToast(_res.data.data);
+                    
                 }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
+                    $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
+                   
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -387,10 +391,11 @@
             }
             else {
                 //$scope.errorMSG = _res.data.data;
-                console.log(_res.data.data);
-                $rootScope.showToast(_res.data.data);
                 console.log('fail');
                 $ionicLoading.hide();
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
+                
             }
         }, function (error) {
             API.showTokenError(error);
@@ -436,9 +441,10 @@
             }
             else {
                 console.log('fail');
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $ionicLoading.hide();
+               
             }
         }, function (error) {
             API.showTokenError(error);
@@ -451,12 +457,27 @@
             $rootScope.showToast("You can't logout as you still clocked in a shift");
         }
         else {
-            // logout
-            LocalStorage.clear('UserLocalObject');
-            $rootScope.UserIsInShift = false;
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+
+            
         }
 
     }
@@ -551,19 +572,20 @@
                 $scope.AttendanceShiftId = _res.data.data.AttendanceShiftId;
             }
             else if (_res.data.code == 500) {
+                $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
                 $scope.errorMSG = 'you are already clocked in this shift.';
                 $scope.clockOut = true;
                 $scope.breakOut = false;
-                $ionicLoading.hide();
+               
             }
             else {
-                console.log(_res.data.data);
-                $rootScope.showToast(_res.data.data);
-                $scope.errorMSG = _res.data.data;
                 $ionicLoading.hide();
+                console.log(_res.data.data);
+                $scope.errorMSG = _res.data.data;
                 console.log('fail');
+                $rootScope.showToast(_res.data.data);
             }
         },
        function (error) {
@@ -618,19 +640,19 @@
                         $ionicLoading.hide();
                     }
                     else if (_res.data.code == 500) {
-                        //$scope.errorMSG = 'you are already clocked in';
-                        console.log(_res.data.data);
-                        $rootScope.showToast(_res.data.data);
                         $scope.clockOut = true;
                         $scope.breakOut = false;
                         $ionicLoading.hide();
+                        //$scope.errorMSG = 'you are already clocked in';
+                        console.log(_res.data.data);
+                        $rootScope.showToast(_res.data.data);
                     }
                     else {
+                        $ionicLoading.hide();
+                        console.log('fail');
                         //$scope.errorMSG = _res.data.data;
                         console.log(_res.data.data);
                         $rootScope.showToast(_res.data.data);
-                        $ionicLoading.hide();
-                        console.log('fail');
                     }
                 },
                 function (error) {

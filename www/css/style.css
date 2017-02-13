@@ -1273,3 +1273,8 @@ i.icon.icon-right {
 .changeImg .button.energized:hover {
     color: #ffc900;
 }
+
+/*passwordConfirmation*/
+.passwordConfirmation .ion-ios-checkmark:before{
+    font-size:40px !important;
+}

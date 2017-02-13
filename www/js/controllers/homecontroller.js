@@ -52,10 +52,11 @@
                     $scope.todayEventsArray = _res.data.data;
                     $ionicLoading.hide();
                 } else {
+                    $ionicLoading.hide();
                     $scope.todayEventsArray = [];
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
+                   
                 }
             }
             , function (error) {
@@ -116,11 +117,11 @@
                     $ionicLoading.hide();
                 }
                 else {
+                    $ionicLoading.hide();
                     $scope.weeklyEventsArray = '';
                     $scope.weeklyTotalHours = 0;
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
                 }
 
             }, function (error) {
@@ -191,11 +192,11 @@
                     $ionicLoading.hide();
                 }
                 else {
+                    $ionicLoading.hide();
                     $scope.weeklyEventsArray = '';
                     $scope.weeklyTotalHours = 0;
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -266,11 +267,11 @@
                     $ionicLoading.hide();
                 }
                 else {
+                    $ionicLoading.hide();
                     $scope.weeklyEventsArray = '';
                     $scope.weeklyTotalHours = 0;
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    $ionicLoading.hide();
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -340,11 +341,11 @@
                         }
                     }
                     else {
+                        $ionicLoading.hide();
                         $scope.events = [];
+                        console.log('no data found');
                         console.log(_res.data.data);
                         $rootScope.showToast(_res.data.data);
-                        console.log('no data found');
-                        $ionicLoading.hide();
                     }
                 } else {
                     $scope.events = [];

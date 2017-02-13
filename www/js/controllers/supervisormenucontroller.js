@@ -1,4 +1,4 @@
-﻿empTracker.controller("supervisormenuController", function ($scope, $state, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
+﻿empTracker.controller("supervisormenuController", function ($scope, $state,$ionicPopup, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
     $scope.openmyaccount = function () {
         $state.go('supervisormenu.supervisoraccount');
     }
@@ -30,11 +30,27 @@
             $rootScope.showToast("You can't logout as you still clocked in a shift");
         }
         else {
-            LocalStorage.clear('UserLocalObject');
-            $rootScope.UserIsInShift = false;
-            $window.localStorage['IsTempLogin'] = false;
-            localStorage.clear();
-            $state.go('login');
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+
+            
         }
 
     }
