@@ -47,7 +47,10 @@
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
                     $scope.shiftSite = _res.data.data.ShortSiteName;
-                    $scope.shiftaddress = _res.data.data.SiteName;
+                    $scope.shiftaddress = _res.data.data.SiteAddress.Street + " , " + _res.data.data.SiteAddress.State;
+                    $scope.postalCode = _res.data.data.SiteAddress.PostalCode;
+                    $scope.suburb = _res.data.data.SiteAddress.Suburb;
+
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
                     $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
@@ -99,7 +102,7 @@
                     $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    
+
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -142,7 +145,10 @@
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
                     $scope.shiftSite = _res.data.data.ShortSiteName;
-                    $scope.shiftaddress = _res.data.data.SiteName;
+                    $scope.shiftaddress = _res.data.data.SiteAddress.Street + " , " + _res.data.data.SiteAddress.State;
+                    $scope.postalCode = _res.data.data.SiteAddress.PostalCode;
+                    $scope.suburb = _res.data.data.SiteAddress.Suburb;
+
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
                     $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
@@ -194,7 +200,7 @@
                     $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                   
+
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -232,7 +238,10 @@
                     $scope.endDate = _res.data.data.EndDate;
                     $scope.shiftBreak = _res.data.data.BreakDuration;
                     $scope.shiftSite = _res.data.data.ShortSiteName;
-                    $scope.shiftaddress = _res.data.data.SiteName;
+                    $scope.shiftaddress = _res.data.data.SiteAddress.Street + " , " + _res.data.data.SiteAddress.State;
+                    $scope.postalCode = _res.data.data.SiteAddress.PostalCode;
+                    $scope.suburb = _res.data.data.SiteAddress.Suburb;
+
                     $scope.shiftNotes = _res.data.data.NotesToEmployee;
                     $scope.ShiftLatitude = _res.data.data.SiteCoordinates.Latitude;
                     $scope.ShiftLongitude = _res.data.data.SiteCoordinates.Logitude;
@@ -243,14 +252,14 @@
                     $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                    
+
                 }
                 else {
                     $scope.pageTitle = "No upcoming shifts";
                     $ionicLoading.hide();
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                   
+
                 }
             }, function (error) {
                 API.showTokenError(error);
@@ -279,7 +288,22 @@
         console.log(text);
     }
     $scope.viewMap = function () {
-        $state.go('app.viewmap', { Latitude: $scope.ShiftLatitude, Longitude: $scope.ShiftLongitude });
+        if ($scope.ShiftLatitude != null && $scope.ShiftLongitude != null) {
+            $state.go('app.viewmap', { Latitude: $scope.ShiftLatitude, Longitude: $scope.ShiftLongitude });
+        }
+        else {
+            console.log('Could Not Find Address On Map. Please Contact Your Company');
+            var alertPopup = $ionicPopup.alert({
+                title: 'Can\'t display map',
+                template: 'Could Not Find Address On Map. Please Contact Your Company'
+            });
+            //alertPopup.then(function (res) {
+            //    console.log('Thank you');
+            //});
+            //$timeout(function () {
+            //    alertPopup.close(); //close the popup after 3 seconds for some reason
+            //}, 3000);
+        }
     }
     $scope.load = function () {
         $scope.clockOut = false;
@@ -395,7 +419,7 @@
                 $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                
+
             }
         }, function (error) {
             API.showTokenError(error);
@@ -444,7 +468,7 @@
                 $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-               
+
             }
         }, function (error) {
             API.showTokenError(error);
@@ -477,7 +501,7 @@
                 }
             });
 
-            
+
         }
 
     }
@@ -494,48 +518,89 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
-        $rootScope.getCurrentLocation();
-        $scope.$watch('$root.currentUserLongitude', function () {
-            if ($rootScope.currentUserLongitude != 0) {
-                console.log($rootScope.currentUserLatitude);
-                console.log($rootScope.currentUserLongitude);
-                $scope.empPhoto = "";
-                console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
-                if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
-                    $scope.empPhoto = "";
-                    $scope.doClockIn();
-                }
-                else { // open camera
-                    if (navigator && navigator.camera) {
-                        navigator.camera.getPicture(function (data) {// on succsess
-                            if (data.indexOf('base64') < 0) {
-                                $scope.empPhoto = 'data:image/jpeg;base64,' + data;
-                                //$scope.empPhoto = data;
-                                $scope.doClockIn();
-                            }
-                            else {
-                                $scope.empPhoto = data;
-                                $scope.doClockIn();
-                            }
-                        }, null, {
-                            sourceType: Camera.PictureSourceType.CAMERA,
-                            quality: 50,
-                            targetWidth: 140,
-                            targetHeight: 140,
-                            destinationType: Camera.DestinationType.DATA_URL,
-                            cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
-                            correctOrientation: true
-                        });
-                    }
-                    else {
-                        console.log('take');
-                        $ionicLoading.hide();
-                    }
-                    
-                }
-            }
-        });
 
+
+        if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) { //Not allowed without GPS }
+            $rootScope.getCurrentLocation();
+            $scope.$watch('$root.currentUserLongitude', function () {
+                if ($rootScope.currentUserLongitude != 0) {
+                    console.log($rootScope.currentUserLatitude);
+                    console.log($rootScope.currentUserLongitude);
+                    $scope.empPhoto = "";
+                    console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
+                    if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
+                        $scope.empPhoto = "";
+                        $scope.doClockIn();
+                    }
+                    else { // open camera
+                        if (navigator && navigator.camera) {
+                            navigator.camera.getPicture(function (data) {// on succsess
+                                if (data.indexOf('base64') < 0) {
+                                    $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                                    //$scope.empPhoto = data;
+                                    $scope.doClockIn();
+                                }
+                                else {
+                                    $scope.empPhoto = data;
+                                    $scope.doClockIn();
+                                }
+                            }, null, {
+                                sourceType: Camera.PictureSourceType.CAMERA,
+                                quality: 50,
+                                targetWidth: 140,
+                                targetHeight: 140,
+                                destinationType: Camera.DestinationType.DATA_URL,
+                                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                                correctOrientation: true
+                            });
+                        }
+                        else {
+                            console.log('take');
+                            $ionicLoading.hide();
+                        }
+
+                    }
+                }
+            });
+        }
+        else {
+            $rootScope.currentUserLatitude = null;
+            $rootScope.currentUserLongitude = null;
+            $scope.empPhoto = "";
+            console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
+            if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
+                $scope.empPhoto = "";
+                $scope.doClockIn();
+            }
+            else { // open camera
+                if (navigator && navigator.camera) {
+                    navigator.camera.getPicture(function (data) {// on succsess
+                        if (data.indexOf('base64') < 0) {
+                            $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                            //$scope.empPhoto = data;
+                            $scope.doClockIn();
+                        }
+                        else {
+                            $scope.empPhoto = data;
+                            $scope.doClockIn();
+                        }
+                    }, null, {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        quality: 50,
+                        targetWidth: 140,
+                        targetHeight: 140,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                        correctOrientation: true
+                    });
+                }
+                else {
+                    console.log('take');
+                    $ionicLoading.hide();
+                }
+
+            }
+        }
     }
 
     $scope.doClockIn = function () {
@@ -575,10 +640,10 @@
                 $ionicLoading.hide();
                 console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                $scope.errorMSG = 'you are already clocked in this shift.';
+                //$scope.errorMSG = 'you are already clocked in this shift.';
                 $scope.clockOut = true;
                 $scope.breakOut = false;
-               
+
             }
             else {
                 $ionicLoading.hide();
@@ -605,64 +670,146 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
-        $rootScope.getCurrentLocation();
-        $scope.$watch('$root.currentUserLongitude', function () {
-            if ($rootScope.currentUserLongitude != 0) {
-                console.log($rootScope.currentUserLatitude);
-                console.log($rootScope.currentUserLongitude);
-                //api here
-                var req = {
-                    method: 'PUT',
-                    url: '/api/Attendance?action=out',
-                    data: {
-                        "RosterShiftID": $scope.ShiftId,
-                        "AttendanceShiftId": $scope.AttendanceShiftId,
-                        "Notes": "",
-                        "Clocking": {
-                            "ClockingTime": formatedTodayDateTime,
-                            "Latitude": $rootScope.currentUserLatitude,
-                            "Longitude": $rootScope.currentUserLongitude,
-                            "GPSTrackingMethod": "Network",
-                            "PunchedVia": "MOB",
-                            "EmployeeNotes": ""
+
+        if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) { //Not allowed without GPS }
+            $rootScope.getCurrentLocation();
+            $scope.$watch('$root.currentUserLongitude', function () {
+                if ($rootScope.currentUserLongitude != 0) {
+                    console.log($rootScope.currentUserLatitude);
+                    console.log($rootScope.currentUserLongitude);
+                    $scope.empPhoto = "";
+                    console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
+                    if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
+                        $scope.empPhoto = "";
+                        $scope.doClockOut();
+                    }
+                    else { // open camera
+                        if (navigator && navigator.camera) {
+                            navigator.camera.getPicture(function (data) {// on succsess
+                                if (data.indexOf('base64') < 0) {
+                                    $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                                    //$scope.empPhoto = data;
+                                    $scope.doClockOut();
+                                }
+                                else {
+                                    $scope.empPhoto = data;
+                                    $scope.doClockOut();
+                                }
+                            }, null, {
+                                sourceType: Camera.PictureSourceType.CAMERA,
+                                quality: 50,
+                                targetWidth: 140,
+                                targetHeight: 140,
+                                destinationType: Camera.DestinationType.DATA_URL,
+                                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                                correctOrientation: true
+                            });
                         }
+                        else {
+                            console.log('take');
+                            $ionicLoading.hide();
+                        }
+
                     }
                 }
-                console.log(req.data);
-                // add true to use authentication token
-                API.execute(req, true).then(function (_res) {
-                    console.log(_res.data);
-                    if (_res.data.code == 200) {
-                        $rootScope.UserIsInShift = false;
-                        console.log('pass');
-                        $scope.clockOut = false;
-                        $scope.breakOut = false;
-                        $ionicLoading.hide();
-                    }
-                    else if (_res.data.code == 500) {
-                        $scope.clockOut = true;
-                        $scope.breakOut = false;
-                        $ionicLoading.hide();
-                        //$scope.errorMSG = 'you are already clocked in';
-                        console.log(_res.data.data);
-                        $rootScope.showToast(_res.data.data);
-                    }
-                    else {
-                        $ionicLoading.hide();
-                        console.log('fail');
-                        //$scope.errorMSG = _res.data.data;
-                        console.log(_res.data.data);
-                        $rootScope.showToast(_res.data.data);
-                    }
-                },
-                function (error) {
-                    API.showTokenError(error);
-                });
+            });
+        }
+        else {
+            $rootScope.currentUserLatitude = null;
+            $rootScope.currentUserLongitude = null;
+            $scope.empPhoto = "";
+            console.log($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera);
+            if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutCamera) {
+                $scope.empPhoto = "";
+                $scope.doClockOut();
             }
-        });
+            else { // open camera
+                if (navigator && navigator.camera) {
+                    navigator.camera.getPicture(function (data) {// on succsess
+                        if (data.indexOf('base64') < 0) {
+                            $scope.empPhoto = 'data:image/jpeg;base64,' + data;
+                            //$scope.empPhoto = data;
+                            $scope.doClockOut();
+                        }
+                        else {
+                            $scope.empPhoto = data;
+                            $scope.doClockOut();
+                        }
+                    }, null, {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        quality: 50,
+                        targetWidth: 140,
+                        targetHeight: 140,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                        correctOrientation: true
+                    });
+                }
+                else {
+                    console.log('take');
+                    $ionicLoading.hide();
+                }
 
+            }
+        }
+    }
+
+    $scope.doClockOut = function () {
+        var str = $scope.empPhoto;
+        str = str.substring(str.indexOf(",") + 1);
+        //api here
+        var req = {
+            method: 'PUT',
+            url: '/api/Attendance?action=out',
+            data: {
+                "RosterShiftID": $scope.ShiftId,
+                "AttendanceShiftId": $scope.AttendanceShiftId,
+                "Notes": "",
+                "Clocking": {
+                    "ClockingTime": formatedTodayDateTime,
+                    "Latitude": $rootScope.currentUserLatitude,
+                    "Longitude": $rootScope.currentUserLongitude,
+                    "GPSTrackingMethod": "Network",
+                    "PunchedVia": "MOB",
+                    "EmployeeNotes": "",
+                    "Photo": str
+                }
+            }
+        }
+        console.log(req.data);
+        // add true to use authentication token
+        API.execute(req, true).then(function (_res) {
+            console.log(_res.data);
+            if (_res.data.code == 200) {
+                $rootScope.UserIsInShift = false;
+                console.log('pass');
+                $scope.clockOut = false;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+            }
+            else if (_res.data.code == 500) {
+                $scope.clockOut = true;
+                $scope.breakOut = false;
+                $ionicLoading.hide();
+                //$scope.errorMSG = 'you are already clocked in';
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
+            }
+            else {
+                $ionicLoading.hide();
+                console.log('fail');
+                //$scope.errorMSG = _res.data.data;
+                console.log(_res.data.data);
+                $rootScope.showToast(_res.data.data);
+            }
+        },
+  function (error) {
+      API.showTokenError(error);
+  });
     }
 });
+
+
 
 ////new timer
 ////js

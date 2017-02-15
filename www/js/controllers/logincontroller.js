@@ -1,4 +1,4 @@
-﻿empTracker.controller("LoginController", function ($scope,$filter, $rootScope, $state, $timeout, API, $window, $ionicLoading, $rootScope, $cordovaNetwork, $http, $cordovaToast, LocalStorage) {
+﻿empTracker.controller("LoginController", function ($scope, $filter, $rootScope, $state, $timeout, API, $window, $ionicLoading, $rootScope, $cordovaNetwork, $http, $cordovaToast, LocalStorage) {
 
     $scope.$on('$ionicView.enter', function () {
         //////start monday
@@ -50,7 +50,7 @@
             });
         }
         else {
-            
+
             $scope.frmmLogin.name = '';
             $scope.frmmLogin.password = '';
             $scope.frmmLogin.companycode = '';
@@ -89,13 +89,13 @@
             url: '/Token',
             data: $scope.loginObj
         }
-       console.log(req.data);
+        console.log(req.data);
         API.execute(req, false).then(function (_res) {
             ////console.log(_res.data.userType);
             var userType = _res.data.userType;
             $window.localStorage['authorizationToken'] = _res.data.token_type + " " + _res.data.access_token;
             var loginCode = _res.data.code;
-            ////console.log('loginCode ' + loginCode);
+            console.log('loginCode ' + loginCode);
             // get user data after login if redirect to dashboard
             var req = {
                 method: 'GET',
@@ -149,7 +149,7 @@
                             }
                             // add true to use authentication token
                             API.execute(req, true).then(function (_res) {
-                                //console.log(_res.data);
+                                console.log(_res.data);
                                 if (_res.data.code = 200) {
                                     $rootScope.userSettings = _res.data.data;
                                     LocalStorage.setObject('userSettingsObject', _res.data.data);
@@ -173,7 +173,7 @@
                                             ////$scope.afterLoginErrorTxt = 'Inactive Device';
                                             $state.go('tempdevicelogin');
                                             $rootScope.showToast('Inactive Device');
-                                           
+
                                         }
                                         else if (loginCode == 102) { // new device
                                             $state.go('tempdevicelogin');
@@ -191,7 +191,7 @@
                                             //$scope.afterLoginErrorTxt = 'Inactive Device';
                                             $state.go('tempdevicelogin');
                                             $rootScope.showToast('Inactive Device');
-                                           
+
                                         }
                                         else if (loginCode == 102) { // new device
                                             $state.go('tempdevicelogin');
@@ -206,13 +206,29 @@
 
         }, function (error) {
             $scope.frmmLogin.password = '';
-            $scope.afterLoginError = true;
-            //console.log(error);
-            //console.log(error.data); /* catch 400  Error here */
-            //$scope.afterLoginErrorTxt = error.data.error_description;
-            $ionicLoading.hide();
-            $rootScope.showToast(error.data.error_description);
-            
+            if (error.status == 0) {
+                console.log('timeout Err Login');
+                $ionicLoading.show({
+                    //templateUrl: 'templates/tokenexpired.html',
+                    template: '<div class="padding">\
+                                <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                <h4>Timeout Error</h4>\
+<h5>Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
+                              </div>',
+                    animation: 'slide-in-up'
+                });
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 5000);
+            }
+            else {
+                $scope.afterLoginError = true;
+                console.log(error);
+                //console.log(error.data); /* catch 400  Error here */
+                //$scope.afterLoginErrorTxt = error.data.error_description;
+                $ionicLoading.hide();
+                $rootScope.showToast(error.data.error_description);
+            }
         });
     }
 

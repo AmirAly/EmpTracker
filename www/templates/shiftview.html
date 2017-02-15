@@ -17,8 +17,8 @@
     </ion-header-bar>
     
     <ion-content class="shiftViewPage" overflow-scroll="true" padding="true">
-        <div class="padding text-center">
-            <h3>{{pageTitle}}</h3>
+        <div class="dvTxtHeaderContainer text-center" >
+            <h3>Shift Details</h3>
         </div>
 
         <!--<div class="text-center">
@@ -55,9 +55,19 @@
         </div>
 
         <div class="card smallMargin">
-            <div class="item item-text-wrap row row-center padding">
-                <span class="col">Address</span>
-                <span class="text-right col col-66 bluefont" ng-show="shiftaddress" ng-click="viewMap()">{{shiftaddress}}</span>
+            <div class="item item-text-wrap padding">
+                <div class="row row-center">
+                    <span class="col"><span class="ion-location icon bluefont"></span> Address</span>
+                    <span class="text-right col col-66 bluefont txtShiftAddress" ng-click="viewMap()">{{shiftaddress}}</span>
+                </div>
+                <div class="row row-center">
+                    <span class="col">Suburb</span>
+                    <span class="text-right col col-66 bluefont">{{suburb}}</span>
+                </div>
+                <div class="row row-center">
+                    <span class="col">Postal Code</span>
+                    <span class="text-right col col-66 bluefont">{{postalCode}}</span>
+                </div>
             </div>
         </div>
         <div class="card">

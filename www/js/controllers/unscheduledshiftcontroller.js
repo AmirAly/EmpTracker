@@ -154,16 +154,6 @@
                     $ionicLoading.hide();
                     $state.go('app.shiftview');
                 }
-                else if (_res.data.code == 500) {
-                    //$scope.errorMSG = 'you are already clocked in this shift.';
-                    $ionicLoading.hide();
-                }
-                else if (_res.data.code == 400) {
-                    //$scope.errorMSG = 'You are already clocked in a shift.';
-                    $ionicLoading.hide();
-                    console.log('fail');
-
-                }
                 else {
                     $scope.errorMSG = _res.data.data;
                     $ionicLoading.hide();

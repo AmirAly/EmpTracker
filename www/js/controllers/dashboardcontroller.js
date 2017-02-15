@@ -195,5 +195,7 @@
     $scope.notifications = function () {
         $state.go('app.notifications');
     }
-
+    $scope.shiftView = function (_shiftId) {
+        $state.go('app.shiftview', { shiftid: _shiftId });
+    }
 });

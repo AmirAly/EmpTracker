@@ -32,15 +32,17 @@
                             <!--no schedual today part-->
                             <div class=" text-center" ng-show="!todayEventsArray.length">
                                 <img src="images/noshift.png" />
-                                <div class="padding">
-                                    <button class="button button-block button-positive" ng-click="goToUnscheduledShift()">Start Unscheduled Shift</button>
-                                </div>
-                                <div class="row" ng-show="mapView==true">
-                                    <div class="col card padding text-center">
-                                        <div id="map"></div>
-                                    </div>
-                                </div>
+                                
                             </div>
+
+                            <div class="padding">
+                                <button class="button button-block button-positive" ng-click="goToUnscheduledShift()">Start Unscheduled Shift</button>
+                            </div>
+                            <!--<div class="row" ng-show="mapView==true">
+                                <div class="col card padding text-center">
+                                    <div id="map"></div>
+                                </div>
+                            </div>-->
 
                             <!-- today shifts part-->
                             <div class="list padding" ng-show="todayEventsArray.length">

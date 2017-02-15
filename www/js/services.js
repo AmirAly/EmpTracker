@@ -19,6 +19,7 @@
             }
             _req.url = _url + _req.url;
             _req.headers = headers;
+            _req.timeout = 5000; //$timeout(function () { alert('request timed out'); }, 5000);
 
             console.log($http(_req));
             return $http(_req);
@@ -46,18 +47,34 @@
 
         },
         showTokenError: function (_error) {
-            if (_error.status == 401 && _error.statusText == "Unauthorized") { /* catch 401  Error here */
+            console.log(_error);
+            if (_error.status == 0) {
+                console.log('timeout Err');
+                $ionicLoading.show({
+                    //templateUrl: 'templates/tokenexpired.html',
+                    template: '<div class="padding">\
+                                <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                <h4>Timeout Error</h4>\
+<h5>Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
+                              </div>',
+                    animation: 'slide-in-up'
+                });
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 5000);
+            }
+            else if (_error.status == 401 && _error.statusText == "Unauthorized") { /* catch 401  Error here */
                 console.log(_error.data.Message);
                 // should use refresh token here ?
                 //.. 
-                //$ionicLoading.show({
-                //    //templateUrl: 'templates/tokenexpired.html',
-                //    template:'<div class="padding">\
-                //                <a class="button button-icon icon energized ion-alert-circled"></a>\
-                //                <h4>' + _error.data.Message + '</h4>\
-                //              </div>',
-                //    animation: 'slide-in-up'
-                //});
+                $ionicLoading.show({
+                    //templateUrl: 'templates/tokenexpired.html',
+                    template: '<div class="padding">\
+                                <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                <h4>' + _error.data.Message + '</h4>\
+                              </div>',
+                    animation: 'slide-in-up'
+                });
                 $rootScope.showToast(_error.data.Message);
                 $timeout(function () {
                     console.log(_error);
@@ -84,17 +101,42 @@
     };
 }]);
 
-empTracker.factory('InternetConnection', function ($http, $rootScope) {
+empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoading, $timeout) {
+    var timeoutCounter = 0;
     return {
         checkConnection: function () {
             $http({
                 type: "HEAD",
                 method: "GET",
+                timeout: 5000,
                 url: "http://rostersmanager.com:90"
             }).then(function (response) {
+                timeoutCounter = 0;
                 $rootScope.internetStatus = 'connected';
-            }, function (response) {
+                console.log(timeoutCounter);
+            }, function (error) {
+                console.log(error);
+                timeoutCounter++;
+                console.log(timeoutCounter);
                 $rootScope.internetStatus = 'disconnected';
+                if (timeoutCounter == 1) {
+                    console.log('timeout Err InternetConnection Function');
+                    if (error.status == 0) {
+                        console.log('timeout Err, The connection to the server failed');
+                        $ionicLoading.show({
+                            template: '<div class="padding">\
+                                <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                <h4>No Internet Connection</h4>\
+                                <h5>No internet connection. Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
+                              </div>',
+                            animation: 'slide-in-up'
+                        });
+                        $timeout(function () {
+                            $ionicLoading.hide();
+                        }, 5000);
+                    }
+                }
+
             });
 
         }
@@ -137,6 +179,9 @@ empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state,
         sendUpdate: function () {
             $rootScope.currentUserLatitude = 0;
             $rootScope.currentUserLongitude = 0;
+            //if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) { //Not allowed without GPS 
+            // what is periodical update required setting option ?
+            //}
             $rootScope.getCurrentLocation();
             $rootScope.$watch('$root.currentUserLongitude', function () {
                 if ($rootScope.currentUserLongitude != 0) {
@@ -197,9 +242,9 @@ empTracker.factory('LocalStorage', function ($window) {
             //$window.localStorage.clear();
         }
 
-       //, resetObject: function (key, value) {
-       //    $window.localStorage.setItem(key, JSON.stringify(value));
-       //}
+        //, resetObject: function (key, value) {
+        //    $window.localStorage.setItem(key, JSON.stringify(value));
+        //}
 
     }
 

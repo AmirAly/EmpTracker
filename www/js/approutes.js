@@ -25,7 +25,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             });
         }
 
-        //$rootScope.IMEI = 6;
+        $rootScope.IMEI = 5;
 
         
 
@@ -137,14 +137,14 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }
     });
 
-    // set default value of internetStatus checkConnection
+    // set default value of internetStatus checkConnection every 10 seconds
     $rootScope.internetStatus = 'disconnected';
     $rootScope.checkInternet = function () {
         setInterval(function () {
             InternetConnection.checkConnection();
-        }, 1000);
+        }, 10000);
     };
-    $rootScope.checkInternet();
+   $rootScope.checkInternet();
 
     // get current location lat lng
     $rootScope.locationService = 'inactive';
@@ -187,6 +187,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
 empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 }]);
+
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
