@@ -279,7 +279,12 @@
         console.log(text);
     }
     $scope.viewMap = function () {
-        $state.go('app.viewmap', { Latitude: $scope.ShiftLatitude, Longitude: $scope.ShiftLongitude });
+        if ($scope.ShiftLatitude != null && $scope.ShiftLongitude != null) {
+            $state.go('app.viewmap', { Latitude: $scope.ShiftLatitude, Longitude: $scope.ShiftLongitude });
+        }
+        else {
+            console.log('Could Not Find Address On Map. Please Contact Your Company');
+        }
     }
     $scope.load = function () {
         $scope.clockOut = false;

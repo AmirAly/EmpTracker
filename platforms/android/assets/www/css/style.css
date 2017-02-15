@@ -778,6 +778,21 @@ i.icon.icon-right {
     background-color: #ecebec;
 }
 
+    .shiftViewPage .dvTxtHeaderContainer {
+        border: 1px solid #ccc;
+        padding: 2px;
+    }
+
+        .shiftViewPage .dvTxtHeaderContainer h3 {
+            color: #5a5456;
+            margin: 0;
+            font-size: 20px;
+        }
+
+    .shiftViewPage .txtShiftAddress {
+        text-decoration: underline;
+    }
+
     .shiftViewPage .errorFont {
         padding-right: 0px;
     }
@@ -787,6 +802,10 @@ i.icon.icon-right {
         color: #4b8dc0;
         text-align: right;
     }
+
+        .shiftViewPage .bluefont.ion-location {
+            font-size: 20px;
+        }
 
     .shiftViewPage textarea {
         resize: none;
@@ -1275,6 +1294,6 @@ i.icon.icon-right {
 }
 
 /*passwordConfirmation*/
-.passwordConfirmation .ion-ios-checkmark:before{
-    font-size:40px !important;
+.passwordConfirmation .ion-ios-checkmark:before {
+    font-size: 40px !important;
 }

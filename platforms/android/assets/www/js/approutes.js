@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory) {
+empTracker.run(function ($ionicPlatform, $rootScope,$cordovaNetwork, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -25,7 +25,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             });
         }
 
-        //$rootScope.IMEI = 6;
+        $rootScope.IMEI = 5;
 
         
 
@@ -137,14 +137,16 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }
     });
 
+    $rootScope.$on('$cordovaNetwork:offline', function () {console.log('you are offline now !!') });
+
     // set default value of internetStatus checkConnection
     $rootScope.internetStatus = 'disconnected';
     $rootScope.checkInternet = function () {
         setInterval(function () {
             InternetConnection.checkConnection();
-        }, 1000);
+        }, 10000);
     };
-    $rootScope.checkInternet();
+   $rootScope.checkInternet();
 
     // get current location lat lng
     $rootScope.locationService = 'inactive';
@@ -187,6 +189,10 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
 empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 }]);
+
+//empTracker.config(['$httpProvider', function ($httpProvider) {
+//    $httpProvider.defaults.timeout = 5000;
+//}]);
 
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
