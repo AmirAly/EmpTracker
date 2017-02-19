@@ -34,27 +34,31 @@
         $scope.frmLogin.$setUntouched();
 
         $scope.afterLoginError = false;
-        if (!angular.equals(LocalStorage.getObject('UserLocalObject'), {}) && LocalStorage.getObject('UserLocalObject').UserName != "") { // not empty, then do login
-            $ionicLoading.show({
-                content: 'Loading',
-                animation: 'fade-in',
-                showBackdrop: true,
-                maxWidth: 200,
-                showDelay: 0,
-                template: '<i class="icon ion-loading-d"></i>'
-            });
-            $scope.afterLoginError = false;
-            $scope.loginObj = LocalStorage.getObject('UserLocalObject');
-            $timeout(function () {
-                $scope.doLogin();
-            });
-        }
-        else {
 
-            $scope.frmmLogin.name = '';
-            $scope.frmmLogin.password = '';
-            $scope.frmmLogin.companycode = '';
-        }
+        $rootScope.IMEI = 5;
+
+
+        //if (!angular.equals(LocalStorage.getObject('UserLocalObject'), {}) && LocalStorage.getObject('UserLocalObject').UserName != "") { // not empty, then do login
+        //    $ionicLoading.show({
+        //        content: 'Loading',
+        //        animation: 'fade-in',
+        //        showBackdrop: true,
+        //        maxWidth: 200,
+        //        showDelay: 0,
+        //        template: '<i class="icon ion-loading-d"></i>'
+        //    });
+        //    $scope.afterLoginError = false;
+        //    $scope.loginObj = LocalStorage.getObject('UserLocalObject');
+        //    $timeout(function () {
+        //        $scope.doLogin();
+        //    });
+        //}
+        //else {
+
+        //    $scope.frmmLogin.name = '';
+        //    $scope.frmmLogin.password = '';
+        //    $scope.frmmLogin.companycode = '';
+        //}
 
     });
 
@@ -154,6 +158,12 @@
                                     $rootScope.userSettings = _res.data.data;
                                     LocalStorage.setObject('userSettingsObject', _res.data.data);
                                     $ionicLoading.hide();
+
+                                    //// call get location when needed
+                                    if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) {
+                                        $rootScope.getCurrentLocation();
+                                    }
+
                                     // if user is Employee
                                     var userObj = {
                                         UserName: $scope.frmmLogin.name,
@@ -162,6 +172,7 @@
                                         grant_type: 'password',
                                         IMEI: $rootScope.IMEI
                                     };
+                                    console.log(JSON.stringify(userObj));
                                     if (userType == 'Employee') {
                                         $rootScope.isSupervisor = false;
                                         if (loginCode == 100) { // his device

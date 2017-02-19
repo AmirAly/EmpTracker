@@ -25,9 +25,9 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             });
         }
 
-        $rootScope.IMEI = 5;
+        //$rootScope.IMEI = 5;
 
-        
+
 
         $ionicPlatform.registerBackButtonAction(function (event) {
             if ($ionicHistory.currentStateName() === 'app.dashboard') {
@@ -38,17 +38,17 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }, 100);
 
         $rootScope.showToast = function (_message) {
-            
+
             window.plugins.toast.showWithOptions({
                 message: _message,
                 duration: "long",
                 position: "center",
                 styling: {
-                    textColor: '#f44336', // Ditto. Default #FFFFFF
+                    textColor: '#ffffff',//'#f44336', // Ditto. Default #FFFFFF
                     //textSize: '20.5', // Default is approx. 13.
                     opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
                     cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
-                    backgroundColor: '#111111',
+                    backgroundColor: '#8b0000',//'#111111',
                     horizontalPadding: '16',// iOS default 16, Android default 50
                     verticalPadding: '12' // iOS default 12, Android default 30
                     // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
@@ -144,15 +144,15 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             InternetConnection.checkConnection();
         }, 10000);
     };
-   $rootScope.checkInternet();
+    $rootScope.checkInternet();
 
     // get current location lat lng
     $rootScope.locationService = 'inactive';
     $rootScope.getCurrentLocation = function () {
         CurrentLocation.getLatLng();
     };
-    // call get location when needed 
-    $rootScope.getCurrentLocation();
+
+   
 
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
@@ -193,7 +193,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     $urlRouterProvider.otherwise('/login');
     $stateProvider
     .state('login', {
-        cache: false,
+        //cache: false,
         url: '/login',
         controller: "LoginController",
         templateUrl: 'templates/login.html'
@@ -242,6 +242,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.shiftview', {
+        cache: false,
         url: '/shiftView/:shiftid?',
         views: {
             'menuContent': {

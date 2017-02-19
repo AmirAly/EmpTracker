@@ -130,8 +130,8 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
-                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
-                correctOrientation: true
+                cameraDirection: "FRONT", // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                correctOrientation: true,
             });
         }
         else {
@@ -157,7 +157,7 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
-                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                cameraDirection: "FRONT", // "1" is used for front-facing camera and "0" is used for back-facing camera.
                 correctOrientation: true
             });
         }

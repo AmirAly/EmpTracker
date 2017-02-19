@@ -55,7 +55,7 @@
                     template: '<div class="padding">\
                                 <a class="button button-icon icon energized ion-alert-circled"></a>\
                                 <h4>Timeout Error</h4>\
-<h5>Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
+                                <h5>Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
                               </div>',
                     animation: 'slide-in-up'
                 });
@@ -67,14 +67,18 @@
                 console.log(_error.data.Message);
                 // should use refresh token here ?
                 //.. 
-                $ionicLoading.show({
-                    //templateUrl: 'templates/tokenexpired.html',
-                    template: '<div class="padding">\
-                                <a class="button button-icon icon energized ion-alert-circled"></a>\
-                                <h4>' + _error.data.Message + '</h4>\
-                              </div>',
-                    animation: 'slide-in-up'
-                });
+                if (!ionic.Platform.isAndroid()) {
+                    $ionicLoading.show({
+                        //templateUrl: 'templates/tokenexpired.html',
+                        template: '<div class="padding">\
+                                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                    <h4>' + _error.data.Message + '</h4>\
+                                  </div>',
+                        animation: 'slide-in-up'
+                    });
+                }
+                
+
                 $rootScope.showToast(_error.data.Message);
                 $timeout(function () {
                     console.log(_error);
@@ -147,29 +151,38 @@ empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation,
     var options = { timeout: 10000, enableHighAccuracy: true };
     return {
         getLatLng: function (options) {
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-                console.log('Geolocation pass');
+            if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) {
                 $rootScope.locationService = 'active';
-                $rootScope.currentUserLatitude = position.coords.latitude;
-                $rootScope.currentUserLongitude = position.coords.longitude;
+                $rootScope.currentUserLatitude = null;
+                $rootScope.currentUserLongitude = null;
                 return true;
             }
-            , function (err) {
-                $rootScope.locationService = 'inactive';
-                console.log("Could not get location , You have to enable location on your device");
-                $ionicLoading.show({
-                    template: '<div class="padding">\
+            else {
+                $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                    console.log('Geolocation pass');
+                    $rootScope.locationService = 'active';
+                    $rootScope.currentUserLatitude = position.coords.latitude;
+                    $rootScope.currentUserLongitude = position.coords.longitude;
+                    return true;
+                }
+                            , function (err) {
+                                $rootScope.locationService = 'inactive';
+                                console.log("Could not get location , You have to enable location on your device");
+                                $ionicLoading.show({
+                                    template: '<div class="padding">\
                                     <a class="button button-icon icon energized ion-alert-circled"></a>\
                                     <h4>Can\'t get your location</h4>\
                                     <h5>You have to allow geolocation service on your device.</h4>\
                                 </div>',
-                    animation: 'slide-in-up'
-                });
-                $timeout(function () {
-                    $ionicLoading.hide();
-                }, 5000);
-                return false;
-            });
+                                    animation: 'slide-in-up'
+                                });
+                                $timeout(function () {
+                                    $ionicLoading.hide();
+                                }, 5000);
+                                return false;
+                            });
+            }
+
         }
     };
 });
