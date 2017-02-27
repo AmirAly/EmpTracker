@@ -28,6 +28,7 @@
                 $scope.userData.lastname = _res.data.data.LastName;
                 $scope.userData.mobile = _res.data.data.Mobile;
                 $scope.userData.email = _res.data.data.Email;
+                $scope.userData.fullname = _res.data.data.FirstName + " " + _res.data.data.LastName;
                 if (_res.data.data.Photo == null) {
                     $scope.userData.img = $rootScope.globalUserPhoto;
                 }

@@ -501,7 +501,7 @@
 
     .submenuPage .card {
         margin: 0 !important;
-        height:120px;
+        height: 120px;
     }
 
     .submenuPage .h5 {
@@ -560,7 +560,10 @@
             vertical-align: middle;
         }
 
-
+.tempdevicePage a {
+    text-decoration: underline;
+    color: blue;
+}
 
 /*map page*/
 .mapPage #map {
@@ -621,15 +624,27 @@
     }
 
 /*supervisor Account Page*/
-.supervisorAccountPage .list .placeholder-icon,
 .loginpage .list .placeholder-icon {
     position: absolute;
     top: 16px;
 }
 
+.supervisorAccountPage .list .placeholder-icon {
+    position: absolute;
+    top: 18px;
+}
+
+    .supervisorAccountPage .list .placeholder-icon:before {
+        font-size: 22px;
+    }
+
 .supervisorAccountPage .list input,
 .loginpage .list input {
     padding-left: 22px;
+}
+
+.supervisorAccountPage .padding .card {
+    margin: 0 !important;
 }
 
 

@@ -492,7 +492,6 @@
                     console.log('You are sure In');
                     // logout
                     LocalStorage.clear('UserLocalObject');
-                    $rootScope.UserIsInShift = false;
                     $window.localStorage['IsTempLogin'] = false;
                     localStorage.clear();
                     $state.go('login');
@@ -786,6 +785,7 @@
                 $scope.clockOut = false;
                 $scope.breakOut = false;
                 $ionicLoading.hide();
+                $state.go('app.dashboard');
             }
             else if (_res.data.code == 500) {
                 $scope.clockOut = true;
@@ -796,6 +796,8 @@
                 $rootScope.showToast(_res.data.data);
             }
             else {
+                $scope.clockOut = true;
+                $scope.breakOut = false;
                 $ionicLoading.hide();
                 console.log('fail');
                 //$scope.errorMSG = _res.data.data;

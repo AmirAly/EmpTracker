@@ -1,10 +1,11 @@
 ﻿empTracker.factory('API', ['$http', '$window', '$ionicLoading', '$timeout', '$state', '$rootScope', function ($http, $window, $ionicLoading, $timeout, $state, $rootScope) {
     var _url = "http://rostersmanager.com:90";
-    var headers = {};
+    var headers = {}; console.log('');
     return {
         name: 'API',
         execute: function (_req, _isAuth) {
-            // _isAuth means need token
+            console.log('');
+            //// _isAuth means need token
             if (_isAuth) {
                 headers = { 'Content-Type': 'application/json', 'Authorization': $window.localStorage['authorizationToken'] };
             }
@@ -17,13 +18,16 @@
                     return str.join("&");
                 };
             }
+            //_req.url = _url + _req.url;
+            //_req.headers = headers;
+            _req.timeout = 20000; //$timeout(function () { alert('request timed out'); }, 5000);
+            //console.log($http(_req));
+            //return $http(_req);
+
             _req.url = _url + _req.url;
             _req.headers = headers;
-            _req.timeout = 5000; //$timeout(function () { alert('request timed out'); }, 5000);
-
-            console.log($http(_req));
+            console.log(_req);
             return $http(_req);
-
         },
         refreshtoken: function (_req, _isAuth) {
             // _isAuth means need token
@@ -77,7 +81,7 @@
                         animation: 'slide-in-up'
                     });
                 }
-                
+
 
                 $rootScope.showToast(_error.data.Message);
                 $timeout(function () {
@@ -112,7 +116,7 @@ empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoad
             $http({
                 type: "HEAD",
                 method: "GET",
-                timeout: 5000,
+                timeout: 20000,
                 url: "http://rostersmanager.com:90"
             }).then(function (response) {
                 timeoutCounter = 0;
@@ -148,41 +152,127 @@ empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoad
 });
 
 empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation, $ionicLoading, $timeout) {
-    var options = { timeout: 10000, enableHighAccuracy: true };
+    //var options = { timeout: 10000, enableHighAccuracy: true };
     return {
         getLatLng: function (options) {
+            console.log('getLatLng');
             if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) {
+                console.log('if');
                 $rootScope.locationService = 'active';
                 $rootScope.currentUserLatitude = null;
                 $rootScope.currentUserLongitude = null;
                 return true;
             }
             else {
-                $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                console.log('else');
+
+                var posOption = {
+                    timeout: 15000,
+                    enableHighAccuracy: false
+                };
+                $cordovaGeolocation.getCurrentPosition(posOption).then(function (position) {
+                    //$scope.lat = position.coords.latitude;
+                    //$scope.long = position.coords.longitude;
                     console.log('Geolocation pass');
                     $rootScope.locationService = 'active';
                     $rootScope.currentUserLatitude = position.coords.latitude;
                     $rootScope.currentUserLongitude = position.coords.longitude;
+
+                    console.log($rootScope.currentUserLatitude);
+                    //socket.emit('my other event', {
+                    //    latitude: $rootScope.currentUserLatitude,
+                    //    longitude: $rootScope.currentUserLongitude
+                    //});
                     return true;
-                }
-                            , function (err) {
-                                $rootScope.locationService = 'inactive';
-                                console.log("Could not get location , You have to enable location on your device");
-                                $ionicLoading.show({
-                                    template: '<div class="padding">\
+
+                }, function (err) {
+                    console.log(err);
+                    $rootScope.locationService = 'inactive';
+                    console.log("Could not get location , You have to enable location on your device");
+                    $ionicLoading.show({
+                        template: '<div class="padding">\
                                     <a class="button button-icon icon energized ion-alert-circled"></a>\
                                     <h4>Can\'t get your location</h4>\
                                     <h5>You have to allow geolocation service on your device.</h4>\
                                 </div>',
-                                    animation: 'slide-in-up'
-                                });
-                                $timeout(function () {
-                                    $ionicLoading.hide();
-                                }, 5000);
-                                return false;
-                            });
-            }
+                        animation: 'slide-in-up'
+                    });
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 5000);
+                    return false;
+                });
+                //var watchOptions = {
+                //    frequency: 1000,
+                //    timeout: 15000,
+                //    enableHighAccuracy: false
+                //    // may cause errors if true
+                //};
+                //var watch = $cordovaGeolocation.watchPosition(watchOptions);
+                //watch.then(null, function (err) {
+                //    // error
+                //    console.log(err);
+                //    $rootScope.locationService = 'inactive';
+                //    console.log("Could not get location , You have to enable location on your device");
+                //    $ionicLoading.show({
+                //        template: '<div class="padding">\
+                //                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                //                    <h4>Can\'t get your location</h4>\
+                //                    <h5>You have to allow geolocation service on your device.</h4>\
+                //                </div>',
+                //        animation: 'slide-in-up'
+                //    });
+                //    $timeout(function () {
+                //        $ionicLoading.hide();
+                //    }, 5000);
+                //    return false;
+                //}, function (position) {
+                //    //var lat = position.coords.latitude
+                //    //var long = position.coords.longitude
+                //    console.log('Geolocation pass');
+                //    $rootScope.locationService = 'active';
+                //    $rootScope.currentUserLatitude = position.coords.latitude;
+                //    $rootScope.currentUserLongitude = position.coords.longitude;
 
+                //    $window.alert(lat);
+                //    //socket.emit('my other event', {
+                //    //    latitude: lat,
+                //    //    longitude: long
+                //    //});
+                //    return true;
+
+                //});
+                //watch.clearWatch();
+
+
+
+
+
+
+                //$cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                //    console.log('Geolocation pass');
+                //    $rootScope.locationService = 'active';
+                //    $rootScope.currentUserLatitude = position.coords.latitude;
+                //    $rootScope.currentUserLongitude = position.coords.longitude;
+                //    return true;
+                //}
+                //            , function (err) {
+                //                $rootScope.locationService = 'inactive';
+                //                console.log("Could not get location , You have to enable location on your device");
+                //                $ionicLoading.show({
+                //                    template: '<div class="padding">\
+                //                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                //                    <h4>Can\'t get your location</h4>\
+                //                    <h5>You have to allow geolocation service on your device.</h4>\
+                //                </div>',
+                //                    animation: 'slide-in-up'
+                //                });
+                //                $timeout(function () {
+                //                    $ionicLoading.hide();
+                //                }, 5000);
+                //                return false;
+                //            });
+            }
         }
     };
 });

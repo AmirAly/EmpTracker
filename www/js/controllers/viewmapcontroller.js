@@ -1,6 +1,6 @@
 ﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope, $timeout, $window, $stateParams, $cordovaGeolocation, $ionicPopup, $ionicLoading) {
     var currentShiftLatitude; var currentShiftLongitude; var currentUserLatitude; var currentUserLongitude;
-    var options = { timeout: 10000, enableHighAccuracy: false };
+    var options = { timeout: 15000, enableHighAccuracy: false };
     $scope.$on('$ionicView.enter', function () {
         var map;
         $ionicLoading.show({

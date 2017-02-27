@@ -9,13 +9,13 @@
             <div class="spacer"></div>
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <img class="circle" ng-src="{{globalUserPhoto}}" src="{{globalUserPhoto}}" />
+                    <img class="circle" ng-src="{{globalUserPhoto || 'images/unknown.png'}}" src="{{globalUserPhoto || 'images/unknown.png'}}" />
                 </div>
             </div>
 
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <h3>Welcome&nbsp;<b>{{globalUserName}}</b>.</h3>
+                    <h3>Welcome&nbsp;<b>{{globalUserName || ''}}</b></h3>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@
 
             <div class="padding row row-center">
                 <div class="col text-center">
-                    <a ng-click="logout()" href="#/tempdevicelogin.html">Log me out</a>
+                    <a ng-click="logout()">Log me out</a>
                 </div>
             </div>
 

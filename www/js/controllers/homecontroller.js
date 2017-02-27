@@ -58,7 +58,7 @@
                     $scope.todayEventsArray = [];
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                   
+
                 }
             }
             , function (error) {
@@ -99,7 +99,7 @@
             // show in page
             $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + " " + firstday.getDate();
             $scope.lastDayOfWeek = shortMonths[lastday.getMonth()] + " " + lastday.getDate() + "," + lastday.getFullYear();
-            
+
 
             var req = {
                 method: 'GET',
@@ -116,7 +116,7 @@
                         //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
-$scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
+                    $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
                     $ionicLoading.hide();
                 }
                 else {
@@ -161,7 +161,7 @@ $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
             var firstDayOfWeek = shortMonths[nextWeekFirstDay._d.getMonth()] + " " + nextWeekFirstDay._d.getDate();
             var lastDayOfWeek = shortMonths[nextWeekLastDay._d.getMonth()] + " " + nextWeekLastDay._d.getDate() + ", " + nextWeekLastDay._d.getFullYear();
             console.log(firstDayOfWeek);
-          
+
 
             // send to function
             var formatedWeekFirstDay = nextWeekFirstDay._d.getFullYear() + '-' + (nextWeekFirstDay._d.getMonth() + 1) + '-' + nextWeekFirstDay._d.getDate();
@@ -237,7 +237,7 @@ $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
             var firstDayOfWeek = shortMonths[preWeekFirstDay._d.getMonth()] + " " + preWeekFirstDay._d.getDate();
             var lastDayOfWeek = shortMonths[preWeekLastDay._d.getMonth()] + " " + preWeekLastDay._d.getDate() + ", " + preWeekLastDay._d.getFullYear();
 
-           
+
 
             // send to function
             var formatedWeekFirstDay = preWeekFirstDay._d.getFullYear() + '-' + (preWeekFirstDay._d.getMonth() + 1) + '-' + preWeekFirstDay._d.getDate();
@@ -392,18 +392,24 @@ $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
                 var formattedToday = date.year + "-" + date._month + "-" + date.day;
                 $scope.calendarEvents = [];
                 //console.log(formattedToday);
-                for (var i = 0; i < $scope.events.length; i++) {
-                    var eventDate = new Date($scope.events[i].StartDate);
-                    var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
-                    var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
-                    if (formattedToday == formatedEventDay) {
-                        $scope.calendarEvents.push($scope.events[i]);
-                        //console.log($scope.calendarEvents);
-                    }
+                if ($scope.events) {
+                    for (var i = 0; i < $scope.events.length; i++) {
+                        var eventDate = new Date($scope.events[i].StartDate);
+                        var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
+                        var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
+                        if (formattedToday == formatedEventDay) {
+                            $scope.calendarEvents.push($scope.events[i]);
+                            //console.log($scope.calendarEvents);
+                        }
 
+                    }
+                    $scope.loadCalendarEvents();
+                    $ionicLoading.hide();
                 }
-                $scope.loadCalendarEvents();
-                $ionicLoading.hide();
+                else {
+                    $scope.loadCalendarEvents();
+                    $ionicLoading.hide();
+                }
 
             },
             changeMonth: function (month, year) {

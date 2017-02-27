@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="empTracker">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -16,10 +16,10 @@
     */-->
 
     <script type="text/javascript" src="js/ionic.bundle.js"></script>
-    
+    <script type="text/javascript" src="js/ionicmodalselect.js"></script>
+
     <script src="ng-cordova.js"></script>
     <script src="cordova.js"></script>
-    <!--<script type="text/javascript" charset="utf-8" src="deviceinformation.js"></script>-->
 
     <!-- google maps javascript -->
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBbkSt_pCrWS4OxeVx73tABk9Pl28P1_QA&sensor=true&libraries=geometry" async defer></script>
@@ -57,7 +57,7 @@
     <script type="text/javascript" src="js/controllers/unscheduledshiftcontroller.js"></script>
 
 </head>
-<body>
+<body ng-app="empTracker">
     <ion-nav-view></ion-nav-view>
 </body>
 </html>

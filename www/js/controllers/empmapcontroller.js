@@ -3,7 +3,7 @@
     $scope.$on('$ionicView.enter', function () {
         //$rootScope.toggledrag = true;
         //Create a Map in Your Application
-        var options = { timeout: 10000, enableHighAccuracy: false };
+        var options = { timeout: 15000, enableHighAccuracy: false };
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
             $rootScope.locationService = 'active';
             // emp coordinates

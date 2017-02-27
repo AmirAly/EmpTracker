@@ -15,6 +15,9 @@
         'TotalHoursWorked': 0
     };
 
+    $scope.getLocation = function () {
+        $rootScope.getCurrentLocation();
+    }
     var formatedFirstDay, formatedLastday;
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
