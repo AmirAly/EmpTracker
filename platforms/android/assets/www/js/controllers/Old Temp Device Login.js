@@ -1,15 +1,33 @@
 ﻿empTracker.controller("tempdeviceloginController", function ($scope, $state, $ionicPopup, LocalStorage, API, $window, $rootScope, $ionicLoading) {
     $scope.logout = function () {
-        $rootScope.UserIsInShift = false;
-        $window.localStorage['IsTempLogin'] = false;
-        localStorage.clear();
-        $state.go('login');
+        if ($rootScope.UserIsInShift == true) {
+            // You can't log out as you still clocked in shift
+            $rootScope.showToast("You can't logout as you still clocked in a shift");
+        }
+        else {
+            var confirmPopup = $ionicPopup.confirm({
+                cssClass: 'bluePopup',
+                title: '<i class="ion-information-circled "></i> Confirm Log Out',
+                template: 'Are you sure you want to Logout?'
+            });
+
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('You are sure In');
+                    // logout
+                    LocalStorage.clear('UserLocalObject');
+                    $rootScope.UserIsInShift = false;
+                    $window.localStorage['IsTempLogin'] = false;
+                    localStorage.clear();
+                    $state.go('login');
+                } else {
+                    console.log('You are not sure In');
+                }
+            });
+
+        }
     }
-        //$rootScope.DeviceType = 'w';
-        //$rootScope.DeviceName  = 'w';
-        //$rootScope.MessagingRegistrationNo = 'w';
-        //$rootScope.HasBuiltInCamera = true;
-        //$scope.IsTemporaryDevice = false;
+
 
 
     $scope.newDeviceLogin = function () {
@@ -23,6 +41,9 @@
         });
 
 
+        $scope.HasBuiltInCamera = true;
+        $scope.IsTemporaryDevice = false;
+
         // add new device
         var req = {
             method: 'POST',
@@ -30,15 +51,18 @@
             data: {
                 IMEI: $rootScope.IMEI,
                 DeviceType: $rootScope.DeviceType,
-                DeviceName: $rootScope.DeviceName ,
+                DeviceName: $rootScope.DeviceName,
                 MessagingRegistrationNo: $rootScope.MessagingRegistrationNo,
-                HasBuiltInCamera: $rootScope.HasBuiltInCamera,
-                IsTemporaryDevice: false
+                HasBuiltInCamera: $scope.HasBuiltInCamera,
+                IsTemporaryDevice: $scope.IsTemporaryDevice
             }
         }
+        console.log('Device');
+        // console.log(JSON.stringify(req.data));
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
-            console.log(_res);
+            console.log('enter data');
+            console.log(JSON.stringify(_res.data));
             if (_res.data.code == 200) {
                 $ionicLoading.hide();
                 // empolyee
@@ -69,6 +93,10 @@
             template: '<i class="icon ion-loading-d"></i>'
         });
 
+
+        $scope.HasBuiltInCamera = true;
+        $scope.IsTemporaryDevice = true;
+
         // use temp device
         var req = {
             method: 'POST',
@@ -76,16 +104,16 @@
             data: {
                 IMEI: $rootScope.IMEI,
                 DeviceType: $rootScope.DeviceType,
-                DeviceName: $rootScope.DeviceName ,
+                DeviceName: $rootScope.DeviceName,
                 MessagingRegistrationNo: $rootScope.MessagingRegistrationNo,
-                HasBuiltInCamera: $rootScope.HasBuiltInCamera,
-                IsTemporaryDevice: true
+                HasBuiltInCamera: $scope.HasBuiltInCamera,
+                IsTemporaryDevice: $scope.IsTemporaryDevice
             }
         }
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             console.log(_res.data);
-            if (_res.data.code == 200) {
+            if (_res.data.code === 200) {
                 var loginCode = _res.data.code;
                 console.log('loginCode ' + loginCode);
                 $window.localStorage['IsTempLogin'] = true;
@@ -97,11 +125,10 @@
                 }
                     // supevisor
                 else {
-                    $state.go('supervisingemployees');
+                    $state.go('supervisormenu.supervisingemployees');
                 }
             }
             else {
-                $ionicLoading.hide();
                 $rootScope.showToast(_res.data.data);
             }
         }

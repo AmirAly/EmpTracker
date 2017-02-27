@@ -1,6 +1,6 @@
 ﻿<ion-view>
     <ion-header-bar class="bar-dark">
-        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
+        <button type="button" ng-hide="tempLogin" class="button button-icon icon ion-navicon" menu-toggle="left"></button>
 
         <button class="button button-icon stable" ng-click="notifications()">
             <i class="icon ion-android-notifications"></i>
@@ -35,19 +35,19 @@
 
                     <label class="item padding">
                         <i class="icon ion-person placeholder-icon"></i>
-                        <input ng-model="userData.firstname" type="text" readonly placeholder="First Name" name="txtFirstName" id="txtFirstName">
+                        <input ng-model="userData.fullname" type="text" readonly placeholder="First Name" name="txtFirstName" id="txtFirstName">
                         <span ng-show="frmUpdateAccount.txtFirstName.$dirty && frmUpdateAccount.txtFirstName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtFirstName.$error.required">required</span>
                         </span>
                     </label>
 
-                    <label class="item padding">
+                    <!--<label class="item padding">
                         <i class="icon ion-person placeholder-icon"></i>
                         <input ng-model="userData.lastname" type="text" readonly placeholder="Last Name" name="txtLastName" id="txtLastName">
                         <span ng-show="frmUpdateAccount.txtLastName.$dirty && frmUpdateAccount.txtLastName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtLastName.$error.required">required</span>
                         </span>
-                    </label>
+                    </label>-->
 
                     <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>
@@ -75,7 +75,7 @@
                     <a href="#/supervisormenu/supervisorchangepassword">Change Password</a>
                 </div>
                 <div class="col col-50 text-center">
-                    <a href="#/login" ng-click="logout()" >Log out</a>
+                    <a href="" ng-click="logout()" >Log out</a>
                 </div>
             </div>
             <div class="spacer"></div>

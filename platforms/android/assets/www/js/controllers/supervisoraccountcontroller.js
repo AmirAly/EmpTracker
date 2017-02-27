@@ -28,6 +28,7 @@
                 $scope.userData.lastname = _res.data.data.LastName;
                 $scope.userData.mobile = _res.data.data.Mobile;
                 $scope.userData.email = _res.data.data.Email;
+                $scope.userData.fullname = _res.data.data.FirstName + " " + _res.data.data.LastName;
                 if (_res.data.data.Photo == null) {
                     $scope.userData.img = $rootScope.globalUserPhoto;
                 }
@@ -69,7 +70,7 @@
             console.log($scope.userData.email);
             var str = $scope.userData.img;
             str = str.substring(str.indexOf(",") + 1);
-            console.log(str);
+            //console.log(str);
             var mobileNumber = ($scope.userData.mobile).replace(/[^0-9\.]+/g, "");
             console.log(mobileNumber);
 

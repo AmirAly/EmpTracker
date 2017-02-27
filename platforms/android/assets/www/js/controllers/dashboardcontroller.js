@@ -15,6 +15,9 @@
         'TotalHoursWorked': 0
     };
 
+    $scope.getLocation = function () {
+        $rootScope.getCurrentLocation();
+    }
     var formatedFirstDay, formatedLastday;
     $scope.$on('$ionicView.enter', function () {
         $rootScope.toggledrag = true;
@@ -195,5 +198,7 @@
     $scope.notifications = function () {
         $state.go('app.notifications');
     }
-
+    $scope.shiftView = function (_shiftId) {
+        $state.go('app.shiftview', { shiftid: _shiftId });
+    }
 });

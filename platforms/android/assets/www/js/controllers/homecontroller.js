@@ -1,7 +1,9 @@
 ﻿empTracker.controller("homeController", function ($scope, $state, $ionicTabsDelegate, $timeout, $http, $ionicPopup, $rootScope, API, $ionicLoading, $window, $location) {
     // run controller code EVERY time the view is enterd
     $scope.$on('$ionicView.enter', function test() {
-
+        $scope.toggleMenu = function () {
+            angular.element(document.querySelector('#menuBtn')).triggerHandler('click');
+        }
         //console.log('enter'); 
         $rootScope.toggledrag = false;
 
@@ -56,7 +58,7 @@
                     $scope.todayEventsArray = [];
                     console.log(_res.data.data);
                     $rootScope.showToast(_res.data.data);
-                   
+
                 }
             }
             , function (error) {
@@ -97,7 +99,7 @@
             // show in page
             $scope.firstDayOfWeek = shortMonths[firstday.getMonth()] + " " + firstday.getDate();
             $scope.lastDayOfWeek = shortMonths[lastday.getMonth()] + " " + lastday.getDate() + "," + lastday.getFullYear();
-            $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
+
 
             var req = {
                 method: 'GET',
@@ -114,6 +116,7 @@
                         //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
+                    $scope.weekDate = $scope.firstDayOfWeek + ' - ' + $scope.lastDayOfWeek;
                     $ionicLoading.hide();
                 }
                 else {
@@ -158,7 +161,7 @@
             var firstDayOfWeek = shortMonths[nextWeekFirstDay._d.getMonth()] + " " + nextWeekFirstDay._d.getDate();
             var lastDayOfWeek = shortMonths[nextWeekLastDay._d.getMonth()] + " " + nextWeekLastDay._d.getDate() + ", " + nextWeekLastDay._d.getFullYear();
             console.log(firstDayOfWeek);
-            $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
+
 
             // send to function
             var formatedWeekFirstDay = nextWeekFirstDay._d.getFullYear() + '-' + (nextWeekFirstDay._d.getMonth() + 1) + '-' + nextWeekFirstDay._d.getDate();
@@ -189,6 +192,7 @@
                         //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
+                    $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
                     $ionicLoading.hide();
                 }
                 else {
@@ -233,7 +237,7 @@
             var firstDayOfWeek = shortMonths[preWeekFirstDay._d.getMonth()] + " " + preWeekFirstDay._d.getDate();
             var lastDayOfWeek = shortMonths[preWeekLastDay._d.getMonth()] + " " + preWeekLastDay._d.getDate() + ", " + preWeekLastDay._d.getFullYear();
 
-            $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
+
 
             // send to function
             var formatedWeekFirstDay = preWeekFirstDay._d.getFullYear() + '-' + (preWeekFirstDay._d.getMonth() + 1) + '-' + preWeekFirstDay._d.getDate();
@@ -264,6 +268,7 @@
                         //console.log($scope.weeklyEventsArray[i].TotalHours);
                         $scope.weeklyTotalHours = $scope.weeklyTotalHours + $scope.weeklyEventsArray[i].TotalHours;
                     }
+                    $scope.weekDate = firstDayOfWeek + ' - ' + lastDayOfWeek;
                     $ionicLoading.hide();
                 }
                 else {
@@ -387,18 +392,24 @@
                 var formattedToday = date.year + "-" + date._month + "-" + date.day;
                 $scope.calendarEvents = [];
                 //console.log(formattedToday);
-                for (var i = 0; i < $scope.events.length; i++) {
-                    var eventDate = new Date($scope.events[i].StartDate);
-                    var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
-                    var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
-                    if (formattedToday == formatedEventDay) {
-                        $scope.calendarEvents.push($scope.events[i]);
-                        //console.log($scope.calendarEvents);
-                    }
+                if ($scope.events) {
+                    for (var i = 0; i < $scope.events.length; i++) {
+                        var eventDate = new Date($scope.events[i].StartDate);
+                        var formatedEventDateUTC = new Date(Date.parse(new Date(eventDate).toUTCString()));
+                        var formatedEventDay = formatedEventDateUTC.getFullYear() + '-' + (formatedEventDateUTC.getMonth() + 1) + '-' + formatedEventDateUTC.getDate();
+                        if (formattedToday == formatedEventDay) {
+                            $scope.calendarEvents.push($scope.events[i]);
+                            //console.log($scope.calendarEvents);
+                        }
 
+                    }
+                    $scope.loadCalendarEvents();
+                    $ionicLoading.hide();
                 }
-                $scope.loadCalendarEvents();
-                $ionicLoading.hide();
+                else {
+                    $scope.loadCalendarEvents();
+                    $ionicLoading.hide();
+                }
 
             },
             changeMonth: function (month, year) {

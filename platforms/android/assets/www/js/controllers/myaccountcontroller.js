@@ -28,6 +28,7 @@
                 $scope.userData.lastname = _res.data.data.LastName;
                 $scope.userData.mobile = _res.data.data.Mobile;
                 $scope.userData.email = _res.data.data.Email;
+                $scope.userData.fullname = _res.data.data.FirstName + " " + _res.data.data.LastName;
                 if (_res.data.data.Photo == null) {
                     $scope.userData.img = $rootScope.globalUserPhoto;
                 }
@@ -130,8 +131,8 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
-                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
-                correctOrientation: true
+                cameraDirection: "FRONT", // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                correctOrientation: true,
             });
         }
         else {
@@ -157,7 +158,7 @@
                 targetWidth: 140,
                 targetHeight: 140,
                 destinationType: Camera.DestinationType.DATA_URL,
-                cameraDirection: 1, // "1" is used for front-facing camera and "0" is used for back-facing camera.
+                cameraDirection: "FRONT", // "1" is used for front-facing camera and "0" is used for back-facing camera.
                 correctOrientation: true
             });
         }

@@ -1,10 +1,11 @@
 ﻿empTracker.factory('API', ['$http', '$window', '$ionicLoading', '$timeout', '$state', '$rootScope', function ($http, $window, $ionicLoading, $timeout, $state, $rootScope) {
     var _url = "http://rostersmanager.com:90";
-    var headers = {};
+    var headers = {}; console.log('');
     return {
         name: 'API',
         execute: function (_req, _isAuth) {
-            // _isAuth means need token
+            console.log('');
+            //// _isAuth means need token
             if (_isAuth) {
                 headers = { 'Content-Type': 'application/json', 'Authorization': $window.localStorage['authorizationToken'] };
             }
@@ -17,13 +18,16 @@
                     return str.join("&");
                 };
             }
+            //_req.url = _url + _req.url;
+            //_req.headers = headers;
+            _req.timeout = 20000; //$timeout(function () { alert('request timed out'); }, 5000);
+            //console.log($http(_req));
+            //return $http(_req);
+
             _req.url = _url + _req.url;
             _req.headers = headers;
-            _req.timeout = 5000; //$timeout(function () { alert('request timed out'); }, 5000);
-
-            console.log($http(_req));
+            console.log(_req);
             return $http(_req);
-
         },
         refreshtoken: function (_req, _isAuth) {
             // _isAuth means need token
@@ -55,25 +59,30 @@
                     template: '<div class="padding">\
                                 <a class="button button-icon icon energized ion-alert-circled"></a>\
                                 <h4>Timeout Error</h4>\
+                                <h5>Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
                               </div>',
                     animation: 'slide-in-up'
                 });
                 $timeout(function () {
                     $ionicLoading.hide();
-                }, 3000);
+                }, 5000);
             }
             else if (_error.status == 401 && _error.statusText == "Unauthorized") { /* catch 401  Error here */
                 console.log(_error.data.Message);
                 // should use refresh token here ?
                 //.. 
-                $ionicLoading.show({
-                    //templateUrl: 'templates/tokenexpired.html',
-                    template: '<div class="padding">\
-                                <a class="button button-icon icon energized ion-alert-circled"></a>\
-                                <h4>' + _error.data.Message + '</h4>\
-                              </div>',
-                    animation: 'slide-in-up'
-                });
+                if (!ionic.Platform.isAndroid()) {
+                    $ionicLoading.show({
+                        //templateUrl: 'templates/tokenexpired.html',
+                        template: '<div class="padding">\
+                                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                    <h4>' + _error.data.Message + '</h4>\
+                                  </div>',
+                        animation: 'slide-in-up'
+                    });
+                }
+
+
                 $rootScope.showToast(_error.data.Message);
                 $timeout(function () {
                     console.log(_error);
@@ -107,7 +116,7 @@ empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoad
             $http({
                 type: "HEAD",
                 method: "GET",
-                timeout: 5000,
+                timeout: 20000,
                 url: "http://rostersmanager.com:90"
             }).then(function (response) {
                 timeoutCounter = 0;
@@ -125,13 +134,14 @@ empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoad
                         $ionicLoading.show({
                             template: '<div class="padding">\
                                 <a class="button button-icon icon energized ion-alert-circled"></a>\
-                                <h4>Timeout Error, The connection to the server failed</h4>\
+                                <h4>No Internet Connection</h4>\
+                                <h5>No internet connection. Make sure that WIFI or Mobile Data is turned on, then try again</h5>\
                               </div>',
                             animation: 'slide-in-up'
                         });
                         $timeout(function () {
                             $ionicLoading.hide();
-                        }, 3000);
+                        }, 5000);
                     }
                 }
 
@@ -142,32 +152,127 @@ empTracker.factory('InternetConnection', function ($http, $rootScope, $ionicLoad
 });
 
 empTracker.factory('CurrentLocation', function ($rootScope, $cordovaGeolocation, $ionicLoading, $timeout) {
-    var options = { timeout: 10000, enableHighAccuracy: true };
+    //var options = { timeout: 10000, enableHighAccuracy: true };
     return {
         getLatLng: function (options) {
-            $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
-                console.log('Geolocation pass');
+            console.log('getLatLng');
+            if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) {
+                console.log('if');
                 $rootScope.locationService = 'active';
-                $rootScope.currentUserLatitude = position.coords.latitude;
-                $rootScope.currentUserLongitude = position.coords.longitude;
+                $rootScope.currentUserLatitude = null;
+                $rootScope.currentUserLongitude = null;
                 return true;
             }
-            , function (err) {
-                $rootScope.locationService = 'inactive';
-                console.log("Could not get location , You have to enable location on your device");
-                $ionicLoading.show({
-                    template: '<div class="padding">\
+            else {
+                console.log('else');
+
+                var posOption = {
+                    timeout: 15000,
+                    enableHighAccuracy: false
+                };
+                $cordovaGeolocation.getCurrentPosition(posOption).then(function (position) {
+                    //$scope.lat = position.coords.latitude;
+                    //$scope.long = position.coords.longitude;
+                    console.log('Geolocation pass');
+                    $rootScope.locationService = 'active';
+                    $rootScope.currentUserLatitude = position.coords.latitude;
+                    $rootScope.currentUserLongitude = position.coords.longitude;
+
+                    console.log($rootScope.currentUserLatitude);
+                    //socket.emit('my other event', {
+                    //    latitude: $rootScope.currentUserLatitude,
+                    //    longitude: $rootScope.currentUserLongitude
+                    //});
+                    return true;
+
+                }, function (err) {
+                    console.log(err);
+                    $rootScope.locationService = 'inactive';
+                    console.log("Could not get location , You have to enable location on your device");
+                    $ionicLoading.show({
+                        template: '<div class="padding">\
                                     <a class="button button-icon icon energized ion-alert-circled"></a>\
                                     <h4>Can\'t get your location</h4>\
                                     <h5>You have to allow geolocation service on your device.</h4>\
                                 </div>',
-                    animation: 'slide-in-up'
+                        animation: 'slide-in-up'
+                    });
+                    $timeout(function () {
+                        $ionicLoading.hide();
+                    }, 5000);
+                    return false;
                 });
-                $timeout(function () {
-                    $ionicLoading.hide();
-                }, 5000);
-                return false;
-            });
+                //var watchOptions = {
+                //    frequency: 1000,
+                //    timeout: 15000,
+                //    enableHighAccuracy: false
+                //    // may cause errors if true
+                //};
+                //var watch = $cordovaGeolocation.watchPosition(watchOptions);
+                //watch.then(null, function (err) {
+                //    // error
+                //    console.log(err);
+                //    $rootScope.locationService = 'inactive';
+                //    console.log("Could not get location , You have to enable location on your device");
+                //    $ionicLoading.show({
+                //        template: '<div class="padding">\
+                //                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                //                    <h4>Can\'t get your location</h4>\
+                //                    <h5>You have to allow geolocation service on your device.</h4>\
+                //                </div>',
+                //        animation: 'slide-in-up'
+                //    });
+                //    $timeout(function () {
+                //        $ionicLoading.hide();
+                //    }, 5000);
+                //    return false;
+                //}, function (position) {
+                //    //var lat = position.coords.latitude
+                //    //var long = position.coords.longitude
+                //    console.log('Geolocation pass');
+                //    $rootScope.locationService = 'active';
+                //    $rootScope.currentUserLatitude = position.coords.latitude;
+                //    $rootScope.currentUserLongitude = position.coords.longitude;
+
+                //    $window.alert(lat);
+                //    //socket.emit('my other event', {
+                //    //    latitude: lat,
+                //    //    longitude: long
+                //    //});
+                //    return true;
+
+                //});
+                //watch.clearWatch();
+
+
+
+
+
+
+                //$cordovaGeolocation.getCurrentPosition(options).then(function (position) {
+                //    console.log('Geolocation pass');
+                //    $rootScope.locationService = 'active';
+                //    $rootScope.currentUserLatitude = position.coords.latitude;
+                //    $rootScope.currentUserLongitude = position.coords.longitude;
+                //    return true;
+                //}
+                //            , function (err) {
+                //                $rootScope.locationService = 'inactive';
+                //                console.log("Could not get location , You have to enable location on your device");
+                //                $ionicLoading.show({
+                //                    template: '<div class="padding">\
+                //                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                //                    <h4>Can\'t get your location</h4>\
+                //                    <h5>You have to allow geolocation service on your device.</h4>\
+                //                </div>',
+                //                    animation: 'slide-in-up'
+                //                });
+                //                $timeout(function () {
+                //                    $ionicLoading.hide();
+                //                }, 5000);
+                //                return false;
+                //            });
+            }
         }
     };
 });
@@ -177,6 +282,9 @@ empTracker.factory('CallPerodicalUpdate', function ($rootScope, $window, $state,
         sendUpdate: function () {
             $rootScope.currentUserLatitude = 0;
             $rootScope.currentUserLongitude = 0;
+            //if ($rootScope.userSettings.TimeAttendanceSettings.AllowClockingWithoutGPS == false) { //Not allowed without GPS 
+            // what is periodical update required setting option ?
+            //}
             $rootScope.getCurrentLocation();
             $rootScope.$watch('$root.currentUserLongitude', function () {
                 if ($rootScope.currentUserLongitude != 0) {

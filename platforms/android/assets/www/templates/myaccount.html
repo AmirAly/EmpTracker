@@ -7,7 +7,7 @@
         </button>
         <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
         <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
-        
+
         <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
 
@@ -15,13 +15,13 @@
         <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
 
     </ion-header-bar>
-    
+
     <form name="frmUpdateAccount" novalidate ng-submit="updateAccount(frmUpdateAccount)">
         <ion-content class="supervisorAccountPage " overflow-scroll="true" padding="true">
             <div class="padding-horizontal row row-center">
                 <div class="col card">
                     <div class="text-center">
-                        <img ng-click="openImgDialog()" class="circle"  ng-src="{{userData.img}}" />
+                        <img ng-click="openImgDialog()" class="circle" ng-src="{{userData.img}}" />
                     </div>
                 </div>
             </div>
@@ -37,19 +37,12 @@
 
                     <label class="item padding">
                         <i class="icon ion-person placeholder-icon"></i>
-                        <input ng-model="userData.firstname" type="text" required readonly placeholder="First Name" name="txtFirstName" id="txtFirstName">
+                        <input ng-model="userData.fullname" type="text" required readonly placeholder="Emp Name" name="txtFirstName" id="txtFirstName">
                         <span ng-show="frmUpdateAccount.txtFirstName.$dirty && frmUpdateAccount.txtFirstName.$invalid">
                             <span class="errorFont" ng-show="frmUpdateAccount.txtFirstName.$error.required">required</span>
                         </span>
                     </label>
 
-                    <label class="item padding">
-                        <i class="icon ion-person placeholder-icon"></i>
-                        <input ng-model="userData.lastname" type="text" required readonly placeholder="Last Name" name="txtLastName" id="txtLastName">
-                        <span ng-show="frmUpdateAccount.txtLastName.$dirty && frmUpdateAccount.txtLastName.$invalid">
-                            <span class="errorFont" ng-show="frmUpdateAccount.txtLastName.$error.required">required</span>
-                        </span>
-                    </label>
 
                     <label class="item  padding">
                         <i class="icon ion-iphone placeholder-icon"></i>

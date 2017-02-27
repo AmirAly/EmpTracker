@@ -1,6 +1,6 @@
 ﻿var empTracker = angular.module('empTracker', ['ionic', 'ngCordova', 'ui.router', 'flexcalendar', 'pascalprecht.translate']);
 
-empTracker.run(function ($ionicPlatform, $rootScope,$cordovaNetwork, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory) {
+empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory, $ionicLoading, $timeout) {
     $ionicPlatform.ready(function () {
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -16,18 +16,19 @@ empTracker.run(function ($ionicPlatform, $rootScope,$cordovaNetwork, $state, Int
             $rootScope.DeviceType = device.platform;
             $rootScope.DeviceName = device.model;
             window.plugins.sim.getSimInfo(function getSimInfoSuccessCallback(result) {
-                console.log('111111111111111111111111');
                 console.log(JSON.stringify(result));
                 $rootScope.IMEI = result.deviceId;
             }, function getSimInfoErrorCallback(error) {
-                console.log('000000000000000000000000');
                 console.log(JSON.stringify(error));
             });
         }
 
-        $rootScope.IMEI = 5;
 
-        
+        //$rootScope.IMEI = "123456789";
+        //$rootScope.DeviceType = "w";
+        //$rootScope.DeviceName = "w";
+        //$rootScope.MessagingRegistrationNo = "w";
+        $rootScope.HasBuiltInCamera = true;
 
         $ionicPlatform.registerBackButtonAction(function (event) {
             if ($ionicHistory.currentStateName() === 'app.dashboard') {
@@ -38,42 +39,58 @@ empTracker.run(function ($ionicPlatform, $rootScope,$cordovaNetwork, $state, Int
         }, 100);
 
         $rootScope.showToast = function (_message) {
-            
-            window.plugins.toast.showWithOptions({
-                message: _message,
-                duration: "long",
-                position: "center",
-                styling: {
-                    textColor: '#f44336', // Ditto. Default #FFFFFF
-                    //textSize: '20.5', // Default is approx. 13.
-                    opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-                    cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
-                    backgroundColor: '#111111',
-                    horizontalPadding: '16',// iOS default 16, Android default 50
-                    verticalPadding: '12' // iOS default 12, Android default 30
-                    // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
-                }
-            },
-           //Success callback
-            function (args) {
-                console.log('cordovaToast: ' + JSON.stringify(args));
-                if (args && args.event == "touch") {
-                    //alert("touched");
-                }
-            },
-            function (error) {
-                log('cordovaToast error: ', error);
-            });
-
-            //var audio = new Audio('http://codedreaming.com/wp-content/uploads/main_tune.mp3');
             if (ionic.Platform.isAndroid()) {
-                var audio = new Audio('/android_asset/www/sounds/msg.wav');
-                audio.play();
+                console.log('showToast: ' + _message);
+                window.plugins.toast.showWithOptions({
+                    message: _message,
+                    duration: "long",
+                    position: "center",
+                    styling: {
+                        textColor: '#ffffff',//'#f44336', // Ditto. Default #FFFFFF
+                        //textSize: '20.5', // Default is approx. 13.
+                        opacity: '0.8', // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                        cornerRadius: '10', // minimum is 0 (square). iOS default 20, Android default 100
+                        backgroundColor: '#8b0000',//'#111111',
+                        horizontalPadding: '16',// iOS default 16, Android default 50
+                        verticalPadding: '12' // iOS default 12, Android default 30
+                        // backgroundColor: '#FF0000', // make sure you use #RRGGBB. Default #333333
+                    }
+                },
+               //Success callback
+                function (args) {
+                    console.log('cordovaToast: ' + JSON.stringify(args));
+                    if (args && args.event == "touch") {
+                        //alert("touched");
+                    }
+                },
+                function (error) {
+                    log('cordovaToast error: ', error);
+                });
+
+                //var audio = new Audio('http://codedreaming.com/wp-content/uploads/main_tune.mp3');
+                if (ionic.Platform.isAndroid()) {
+                    var audio = new Audio('/android_asset/www/sounds/msg.wav');
+                    audio.play();
+                }
+                else {
+                    var audio = new Audio('sounds/msg.wav');
+                    audio.play();
+                }
             }
             else {
-                var audio = new Audio('sounds/msg.wav');
-                audio.play();
+                console.log(_message);
+                $ionicLoading.show({
+                    template: '<div class="padding">\
+                                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                    <h4>' + _message + '</h4>\
+                                  </div>',
+                    animation: 'slide-in-up'
+                });
+                $timeout(function () {
+                    $ionicLoading.hide();
+                }, 5000);
             }
+
 
         }
 
@@ -137,24 +154,21 @@ empTracker.run(function ($ionicPlatform, $rootScope,$cordovaNetwork, $state, Int
         }
     });
 
-    $rootScope.$on('$cordovaNetwork:offline', function () {console.log('you are offline now !!') });
-
-    // set default value of internetStatus checkConnection
+    // set default value of internetStatus checkConnection every 10 seconds
     $rootScope.internetStatus = 'disconnected';
     $rootScope.checkInternet = function () {
         setInterval(function () {
             InternetConnection.checkConnection();
         }, 10000);
     };
-   $rootScope.checkInternet();
+    $rootScope.checkInternet();
 
     // get current location lat lng
     $rootScope.locationService = 'inactive';
     $rootScope.getCurrentLocation = function () {
         CurrentLocation.getLatLng();
     };
-    // call get location when needed 
-    $rootScope.getCurrentLocation();
+
 
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
@@ -190,15 +204,11 @@ empTracker.config(['$ionicConfigProvider', function ($ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom'); // other values: top
 }]);
 
-//empTracker.config(['$httpProvider', function ($httpProvider) {
-//    $httpProvider.defaults.timeout = 5000;
-//}]);
-
 empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvider) {
     $urlRouterProvider.otherwise('/login');
     $stateProvider
     .state('login', {
-        cache: false,
+        //cache: false,
         url: '/login',
         controller: "LoginController",
         templateUrl: 'templates/login.html'
@@ -247,6 +257,7 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
     })
 
     .state('app.shiftview', {
+        cache: false,
         url: '/shiftView/:shiftid?',
         views: {
             'menuContent': {

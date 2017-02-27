@@ -1,8 +1,16 @@
-﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope, $timeout, $window, $stateParams, $cordovaGeolocation) {
+﻿empTracker.controller("viewmapController", function ($scope, $state, $rootScope, $timeout, $window, $stateParams, $cordovaGeolocation, $ionicPopup, $ionicLoading) {
     var currentShiftLatitude; var currentShiftLongitude; var currentUserLatitude; var currentUserLongitude;
-    var options = { timeout: 10000, enableHighAccuracy: false };
-        $scope.$on('$ionicView.enter', function () {
+    var options = { timeout: 15000, enableHighAccuracy: false };
+    $scope.$on('$ionicView.enter', function () {
         var map;
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
             // shift coordinates
             currentShiftLatitude = $stateParams.Latitude;
@@ -57,15 +65,31 @@
                 google.maps.event.addListener(marker2, 'click', function () {
                     infoWindow2.open($scope.map, marker2);
                 });
+$ionicLoading.hide();
+                
 
             });
         }, function (error) {
             console.log(error);
             console.log("Could not get location");
+            var alertPopup = $ionicPopup.alert({
+                title: 'Can\'t display map',
+                template: 'Could Not Find Address On Map. Please Contact Your Company'
+            });
+        }).finally(function () {
+            $ionicLoading.hide();
         });
     });
 
     $scope.Navigate = function () {
+        $ionicLoading.show({
+            content: 'Loading',
+            animation: 'fade-in',
+            showBackdrop: true,
+            maxWidth: 200,
+            showDelay: 0,
+            template: '<i class="icon ion-loading-d"></i>'
+        });
         var directionsService = new google.maps.DirectionsService();
         $cordovaGeolocation.getCurrentPosition(options).then(function (position) {
             var geolocate = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -106,6 +130,8 @@
         }, function (error) {
             console.log(error);
             console.log("Could not get location");
+        }).finally(function () {
+            $ionicLoading.hide();
         });
     }
 
