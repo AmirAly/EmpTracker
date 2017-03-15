@@ -1,0 +1,49 @@
+﻿<ion-view view-title="Tabs" class="homePage">
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left" id="menuBtn"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+        </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true" padding="true" class="calendarView " on-swipe-right="toggleMenu()">
+        <div class="padding-top">
+            <h3 class="text-center">Today</h3>
+            <h4 class="text-center">{{todayDateString}}</h4>
+        </div>
+        <!--no schedual today part-->
+        <div class=" text-center" ng-show="!todayEventsArray.length">
+            <img src="images/noshift.png" />
+
+        </div>
+
+        <div class="padding">
+            <button class="button button-block button-positive" ng-click="goToUnscheduledShift()">Start Unscheduled Shift</button>
+        </div>
+        <!--<div class="row" ng-show="mapView==true">
+                <div class="col card padding text-center">
+                    <div id="map"></div>
+                </div>
+            </div>-->
+        <!-- today shifts part-->
+        <div class="list padding" ng-show="todayEventsArray.length">
+            <div ng-repeat="event in todayEventsArray">
+                <div class="item item-text-wrap text-center">
+                    <div ng-include="'templates/todayshift.temp.html'"></div>
+                </div>
+            </div>
+            <!--<button ng-click="showClockInConfirmation()" class="button button-block button-positive icon ion-android-stopwatch">
+                <span>&nbsp;Clock-In</span>
+            </button>-->
+        </div>
+
+        <div class="spacer"></div>
+        <ion-spinner icon="spiral" class="spinner-energized"></ion-spinner>
+    </ion-content>
+</ion-view>

@@ -1,4 +1,14 @@
-﻿empTracker.controller("MenuController", function ($scope, $state,$ionicPopup, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
+﻿empTracker.controller("MenuController", function ($scope, $state,$ionicPopup,$ionicHistory, $ionicSideMenuDelegate, $location, $window, $rootScope, LocalStorage) {
+    $scope.$on('$ionicView.enter', function () {
+        if ($ionicHistory.currentStateName() === 'app.daily' || $ionicHistory.currentStateName() === 'app.weekly' || $ionicHistory.currentStateName() === 'app.calendar') {
+            $scope.homeTabs = true;
+        }
+        else {
+            $scope.homeTabs = false;
+        }
+    });
+
+
     $scope.openmyaccount = function () {
         $state.go('app.myaccount');
     }
@@ -22,7 +32,7 @@
     }
     $scope.home = function () {
         console.log('home');
-        $state.go('app.home');
+        $state.go('app.daily');
     }
     $scope.shiftView = function () {
         //$state.go('app.shiftview');

@@ -7,7 +7,7 @@
         </button>
         <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
         <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
-        
+
         <div class="pull-right floatRight" ng-click="openmyaccount()">
             <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
 
@@ -32,7 +32,7 @@
                         <!--7 days of this week-->
                         <div class="row dvWeekDays">
                             <div class="col col-7" ng-repeat="item in thisWeekDays"
-                                  ng-class="{activeDay : item.selected}" ng-click="selectDay(item)">
+                                 ng-class="{activeDay : item.selected}" ng-click="selectDay(item)">
                                 <div class="row weekDaysHeader" tabindex="1"><span class="col noPadding">{{item.dayName}}</span></div>
                                 <div class="row weekDaysBody"><span class="col noPadding"><h5>{{item.dayNumber}}</h5><span>{{item.month}}</span></span></div>
                                 <div class="row weekDaysFooter"><span class="col noPadding"><span class="ion-arrow-up-b" ng-show="item.selected"></span></span></div>
@@ -82,10 +82,10 @@
                         <div class="card attendanceCard">
                             <div class="row">
                                 <div class="col col-50 text-center">
-                                    <h5>Hours worked</h5>
+                                    <h5>Clocked Hours</h5>
                                 </div>
                                 <div class="col col-50 text-center">
-                                    <h5>Break Mintes</h5>
+                                    <h5>Break</h5>
                                 </div>
                             </div>
 
@@ -110,8 +110,8 @@
                             <tr ng-repeat="attendance in weeklyReportDataArray">
                                 <td class="text-center"><h4>{{attendance.dayName}}</h4><span>{{attendance.dayInMonth}}</span></td>
                                 <td>{{attendance.SiteName}}</td>
-                                <td>{{attendance.ClockIn | date:'hh:mm a'}}</td>
-                                <td>{{attendance.ClockOut | date:'hh:mm a'}}</td>
+                                <td>{{attendance.ClockIn}} <br /> <span ng-show="showGPSIcon == true"> <span class="icon ion-ios-location" ng-class="{'fontLightBlue' : attendance.lat != null}"></span></span></td>
+                                <td>{{attendance.ClockOut}}</td>
                                 <td>{{attendance.HRS}}</td>
                             </tr>
 

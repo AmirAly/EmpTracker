@@ -122,6 +122,10 @@
         });
     }
 
+    $scope.closeImgDialog = function () {
+        $ionicLoading.hide();
+    }
+
     $scope.takePhoto = function () {
         if (navigator && navigator.camera) {
             navigator.camera.getPicture(function (data) {// on succsess
@@ -132,7 +136,10 @@
                     $scope.userData.img = data;
                 }
                 $ionicLoading.hide();
-            }, null, {
+            }, function () {
+                console.log('cancelled');
+                $ionicLoading.hide();
+            }, {
                 sourceType: Camera.PictureSourceType.CAMERA,
                 quality: 50,
                 targetWidth: 140,
@@ -159,7 +166,10 @@
                     $scope.userData.img = data;
                 }
                 $ionicLoading.hide();
-            }, null, {
+            }, function () {
+                console.log('cancelled');
+                $ionicLoading.hide();
+            }, {
                 sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
                 quality: 50,
                 targetWidth: 140,

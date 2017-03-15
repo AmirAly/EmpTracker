@@ -18,9 +18,9 @@
     //    });
     //    confirmPopup.then(function (res) {
     //        if (res) {
-    //            console.log('You are sure');
+    //            //console.log('You are sure');
     //        } else {
-    //            console.log('You are not sure');
+    //            //console.log('You are not sure');
     //        }
     //    });
     //};
@@ -38,6 +38,12 @@
 
         ////////////////  get first & last day of this week  ///////////////////////
     console.log($rootScope.userSettings);
+    if ($rootScope.userSettings.TimeAttendanceSettings.EnableGPSCapturingOnClocking == true) { //show icon
+        $scope.showGPSIcon = true;
+    } else {
+        $scope.showGPSIcon = false;
+    }
+
     var firstday, lastday, testDay, intialDate;
         // get week 7 days
     var todayUTC = moment().utc().date();
@@ -49,14 +55,14 @@
         $scope.thisWeekDays = [];
         for (var i = 0; i < 7; i++) {
             testDay = moment().isoWeekday(1).startOf('isoweek').add(i, 'days');
-            console.log(testDay._d.getDate()); // day in month
-            console.log(todayUTC); 
+           //console.log(testDay._d.getDate()); // day in month
+           //console.log(todayUTC); 
             if (testDay._d.getDate() === todayUTC)
                 $scope.thisWeekDays.push({ "id": i + 1, "month": shortMonths[testDay._d.getMonth()], "dayNumber": testDay._d.getDate(), "dayName": shortDays[testDay._d.getDay()], "fullDate": testDay._d, "selected": true });
             else
                 $scope.thisWeekDays.push({ "id": i + 1, "month": shortMonths[testDay._d.getMonth()], "dayNumber": testDay._d.getDate(), "dayName": shortDays[testDay._d.getDay()], "fullDate": testDay._d, "selected": false });
         }
-        console.log($scope.thisWeekDays);
+       //console.log($scope.thisWeekDays);
     }
     else {
         intialDate = $rootScope.sundayWeekStart._d;
@@ -65,18 +71,18 @@
         $scope.thisWeekDays = [];
         for (var i = 0; i < 7; i++) {
             testDay = moment().isoWeekday(1).startOf('isoweek').subtract(1, 'days').add(i, 'days');
-            console.log(testDay._d.getDate()); // day in month
-            console.log(todayUTC);
+            //console.log(testDay._d.getDate()); // day in month
+            //console.log(todayUTC);
             if (testDay._d.getDate() === todayUTC)
                 $scope.thisWeekDays.push({ "id": i + 1, "month": shortMonths[testDay._d.getMonth()], "dayNumber": testDay._d.getDate(), "dayName": shortDays[testDay._d.getDay()], "fullDate": testDay._d, "selected": true });
             else
                 $scope.thisWeekDays.push({ "id": i + 1, "month": shortMonths[testDay._d.getMonth()], "dayNumber": testDay._d.getDate(), "dayName": shortDays[testDay._d.getDay()], "fullDate": testDay._d, "selected": false });
         }
-        console.log($scope.thisWeekDays);
+        //console.log($scope.thisWeekDays);
     }
 
     //firstday = new Date(Date.parse(new Date(intialDate.setDate(intialDate.getDate() - intialDate.getDay())).toUTCString()));
-    console.log(firstday);
+    //console.log(firstday);
     var formatedFirstDay = firstday.getFullYear() + '-' + (firstday.getMonth() + 1) + '-' + firstday.getDate();
     var formatedLastday = lastday.getFullYear() + '-' + (lastday.getMonth() + 1) + '-' + lastday.getDate();
 
@@ -87,7 +93,11 @@
             var item = $scope.thisWeekDays[i];
             if (item.id == selectedDay.id) {
                 item.selected = true;
-                $scope.getDayAttendance(selectedDay.fullDate);
+                //console.log(selectedDay);
+                var dd = selectedDay.fullDate;
+                var d = dd.getFullYear() + '-' + (dd.getMonth() + 1) + '-' + dd.getDate();
+                //console.log(d);
+                $scope.getDayAttendance(d);
             } else {
                 item.selected = false;
             }
@@ -104,9 +114,9 @@
             showDelay: 0,
             template: '<i class="icon ion-loading-d"></i>'
         });
-        console.log(selectedDay);
-        var formatedAttendanceDay = API.convertLocalTimeToUTC(selectedDay);
-        console.log(formatedAttendanceDay);
+        //console.log(selectedDay);
+        var formatedAttendanceDay = selectedDay;
+        //console.log(formatedAttendanceDay);
         var req = {
             method: 'GET',
             url: '/api/Attendance/ByEmployee?UtcStartDate=' + formatedAttendanceDay + '&UtcEndDate=' + formatedAttendanceDay,
@@ -115,7 +125,7 @@
         
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
-            //console.log(_res);
+            console.log(_res);
             if (_res.data.code == 200) {
                 $scope.weeklyAttendanceArray = _res.data.data;
                 //console.log($scope.weeklyAttendanceArray);
@@ -124,17 +134,63 @@
             else {
                 $scope.weeklyAttendanceArray = [];
                 $ionicLoading.hide();
-                console.log(_res.data.data);
+                //console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
-                
             }
         }, function (error) {
             API.showTokenError(error);
         });
 
     }
-    $scope.getDayAttendance(moment()._d);
+    //console.log(moment().format("YYYY-MM-DD"));
 
+    $scope.getDayAttendance(moment().format("YYYY-MM-DD"));
+
+
+    //function timestrToSec(timestr) {
+    //    var parts = timestr.split(":");
+    //    return (parts[0] * 3600) +
+    //           (parts[1] * 60) +
+    //           (+parts[2]);
+    //}
+
+    //function pad(num) {
+    //    if (num < 10) {
+    //        return "0" + num;
+    //    } else {
+    //        return "" + num;
+    //    }
+    //}
+
+    //function formatTime(seconds) {
+    //    return [pad(Math.floor(seconds / 3600) % 60),
+    //            pad(Math.floor(seconds / 60) % 60),
+    //            pad(seconds % 60),
+    //    ].join(":");
+    //}
+
+    function calc(time1, time2) {
+        //var time1 = "01:00:00";
+        //var time2 = "00:30:00";
+        //var time3 = "00:30:00";
+
+        var hour = 0;
+        var minute = 0;
+        var second = 0;
+
+        var splitTime1 = time1.split(':');
+        var splitTime2 = time2.split(':');
+
+        hour = parseInt(splitTime1[0]) + parseInt(splitTime2[0]);
+        minute = parseInt(splitTime1[1]) + parseInt(splitTime2[1]);
+        hour = hour + minute / 60;
+        minute = minute % 60;
+        second = parseInt(splitTime1[2]) + parseInt(splitTime2[2]);
+        minute = minute + second / 60;
+        second = second % 60;
+
+        alert('sum of above time= ' + hour + ':' + minute + ':' + second);
+    }
 
     $scope.fillWeeklyReportData = function (startDate, EndDate) {
         $ionicLoading.show({
@@ -147,6 +203,7 @@
         });
         var formatedStartDate = API.convertLocalTimeToUTC(startDate);
         var formatedEndDate = API.convertLocalTimeToUTC(EndDate);
+        //console.log(formatedStartDate);
         var req = {
             method: 'GET',
             url: '/api/Attendance/ByEmployee?UtcStartDate=' + formatedStartDate + '&UtcEndDate=' + formatedEndDate,
@@ -160,6 +217,7 @@
         //$scope.totalBreakMintes = 0;
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
+            console.log(_res);
             if (_res.data.code == 200) {
                 $scope.$broadcast('scroll.refreshComplete');
                 $scope.weeklyReportDataArray = [];
@@ -167,28 +225,32 @@
                 for (var i = 0; i < _res.data.data.length; i++) {
                     var attendanceDate = new Date(_res.data.data[i].ClockIn.ClockingTime);
                     var dayInMonth = attendanceDate.getDate() + '/' + (attendanceDate.getMonth() + 1);
-                    var reportObj = { "dayName": shortDays[attendanceDate.getDay()], "dayInMonth": dayInMonth, "SiteName": _res.data.data[i].SiteName, "ClockIn": _res.data.data[i].ClockIn.ClockingTime, "ClockOut": _res.data.data[i].ClockOut.ClockingTime, "HRS": _res.data.data[i].TotalHours };
+                    var reportObj = { "dayName": shortDays[attendanceDate.getDay()], "dayInMonth": dayInMonth, "SiteName": _res.data.data[i].SiteName, "ClockIn": _res.data.data[i].ClockIn.DisplayRoundedClockingTime, "ClockOut": _res.data.data[i].ClockOut.DisplayRoundedClockingTime, "HRS": _res.data.data[i].TotalHours, "lat": _res.data.data[i].SiteCoordinates.Latitude };
                     $scope.weeklyReportDataArray.push(reportObj);
                     // sum weekly hours
                     $scope.totalHRS = $scope.totalHRS + _res.data.data[i].DecimalTotalHours;
-                    
-                    //$scope.totalHRSHours = parseInt($scope.totalHRS);
-                    //$scope.totalHRSMintes = ((($scope.totalHRS % 1) * 60 / 100).toFixed(2)).slice(2);
+
+
+                    $scope.totalHRSHours = parseInt($scope.totalHRS);
+                    $scope.totalHRSMintes = ((($scope.totalHRS % 1) * 60 / 100).toFixed(2)).slice(2);
 
                     // sum break hours
                     $scope.totalBreak = $scope.totalBreak + _res.data.data[i].BreakDuration;
+
                     
-                    //$scope.totalBreakHours = parseInt($scope.totalBreak);
-                    //$scope.totalBreakMintes = ((($scope.totalBreak % 1) * 60 / 100).toFixed(2)).slice(2);
+                    $scope.totalBreakHours = parseInt($scope.totalBreak);
+                    $scope.totalBreakMintes = ((($scope.totalBreak % 1) * 60 / 100).toFixed(2)).slice(2);
                 }
-                //console.log($scope.totalHRS);
-                //console.log($scope.totalBreak);
+                $scope.totalHRS = $scope.totalHRSHours + ':' + $scope.totalHRSMintes
+                $scope.totalBreak = $scope.totalBreakHours + ':' + $scope.totalBreakMintes;
+                console.log($scope.totalHRS);
+                console.log($scope.totalBreak);
                 $ionicLoading.hide();
             }
             else {
                 $scope.weeklyReportDataArray = [];
                 $ionicLoading.hide();
-                console.log(_res.data.data);
+                //console.log(_res.data.data);
                 $rootScope.showToast(_res.data.data);
                
             }
@@ -217,7 +279,7 @@
             nextWeekFirstDay = moment(intialDate).isoWeekday(1).startOf('isoweek').subtract(1, 'days').add(7, 'days');
             nextWeekLastDay = moment(intialDate).isoWeekday(1).startOf('isoweek').subtract(1, 'days').add(13, 'days');
         }
-        console.log(nextWeekFirstDay);
+        //console.log(nextWeekFirstDay);
         // show in page
         var firstDayOfWeek = shortMonths[nextWeekFirstDay._d.getMonth()] + " " + nextWeekFirstDay._d.getDate();
         var lastDayOfWeek = shortMonths[nextWeekLastDay._d.getMonth()] + " " + nextWeekLastDay._d.getDate() + ", " + nextWeekLastDay._d.getFullYear();
@@ -250,7 +312,7 @@
         }
         //var preWeekFirstDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 7);
         //var preWeekLastDay = new Date(intialDate.getFullYear(), intialDate.getMonth(), intialDate.getDate() - intialDate.getDay() - 1);
-        console.log(preWeekFirstDay);
+        //console.log(preWeekFirstDay);
 
         // show in page
         var firstDayOfWeek = shortMonths[preWeekFirstDay._d.getMonth()] + " " + preWeekFirstDay._d.getDate();

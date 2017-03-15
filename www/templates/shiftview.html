@@ -28,7 +28,7 @@
         <div class="card smallMargin">
             <div class="item item-text-wrap row row-center padding">
                 <span class="col">Date</span>
-                <span class="text-right col col-66 bluefont">{{shiftDate}}</span>
+                <span class="text-right col col-66 bluefont">{{startDate | date:'MMM d, y'}}</span>
             </div>
         </div>
         <div class="card">
@@ -74,7 +74,7 @@
             <div class="item item-text-wrap row row-top padding">
                 <span class="col">Shift Notes</span>
                 <label class="item item-input noborder col-66">
-                    <textarea rows="5" class="col" readonly
+                    <textarea rows="5" class="col" ng-disabled="!notesEnabled"
                               ng-model="shiftNotes"
                               ng-model-options="{ updateOn: 'blur' }"
                               ng-change="updateNotes(shiftNotes)">
@@ -99,7 +99,7 @@
                 <span>&nbsp;Cancel</span>
             </button>
             <button ng-show="tempLogin" class="button button-clear ion-log-out" ng-click="logout()">
-                <span>&nbsp;logout</span>
+                <span>&nbsp;Logout</span>
             </button>
             <button class="button button-clear ion-ios-stopwatch-outline lastButton" ng-hide="clockOut" ng-click="showConfirmIn()">
                 <span>&nbsp;Clock in</span>

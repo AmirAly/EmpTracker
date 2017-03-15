@@ -1,12 +1,12 @@
 ﻿empTracker.factory('API', ['$http', '$window', '$ionicLoading', '$timeout', '$state', '$rootScope', function ($http, $window, $ionicLoading, $timeout, $state, $rootScope) {
     var _url = "http://rostersmanager.com:90";
-    var headers = {}; console.log('');
+    //console.log('');
     return {
         name: 'API',
         execute: function (_req, _isAuth) {
-            console.log('');
-            //// _isAuth means need token
-            if (_isAuth) {
+            var headers = {};
+            //console.log('111');
+            if (_isAuth) { //// _isAuth means need token
                 headers = { 'Content-Type': 'application/json', 'Authorization': $window.localStorage['authorizationToken'] };
             }
             else { // don't need token 'login,register'
@@ -16,20 +16,15 @@
                     for (var p in obj)
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
-                };
+                }; 
             }
-            //_req.url = _url + _req.url;
-            //_req.headers = headers;
-            _req.timeout = 20000; //$timeout(function () { alert('request timed out'); }, 5000);
-            //console.log($http(_req));
-            //return $http(_req);
-
+            _req.timeout = 20000; 
             _req.url = _url + _req.url;
             _req.headers = headers;
-            console.log(_req);
             return $http(_req);
         },
         refreshtoken: function (_req, _isAuth) {
+            var headers = {};
             // _isAuth means need token
             if (_isAuth) {
                 headers = { 'Content-Type': 'application/json', 'Authorization': $window.localStorage['authorizationToken'] };

@@ -11,10 +11,16 @@
                         <span class="col date">{{event.StartDate  | date:'hh:mm a'}}-{{event.EndDate  | date:'hh:mm a'}}</span>
                     </div>
                     <div class="row">
-                        <span class="col address">{{event.ShortSiteName}}</span>
+                        <span class="col address">{{event.ShortSiteName}}</span> 
                     </div>
                     <div class="row">
-                        <span class="col area">{{event.SiteID}}</span>
+                        <span class="col col-40 area">{{event.SiteID}}</span>
+                        <span ng-if="event.ClockingStatus == 'Working'" class="txtTime">
+                            <span>At {{event.ClockIn.ClockingTime | date:'hh:mm a'}}</span><a class="button-icon icon ion-android-alarm-clock"></a>
+                        </span>
+                        <label ng-if="event.ClockingStatus == 'Clocked out'" class="col col-40 clockingStatus">Clocked-Out</label>
+                        <label ng-else ng-class="{'hide':event.ClockingStatus == ''}" class="col col-40 clockingStatus">{{event.ClockingStatus}}</label>
+                        <span class="col col-20 hide"></span>
                     </div>
                 </div>
                 <div class="col col-25 text-right thirdCoulmn">

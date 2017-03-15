@@ -1,7 +1,24 @@
 ﻿<ion-side-menus enable-menu-with-back-views="true">
+
     <ion-side-menu-content drag-content="toggledrag">
-        <ion-nav-view name="menuContent"></ion-nav-view>
+        <ion-nav-view ng-hide="homeTabs" name="menuContent"></ion-nav-view>
+        <ion-tabs ng-show="homeTabs" class="tabs-background-calm tabs-color-light tabs-icon-top">
+            <ion-tab title="Daily" icon-on="ion-ios-time" icon-off="ion-ios-time-outline" href="#/app/daily">
+                <ion-nav-view name="tab-daily"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title="Weekly Time cards" icon-on="ion-android-calendar" icon-off="ion-android-calendar" href="#/app/weekly">
+                <ion-nav-view name="tab-weekly"></ion-nav-view>
+            </ion-tab>
+            <ion-tab title=" Calendar" icon-on="ion-ios-calendar" icon-off="ion-ios-calendar-outline" href="#/app/calendar">
+                <ion-nav-view name="tab-calendar">
+                </ion-nav-view>
+            </ion-tab>
+        </ion-tabs>
     </ion-side-menu-content>
+
+    <!--<ion-side-menu-content drag-content="toggledrag">
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>-->
     <ion-side-menu side="left">
         <ion-header-bar class="bar-dark">
             <h1 class="title">Menu</h1>

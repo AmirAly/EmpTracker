@@ -14,8 +14,7 @@ Copyright (c) 2015 Russian Rebouças
                             ng-class="{selected: isDefaultDate(day), event: day.event[0], disabled: day.disabled, out: !day}"\
                             ng-click="onClick(day, $index, $event)" >\
                             <div class="number"><span>{{day.day}}</span></div>\
-                            <div id="badge{{day.year}}-{{day._month}}-{{day.day}}" >\
-                            </div>\
+                            <div id="badge{{day.year}}-{{day._month}}-{{day.day}}"></div>\
                         </div>\
                 </div></div>',
             a = {

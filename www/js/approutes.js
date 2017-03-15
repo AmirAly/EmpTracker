@@ -2,6 +2,13 @@
 
 empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection, CurrentLocation, CallPerodicalUpdate, LocalStorage, $ionicHistory, $ionicLoading, $timeout) {
     $ionicPlatform.ready(function () {
+
+        $rootScope.IMEI = "123456789";
+        $rootScope.DeviceType = "w";
+        $rootScope.DeviceName = "w";
+        $rootScope.MessagingRegistrationNo = "www";
+        $rootScope.HasBuiltInCamera = true;
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
@@ -10,26 +17,15 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         }
 
         document.addEventListener("deviceready", onDeviceReady, false);
+
         function onDeviceReady() {
-            console.log(device.cordova);
             console.log(JSON.stringify(device));
             $rootScope.DeviceType = device.platform;
             $rootScope.DeviceName = device.model;
-            window.plugins.sim.getSimInfo(function getSimInfoSuccessCallback(result) {
-                console.log(JSON.stringify(result));
-                $rootScope.IMEI = result.deviceId;
-            }, function getSimInfoErrorCallback(error) {
-                console.log(JSON.stringify(error));
-            });
+            $rootScope.IMEI = device.uuid;
         }
 
-
-        //$rootScope.IMEI = "123456789";
-        //$rootScope.DeviceType = "w";
-        //$rootScope.DeviceName = "w";
-        //$rootScope.MessagingRegistrationNo = "w";
-        $rootScope.HasBuiltInCamera = true;
-
+        // Disable back btn behavior
         $ionicPlatform.registerBackButtonAction(function (event) {
             if ($ionicHistory.currentStateName() === 'app.dashboard') {
                 event.preventDefault();
@@ -42,6 +38,18 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
             } else {
                 $ionicHistory.goBack();
             }
+
+            if ($ionicHistory.currentStateName() === 'tempdevicelogin') {
+                event.preventDefault();
+            } else {
+                $ionicHistory.goBack();
+            }
+
+            if ($ionicHistory.currentStateName() === 'app.shiftview') {
+                event.preventDefault();
+            } else {
+                $ionicHistory.goBack();
+            }
         }, 100);
 
         $rootScope.showToast = function (_message) {
@@ -49,7 +57,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
                 console.log('showToast: ' + _message);
                 window.plugins.toast.showWithOptions({
                     message: _message,
-                    duration: "long",
+                    duration: 6000,
                     position: "center",
                     styling: {
                         textColor: '#ffffff',//'#f44336', // Ditto. Default #FFFFFF
@@ -110,13 +118,19 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
         $rootScope.sundayWeekEnd = moment().isoWeekday(1).endOf('isoweek').subtract(1, 'days'); //console.log($rootScope.sundayWeekEnd._d);
 
         if (window.cordova) {
+            console.log("window.cordovaaaaaaaaaaaa");
             FCMPlugin.getToken(
                 function (sucess) {
-                    $rootScope.tokken = sucess;
-                    $rootScope.MessagingRegistrationNo = sucess;
+                    console.log("sucess");
                     console.log(sucess);
+                    if (sucess != null) {
+                        $rootScope.tokken = sucess;
+                        $rootScope.MessagingRegistrationNo = sucess;
+                        console.log(sucess);
+                    }
                 }
                 , function (err) {
+                    console.log("errrrrrrr");
                     $rootScope.tokken = err;
                     console.log(err);
                 });
@@ -145,18 +159,18 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
                     console.log('Error registering onNotification callback: ' + err);
                 }
             );
-            FCMPlugin.onNotificationReceived(
-                function (_receivedData) {
-                    $rootScope.receivedDataFCM = _receivedData;
-                    console.log(_receivedData);
-                }
-            );
-            FCMPlugin.onMessageReceived(
-                function (_msgData) {
-                    $rootScope.msgDataFCM = _msgData;
-                    console.log(_msgData);
-                }
-            );
+            //FCMPlugin.onNotificationReceived(
+            //    function (_receivedData) {
+            //        $rootScope.receivedDataFCM = _receivedData;
+            //        console.log(_receivedData);
+            //    }
+            //);
+            //FCMPlugin.onMessageReceived(
+            //    function (_msgData) {
+            //        $rootScope.msgDataFCM = _msgData;
+            //        console.log(_msgData);
+            //    }
+            //);
         }
     });
 
@@ -179,6 +193,7 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
     // challenge called every 10 minutes if UserIsInShift : 600000 ms
     $rootScope.UserIsInShift = false;
     $rootScope.wakeupChallange = function () {
+
         var rand = Math.floor(Math.random() * 3600000) + 1800000;
         var i = setInterval(function () {
             if ($rootScope.UserIsInShift == true) {
@@ -190,8 +205,9 @@ empTracker.run(function ($ionicPlatform, $rootScope, $state, InternetConnection,
                 clearInterval(i);
             }
         }, rand);
+
     };
-    $rootScope.wakeupChallange();
+
 
 
     // perodical update called every 10 minutes if UserIsInShift = 600000 ms
@@ -241,16 +257,39 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
         controller: 'MenuController'
     })
 
-    .state('app.home', {
+    .state('app.daily', {
         cache: false,
-        url: '/home',
+        url: '/daily',
         views: {
-            'menuContent': {
-                controller: "homeController",
-                templateUrl: 'templates/home.html'
+            'tab-daily': {
+                controller: "homedailycontroller",
+                templateUrl: 'templates/homedaily.temp.html'
             }
         }
     })
+
+            .state('app.weekly', {
+                cache: false,
+                url: '/weekly',
+                views: {
+                    'tab-weekly': {
+                        controller: "homeweeklycontroller",
+                         templateUrl: 'templates/homeweekly.temp.html'
+                    }
+                }
+            })
+
+
+            .state('app.calendar', {
+                cache: false,
+                url: '/calendar',
+                views: {
+                    'tab-calendar': {
+                        controller: "homecalendarcontroller",
+                        templateUrl: 'templates/homecalendar.temp.html'
+                    }
+                }
+            })
 
     .state('app.submenu', {
         url: '/submenu',
@@ -272,9 +311,22 @@ empTracker.config(function ($stateProvider, $urlRouterProvider, $translateProvid
             }
         }
     })
+        //////////////////// new route
+        .state('app.clockingwithmap', {
+            cache: false,
+            url: '/clockingwithmap/:Latitude/:Longitude',
+            views: {
+                'menuContent': {
+                    controller: "clockingwithmapController",
+                    templateUrl: 'templates/clockingwithmap.html'
+                }
+            }
+        })
+
 
     .state('app.attendance', {
         url: '/attendance',
+        cache: false,
         views: {
             'menuContent': {
                 controller: "attendanceController",

@@ -65,17 +65,31 @@
                 google.maps.event.addListener(marker2, 'click', function () {
                     infoWindow2.open($scope.map, marker2);
                 });
-$ionicLoading.hide();
-                
+                //$ionicLoading.hide();
+
 
             });
         }, function (error) {
             console.log(error);
-            console.log("Could not get location");
-            var alertPopup = $ionicPopup.alert({
-                title: 'Can\'t display map',
-                template: 'Could Not Find Address On Map. Please Contact Your Company'
+            $rootScope.locationService = 'inactive';
+            console.log("Could not get location , You have to enable location on your device");
+            $ionicLoading.show({
+                template: '<div class="padding">\
+                                    <a class="button button-icon icon energized ion-alert-circled"></a>\
+                                    <h4>Can\'t get your location</h4>\
+                                    <h5>You have to allow geolocation service on your device.</h4>\
+                                </div>',
+                animation: 'slide-in-up'
             });
+            //$timeout(function () {
+            //    $ionicLoading.hide();
+            //}, 5000);
+
+            //console.log("Could not get location");
+            //var alertPopup = $ionicPopup.alert({
+            //    title: 'Can\'t display map',
+            //    template: 'Could Not Find Address On Map. Please Contact Your Company'
+            //});
         }).finally(function () {
             $ionicLoading.hide();
         });

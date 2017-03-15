@@ -39,7 +39,7 @@
         // add true to use authentication token
         API.execute(req, true).then(function (_res) {
             console.log(_res);
-            if (_res.data.code == 200) {
+            if (_res.data.code == 200 || _res.data.code == 20) {
                 $ionicLoading.hide();
                 // empolyee
                 if ($rootScope.isSupervisor == false) {

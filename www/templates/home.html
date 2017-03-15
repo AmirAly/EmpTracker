@@ -93,10 +93,10 @@
                                     <div class="padding-left txtTotalHours"><span>Total Hours: </span><span>{{weeklyTotalHours}}</span></div>
                                 </div>
                             </div>
-                            <div ng-repeat="event in weeklyEventsArray track by $index">
+                            <div ng-repeat="event in weeklyEventsArray track by $index"> 
                                 <div class="card">
-                                    <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate!= todayDate"></div>
-                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate== todayDate"></div>
+                                    <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate != todayDate"></div>
+                                    <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate == todayDate"></div>
                                 </div>
                             </div>
                             <div class="card text-center padding-top" ng-show="!weeklyEventsArray.length">

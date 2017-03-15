@@ -1,0 +1,55 @@
+﻿<ion-view view-title="Tabs" class="homePage">
+    <ion-header-bar class="bar-dark">
+        <button type="button" class="button button-icon icon ion-navicon" menu-toggle="left" id="menuBtn"></button>
+        <button class="button button-icon stable" ng-click="notifications()">
+            <i class="icon ion-android-notifications"></i>
+            <span class="badge badge-assertive">{{notifictionsCounter ||0}}</span>
+        </button>
+        <i class=" icon ion-wifi" ng-class="{'disconnected' : internetStatus == 'disconnected'}"></i>
+        <i class=" icon ion-ios-location " ng-class="{'inactive' : locationService == 'inactive'}"></i>
+        <div class="pull-right floatRight" ng-click="openmyaccount()">
+            <img ng-src="{{globalUserPhoto || 'images/unknown.png'}}" class="circle" /><span>{{globalUserName || "UserName"}}</span>
+        </div>
+        <button class="button button-icon icon ion-ios-keypad pull-right floatRight" ng-click="showSubMenu()"></button>
+    </ion-header-bar>
+    <ion-content padding="true" on-swipe-right="preWeek()" on-swipe-left="nextWeek()">
+        <ion-refresher pulling-icon="ion-android-arrow-down" on-refresh="thisWeek()"></ion-refresher>
+        <div class="dvWeeklyCardsHeader">
+            <div class="row row-center">
+                <div class="col col-20 text-left">
+                    <button ng-click="preWeek()" class="button button-icon icon ion-android-arrow-dropleft-circle light"></button>
+                </div>
+                <div class="col col-60">
+                    <div>
+                        <h4 class="text-center">
+                            {{weekDate}}
+                            <!--<span>{{firstDayOfWeek}}</span>
+                            <span>
+                                to
+                            </span>
+                            <span>{{lastDayOfWeek}}</span>-->
+                        </h4>
+                    </div>
+                </div>
+                <div class="col col-20 text-right">
+                    <button ng-click="nextWeek()" class="button button-icon icon ion-android-arrow-dropright-circle light"></button>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="!weeklyEventsArray.length">
+            <div class="row">
+                <div class="padding-left txtTotalHours"><span>Total Hours: </span><span>{{weeklyTotalHours}}</span></div>
+            </div>
+        </div>
+        <div ng-repeat="event in weeklyEventsArray track by $index">
+            <div class="card">
+                <div ng-include="'templates/dailyshift.temp.html'" ng-if="event.formattedDate != todayDate"></div>
+                <div ng-include="'templates/todayshift.temp.html'" ng-if="event.formattedDate == todayDate"></div>
+            </div>
+        </div>
+        <div class="card text-center padding-top" ng-show="!weeklyEventsArray.length">
+            <h3>There is no shifts</h3>
+        </div>
+        <div class="spacer"></div>
+    </ion-content>
+</ion-view>
